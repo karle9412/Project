@@ -18,6 +18,7 @@
 <body>
 <h2> 배달의 새로운 패러다임을 제시합니다</h2>
 <a href="/login" class="btn btn-primary">시작하기</button>
+<a href="/Board/RequestList?menu_id=MENU_01" class="btn btn-primary">요청게시판 확인용</button>
 
 </body>
 </html>

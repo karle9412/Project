@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<title>Insert title here</title>
 <style>
         body{
          background-image: url(https://cdn.pixabay.com/photo/2019/08/19/15/13/eiffel-tower-4416700__340.jpg);
@@ -18,7 +18,7 @@
 </head>
 <body>
 <h2> 배달의 새로운 패러다임을 제시합니다</h2>
-<a href="/login" class="btn btn-primary">시작하기</button>
+<a href="/login" class="btn btn-primary">시작하기</a>
 
 </body>
-</html
+</html>

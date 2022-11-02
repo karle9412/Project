@@ -1,28 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
->>>>>>> origin/hyeonseok
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<<<<<<< HEAD
-</head>
-<body>
-  hello
-</body>
-</html>
 
-
-
-
-
-
-
-=======
 <style>
         body{
          background-image: url(https://cdn.pixabay.com/photo/2019/08/19/15/13/eiffel-tower-4416700__340.jpg);
@@ -38,5 +21,4 @@
 <a href="/login" class="btn btn-primary">시작하기</button>
 
 </body>
-</html>
->>>>>>> origin/hyeonseok
+</html

@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="main">
-  <table id="requestList">
+  <table id="boardList">
     <h2>요청 게시판</h2>
     <tr>
       <td colspan="5" class="right">
@@ -23,8 +23,6 @@
       <th>위치</th>
       <th>접수상태</th>
     </tr>
-    <c:forEach var="board" items="${list.menu_id}">
 
-    </c:forEach>
 </body>
 </html>

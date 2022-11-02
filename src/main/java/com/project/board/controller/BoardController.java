@@ -13,20 +13,19 @@ import java.util.List;
 @RequestMapping("/Board")
 public class BoardController {
 
-        @Autowired
-        private BoardService boardService;
+    @Autowired
+    private BoardService boardService;
 
     @RequestMapping("/List")
     public ModelAndView list(String menu_id){
 
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("board/list");
 
         List<BoardVo> boardList = boardService.getBoardList(menu_id);
+        ModelAndView mv = new ModelAndView();
         mv.addObject("menu_id",menu_id);
         mv.addObject("boardList",boardList);
+        mv.setViewName("boards/list");
         return mv;
     }
-
 
 }

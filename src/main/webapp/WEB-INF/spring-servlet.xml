@@ -25,16 +25,16 @@
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp" />    
     </bean>
-
+    <!--
     <bean id="dataSource" 
     class="org.apache.commons.dbcp.BasicDataSource"
     destroy-method="close">
        <property name="driverClassName"  value="oracle.jdbc.OracleDriver" />
        <property name="url"              value="jdbc:oracle:thin:@localhost:1521:xe" />
-       <property name="username"         value="pro" />
+       <property name="username"         value="board" />
        <property name="password"         value="1234" />    
     </bean>
-    <!--
+    
      mybatis 와 스프링 연결을 위한 SqlSessionFactoryBean 객체 사용
         DB 연결 및 sql 명령 실행을 담당 
          SqlSessionFactoryBean sqlSessionFactory = new  SqlSessionFactoryBean();

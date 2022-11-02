@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<title>Insert title here</title>
 <style>
         body{
          background-image: url(/img/test3.jpg);
@@ -28,12 +28,12 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h2> TEST </h2>
-
-<button type= 'button ' class = "btn"> 시작하기</button>
 
 
 
+
+<h2> 배달의 새로운 패러다임을 제시합니다</h2>
+<a href="/login" class="btn btn-primary">시작하기</a>
 
 </body>
-</html
+</html>

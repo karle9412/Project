@@ -5,6 +5,10 @@ INSERT INTO MENUS(MENU_ID, MENU_NAME)
 VALUES ('MENU_02', '후기');
 COMMIT;
 
+INSERT INTO USERS(USERID, PASSWD, USERNAME, EMAIL, USER_LOCAL, RIDER)
+VALUES ('sky', '1234', '하늘', 'test@naver.com', '부산', '1');
+commit;
+
 -- 시퀀스 생성하고 나서 이 값으로 바로 넣으시면 됨다
 INSERT INTO BOARD(BOARD_NUMBER, MENU_ID, USERID, TITLE, WRITER, BOARD_LOCAL, CONT)
 VALUES (BOARD_NUMBER.NEXTVAL, 'MENU_01', 'sky', '테스트', '하늘', '부산', '테스트 중입니다.');

@@ -6,13 +6,46 @@
 <mapper namespace="User">
 
     <select id="UserList"
-            resultType="com.project.user.vo.UserVo">
+            resultType="com.green.user.vo.UserVo">
         SELECT USERID, USERNAME,
         TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
         FROM TUSER
         ORDER BY INDATE DESC
     </select>
 
+    <select id="getView"
+            resultType="com.green.user.vo.UserVo">
+        SELECT USERID,
+        PASSWD,
+        USERNAME,
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        FROM  TUSER
+        WHERE USERID = #{id}
+    </select>
+
+    <select id="getViewName"
+            resultType="com.green.user.vo.UserVo">
+        SELECT USERID,
+        PASSWD,
+        USERNAME,
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        FROM  TUSER
+        WHERE USERNAME LIKE '%' || #{name} || '%'
+        ORDER BY  USERNAME ASC
+
+    </select>
+
+    <select id="login"
+            resultType="com.green.user.vo.UserVo">
+        SELECT USERID,
+        PASSWD,
+        USERNAME,
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        FROM  TUSER
+        WHERE USERID = #{userid}
+        AND   PASSWD = #{passwd}
+
+    </select>
 
 
 </mapper>

@@ -1,11 +1,10 @@
-package com.project.board.service;
+package com.project.board.dao;
 
 import com.project.board.vo.BoardVo;
 
 import java.util.List;
 
-public interface BoardService {
-
+public interface BoardDao {
 
     List<BoardVo> getlist();
 }

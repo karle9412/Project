@@ -2,7 +2,7 @@ package com.project.user.vo;
 
 public class UserVo {
 
-    private String userid;
+    private String userId;
     private String passwd;
     private String username;
     private String email;
@@ -11,8 +11,8 @@ public class UserVo {
     private String indate;
 
     public UserVo (){}
-    public UserVo(String userid, String passwd, String username, String email, String userLocal, String rider, String indate) {
-        this.userid = userid;
+    public UserVo(String userId, String passwd, String username, String email, String userLocal, String rider, String indate) {
+        this.userId = userId;
         this.passwd = passwd;
         this.username = username;
         this.email = email;
@@ -21,12 +21,12 @@ public class UserVo {
         this.indate = indate;
     }
 
-    public String getUserid() {
-        return this.userid;
+    public String getUserId() {
+        return this.userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPasswd() {
@@ -80,7 +80,7 @@ public class UserVo {
     @Override
     public String toString() {
         return "UserVo{" +
-                "userid='" + this.userid + '\'' +
+                "userid='" + this.userId + '\'' +
                 ", passwd='" + this.passwd + '\'' +
                 ", username='" + this.username + '\'' +
                 ", email='" + this.email + '\'' +

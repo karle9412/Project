@@ -46,6 +46,17 @@
         AND   PASSWD = #{passwd}
 
     </select>
+    
+    <update id="Insert"
+            parameterType="com.green.menus.vo.MenuVo">
+        INSERT  INTO  USERS( USERID,
+        PASSWD,
+        USERNAME,
+        EMAIL,
+        USER_LOCAL,
+        RIDER)
+        VALUES (  #{userid}, #{passwd}, #{username}, #{email} , #{userLocal} , #{rider})
+    </update>
 
 
 </mapper>

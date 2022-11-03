@@ -1,6 +1,6 @@
 package com.project.menus.service.impl;
 
-import com.project.menus.dao.impl.MenuDao;
+import com.project.menus.dao.MenuDao;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;

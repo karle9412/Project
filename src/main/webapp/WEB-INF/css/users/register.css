@@ -5,10 +5,12 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
+<style>
 
+</style>
 <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-margin">
 <h2 class="w3-center">Register</h2>
-
+ 
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"></div>
     <div class="w3-rest">
@@ -26,7 +28,7 @@
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"></div>
     <div class="w3-rest">
-      <input class="w3-input w3-border" name="PASSWD" type="password" placeholder="Password Check">
+      <input class="w3-input w3-border" name="PASSCHK" type="password" placeholder="Password Check">
     </div>
 </div>
 
@@ -44,12 +46,13 @@
     </div>
 </div>
 
-<div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="USER_LOCAL" type="text" placeholder="Location">
-    </div>
-</div>
+
+<select id="LOACTION" name="LOCATION">
+    <option value="">LOCATION</option>
+	<option value="seoul">서울</option>
+    <option value="kyeongki">경기</option>
+    <option value="incheon">인천</option>
+</select>
 
 
 <p>
@@ -63,5 +66,6 @@
 </p>
 </form>
 
+
 </body>
-</html>
+</html> 

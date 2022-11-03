@@ -5,5 +5,6 @@ import com.project.board.vo.BoardVo;
 import java.util.List;
 
 public interface BoardDao {
-    List<BoardVo> getBoardList();
+
+    List<BoardVo> getlist();
 }

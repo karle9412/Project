@@ -1,7 +1,7 @@
 package com.project.board.vo;
 
 public class BoardVo {
-    // Fields
+
     private int board_number;
     private String menu_id;
     private String userid;
@@ -10,32 +10,6 @@ public class BoardVo {
     private String board_local;
     private String cont;
     private String indate;
-
-    public BoardVo(){}
-    public BoardVo(int board_number, String menu_id, String userid, String title, String writer, String board_local, String cont, String indate) {
-        this.board_number = board_number;
-        this.menu_id = menu_id;
-        this.userid = userid;
-        this.title = title;
-        this.writer = writer;
-        this.board_local = board_local;
-        this.cont = cont;
-        this.indate = indate;
-    }
-
-    @Override
-    public String toString() {
-        return "BoardVo{" +
-                "board_number=" + board_number +
-                ", menu_id='" + menu_id + '\'' +
-                ", userid='" + userid + '\'' +
-                ", title='" + title + '\'' +
-                ", writer='" + writer + '\'' +
-                ", board_local='" + board_local + '\'' +
-                ", cont='" + cont + '\'' +
-                ", indate='" + indate + '\'' +
-                '}';
-    }
 
     public int getBoard_number() {
         return board_number;
@@ -99,5 +73,32 @@ public class BoardVo {
 
     public void setIndate(String indate) {
         this.indate = indate;
+    }
+
+    public BoardVo(){}
+
+    public BoardVo(int board_number, String menu_id, String userid, String title, String writer, String board_local, String cont, String indate) {
+        this.board_number = board_number;
+        this.menu_id = menu_id;
+        this.userid = userid;
+        this.title = title;
+        this.writer = writer;
+        this.board_local = board_local;
+        this.cont = cont;
+        this.indate = indate;
+    }
+
+    @Override
+    public String toString() {
+        return "BoardVo{" +
+                "board_number=" + board_number +
+                ", menu_id='" + menu_id + '\'' +
+                ", userid='" + userid + '\'' +
+                ", title='" + title + '\'' +
+                ", writer='" + writer + '\'' +
+                ", board_local='" + board_local + '\'' +
+                ", cont='" + cont + '\'' +
+                ", indate='" + indate + '\'' +
+                '}';
     }
 }

@@ -12,11 +12,6 @@
   <table id="boardList">
     <h2>요청 게시판</h2>
     <tr>
-      <td colspan="5" class="right">
-         <a href="/Board/WriteForm?menu_id=${list.menuId}">요청게시글 쓰기</a>
-      </td>
-    </tr>
-    <tr>
       <th>번호</th>
       <th>제목</th>
       <th>작성자</th>
@@ -25,7 +20,14 @@
     </tr>
     <c:forEach var="board" items="${boardList}">
     <tr>
-      <td>${board.title}</td>
+       <td>${board.board_number}</td>
+       <td>${board.menu_id}</td>
+       <td>${board.userid}</td>
+       <td>${board.title}</td>
+       <td>${board.writer}</td>
+       <td>${board.board_local}</td>
+       <td>${board.cont}</td>
+       <td>${board.indate}</td>
     </tr>
     </c:forEach>
 

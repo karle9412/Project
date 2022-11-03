@@ -14,10 +14,10 @@ public class BoardDaoImpl implements BoardDao {
     @Autowired
     private SqlSession sqlSession;
 
+
     @Override
-    public List<BoardVo> getBoardList() {
-        List<BoardVo> boardList = sqlSession.selectList("Board.BoardList");
-        System.out.println(boardList);
-        return boardList;
+    public List<BoardVo> getlist() {
+       List<BoardVo> boardlist = sqlSession.selectList("Board.BoardList");
+       return boardlist;
     }
 }

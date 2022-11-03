@@ -10,21 +10,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/Board")
 public class BoardController {
 
     @Autowired
-    private BoardService boardService;
+    BoardService boardService;
 
-    @RequestMapping("/List")
-    public String list(Model model){
+    @RequestMapping("/list")
+    public String boardlist(Model model){
 
-        List<BoardVo> boardList = boardService.getBoardList();
-        model.addAttribute("boardList",boardList);
-
-        System.out.println(boardList);
+        List<BoardVo> boardlist = boardService.getlist();
+        model.addAttribute("boardList", boardlist);
+        System.out.println(boardlist);
 
         return "boards/list";
+
+
     }
+
+    @RequestMapping("/board/detail")
+    public String detail(){
+        // BoardVo boardVo = boardService.Detail;
+
+        return "boards/Detail";
+
+    }
+
 
 }

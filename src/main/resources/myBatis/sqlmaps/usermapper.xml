@@ -6,7 +6,7 @@
 <mapper namespace="User">
 
     <select id="UserList"
-            resultType="com.green.user.vo.UserVo">
+            resultType="com.project.user.vo.UserVo">
         SELECT USERID, USERNAME,
         TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
         FROM TUSER
@@ -14,7 +14,7 @@
     </select>
 
     <select id="getView"
-            resultType="com.green.user.vo.UserVo">
+            resultType="com.project.user.vo.UserVo">
         SELECT USERID,
         PASSWD,
         USERNAME,
@@ -24,7 +24,7 @@
     </select>
 
     <select id="getViewName"
-            resultType="com.green.user.vo.UserVo">
+            resultType="com.project.user.vo.UserVo">
         SELECT USERID,
         PASSWD,
         USERNAME,
@@ -36,7 +36,7 @@
     </select>
 
     <select id="login"
-            resultType="com.green.user.vo.UserVo">
+            resultType="com.project.user.vo.UserVo">
         SELECT USERID,
         PASSWD,
         USERNAME,

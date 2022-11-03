@@ -41,7 +41,6 @@
          sqlSessionFactory.setDataSource (dataSource); //propery
          sqlSessionFactory.setMapperLocations (classpath:myBatis/sqlmaps/*.xml"); //propery
          -->
-<!--
     <bean  id="sqlSessionFactory"
            class="org.mybatis.spring.SqlSessionFactoryBean">
        <property name="dataSource"   ref="dataSource" />
@@ -49,8 +48,8 @@
 			value="classpath:myBatis/sqlmaps/*.xml" />
     </bean>
 
-     SqlSessionTemplate 설정
-    SqlSessionTemplate  sqlSession = new SqlSessionTemplate( sqlSessionFactory );
+    <!-- SqlSessionTemplate 설정
+    SqlSessionTemplate  sqlSession = new SqlSessionTemplate( sqlSessionFactory );-->
 
     <bean  id="sqlSession"
                    class="org.mybatis.spring.SqlSessionTemplate"
@@ -60,7 +59,6 @@
         </constructor-arg>
 
     </bean>
--->
     <!-- MultipartResolver 설정 -->
     <!-- 최대 업로드 크기설정 100000000 : 100M -->
     <bean id    ="multipartResolver"

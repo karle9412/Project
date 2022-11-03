@@ -10,7 +10,6 @@
 <body>
   <div id="main">
   <%@ include file="/WEB-INF/include/menus.jsp" %>
-  <a href="/">메인</a>
   <table id="boardList">
     <h2>요청 게시판</h2>
     <tr>

@@ -16,12 +16,14 @@
       <th>번호</th>
       <th>제목</th>
       <th>작성자</th>
+      <th>지역</th>
     </tr>
     <c:forEach var="board" items="${boardList}">
     <tr>
        <td>${board.board_number}</td>
        <td><a href="/">${board.title}</a></td>
        <td>${board.writer}</td>
+       <td>${board.board_local}</td>
     </tr>
     </c:forEach>
 

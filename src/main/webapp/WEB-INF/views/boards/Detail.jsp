@@ -24,7 +24,7 @@
 </head>
 <body>
  <table id="board">
-       <caption><h2>내용 보기</h2></caption>
+       <caption><h2>후기 내용 보기</h2></caption>
        <tr>
         <td>번호</td>
         <td>테스트 </td>

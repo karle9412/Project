@@ -21,7 +21,7 @@ public class BoardController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping("/List")
+    @RequestMapping("/requestList")
     public String boardList(Model model, String menu_id){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
@@ -32,11 +32,15 @@ public class BoardController {
         return "boards/requestList";
     }
 
-    @RequestMapping("/board/detail")
-    public String detail(){
-        // BoardVo boardVo = boardService.Detail;
+    @RequestMapping("/LatterList")
+    public String detail(Model model, String menu_id){
 
-        return "boards/Detail";
+        List<MenuVo>  menuList  = menuService.getMenuList();
+        List<BoardVo> boardList = boardService.getBoardList(menu_id);
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("menuList", menuList);
+
+        return "boards/latterList";
 
     }
 

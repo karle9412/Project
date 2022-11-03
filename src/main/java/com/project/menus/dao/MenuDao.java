@@ -1,4 +1,4 @@
-package com.project.menus.dao.impl;
+package com.project.menus.dao;
 
 import com.project.menus.vo.MenuVo;
 

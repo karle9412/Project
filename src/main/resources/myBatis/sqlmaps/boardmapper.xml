@@ -7,9 +7,17 @@
 
     <select id="BoardList"
             resultType="com.project.board.vo.BoardVo">
-        SELECT *
+        SELECT BOARD_NUMBER,
+        MENU_ID,
+        USERID,
+        TITLE,
+        WRITER,
+        BOARD_LOCAL,
+        CONT,
+        INDATE
+
         FROM BOARD
-        WHERE MENU_ID = #{boardVo.menuId}
+
     </select>
 
 </mapper>

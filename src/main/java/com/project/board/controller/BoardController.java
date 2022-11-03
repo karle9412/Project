@@ -4,8 +4,8 @@ import com.project.board.service.BoardService;
 import com.project.board.vo.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -17,17 +17,14 @@ public class BoardController {
     private BoardService boardService;
 
     @RequestMapping("/List")
-    public ModelAndView list(BoardVo boardVo){
+    public String list(Model model){
 
+        List<BoardVo> boardList = boardService.getBoardList();
+        model.addAttribute("boardList",boardList);
 
-        System.out.println(boardVo);
+        System.out.println(boardList);
 
-        List<BoardVo> boardList = boardService.getBoardList(boardVo);
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("menu_id",boardVo);
-        mv.addObject("boardList",boardList);
-        mv.setViewName("boards/list");
-        return null;
+        return "boards/list";
     }
 
 }

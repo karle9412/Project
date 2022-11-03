@@ -2,31 +2,55 @@ package com.project.board.vo;
 
 public class BoardVo {
     // Fields
-    private int boardNumber;
-    private String menuId;
+    private int board_number;
+    private String menu_id;
     private String userid;
     private String title;
     private String writer;
-    private String boardLocal;
+    private String board_local;
     private String cont;
     private String indate;
 
-    // Getter / Setter
-
-    public int getBoardNumber() {
-        return boardNumber;
+    public BoardVo(){}
+    public BoardVo(int board_number, String menu_id, String userid, String title, String writer, String board_local, String cont, String indate) {
+        this.board_number = board_number;
+        this.menu_id = menu_id;
+        this.userid = userid;
+        this.title = title;
+        this.writer = writer;
+        this.board_local = board_local;
+        this.cont = cont;
+        this.indate = indate;
     }
 
-    public void setBoardNumber(int boardNumber) {
-        this.boardNumber = boardNumber;
+    @Override
+    public String toString() {
+        return "BoardVo{" +
+                "board_number=" + board_number +
+                ", menu_id='" + menu_id + '\'' +
+                ", userid='" + userid + '\'' +
+                ", title='" + title + '\'' +
+                ", writer='" + writer + '\'' +
+                ", board_local='" + board_local + '\'' +
+                ", cont='" + cont + '\'' +
+                ", indate='" + indate + '\'' +
+                '}';
     }
 
-    public String getMenuId() {
-        return menuId;
+    public int getBoard_number() {
+        return board_number;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
+    public void setBoard_number(int board_number) {
+        this.board_number = board_number;
+    }
+
+    public String getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(String menu_id) {
+        this.menu_id = menu_id;
     }
 
     public String getUserid() {
@@ -53,12 +77,12 @@ public class BoardVo {
         this.writer = writer;
     }
 
-    public String getBoardLocal() {
-        return boardLocal;
+    public String getBoard_local() {
+        return board_local;
     }
 
-    public void setBoardLocal(String boardLocal) {
-        this.boardLocal = boardLocal;
+    public void setBoard_local(String board_local) {
+        this.board_local = board_local;
     }
 
     public String getCont() {
@@ -75,36 +99,5 @@ public class BoardVo {
 
     public void setIndate(String indate) {
         this.indate = indate;
-    }
-
-
-    // Constructor
-    public BoardVo(){}
-    public BoardVo(int boardNumber, String menuId, String userid, String title, String writer, String boardLocal, String cont, String indate) {
-        this.boardNumber = boardNumber;
-        this.menuId = menuId;
-        this.userid = userid;
-        this.title = title;
-        this.writer = writer;
-        this.boardLocal = boardLocal;
-        this.cont = cont;
-        this.indate = indate;
-    }
-
-
-    // toString
-
-    @Override
-    public String toString() {
-        return "BoardVo{" +
-                "boardNumber=" + boardNumber +
-                ", menuId='" + menuId + '\'' +
-                ", userid='" + userid + '\'' +
-                ", title='" + title + '\'' +
-                ", writer='" + writer + '\'' +
-                ", boardLocal='" + boardLocal + '\'' +
-                ", cont='" + cont + '\'' +
-                ", indate='" + indate + '\'' +
-                '}';
     }
 }

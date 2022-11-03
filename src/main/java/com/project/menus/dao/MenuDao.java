@@ -1,6 +1,6 @@
-package com.project.menu.dao.impl;
+package com.project.menus.dao.impl;
 
-import com.project.menu.vo.MenuVo;
+import com.project.menus.vo.MenuVo;
 
 import java.util.List;
 

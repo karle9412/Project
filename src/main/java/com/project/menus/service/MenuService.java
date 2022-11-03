@@ -1,6 +1,6 @@
-package com.project.menu.service;
+package com.project.menus.service;
 
-import com.project.menu.vo.MenuVo;
+import com.project.menus.vo.MenuVo;
 
 import java.util.List;
 

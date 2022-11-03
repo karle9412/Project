@@ -1,7 +1,7 @@
 package com.project.board.dao;
 
 import com.project.board.vo.BoardVo;
-import com.project.menu.vo.MenuVo;
+import com.project.menus.vo.MenuVo;
 
 import java.util.List;
 

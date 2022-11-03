@@ -6,7 +6,7 @@
 <mapper namespace="Menu">
 
     <select id="MenuList"
-            resultType="com.project.menu.vo.MenuVo">
+            resultType="com.project.menus.vo.MenuVo">
         SELECT MENU_NAME,MENU_ID
         FROM MENUS
 

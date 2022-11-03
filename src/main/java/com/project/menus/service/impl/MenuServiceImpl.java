@@ -1,9 +1,8 @@
-package com.project.menu.service.impl;
+package com.project.menus.service.impl;
 
-import com.project.board.dao.BoardDao;
-import com.project.menu.dao.impl.MenuDao;
-import com.project.menu.service.MenuService;
-import com.project.menu.vo.MenuVo;
+import com.project.menus.dao.impl.MenuDao;
+import com.project.menus.service.MenuService;
+import com.project.menus.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

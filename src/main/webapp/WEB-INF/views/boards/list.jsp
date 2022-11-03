@@ -13,7 +13,7 @@
     <h2>요청 게시판</h2>
     <tr>
       <td colspan="5" class="right">
-         <a href="/Board/WriteForm?menu_id=${list.menu_id}">요청게시글 쓰기</a>
+         <a href="/Board/WriteForm?menu_id=${list.menuId}">요청게시글 쓰기</a>
       </td>
     </tr>
     <tr>
@@ -23,6 +23,11 @@
       <th>위치</th>
       <th>접수상태</th>
     </tr>
+    <c:forEach var="board" items="${boardList}">
+    <tr>
+      <td>${board.title}</td>
+    </tr>
+    </c:forEach>
 
 </body>
 </html>

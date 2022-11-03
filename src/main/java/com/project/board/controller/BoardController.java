@@ -17,15 +17,17 @@ public class BoardController {
     private BoardService boardService;
 
     @RequestMapping("/List")
-    public ModelAndView list(String menu_id){
+    public ModelAndView list(BoardVo boardVo){
 
 
-        List<BoardVo> boardList = boardService.getBoardList(menu_id);
+        System.out.println(boardVo);
+
+        List<BoardVo> boardList = boardService.getBoardList(boardVo);
         ModelAndView mv = new ModelAndView();
-        mv.addObject("menu_id",menu_id);
+        mv.addObject("menu_id",boardVo);
         mv.addObject("boardList",boardList);
         mv.setViewName("boards/list");
-        return mv;
+        return null;
     }
 
 }

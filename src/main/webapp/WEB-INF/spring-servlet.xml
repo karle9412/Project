@@ -57,6 +57,7 @@
        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
    </bean>
 
+
     <!-- MultipartResolver 설정 -->
     <!-- 최대 업로드 크기설정 100000000 : 100M -->
 

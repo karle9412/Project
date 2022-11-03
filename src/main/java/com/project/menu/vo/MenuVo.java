@@ -4,7 +4,7 @@ import java.security.PrivateKey;
 
 public class MenuVo {
 
-    private String menu_id;
+    private String menuId;
     private String menu_name;
 
     @Override

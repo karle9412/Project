@@ -15,9 +15,9 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     MenuDao menuDao;
 
-    public List<MenuVo> getmenulist() {
+    public List<MenuVo> getMenuList() {
 
-        List<MenuVo> menulist = menuDao.getmenulist();
+        List<MenuVo> menulist = menuDao.getMenuList();
         return menulist;
     }
 }

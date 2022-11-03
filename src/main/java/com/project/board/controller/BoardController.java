@@ -2,6 +2,8 @@ package com.project.board.controller;
 
 import com.project.board.service.BoardService;
 import com.project.board.vo.BoardVo;
+import com.project.menus.service.MenuService;
+import com.project.menus.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+    @Autowired
+    MenuService menuService;
 
     @RequestMapping("/RequestList")
     public String boardList(Model model, String menu_id){

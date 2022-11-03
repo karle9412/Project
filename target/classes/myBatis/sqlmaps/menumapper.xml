@@ -12,5 +12,4 @@
         ORDER BY  MENU_ID ASC
     </select>
 
-
 </mapper>

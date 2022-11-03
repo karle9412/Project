@@ -8,5 +8,5 @@ public interface MenuDao {
 
 
 
-    List<MenuVo> getmenulist();
+    List<MenuVo> getMenuList();
 }

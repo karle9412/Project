@@ -51,11 +51,5 @@ w
 G.idea/sonarlint/issuestore/b/3/b3ec2976db23cb295cb4a15eacc87d04b29735a2,2\b\2b121b711cc8df6ae359153fa11dcd5e84002e16
 w
 G.idea/sonarlint/issuestore/e/e/eeac4857809523de59708ffa74ca67cd86f103a1,c\d\cd637752c451f514241b7520bfa66859c2cf1d78
-_
-/src/main/java/com/project/menu/dao/MenuDao.java,8\d\8db001070543053a4794a90c45467a461e05bb90
 h
 8src/main/java/com/project/menu/dao/impl/MenuDaoImpl.java,7\a\7aaf2c8ac8b2ceb700d2351c720c773ddf000219
-g
-7src/main/java/com/project/menu/service/MenuService.java,8\4\8463d7191719e02cd3a974415c7976c1c874a2b5
-p
-@src/main/java/com/project/menu/service/impl/MenuServiceImpl.java,2\0\20b73063a36ba060bc5d9ab58afa684f65b68218

@@ -6,22 +6,22 @@ public class UserVo {
     private String passwd;
     private String username;
     private String email;
-    private String user_local;
+    private String userLocal;
     private String rider;
     private String indate;
 
     public UserVo (){}
-    public UserVo(String userid, String passwd, String username, String email, String user_local, String rider, String indate) {
+    public UserVo(String userid, String passwd, String username, String email, String userLocal, String rider, String indate) {
         this.userid = userid;
         this.passwd = passwd;
         this.username = username;
         this.email = email;
-        this.user_local = user_local;
+        this.userLocal = userLocal;
         this.rider = rider;
         this.indate = indate;
     }
 
-    public String getuserid() {
+    public String getUserid() {
         return this.userid;
     }
 
@@ -53,12 +53,12 @@ public class UserVo {
         this.email = email;
     }
 
-    public String getUser_local() {
-        return this.user_local;
+    public String getUserLocal() {
+        return this.userLocal;
     }
 
-    public void setUserLocal(String user_local) {
-        this.user_local = user_local;
+    public void setUserLocal(String userLocal) {
+        this.userLocal = userLocal;
     }
 
     public String getRider() {
@@ -84,7 +84,7 @@ public class UserVo {
                 ", passwd='" + this.passwd + '\'' +
                 ", username='" + this.username + '\'' +
                 ", email='" + this.email + '\'' +
-                ", userLocal='" + this.user_local + '\'' +
+                ", userLocal='" + this.userLocal + '\'' +
                 ", rider='" + this.rider + '\'' +
                 ", indate='" + this.indate + '\'' +
                 '}';

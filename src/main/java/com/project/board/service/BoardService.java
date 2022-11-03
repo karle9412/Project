@@ -5,7 +5,5 @@ import com.project.board.vo.BoardVo;
 import java.util.List;
 
 public interface BoardService {
-
-
-    List<BoardVo> getlist();
+    List<BoardVo> getBoardList(String menu_id);
 }

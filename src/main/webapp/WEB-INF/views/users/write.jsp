@@ -15,7 +15,7 @@
 <input type="text" name="email"> 이메일 </input><br>
 <input type="text" name="userLocal"> 지역 </input><br>
 <input type="text" name="rider"> 서비스 회원 </input><br>
-<input type="submit" value="완료"></input>
+<input type="submit" value="완료"></button>
 </form>
 </body>
 </html>

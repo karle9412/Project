@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
         body{
-         background-image: url(https://cdn.pixabay.com/photo/2019/08/19/15/13/eiffel-tower-4416700__340.jpg);
+         background-image: url(./img/test3.jpg);
          background-repeat: no-repeat;
          background-size : cover ;
         }

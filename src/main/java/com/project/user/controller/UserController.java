@@ -30,8 +30,14 @@ public class UserController {
     public String write(UserVo vo){
         System.out.println(vo);
         userService.userInsert(vo);
-        return "redirect:/";
+        return "redirect:/login";
     }
+
+    @RequestMapping("/loginProcess")
+    public String loginProcess(UserVo vo){
+        return "boards/list";
+    }
+
 
 
 }

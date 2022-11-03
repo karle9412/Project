@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h2> 배달의 새로운 패러다임을 제시합니다다</h2>
+<h2> 배달의 새로운 패러다임을 제시합니다다다</h2>
 <a href="/login" class="btn btn-primary">시작하기</a>
 <a href="/Board/List?menu_id=MENU_01" class="btn btn-primary">요청페이지</a>
 <a href="/Board/Detail?menu_id=MENU_02" class="btn btn-primary">후기페이지</a>

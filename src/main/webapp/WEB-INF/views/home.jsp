@@ -28,17 +28,7 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<<<<<<<<< Temporary merge branch 1
-<h2> TEST </h2>
-
-<button type= 'button ' class = "btn"> 시작하기</button>
-
-
-
-=========
 <h2> 배달의 새로운 패러다임을 제시합니다</h2>
 <a href="/login" class="btn btn-primary">시작하기</a>
->>>>>>>>> Temporary merge branch 2
-
 </body>
 </html>

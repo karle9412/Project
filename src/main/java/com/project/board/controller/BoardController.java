@@ -21,7 +21,7 @@ public class BoardController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping("/requestList")
+    @RequestMapping("/RequestList")
     public String boardList(Model model, String menu_id){
 
         List<MenuVo>  menuList  = menuService.getMenuList();

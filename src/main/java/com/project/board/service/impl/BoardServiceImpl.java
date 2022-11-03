@@ -18,6 +18,14 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardVo> getlist() {
 
         List<BoardVo> boardlist = boardDao.getlist();
+        System.out.println(boardlist);
         return boardlist;
+    }
+
+    @Override
+
+
+    public void insertboard(BoardVo boardVo) {
+        boardDao.insertboard(boardVo);
     }
 }

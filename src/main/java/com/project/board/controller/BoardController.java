@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.BufferedOutputStream;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,7 @@ public class BoardController {
         List<BoardVo> boardlist = boardService.getlist();
         model.addAttribute("boardList", boardlist);
         model.addAttribute("menuList", menuList);
+        System.out.println(menuList);
 
 
 

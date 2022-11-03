@@ -19,4 +19,10 @@ public class BoardDaoImpl implements BoardDao {
        List<BoardVo> boardList = sqlSession.selectList("Board.BoardList",menu_id);
        return boardList;
     }
+
+    @Override
+    public List<BoardVo> getBoardView(int board_number) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.BoardView",board_number);
+        return boardList;
+    }
 }

@@ -13,17 +13,15 @@
   <table id="boardList">
     <h2>요청 게시판</h2>
     <tr>
-      <th>번호</th>
       <th>제목</th>
       <th>작성자</th>
-      <th>작성일</th>
-      <th>지역</th>
+      <th>작성일</th
+      <th>위치</th>
       <th>접수상태</th>
     </tr>
     <c:forEach var="board" items="${boardList}">
     <tr>
-       <td>${board.board_number}</td>
-       <td><a href="/Board/View?board_number=${board.board_number}">${board.title}</a></td>
+       <td>${board.title}</td>
        <td>${board.writer}</td>
        <td>${board.indate}</td>
        <td>${board.board_local}</td>

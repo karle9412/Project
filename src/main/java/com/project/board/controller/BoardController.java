@@ -44,5 +44,15 @@ public class BoardController {
 
     }
 
+    @RequestMapping("/View")
+    public String view(Model model, int board_number){
+
+        List<MenuVo>  menuList  = menuService.getMenuList();
+        List<BoardVo> boardList = boardService.getBoardView(board_number);
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("menuList", menuList);
+
+        return "boards/view";
+    }
 
 }

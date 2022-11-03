@@ -20,4 +20,11 @@ public class BoardServiceImpl implements BoardService {
         List<BoardVo> boardList = boardDao.getBoardList(menu_id);
         return boardList;
     }
+
+    @Override
+    public List<BoardVo> getBoardView(int board_number){
+
+        List<BoardVo> boardList = boardDao.getBoardView(board_number);
+        return boardList;
+    }
 }

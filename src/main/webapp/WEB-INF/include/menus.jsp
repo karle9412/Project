@@ -8,7 +8,16 @@
   <tr>
     <td>
     <a href="/Board/RequestList?menu_id=MENU_01">요청</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
     <a href="/Board/LatterList?menu_id=MENU_02">후기</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <a href="/UserView?userid=${userid}">내 정보</a>
     </td>
   </tr>
   </table>

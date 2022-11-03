@@ -7,4 +7,6 @@ import java.util.List;
 public interface BoardDao {
 
     List<BoardVo> getBoardList(String menu_id);
+
+    List<BoardVo> getBoardView(int board_number);
 }

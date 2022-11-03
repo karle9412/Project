@@ -14,4 +14,15 @@
 
     </select>
 
+    <select id="BoardView"
+            resultType="com.project.board.vo.BoardVo">
+
+        SELECT BOARD_NUMBER, TITLE, WRITER, BOARD_LOCAL, INDATE, CONT
+        FROM BOARD
+        WHERE MENU_ID = #{menu_id}
+
+    </select>
+
+
+
 </mapper>

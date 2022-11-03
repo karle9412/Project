@@ -7,6 +7,7 @@ public class MenuVo {
     private String menu_id;
     private String menu_name;
 
+
     @Override
     public String toString() {
         return "MenuVo{" +
@@ -15,7 +16,8 @@ public class MenuVo {
                 '}';
     }
 
-    public  MenuVo(){}
+    public MenuVo(){}
+
     public MenuVo(String menu_id, String menu_name) {
         this.menu_id = menu_id;
         this.menu_name = menu_name;

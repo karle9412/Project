@@ -1,4 +1,4 @@
-package com.project.menu.vo;
+package com.project.menus.vo;
 
 public class MenuVo {
 

@@ -2,31 +2,31 @@ package com.project.user.vo;
 
 public class UserVo {
 
-    private String userId;
+    private String userid;
     private String passwd;
     private String username;
     private String email;
-    private String userLocal;
+    private String user_local;
     private String rider;
     private String indate;
 
     public UserVo (){}
-    public UserVo(String userId, String passwd, String username, String email, String userLocal, String rider, String indate) {
-        this.userId = userId;
+    public UserVo(String userid, String passwd, String username, String email, String user_local, String rider, String indate) {
+        this.userid = userid;
         this.passwd = passwd;
         this.username = username;
         this.email = email;
-        this.userLocal = userLocal;
+        this.user_local = user_local;
         this.rider = rider;
         this.indate = indate;
     }
 
-    public String getUserId() {
-        return this.userId;
+    public String getuserid() {
+        return this.userid;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getPasswd() {
@@ -53,12 +53,12 @@ public class UserVo {
         this.email = email;
     }
 
-    public String getUserLocal() {
-        return this.userLocal;
+    public String getUser_local() {
+        return this.user_local;
     }
 
-    public void setUserLocal(String userLocal) {
-        this.userLocal = userLocal;
+    public void setUserLocal(String user_local) {
+        this.user_local = user_local;
     }
 
     public String getRider() {
@@ -80,11 +80,11 @@ public class UserVo {
     @Override
     public String toString() {
         return "UserVo{" +
-                "userid='" + this.userId + '\'' +
+                "userid='" + this.userid + '\'' +
                 ", passwd='" + this.passwd + '\'' +
                 ", username='" + this.username + '\'' +
                 ", email='" + this.email + '\'' +
-                ", userLocal='" + this.userLocal + '\'' +
+                ", userLocal='" + this.user_local + '\'' +
                 ", rider='" + this.rider + '\'' +
                 ", indate='" + this.indate + '\'' +
                 '}';

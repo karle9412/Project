@@ -27,7 +27,8 @@ public class UserController {
     }
 
     @RequestMapping("/write")
-    public String write(UserVo vo, Model model){
+    public String write(UserVo vo){
+        System.out.println(vo);
         userService.userInsert(vo);
         return "redirect:/";
     }

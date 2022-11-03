@@ -47,15 +47,16 @@
 
     </select>
     
-    <update id="Insert"
-            parameterType="com.green.menus.vo.MenuVo">
-        INSERT  INTO  USERS( USERID,
+    <update id="UserInsert"
+            parameterType="com.project.menus.vo.MenuVo">
+        INSERT  INTO  USERS(
+        USERID,
         PASSWD,
         USERNAME,
         EMAIL,
         USER_LOCAL,
         RIDER)
-        VALUES (  #{userid}, #{passwd}, #{username}, #{email} , #{userLocal} , #{rider})
+        VALUES (#{userid}, #{passwd}, #{username}, #{email} , #{user_local} , #{rider})
     </update>
 
 

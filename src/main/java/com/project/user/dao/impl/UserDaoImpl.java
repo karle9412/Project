@@ -13,6 +13,7 @@ public class UserDaoImpl implements UserDao {
     private SqlSession sqlSession;
     @Override
     public void userInsert(UserVo userVo) {
+        System.out.println(userVo);
         sqlSession.insert("User.UserInsert", userVo);
 
 

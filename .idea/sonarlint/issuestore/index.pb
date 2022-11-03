@@ -6,10 +6,6 @@
 .project,f\8\f8b41ce76d7b80d2b47e91b5f92c15f00eccf187
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-\
-,src/main/webapp/WEB-INF/SQL/BASIC VALUES.SQL,f\8\f8786d494201e339bd2b6a71be1eeba4e5d5e371
-`
-0src/main/webapp/WEB-INF/SQL/CREATE SEQUENCES.SQL,9\8\98f276b805bdc64499cebad3841126db6d909df9
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 ]
@@ -22,14 +18,8 @@ _
 /src/main/java/com/project/user/service/test.txt,c\2\c2528e5dd461498f531de463fd80c7b5d356bbae
 w
 G.idea/sonarlint/issuestore/3/5/354079a72b91a4280407c16a36f47d1986fd85a5,d\f\dfac3e46bbca562b4966f9fd066d5dfc4be02a5f
-_
-/src/main/java/com/project/reply/vo/ReplyVo.java,d\5\d5d536e55cace39782398351efd6b974e89ba3b1
 ]
 -src/main/java/com/project/user/vo/UserVo.java,a\8\a8a85baa89cb0889a76f09f08e493de64e9f90fe
-]
--src/main/java/com/project/menu/vo/MenuVo.java,7\2\72c2bd0f7b24a653146c3b04cfe0bd7bf73008b9
-\
-,src/main/webapp/WEB-INF/SQL/CREATE TABLE.SQL,1\f\1f5793d0c63f34387fe332bf9ca06ee0f287f19b
 w
 G.idea/sonarlint/issuestore/5/5/55f2edbc0336a411e00fecaf793ccfc339dad5ac,4\d\4d619f5bb819ed88905615062c57abc24a0f61c4
 w

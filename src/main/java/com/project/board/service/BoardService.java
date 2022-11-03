@@ -8,4 +8,7 @@ public interface BoardService {
 
 
     List<BoardVo> getlist();
+
+
+    void insertboard(BoardVo boardVo);
 }

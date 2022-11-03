@@ -1,9 +1,9 @@
-package com.project.menu.vo;
+package com.project.menus.vo;
 
 import java.security.PrivateKey;
 
 public class MenuVo {
 
-    private String menuId;
+    private String menu_id;
     private String menu_name;
 }

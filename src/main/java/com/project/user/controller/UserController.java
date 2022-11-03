@@ -1,9 +1,15 @@
 package com.project.user.controller;
+import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @org.springframework.stereotype.Controller
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public String index() {
@@ -23,6 +29,7 @@ public class UserController {
     @RequestMapping("/write")
     public String write(UserVo vo){
         System.out.println(vo);
+        userService.userInsert(vo);
         return "redirect:/";
     }
 

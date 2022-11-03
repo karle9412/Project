@@ -1,17 +1,0 @@
-
-i	java:S116	"URename this field "user_local" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ‰¥[
-E
-java:S1068"*Remove this unused "userid" private field.(òÈÜÿÿÿÿÿ
-E
-java:S1068"*Remove this unused "passwd" private field.(Œ›—·ÿÿÿÿÿ
-B
-java:S1068",Remove this unused "username" private field.(‘ó¹²
-D
-java:S1068")Remove this unused "email" private field.(ª«Õìùÿÿÿÿ
-C
-java:S1068	".Remove this unused "user_local" private field.(œ‰¥[
-?
-java:S1068
-")Remove this unused "rider" private field.(á¬ƒ¥
-E
-java:S1068"*Remove this unused "indate" private field.(ØöŸ‚ùÿÿÿÿ

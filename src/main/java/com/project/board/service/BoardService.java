@@ -8,4 +8,6 @@ public interface BoardService {
     List<BoardVo> getBoardList(String menu_id);
 
     List<BoardVo> getBoardView(int board_number);
+
+    void insertboard(BoardVo boardVo);
 }

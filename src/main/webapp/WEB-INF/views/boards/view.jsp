@@ -8,6 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <table id="menu">
+  <tr>
+  <c:forEach var="menu"  items="${ menuList }" >
+   <td>
+
+      <a href="/Board/List?menu_id=${menu.menu_id}"> ${ menu.menu_id }</a>
+      ${ menu.menu_name }
+
+   </td>
+   </tr>
+    </c:forEach>
+
   <div id="main">
   <%@ include file="/WEB-INF/include/menus.jsp" %>
   <table id="boardList">
@@ -27,6 +39,8 @@
        <td>${board.board_local}</td>
     </tr>
     </c:forEach>
+
+    <td>   <a href="/board/WriteForm">글쓰기</td>
 
 </body>
 </html>

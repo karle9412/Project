@@ -1,8 +1,6 @@
 
 w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b\4\b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
-V
-&src/main/webapp/WEB-INF/views/home.jsp,1\a\1af60de6709e573f5dad4fe0319db0bb3a87e804
 Z
 *src/main/webapp/WEB-INF/spring-servlet.xml,2\7\27d1ffb6fc31b5d30d8c3569fb69477b2ea37e1b
 _

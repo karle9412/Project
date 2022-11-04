@@ -1,6 +1,4 @@
 
-Z
-*src/main/webapp/WEB-INF/spring-servlet.xml,2\7\27d1ffb6fc31b5d30d8c3569fb69477b2ea37e1b
 _
 /src/main/java/com/project/reply/vo/ReplyVo.java,d\5\d5d536e55cace39782398351efd6b974e89ba3b1
 `
@@ -21,8 +19,6 @@ w
 G.idea/sonarlint/issuestore/f/1/f174b225b8fa742d0503f5c86720162286afbd86,1\f\1f4d6b1ed98dcfb2311743b6a32449562d18f905
 w
 G.idea/sonarlint/issuestore/2/c/2c8a58ff69fb6fdf7ee2542b9731c56de499d968,b\7\b7a7e594c7d9cc2f22e5de01ceafb2feffd8069f
-^
-.src/main/webapp/WEB-INF/views/boards/write.jsp,3\d\3d9456aee62342bacba1b2d86d3f956ec746d34a
 w
 G.idea/sonarlint/issuestore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,3\0\30f9777ea696a18aa49d3e9967e93a4276065227
 w
@@ -124,8 +120,6 @@ F.idea/libraries/Maven__org_springframework_spring_expression_5_3_1.xml,5\f\5fc
 .tern-project,a\9\a9a162fab4aee337707f651d42b09c70c83b985a
 n
 >.idea/libraries/Maven__org_springframework_spring_tx_5_3_1.xml,7\c\7cbe8eaff0fb1a1c1bc44c1eb6b888ec60471eb9
-_
-/src/main/java/com/project/board/vo/BoardVo.java,1\2\1230c6fd9a8ddad6ed509f00050b8d2aebe159d8
 g
 7.settings/org.eclipse.wst.common.project.facet.core.xml,8\b\8b624f194ffa4bcd04c49523dded491e3741fbc3
 7
@@ -136,9 +130,3 @@ g
 -src/main/java/com/project/user/vo/UserVo.java,a\8\a8a85baa89cb0889a76f09f08e493de64e9f90fe
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-a
-1src/main/java/com/project/board/dao/BoardDao.java,d\7\d7e7c85b0cc0251bf8320e2f84bac1f6117c6013
-r
-Bsrc/main/java/com/project/board/service/impl/BoardServiceImpl.java,e\4\e4ff311a239b647e8a1e3040c1cd3749d0cee59a
-j
-:src/main/java/com/project/board/dao/impl/BoardDaoImpl.java,4\6\46449e079df855a7237beb20ef5ce3d3fb9bbfed

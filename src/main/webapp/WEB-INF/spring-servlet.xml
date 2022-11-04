@@ -34,6 +34,18 @@
        <property name="username"         value="project" />
        <property name="password"         value="1234" />
     </bean>
+
+    <!--
+       <bean id="dataSource"
+             class="org.apache.commons.dbcp.BasicDataSource"
+             destroy-method="close">
+           <property name="driverClassName"  value="oracle.jdbc.OracleDriver" />
+           <property name="url"              value="jdbc:oracle:thin:@tcps://adb.ap-seoul-1.oraclecloud.com/g3242ceedb0e814_project_high.adb.oraclecloud.com" />
+           <property name="username"         value="admin" />
+           <property name="password"         value="Readmilk12!@" />
+       </bean>
+    -->
+
     <!--
            mybatis 와 스프링 연결을 위한 SqlSessionFactoryBean 객체 사용
               DB 연결 및 sql 명령 실행을 담당

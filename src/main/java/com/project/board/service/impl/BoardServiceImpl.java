@@ -6,6 +6,7 @@ import com.project.board.vo.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service("boardService")
@@ -14,8 +15,8 @@ public class BoardServiceImpl implements BoardService {
     private BoardDao boardDao;
 
     @Override
-    public List<BoardVo> getBoardList(String menu_id) {
-        List<BoardVo> boardList = boardDao.getBoardList(menu_id);
+    public List<BoardVo> getBoardList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.getBoardList(map);
         return boardList;
     }
 
@@ -28,5 +29,10 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void insertboard(BoardVo boardVo) {
         boardDao.insertboard(boardVo);
+    }
+
+    @Override
+    public List<Object> countBoard(String menu_id) {
+        return boardDao.countBoard(menu_id);
     }
 }

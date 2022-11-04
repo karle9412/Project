@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -21,21 +23,25 @@ public class BoardController {
     MenuService menuService;
 
     @RequestMapping("/RequestList")
-    public String boardList(Model model, String menu_id){
+    public String boardList(Model model, @RequestParam HashMap<String,Object> map){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getBoardList(menu_id);
+        List<BoardVo> boardList = boardService.getBoardList(map);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
+        String menu_id = (String) map.get("menu_id");
+
+        List<Object> total = boardService.countBoard(menu_id);
+        System.out.println(total);
         return "boards/requestList";
     }
 
     @RequestMapping("/LatterList")
-    public String detail(Model model, String menu_id){
+    public String latterList(Model model, @RequestParam HashMap<String,Object> map){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getBoardList(menu_id);
+        List<BoardVo> boardList = boardService.getBoardList(map);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 

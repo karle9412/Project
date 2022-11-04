@@ -6,6 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<style>
+		ul {
+			list-style: none;
+			width : 30%;
+			display: inline-block;
+		}
+
+		li {
+			float: left;
+			margin-left : 5px;
+		}
+	</style>
 </head>
 <body>
   <div id="main">

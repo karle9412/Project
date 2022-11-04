@@ -1,0 +1,16 @@
+
+l	java:S116"WRename this field "reply_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ëÇÔ
+l	java:S116"WRename this field "board_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õó 
+F
+java:S1068"0Remove this unused "reply_number" private field.(˜ëÇÔ
+F
+java:S1068"0Remove this unused "board_number" private field.(Õó 
+E
+java:S1068"*Remove this unused "userid" private field.(òÈÜÿÿÿÿÿ
+C
+java:S1068"(Remove this unused "cont" private field.(ÏàÆ¢üÿÿÿÿ
+E
+java:S1068	"*Remove this unused "writer" private field.(ˆøÀìüÿÿÿÿ
+E
+java:S1068
+"*Remove this unused "indate" private field.(ØöŸ‚ùÿÿÿÿ

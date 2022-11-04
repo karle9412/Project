@@ -7,6 +7,11 @@
   <table id="menu">
   <tr>
     <td>
+    <a href="/">메인</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
     <a href="/Board/RequestList?menu_id=MENU_01">요청</a>
     </td>
   </tr>

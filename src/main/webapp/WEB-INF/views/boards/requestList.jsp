@@ -13,6 +13,11 @@
   <table id="boardList">
     <h2>요청 게시판</h2>
     <tr>
+      <td>
+      <a href="/Board/RequestWriterForm?menu_id=MENU_01">새글쓰기</a>
+      </td>
+    </tr>
+    <tr>
       <th>번호</th>
       <th>제목</th>
       <th>작성자</th>
@@ -29,6 +34,7 @@
        <td>${board.board_local}</td>
     </tr>
     </c:forEach>
-
+  </table>
+  </div>
 </body>
 </html>

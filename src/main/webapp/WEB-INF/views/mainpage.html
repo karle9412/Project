@@ -24,6 +24,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   .light-bottom {
     position: absolute;
     top: 70%;
@@ -39,30 +45,33 @@
 
 <!-- 사이드바 설정 -->
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-   <!-- 여기에 타이틀 디자인 png 넣을거임 -->
+	<!-- 여기에 타이틀 디자인 png 넣을거임 -->
   <a class="w3-bar-item w3-border-bottom w3-large" style="height:10%"></a>
-     <!-- 창 좁아지면 나오는 사이드바 닫는 버튼 -->
-  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">사이드바 닫기 <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">HOME</a>
+  	<!-- 창 좁아지면 나오는 사이드바 닫는 버튼 -->
+  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+  <a class="w3-bar-item w3-button w3-teal" href="main.html">HOME</a>
   <!-- 요청 게시판 dropdown, href 조정 필요 -->
   <div>
-    <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">지역별 요청 게시판 <i class="fa fa-caret-down"></i></a>
+    <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Locations <i class="fa fa-caret-down"></i></a>
     <div id="demo" class="w3-hide">
-      <a class="w3-bar-item w3-button" href="#">서울</a>
-      <a class="w3-bar-item w3-button" href="#">인천</a>
-      <a class="w3-bar-item w3-button" href="#">부산</a>
-      <a class="w3-bar-item w3-button" href="#">대전</a>
-      <a class="w3-bar-item w3-button" href="#">대구</a>
-      <a class="w3-bar-item w3-button" href="#">울산</a>
-      <a class="w3-bar-item w3-button" href="#">제주</a>
-      <a class="w3-bar-item w3-button" href="#">경기도</a>
-      <a class="w3-bar-item w3-button" href="#">강원도</a>
-      <a class="w3-bar-item w3-button" href="#">경상도</a>
-      <a class="w3-bar-item w3-button" href="#">전라도</a>
-      <a class="w3-bar-item w3-button" href="#">충청도</a>
+      <a class="w3-bar-item w3-button" href="locations/seoul.html">Seoul</a>
+      <a class="w3-bar-item w3-button" href="#">Incheon</a>
+      <a class="w3-bar-item w3-button" href="#">Pusan</a>
+      <a class="w3-bar-item w3-button" href="#">Daejeon</a>
+      <a class="w3-bar-item w3-button" href="#">daegu</a>
+      <a class="w3-bar-item w3-button" href="#">Ulsan</a>
+      <a class="w3-bar-item w3-button" href="#">Jeju</a>
+      <a class="w3-bar-item w3-button" href="#">Kyeonggi</a>
+      <a class="w3-bar-item w3-button" href="#">Kangwon</a>
+      <a class="w3-bar-item w3-button" href="#">Kyeongsang</a>
+      <a class="w3-bar-item w3-button" href="#">Jeonra</a>
+      <a class="w3-bar-item w3-button" href="#">Choongchung</a>
     </div>
   </div>
-  <a class="w3-bar-item w3-button" href="#">후기 게시판</a>
+  <a class="w3-bar-item w3-button" href="#">epilogue</a>
+  <form action="mypage.html">
+    <a class="w3-bar-item w3-button" href="mypage.html">My Page</a>
+  </form>
 
 </nav>
 
@@ -82,8 +91,7 @@
 
   <div class="container">
     <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_640.jpg"  style="width:100%">
-    <div class="w3-center centered-up w3-xxxlarge">제시 문장</div>
-     <a href="/login" class="light-bottom w3-button w3-section w3-light-green w3-ripple">시작하기</a>
+    <div class="w3-center centered w3-xxxlarge">sentence</div>
   </div>
 
 

@@ -6,11 +6,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+
 @Repository("UserDao")
 public class UserDaoImpl implements UserDao {
 
     @Autowired
     private SqlSession sqlSession;
+
+    @Override
+    public UserVo login(HashMap<String, Object> map) {
+        UserVo vo = sqlSession.selectOne("User.login", map);
+        return vo;
+    }
+
     @Override
     public void userInsert(UserVo userVo) {
         System.out.println(userVo);

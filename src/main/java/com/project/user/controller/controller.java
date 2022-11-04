@@ -16,5 +16,7 @@ public class controller {
         return "users/login";
     }
 
+    @RequestMapping("/register")
+    public String register() { return "users/register"; }
 
 }

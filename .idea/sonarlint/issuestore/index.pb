@@ -59,7 +59,7 @@ w
 G.idea/sonarlint/issuestore/1/2/12d0cadb4618c306bbbb223b38ee37ce421c0a45,f\e\fec318f42e44c8703a7c661c385add519a0d78f4
 ]
 -src/main/java/com/project/user/vo/UserVo.java,a\8\a8a85baa89cb0889a76f09f08e493de64e9f90fe
-h
-8src/main/java/com/project/menus/service/MenuService.java,6\2\624143647748d321c196f1387510d947aa2e1f28
-`
-0src/main/java/com/project/menus/dao/MenuDao.java,d\b\dbebdfa9fac1002111cd7e7cbc037d2f08999295
+_
+/src/main/java/com/project/board/vo/BoardVo.java,1\2\1230c6fd9a8ddad6ed509f00050b8d2aebe159d8
+i
+9src/main/java/com/project/board/service/BoardService.java,a\1\a1a489b38b9b689d6e01a9e01c6388578bde647f

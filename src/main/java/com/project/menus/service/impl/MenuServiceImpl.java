@@ -17,6 +17,7 @@ public class MenuServiceImpl implements MenuService {
 
     public List<MenuVo> getmenulist() {
 
+
         List<MenuVo> menulist = menuDao.getmenulist();
         return menulist;
     }

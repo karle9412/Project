@@ -18,7 +18,6 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardVo> getlist() {
 
         List<BoardVo> boardlist = boardDao.getlist();
-        System.out.println(boardlist);
         return boardlist;
     }
 

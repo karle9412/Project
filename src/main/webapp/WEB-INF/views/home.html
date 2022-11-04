@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <title>TITLE</title>
 <meta name="viewport" content="width=device-width, height=devive-height, initial-scale=1">
@@ -31,82 +31,35 @@
     transform: translate(-50%, -50%);
   }
 
-
+  
 </style>
 
 
 <body>
 
-<!-- 사이드바 설정 -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-   <!-- 여기에 타이틀 디자인 png 넣을거임 -->
-  <a class="w3-bar-item w3-border-bottom w3-large" style="height:10%"></a>
-     <!-- 창 좁아지면 나오는 사이드바 닫는 버튼 -->
-  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">사이드바 닫기 <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">HOME</a>
-  <!-- 요청 게시판 dropdown, href 조정 필요 -->
-  <div>
-    <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">지역별 요청 게시판 <i class="fa fa-caret-down"></i></a>
-    <div id="demo" class="w3-hide">
-      <a class="w3-bar-item w3-button" href="#">서울</a>
-      <a class="w3-bar-item w3-button" href="#">인천</a>
-      <a class="w3-bar-item w3-button" href="#">부산</a>
-      <a class="w3-bar-item w3-button" href="#">대전</a>
-      <a class="w3-bar-item w3-button" href="#">대구</a>
-      <a class="w3-bar-item w3-button" href="#">울산</a>
-      <a class="w3-bar-item w3-button" href="#">제주</a>
-      <a class="w3-bar-item w3-button" href="#">경기도</a>
-      <a class="w3-bar-item w3-button" href="#">강원도</a>
-      <a class="w3-bar-item w3-button" href="#">경상도</a>
-      <a class="w3-bar-item w3-button" href="#">전라도</a>
-      <a class="w3-bar-item w3-button" href="#">충청도</a>
-    </div>
-  </div>
-  <a class="w3-bar-item w3-button" href="#">후기 게시판</a>
-
-</nav>
-
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
-
-<div class="w3-main" style="margin-left:250px;">
-
-  <div id="myTop" class="w3-container w3-top w3-theme w3-large">
-    <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-    <span id="myIntro" class="w3-hide">W3.CSS: Introduction</span></p>
-  </div>
-
   <!-- 헤더 -->
   <header class="w3-container w3-theme w3-center" style="height:20%">
     <h1 class="w3-xxxlarge">TITLE</h1>
   </header>
-
+  
   <div class="container">
     <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_640.jpg"  style="width:100%">
-    <div class="w3-center centered-up w3-xxxlarge">제시 문장</div>
-     <a href="/login" class="light-bottom w3-button w3-section w3-light-green w3-ripple">시작하기</a>
+    <div class="w3-center centered-up w3-xxxlarge">sentence</div>
+  	<a href="login.html" class="light-bottom w3-button w3-section w3-light-green w3-ripple">START</a>
   </div>
-
-
+  
+  
 
   </div>
 
   <footer class="w3-container w3-theme" style="padding:32px">
     <p>Footer information goes here</p>
   </footer>
-
-</div>
+   
 
 <script>
 // Open and close the sidebar on medium and small screens
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
 
 // Change style of top container on scroll
 window.onscroll = function() {myFunction()};
@@ -126,13 +79,15 @@ function myAccordion(id) {
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
     x.previousElementSibling.className += " w3-theme";
-  } else {
+  } else { 
     x.className = x.className.replace("w3-show", "");
-    x.previousElementSibling.className =
+    x.previousElementSibling.className = 
     x.previousElementSibling.className.replace(" w3-theme", "");
   }
 }
-</script>
 
+
+</script>
+     
 </body>
-</html>
+</html> 

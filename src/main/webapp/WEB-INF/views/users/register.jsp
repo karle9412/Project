@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <!DOCTYPE html>
 <html>
 <title>W3.CSS</title>
@@ -8,9 +11,9 @@
 <style>
 
 </style>
-<form action="login.html" class="w3-container w3-card-4 w3-light-grey w3-margin">
+<form action="/login" class="w3-container w3-card-4 w3-light-grey w3-margin">
 <h2 class="w3-center">Register</h2>
- 
+
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"></div>
     <div class="w3-rest">
@@ -71,10 +74,10 @@
 <label>Service User</label></p>
 
 <p class="w3-center">
-<button class="w3-button w3-section w3-light-green w3-ripple w3-text-white"> REGISTER </button>
+<button class="w3-button w3-section w3-light-green w3-ripple w3-text-white" href="/login"> REGISTER </button>
 </p>
 </form>
 
 
 </body>
-</html> 
+</html>

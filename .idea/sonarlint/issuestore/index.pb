@@ -1,8 +1,6 @@
 
 w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b\4\b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
-Z
-*src/main/webapp/WEB-INF/spring-servlet.xml,2\7\27d1ffb6fc31b5d30d8c3569fb69477b2ea37e1b
 _
 /src/main/java/com/project/reply/vo/ReplyVo.java,d\5\d5d536e55cace39782398351efd6b974e89ba3b1
 \
@@ -47,12 +45,6 @@ w
 G.idea/sonarlint/issuestore/b/3/b3ec2976db23cb295cb4a15eacc87d04b29735a2,2\b\2b121b711cc8df6ae359153fa11dcd5e84002e16
 w
 G.idea/sonarlint/issuestore/e/e/eeac4857809523de59708ffa74ca67cd86f103a1,c\d\cd637752c451f514241b7520bfa66859c2cf1d78
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-_
-/src/main/java/com/project/user/dao/UserDao.java,6\0\602489a8dfed16ebb8de6b072889f4f00794f1f5
-p
-@src/main/java/com/project/user/service/impl/UserServiceImpl.java,7\2\72994b6c113f781d6fd0c8427768b7b3df3b14f6
 w
 G.idea/sonarlint/issuestore/f/9/f9bae920af1b1050d72aea5dd8e5318becb0c90a,8\8\889ba886f3e7f09e24b872cecb9f9607450891ea
 w
@@ -67,15 +59,29 @@ w
 G.idea/sonarlint/issuestore/3/1/31b28276b14c2ba00f27fdc80d1616c787a668c3,e\8\e8cd7bdcd73e8967bfe32d3363921e9ad5c7ceab
 w
 G.idea/sonarlint/issuestore/c/2/c2528e5dd461498f531de463fd80c7b5d356bbae,1\2\12d0cadb4618c306bbbb223b38ee37ce421c0a45
-h
-8src/main/java/com/project/user/dao/impl/UserDaoImpl.java,e\1\e103c574f08f3c9315f6001ce573899b61f1775c
-]
--src/main/java/com/project/user/vo/UserVo.java,a\8\a8a85baa89cb0889a76f09f08e493de64e9f90fe
-g
-7src/main/java/com/project/user/service/UserService.java,c\9\c930615b23efb400f4b31f13981a47e43d9e2883
-]
--src/main/webapp/WEB-INF/views/users/write.jsp,d\3\d3e1a46286eccd66d9128ca9a0d8851b4f1fd598
 ]
 -src/main/webapp/WEB-INF/include/left_Menu.jsp,f\0\f03eea27f0f8fe6bec3830d074eb5f61cf9179ad
 ^
 .src/main/java/com/project/menus/vo/MenuVo.java,3\f\3f767499246fb832d9b6b51547791c5512abafaf
+o
+?src/main/java/com/project/board/controller/BoardController.java,f\0\f0287760c0705a028c14dac08e163209a3369145
+_
+/src/main/webapp/WEB-INF/views/boards/Detail.jsp,7\5\75dcb7a4ee5ed90164770fc3431150bcc072bec9
+h
+8src/main/java/com/project/menus/service/MenuService.java,6\2\624143647748d321c196f1387510d947aa2e1f28
+q
+Asrc/main/java/com/project/menus/service/impl/MenuServiceImpl.java,0\5\0576e62fc8155d48638ddc84796273dc7104d105
+`
+0src/main/java/com/project/menus/dao/MenuDao.java,d\b\dbebdfa9fac1002111cd7e7cbc037d2f08999295
+V
+&src/main/webapp/WEB-INF/views/home.jsp,1\a\1af60de6709e573f5dad4fe0319db0bb3a87e804
+i
+9src/main/java/com/project/menus/dao/impl/MenuDaoImpl.java,1\1\115346128e745a62aa84fa72606761a20f8d06e5
+_
+/src/main/java/com/project/board/vo/BoardVo.java,1\2\1230c6fd9a8ddad6ed509f00050b8d2aebe159d8
+`
+0src/main/webapp/WEB-INF/SQL/CREATE SEQUENCES.SQL,9\8\98f276b805bdc64499cebad3841126db6d909df9
+\
+,src/main/webapp/WEB-INF/SQL/CREATE TABLE.SQL,1\f\1f5793d0c63f34387fe332bf9ca06ee0f287f19b
+W
+'src/main/webapp/WEB-INF/views/home.html,f\e\fe07acaa7a792b8bb1c6db49795ffbb22dddf91d

@@ -1,16 +1,8 @@
 
 w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b\4\b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
-Z
-*src/main/webapp/WEB-INF/spring-servlet.xml,2\7\27d1ffb6fc31b5d30d8c3569fb69477b2ea37e1b
 _
 /src/main/java/com/project/reply/vo/ReplyVo.java,d\5\d5d536e55cace39782398351efd6b974e89ba3b1
-`
-0src/main/webapp/WEB-INF/SQL/CREATE SEQUENCES.SQL,9\8\98f276b805bdc64499cebad3841126db6d909df9
-\
-,src/main/webapp/WEB-INF/SQL/CREATE TABLE.SQL,1\f\1f5793d0c63f34387fe332bf9ca06ee0f287f19b
-\
-,src/main/webapp/WEB-INF/SQL/BASIC VALUES.SQL,f\8\f8786d494201e339bd2b6a71be1eeba4e5d5e371
 w
 G.idea/sonarlint/issuestore/1/8/188792529ee886cbdc6616248007f7a96c73e03d,d\a\da0f9009654350422df3c20f0f6bb4835ee4de6d
 w
@@ -23,8 +15,6 @@ w
 G.idea/sonarlint/issuestore/f/1/f174b225b8fa742d0503f5c86720162286afbd86,1\f\1f4d6b1ed98dcfb2311743b6a32449562d18f905
 w
 G.idea/sonarlint/issuestore/2/c/2c8a58ff69fb6fdf7ee2542b9731c56de499d968,b\7\b7a7e594c7d9cc2f22e5de01ceafb2feffd8069f
-^
-.src/main/webapp/WEB-INF/views/boards/write.jsp,3\d\3d9456aee62342bacba1b2d86d3f956ec746d34a
 w
 G.idea/sonarlint/issuestore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,3\0\30f9777ea696a18aa49d3e9967e93a4276065227
 w
@@ -51,13 +41,7 @@ w
 G.idea/sonarlint/issuestore/b/3/b3ec2976db23cb295cb4a15eacc87d04b29735a2,2\b\2b121b711cc8df6ae359153fa11dcd5e84002e16
 w
 G.idea/sonarlint/issuestore/e/e/eeac4857809523de59708ffa74ca67cd86f103a1,c\d\cd637752c451f514241b7520bfa66859c2cf1d78
-]
--src/main/webapp/WEB-INF/views/boards/list.jsp,2\d\2d425793d2daafe254f638173041a821b463a5b9
 w
 G.idea/sonarlint/issuestore/1/2/12d0cadb4618c306bbbb223b38ee37ce421c0a45,f\e\fec318f42e44c8703a7c661c385add519a0d78f4
 ]
 -src/main/java/com/project/user/vo/UserVo.java,a\8\a8a85baa89cb0889a76f09f08e493de64e9f90fe
-_
-/src/main/java/com/project/board/vo/BoardVo.java,1\2\1230c6fd9a8ddad6ed509f00050b8d2aebe159d8
-i
-9src/main/java/com/project/board/service/BoardService.java,a\1\a1a489b38b9b689d6e01a9e01c6388578bde647f

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BoardDao {
 
-    List<BoardVo> getlist();
+    List<BoardVo> getlist(String menu_id);
 
     void insertboard(BoardVo boardVo);
 }

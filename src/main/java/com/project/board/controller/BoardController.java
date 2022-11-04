@@ -18,25 +18,38 @@ public class BoardController {
     BoardService boardService;
     @Autowired
     MenuService menuService;
-
     @RequestMapping("/list")
-    public String boardlist(Model model){
-
+    public String list(Model model){
         List<MenuVo>  menuList =  menuService.getmenulist();
-        List<BoardVo> boardlist = boardService.getlist();
-        model.addAttribute("boardList", boardlist);
         model.addAttribute("menuList", menuList);
-        System.out.println(menuList);
-
-
 
         return "boards/list";
+    }
+
+    @RequestMapping("Board/List")
+    public String boardlist(Model model, String menu_id){
+
+        System.out.println(menu_id);
+        List<MenuVo>  menuList =  menuService.getmenulist();
+        List<BoardVo> boardlist = boardService.getlist(menu_id);
+        model.addAttribute("boardList", boardlist);
+        model.addAttribute("menuList", menuList);
+        model.addAttribute("menu_id",menu_id);
+        System.out.println(boardlist);
+
+
+        return "boards/boardlist";
 
 
     }
 
     @RequestMapping("/board/WriteForm")
-    public String writeform(){
+    public String writeform(BoardVo boardVo,Model model){
+        String menu_id = boardVo.getMenu_id();
+
+
+       model.addAttribute("menu_id",menu_id);
+
 
 
 

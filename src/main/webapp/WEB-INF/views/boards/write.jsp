@@ -9,9 +9,18 @@
 </head>
 <body>
  <div id="main">
+ <table id="menu">
+   <tr>
+   <c:forEach var="menu"  items="${ menuList }" >
+    <td>
+       <a href="/Board/List?menu_id=${menu.menu_id}"> ${ menu.menu_id }</a>
+       ${ menu.menu_name }
+    </td>
+    </tr>
+
      <h2>글쓰기</h2>
      <form action="/board/Write" method="POST">
-     <input type = "hidden" name = "menu_id" value = "menu_01"/>
+     <input type = "hidden" name = "menu_id" value = "${menu_id}"/>
      <div>
      제목:<input type="text" name="title" />
      </div>

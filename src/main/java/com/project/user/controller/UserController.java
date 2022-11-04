@@ -39,6 +39,7 @@ public class UserController {
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
                              @RequestParam HashMap<String, Object> map){
+        System.out.println(map);
 
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){

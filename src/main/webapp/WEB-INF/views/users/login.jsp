@@ -9,8 +9,8 @@
 </head>
 <body>
 <form action="/loginProcess" method="POST">
-id<input type="text" id="userid"></input><br>
-passwd<input type="text" id="passwd"></input><br>
+id<input type="text" name="userid"></input><br>
+passwd<input type="text" name="passwd"></input><br>
 <input type="submit" class="btn btn-primary" value="로그인"></a>
 </form>
 <a href="/writeForm" class="btn btn-primary">회원가입</a>

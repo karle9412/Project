@@ -8,19 +8,11 @@ _
 \
 ,src/main/webapp/WEB-INF/SQL/BASIC VALUES.SQL,f\8\f8786d494201e339bd2b6a71be1eeba4e5d5e371
 w
-G.idea/sonarlint/issuestore/1/8/188792529ee886cbdc6616248007f7a96c73e03d,d\a\da0f9009654350422df3c20f0f6bb4835ee4de6d
-w
-G.idea/sonarlint/issuestore/f/1/f1f345c68352fd8245a262f30452a2203539c001,4\0\402a4b0e78fe3eb5c7bf55395b5155ab14d7d88f
-w
 G.idea/sonarlint/issuestore/f/9/f9466ffbf1d60eb20af557880b77a754c7a84e06,8\6\86a8bb0d8f01f9a00a1e4226a0145b8f0076f60c
 w
 G.idea/sonarlint/issuestore/d/a/dae5b08fd42c60e4d53e8e2a47da2c7e68f4cac2,7\9\7989394e6d44ee2f9bbaf418e09412a2a949d27b
 w
 G.idea/sonarlint/issuestore/f/1/f174b225b8fa742d0503f5c86720162286afbd86,1\f\1f4d6b1ed98dcfb2311743b6a32449562d18f905
-w
-G.idea/sonarlint/issuestore/2/c/2c8a58ff69fb6fdf7ee2542b9731c56de499d968,b\7\b7a7e594c7d9cc2f22e5de01ceafb2feffd8069f
-w
-G.idea/sonarlint/issuestore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,3\0\30f9777ea696a18aa49d3e9967e93a4276065227
 w
 G.idea/sonarlint/issuestore/6/4/6456903b1a1a09bd252f6a45cbe962ffdbfafe82,9\1\91b92f5431d895ca2236616485ab9890f4bc0d54
 w

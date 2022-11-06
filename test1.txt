@@ -10,8 +10,6 @@ dfdf
 test
 또 테스트 중
 
-
-committest
 먼가 테스트 중
 
 깃허브 디스코드 연동 

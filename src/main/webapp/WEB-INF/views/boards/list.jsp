@@ -34,7 +34,6 @@
     <tr>
        <td>${board.board_number}</td>
        <td>${board.menu_id}</td>
-       <td>${board.userid}</td>
        <td>${board.title}</td>
        <td>${board.writer}</td>
        <td>${board.board_local}</td>

@@ -4,17 +4,17 @@ public class UserVo {
 
     private String userid;
     private String passwd;
-    private String username;
+    private String nickname;
     private String email;
     private String user_local;
     private String rider;
     private String indate;
 
     public UserVo (){}
-    public UserVo(String userid, String passwd, String username, String email, String user_local, String rider, String indate) {
+    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate) {
         this.userid = userid;
         this.passwd = passwd;
-        this.username = username;
+        this.nickname = nickname;
         this.email = email;
         this.user_local = user_local;
         this.rider = rider;
@@ -37,12 +37,12 @@ public class UserVo {
         this.passwd = passwd;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getNickname() {
+        return this.nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getEmail() {
@@ -82,7 +82,7 @@ public class UserVo {
         return "UserVo{" +
                 "userid='" + this.userid + '\'' +
                 ", passwd='" + this.passwd + '\'' +
-                ", username='" + this.username + '\'' +
+                ", nickname='" + this.nickname + '\'' +
                 ", email='" + this.email + '\'' +
                 ", userLocal='" + this.user_local + '\'' +
                 ", rider='" + this.rider + '\'' +

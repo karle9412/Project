@@ -2,8 +2,11 @@ package com.project.user.controller;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @org.springframework.stereotype.Controller
 public class UserController {
@@ -34,8 +37,24 @@ public class UserController {
     }
 
     @RequestMapping("/loginProcess")
-    public String loginProcess(UserVo vo){
-        return "boards/list";
+    public String loginProcess(HttpSession httpSession,
+                             @RequestParam HashMap<String, Object> map){
+        System.out.println(map);
+
+        String returnURL = "";
+        if(httpSession.getAttribute("login") != null){
+            httpSession.removeAttribute("login");
+        }
+        UserVo vo = userService.login(map);
+
+        if(vo != null) {
+            httpSession.setAttribute("login", vo);
+            returnURL = "/boards/list";
+        }else{
+            returnURL = "redirect:/login";
+        }
+        return returnURL;
+
     }
 
 

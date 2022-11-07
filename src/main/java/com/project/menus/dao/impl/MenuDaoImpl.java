@@ -16,8 +16,8 @@ public class MenuDaoImpl implements MenuDao {
     @Autowired
     SqlSession sqlSession;
 
-    public List<MenuVo> getmenulist() {
-        List<MenuVo> menulist = sqlSession.selectList("Menu.MenuList");
+    public List<MenuVo> getMenuList() {
+        List<MenuVo> menulist = sqlSession.selectList("Menus.MenuList");
         return menulist;
     }
 }

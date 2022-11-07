@@ -4,6 +4,7 @@ import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -31,7 +32,6 @@ public class UserController {
 
     @RequestMapping("/write")
     public String write(UserVo vo){
-        System.out.println(vo);
         userService.userInsert(vo);
         return "redirect:/login";
     }
@@ -39,7 +39,6 @@ public class UserController {
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
                              @RequestParam HashMap<String, Object> map){
-        System.out.println(map);
 
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){
@@ -49,7 +48,7 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "redirect:/boards/home";
+            returnURL = "/boards/requestList";
         }else{
             returnURL = "redirect:/login";
         }
@@ -57,6 +56,19 @@ public class UserController {
 
     }
 
+    @RequestMapping("/User/getUser")
+    public ModelAndView userInformation(HttpSession httpSession){
+        ModelAndView mv = new ModelAndView();
+        Object getUser = userService.getUser(httpSession.getAttribute("login"));
 
+        mv.addObject(getUser);
+        mv.setViewName("/users/getUser");
+        return mv;
+    }
+
+    @RequestMapping("/updateForm")
+    public String updateForm(){
+        return "/users/update";
+    }
 
 }

@@ -30,7 +30,7 @@
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="username" type="text" placeholder="NickName">
+                <input class="w3-input w3-border" name="nickname" type="text" placeholder="NickName">
             </div>
         </div>
         <div class="w3-row w3-section">

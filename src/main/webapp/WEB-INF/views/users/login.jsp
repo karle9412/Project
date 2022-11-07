@@ -20,10 +20,10 @@
         <!--form action 조정 필요-->
         <form action="/loginProcess" method="POST" class="w3-container w3-card-4">
             <p>
-            <input class="w3-input" id="userid" type="text" style="width:100%" required>
+            <input class="w3-input" name="userid" type="text" style="width:100%" required>
             <label>ID</label></p>
             <p>
-            <input class="w3-input" id="passwd" type="password" style="width:100%" required>
+            <input class="w3-input" name="passwd" type="password" style="width:100%" required>
             <label>Password</label></p>
 
             <p>

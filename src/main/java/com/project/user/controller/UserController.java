@@ -1,11 +1,18 @@
 package com.project.user.controller;
-
+import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @org.springframework.stereotype.Controller
 public class UserController {
 
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public String index() {
@@ -24,12 +31,32 @@ public class UserController {
 
     @RequestMapping("/write")
     public String write(UserVo vo){
+        System.out.println(vo);
+        userService.userInsert(vo);
         return "redirect:/login";
     }
 
     @RequestMapping("/loginProcess")
-    public String loginProcess(UserVo vo){
-        return "boards/list";
+    public String loginProcess(HttpSession httpSession,
+                             @RequestParam HashMap<String, Object> map){
+        System.out.println(map);
+
+        String returnURL = "";
+        if(httpSession.getAttribute("login") != null){
+            httpSession.removeAttribute("login");
+        }
+        UserVo vo = userService.login(map);
+
+        if(vo != null) {
+            httpSession.setAttribute("login", vo);
+            returnURL = "redirect:/boards/home";
+        }else{
+            returnURL = "redirect:/login";
+        }
+        return returnURL;
+
     }
+
+
 
 }

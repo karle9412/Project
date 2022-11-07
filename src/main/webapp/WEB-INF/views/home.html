@@ -1,0 +1,93 @@
+ <!DOCTYPE html>
+<html>
+<title>TITLE</title>
+<meta name="viewport" content="width=device-width, height=devive-height, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+  body {font-family: "Roboto", sans-serif}
+  .w3-bar-block .w3-bar-item {
+    padding: 16px;
+    font-weight: bold;
+  }
+  .container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  .centered-up {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .light-bottom {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  
+</style>
+
+
+<body>
+
+  <!-- 헤더 -->
+  <header class="w3-container w3-theme w3-center" style="height:20%">
+    <h1 class="w3-xxxlarge">TITLE</h1>
+  </header>
+  
+  <div class="container">
+    <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_640.jpg"  style="width:100%">
+    <div class="w3-center centered-up w3-xxxlarge">sentence</div>
+  	<a href="login.html" class="light-bottom w3-button w3-section w3-light-green w3-ripple">START</a>
+  </div>
+  
+  
+
+  </div>
+
+  <footer class="w3-container w3-theme" style="padding:32px">
+    <p>Footer information goes here</p>
+  </footer>
+   
+
+<script>
+// Open and close the sidebar on medium and small screens
+
+
+// Change style of top container on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+    document.getElementById("myIntro").classList.add("w3-show-inline-block");
+  } else {
+    document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+    document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+  }
+}
+
+// Accordions
+function myAccordion(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme";
+  } else { 
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-theme", "");
+  }
+}
+
+
+</script>
+     
+</body>
+</html> 

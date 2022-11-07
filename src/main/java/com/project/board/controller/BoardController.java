@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("/Board")
 public class BoardController {
 
     @Autowired
@@ -22,7 +21,19 @@ public class BoardController {
     @Autowired
     MenuService menuService;
 
-    @RequestMapping("/RequestList")
+    @RequestMapping("/Board/List")
+    public String boardlist(Model model, String menu_id){
+
+        List<MenuVo>  menuList =  menuService.getMenuList();
+        List<BoardVo> boardlist = boardService.getlist(menu_id);
+        model.addAttribute("boardList", boardlist);
+        model.addAttribute("menuList", menuList);
+        model.addAttribute("menu_id",menu_id);
+
+        return "boards/boardList";
+    }
+
+    @RequestMapping("/Board/RequestList")
     public String boardList(Model model, @RequestParam HashMap<String,Object> map){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
@@ -33,10 +44,9 @@ public class BoardController {
         String menu_id = (String) map.get("menu_id");
 
         return "boards/requestList";
-
     }
 
-    @RequestMapping("/LatterList")
+    @RequestMapping("/Board/LatterList")
     public String latterList(Model model, @RequestParam HashMap<String,Object> map){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
@@ -45,32 +55,35 @@ public class BoardController {
         model.addAttribute("menuList", menuList);
 
         return "boards/latterList";
-
     }
 
-    @RequestMapping("/View")
-    public String view(Model model, int board_number){
+    @RequestMapping("/Board/WriteForm")
+    public String writeform(BoardVo boardVo,Model model){
+        String menu_id = boardVo.getMenu_id();
+        System.out.println(menu_id);
 
-        List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getBoardView(board_number);
-        model.addAttribute("boardList", boardList);
-        model.addAttribute("menuList", menuList);
-
-        return "boards/view";
-    }
-    @RequestMapping("/WriteForm")
-    public String writeform(){
-
+        model.addAttribute("menu_id",menu_id);
         return "boards/write";
     }
 
-    @RequestMapping("/Write")
+    @RequestMapping("/Board/Write")
     public String wrtie(BoardVo boardVo) {
         System.out.println(boardVo);
         boardService.insertboard(boardVo);
         System.out.println(boardVo);
 
         return "redirect:/list";
+    }
+
+    @RequestMapping("/Board/Detail")
+    public String detail(	@RequestParam HashMap<String, Object> map, Model model){
+        String menu_id = (String) map.get("menu_id");
+        BoardVo boardVo =  boardService.getboardlist(map);
+
+        model.addAttribute("boardVo", boardVo);
+        model.addAttribute("menu_id",menu_id);
+
+        return "boards/detail";
     }
 
 

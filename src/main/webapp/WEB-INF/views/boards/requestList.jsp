@@ -23,12 +23,8 @@
   <div id="main">
   <%@ include file="/WEB-INF/include/menus.jsp" %>
   <table id="boardList">
-    <h2>요청 게시판</h2>
-    <tr>
-      <td>
-      <a href="/Board/WriteForm?menu_id=MENU_01">새글쓰기</a>
-      </td>
-    </tr>
+    <h2> 게시판</h2>
+
     <tr>
       <th>번호</th>
       <th>제목</th>
@@ -47,6 +43,11 @@
        <td>${board.board_check}</td>
     </tr>
     </c:forEach>
+    <tr>
+      <td>
+      <a href="/Board/WriteForm?menu_id=MENU_01">해주세요 새글쓰기</a>
+      </td>
+    </tr>
   </table>
   </div>
 </body>

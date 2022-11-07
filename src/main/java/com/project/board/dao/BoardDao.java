@@ -9,9 +9,9 @@ public interface BoardDao {
 
     List<BoardVo> getBoardList(HashMap<String, Object> map);
 
-    List<BoardVo> getBoardView(int board_number);
+    List<BoardVo> getlist(String menu_id);
 
     void insertboard(BoardVo boardVo);
 
-
+    BoardVo getBoard(HashMap<String, Object> map);
 }

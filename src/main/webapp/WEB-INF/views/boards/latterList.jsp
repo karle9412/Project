@@ -11,12 +11,8 @@
   <div id="main">
   <%@ include file="/WEB-INF/include/menus.jsp" %>
   <table id="latterList">
-    <h2>요청 게시판</h2>
-    <tr>
-      <td>
-      <a href="/Board/LatterWriterForm?menu_id=MENU_02">새글쓰기</a>
-      </td>
-    </tr>
+    <h2>후기 게시판</h2>
+
     <tr>
       <th>번호</th>
       <th>제목</th>
@@ -31,6 +27,11 @@
        <td>${board.board_local}</td>
     </tr>
     </c:forEach>
+    <tr>
+      <td>
+      <a href="/Board/WriteForm?menu_id=MENU_03">후기 새글쓰기</a>
+      </td>
+    </tr>
   </table>
   </div>
 </body>

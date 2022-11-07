@@ -55,9 +55,5 @@
     </div>
 
 
-<a href="/Board/RequestList?menu_id=MENU_01&nowpage=1&pagecount=5&pagegrpnum=1" class="btn btn-primary">요청페이지</a>
-<a href="/Board/LatterList?menu_id=MENU_02&nowpage=1&pagecount=5&pagegrpnum=1" class="btn btn-primary">후기페이지</a>
-
-
 </body>
 </html>

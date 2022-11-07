@@ -77,22 +77,12 @@ w
 G.idea/sonarlint/issuestore/9/9/999f8da9590d9511b4c63d366d2e0ec502003d66,2\d\2dfa7fef47d4339b07b6483173049efd43078eae
 w
 G.idea/sonarlint/issuestore/3/9/39c7bec90b5dc302ce863d9b99000946ab27193f,7\c\7cdbcb5107286756804fe1a1e1c77f9533dd06f3
-V
-&src/main/webapp/WEB-INF/views/home.jsp,1\a\1af60de6709e573f5dad4fe0319db0bb3a87e804
 p
 @.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml,1\8\18d87c86530683a959e5e5498382978a7dfbcd24
-a
-1src/main/java/com/project/board/dao/BoardDao.java,d\7\d7e7c85b0cc0251bf8320e2f84bac1f6117c6013
-i
-9src/main/java/com/project/board/service/BoardService.java,a\1\a1a489b38b9b689d6e01a9e01c6388578bde647f
-r
-Bsrc/main/java/com/project/board/service/impl/BoardServiceImpl.java,e\4\e4ff311a239b647e8a1e3040c1cd3749d0cee59a
 ^
 .src/main/java/com/project/menus/vo/MenuVo.java,3\f\3f767499246fb832d9b6b51547791c5512abafaf
 C
 회원가입css.txt,e\9\e92067d2bb274341aa56bf7b147fee4f643b2964
-Z
-*src/main/webapp/WEB-INF/spring-servlet.xml,2\7\27d1ffb6fc31b5d30d8c3569fb69477b2ea37e1b
 p
 @src/main/java/com/project/user/service/impl/UserServiceImpl.java,7\2\72994b6c113f781d6fd0c8427768b7b3df3b14f6
 ]
@@ -103,7 +93,3 @@ p
 ,src/main/webapp/WEB-INF/SQL/BASIC VALUES.SQL,f\8\f8786d494201e339bd2b6a71be1eeba4e5d5e371
 j
 :src/main/java/com/project/interceptor/AuthInterceptor.java,5\2\524940a49ac8c6a40ecafb51b958179834396b65
-c
-3src/main/webapp/WEB-INF/views/boards/latterList.jsp,6\3\63cff7463b797079a9734611f2bc3daf542397fc
-^
-.src/main/webapp/WEB-INF/views/boards/write.jsp,3\d\3d9456aee62342bacba1b2d86d3f956ec746d34a

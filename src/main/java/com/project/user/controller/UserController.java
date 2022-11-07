@@ -31,18 +31,19 @@ public class UserController {
 
     @RequestMapping("/write")
     public String write(UserVo vo){
-        System.out.println("write"+vo);
+        userService.userInsert(vo);
         return "redirect:/login";
     }
 
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
                              @RequestParam HashMap<String, Object> map){
-        UserVo vo = userService.login(map);
+
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
+        UserVo vo = userService.login(map);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);

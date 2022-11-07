@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface BoardService {
     List<BoardVo> getBoardList(HashMap<String, Object> map);
-
-    List<BoardVo> getBoardView(int board_number);
-
+    List<BoardVo> getlist(String menu_id);
     void insertboard(BoardVo boardVo);
-
+    BoardVo getboardlist(HashMap<String, Object> map);
 }

@@ -16,15 +16,12 @@ public class BoardServiceImpl implements BoardService {
 
 
     @Override
-    public List<BoardVo> getlist(String menu_id) {
-
-        List<BoardVo> boardlist = boardDao.getlist(menu_id);
-        return boardlist;
+    public List<BoardVo> getBoardList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.getBoardList(map);
+        return boardList;
     }
 
     @Override
-
-
     public void insertboard(BoardVo boardVo) {
         boardDao.insertboard(boardVo);
     }
@@ -33,5 +30,11 @@ public class BoardServiceImpl implements BoardService {
     public BoardVo getboardlist(HashMap<String, Object> map) {
         BoardVo boardVo = boardDao.getBoard(map);
         return boardVo;
+    }
+    @Override
+    public List<BoardVo> getlist(String menu_id) {
+
+        List<BoardVo> boardlist = boardDao.getlist(menu_id);
+        return boardlist;
     }
 }

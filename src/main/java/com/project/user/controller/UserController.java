@@ -32,7 +32,6 @@ public class UserController {
 
     @RequestMapping("/write")
     public String write(UserVo vo){
-        System.out.println(vo);
         userService.userInsert(vo);
         return "redirect:/login";
     }
@@ -40,7 +39,6 @@ public class UserController {
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
                              @RequestParam HashMap<String, Object> map){
-        System.out.println(map);
 
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){
@@ -50,7 +48,7 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "redirect:/list";
+            returnURL = "/boards/requestList";
         }else{
             returnURL = "redirect:/login";
         }

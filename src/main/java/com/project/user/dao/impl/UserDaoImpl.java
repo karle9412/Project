@@ -22,10 +22,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void userInsert(UserVo userVo) {
-        System.out.println(userVo);
         sqlSession.insert("User.UserInsert", userVo);
-
-
     }
 
     @Override

@@ -9,18 +9,8 @@
 </head>
 <body>
  <table id="menu">
-  <tr>
-  <c:forEach var="menu"  items="${ menuList }" >
-   <td>
-
-      <a href="/Board/List?menu_id=${menu.menu_id}"> ${ menu.menu_id }</a>
-      ${ menu.menu_name }
-
-   </td>
-   </tr>
-    </c:forEach>
-
   <div id="main">
+   <%@ include file="/WEB-INF/include/menus.jsp" %>
   <table id="boardList">
     <h2>요청 게시판</h2>
     <tr>
@@ -34,7 +24,7 @@
     <tr>
        <td>${board.board_number}</td>
        <td>${board.menu_id}</td>
-       <td><a href="/board/detail?board_number=${board.board_number}">${board.title}</td>
+       <td><a href="/Board/Detail?board_number=${board.board_number}">${board.title}</td>
        <td>${board.writer}</td>
        <td>${board.board_local}</td>
        <td>${board.cont}</td>
@@ -42,7 +32,7 @@
     </tr>
     </c:forEach>
 
-    <td><a href="/board/WriteForm?menu_id=${menu_id}">글쓰기</td>
+    <td><a href="/Board/WriteForm?menu_id=MENU_02">할게요 글쓰기</td>
 
 </body>
 </html>

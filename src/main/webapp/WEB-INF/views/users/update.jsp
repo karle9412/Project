@@ -13,31 +13,9 @@
 </head>
 <body>
     <header class="w3-container w3-teal w3-center">
-        <h1>내 정보</h1>
+        <h1>회원정보 수정</h1>
     </header>
-<ul>
-<li>
-id ${userVo.userid}
-</li>
-<li>
-nickname ${userVo.nickname}
-</li>
-<li>
-email ${userVo.email}
-</li>
-<li>
-local ${userVo.user_local}
-</li>
-<li>
-rider ${userVo.rider}
-</li>
-<li>
-indate ${userVo.indate}
-</li>
 
-<li>
-<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple" > 회원정보 수정</a>
-</li>
-</ul>
+
 </body>
 </html>

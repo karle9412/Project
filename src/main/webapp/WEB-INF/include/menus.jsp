@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <td>
-    <a href="/UserView?userid=${userid}">내 정보</a>
+    <a href="/getUser">내 정보</a>
     </td>
   </tr>
   </table>

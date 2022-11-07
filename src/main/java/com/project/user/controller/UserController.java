@@ -32,7 +32,7 @@ public class UserController {
 
     @RequestMapping("/write")
     public String write(UserVo vo){
-        userService.userInsert(vo);
+        this.userService.userInsert(vo);
         return "redirect:/login";
     }
 
@@ -44,11 +44,11 @@ public class UserController {
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
-        UserVo vo = userService.login(map);
+        UserVo vo = this.userService.login(map);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "/boards/requestList";
+            returnURL = "boards/requestList";
         }else{
             returnURL = "redirect:/login";
         }
@@ -56,19 +56,24 @@ public class UserController {
 
     }
 
-    @RequestMapping("/User/getUser")
+    @RequestMapping("/getUser")
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
-        Object getUser = userService.getUser(httpSession.getAttribute("login"));
+        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
-        mv.setViewName("/users/getUser");
+        mv.setViewName("users/getUser");
         return mv;
     }
 
     @RequestMapping("/updateForm")
     public String updateForm(){
-        return "/users/update";
+        return "users/update";
+    }
+
+    @RequestMapping("/update")
+    public String update (){
+        return "boards/boardList";
     }
 
 }

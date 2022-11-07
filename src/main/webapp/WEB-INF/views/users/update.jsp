@@ -16,6 +16,8 @@
         <h1>회원정보 수정</h1>
     </header>
 
+    <a href="/update" class="w3-button w3-section w3-light-green w3-ripple w3-text-white">수정 완료</a>
+
 
 </body>
 </html>

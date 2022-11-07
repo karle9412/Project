@@ -39,7 +39,13 @@
        <td>${board.writer}</td>
        <td>${board.indate}</td>
        <td>${board.board_local}</td>
-       <td>${board.board_check}</td>
+       <c:set var="check" value="${board.board_check}"/>
+       <c:if test="${check == 0}">
+         <td>접수대기<td>
+       </c:if>
+       <c:if test="${check == 1}">
+         <td>접수완료<td>
+       </c:if>
     </tr>
     </c:forEach>
     <tr>

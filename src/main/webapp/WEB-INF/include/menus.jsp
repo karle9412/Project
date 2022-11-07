@@ -7,7 +7,7 @@
   <table id="menu">
   <tr>
     <td>
-    <a href="/Board/RequestList?menu_id=MENU_01">메인 일단 해주세요로감</a>
+    <a href="/Board/RequestList?menu_id=MENU_01">메인(일단 해주세요로감)</a>
     </td>
   </tr>
   <tr>

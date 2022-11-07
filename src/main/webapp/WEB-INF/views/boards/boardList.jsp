@@ -31,7 +31,6 @@
        <td>${board.indate}</td>
     </tr>
     </c:forEach>
-
     <td><a href="/Board/WriteForm?menu_id=MENU_02">할게요 글쓰기</td>
 
 </body>

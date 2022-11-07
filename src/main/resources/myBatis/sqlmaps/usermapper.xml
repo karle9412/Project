@@ -9,12 +9,25 @@
             resultType="com.project.user.vo.UserVo">
         SELECT USERID,
         PASSWD,
-        NICKNAME,
         TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
         FROM  USERS
         WHERE USERID = #{userid}
         AND   PASSWD = #{passwd}
 
+    </select>
+    
+    <select id="GetUser"
+            resultType="com.project.user.vo.UserVo">
+        SELECT USERID,
+        NICKNAME,
+        PASSWD,
+        EMAIL,
+        USER_LOCAL,
+        RIDER,
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        FROM USERS
+        WHERE USERID = #{userid}
+         AND  PASSWD = #{passwd}
     </select>
     
     <update id="UserInsert"
@@ -31,17 +44,3 @@
 
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

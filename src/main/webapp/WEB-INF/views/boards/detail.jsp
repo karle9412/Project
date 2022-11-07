@@ -33,6 +33,27 @@ $(".replyWriteBtn").on("click", function(){
 </head>
 <body>
  <table id="board">
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/boards/Detail.jsp
+       <caption><h2>후기 내용 보기</h2></caption>
+       <tr>
+        <td>번호</td>
+        <td>테스트 </td>
+       </tr>
+       <tr>
+        <td>작성일</td>
+        <td>테스트 </td>
+        <td>작성자</td>
+        <td>테스트</td>
+       </tr>
+       <tr>
+        <td>제목</td>
+        <td colspan="3">테스트 </td>
+       </tr>
+       <tr>
+        <td>내용</td>
+        <td colspan="3">테스트</td>
+       </tr>
+=======
              <caption><h2>내용 보기</h2></caption>
              <tr>
               <td>번호</td>
@@ -52,6 +73,7 @@ $(".replyWriteBtn").on("click", function(){
               <td colspan="3">${ boardVo.cont }</td>
              </tr>
              <tr>
+>>>>>>> cf00654053b69f5cadbe5d8c45dfa3f502504f68:src/main/webapp/WEB-INF/views/boards/detail.jsp
 
 <table id="reply1">
 <div id="reply">

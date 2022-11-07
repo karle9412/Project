@@ -9,6 +9,19 @@ public class BoardVo {
     private String board_local;
     private String cont;
     private String indate;
+    private String board_check;
+
+    public BoardVo(){}
+    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check) {
+        this.board_number = board_number;
+        this.menu_id = menu_id;
+        this.title = title;
+        this.writer = writer;
+        this.board_local = board_local;
+        this.cont = cont;
+        this.indate = indate;
+        this.board_check = board_check;
+    }
 
     public int getBoard_number() {
         return board_number;
@@ -25,7 +38,6 @@ public class BoardVo {
     public void setMenu_id(String menu_id) {
         this.menu_id = menu_id;
     }
-
 
 
     public String getTitle() {
@@ -68,7 +80,9 @@ public class BoardVo {
         this.indate = indate;
     }
 
-    public BoardVo(){}
+    public String getBoard_check() {
+        return board_check;
+    }
 
     public BoardVo(int board_number, String menu_id,String title, String writer, String board_local, String cont, String indate) {
         this.board_number = board_number;
@@ -78,6 +92,9 @@ public class BoardVo {
         this.board_local = board_local;
         this.cont = cont;
         this.indate = indate;
+
+    public void setBoard_check(String board_check) {
+        this.board_check = board_check;
     }
 
     @Override
@@ -90,6 +107,7 @@ public class BoardVo {
                 ", board_local='" + board_local + '\'' +
                 ", cont='" + cont + '\'' +
                 ", indate='" + indate + '\'' +
+                ", board_check='" + board_check + '\'' +
                 '}';
     }
 }

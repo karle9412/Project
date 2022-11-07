@@ -39,7 +39,7 @@
                 <input class="w3-input w3-border" name="email" type="text" placeholder="EMail">
             </div>
         </div>
-        <select id="LOACTION" name="userLocal">
+        <select id="LOACTION" name="user_local">
             <option value="">LOCATION</option>
             <option value="seoul">Seoul</option>
             <option value="incheon">Incheon</option>

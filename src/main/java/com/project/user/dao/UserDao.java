@@ -10,5 +10,5 @@ public interface UserDao {
     void userInsert(UserVo vo);
 
 
-
+    Object getUser(Object login);
 }

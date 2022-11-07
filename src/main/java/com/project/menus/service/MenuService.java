@@ -5,5 +5,5 @@ import com.project.menus.vo.MenuVo;
 import java.util.List;
 
 public interface MenuService {
-    List<MenuVo> getmenulist();
+    List<MenuVo> getMenuList();
 }

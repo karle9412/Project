@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+    <select id="login"
+            resultType="com.project.user.vo.UserVo">
+        SELECT USERID,
+        PASSWD,
+        NICKNAME,
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        FROM  USERS
+        WHERE USERID = #{userid}
+        AND   PASSWD = #{passwd}
+
+    </select>
+    
+    <update id="UserInsert"
+            parameterType="com.project.menus.vo.MenuVo">
+        INSERT  INTO  USERS(
+        USERID,
+        PASSWD,
+        NICKNAME,
+        EMAIL,
+        USER_LOCAL,
+        RIDER)
+        VALUES (#{userid}, #{passwd}, #{nickname}, #{email} , #{user_local} , #{rider})
+    </update>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

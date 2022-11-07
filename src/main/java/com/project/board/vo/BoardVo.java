@@ -39,6 +39,7 @@ public class BoardVo {
         this.menu_id = menu_id;
     }
 
+
     public String getTitle() {
         return title;
     }
@@ -82,6 +83,15 @@ public class BoardVo {
     public String getBoard_check() {
         return board_check;
     }
+
+    public BoardVo(int board_number, String menu_id,String title, String writer, String board_local, String cont, String indate) {
+        this.board_number = board_number;
+        this.menu_id = menu_id;
+        this.title = title;
+        this.writer = writer;
+        this.board_local = board_local;
+        this.cont = cont;
+        this.indate = indate;
 
     public void setBoard_check(String board_check) {
         this.board_check = board_check;

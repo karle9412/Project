@@ -29,9 +29,6 @@
      작성자:<input type="text" name="writer"/>
      </div>
      <div>
-     아이디:<input type="text" name="userid"/>
-     </div>
-     <div>
      내용:<input type="text" name="cont" />
      </div>
      <div>

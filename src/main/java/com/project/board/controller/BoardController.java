@@ -32,8 +32,7 @@ public class BoardController {
 
         String menu_id = (String) map.get("menu_id");
 
-        List<Object> total = boardService.countBoard(menu_id);
-        System.out.println(total);
+
         return "boards/requestList";
     }
 

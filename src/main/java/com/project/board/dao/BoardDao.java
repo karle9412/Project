@@ -13,5 +13,5 @@ public interface BoardDao {
 
     void insertboard(BoardVo boardVo);
 
-    List<Object> countBoard(String menu_id);
+
 }

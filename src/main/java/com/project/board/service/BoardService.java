@@ -12,5 +12,4 @@ public interface BoardService {
 
     void insertboard(BoardVo boardVo);
 
-    List<Object> countBoard(String menu_id);
 }

@@ -5,14 +5,6 @@
 
 <mapper namespace="Board">
 
-    <select id="CountBoard"
-            resultType="com.project.board.vo.BoardVo">
-
-        SELECT COUNT(TITLE)
-        FROM BOARD
-        WHERE MENU_ID = #{menu_id}
-
-    </select>
 
     <select id="BoardList"
             resultType="com.project.board.vo.BoardVo">

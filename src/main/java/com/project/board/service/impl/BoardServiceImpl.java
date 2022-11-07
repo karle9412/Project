@@ -31,8 +31,5 @@ public class BoardServiceImpl implements BoardService {
         boardDao.insertboard(boardVo);
     }
 
-    @Override
-    public List<Object> countBoard(String menu_id) {
-        return boardDao.countBoard(menu_id);
-    }
+
 }

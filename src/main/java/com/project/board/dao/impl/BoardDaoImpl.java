@@ -33,13 +33,5 @@ public class BoardDaoImpl implements BoardDao {
         sqlSession.insert("Board.InsertBoard", boardVo);
     }
 
-    @Override
-    public List<Object> countBoard(String menu_id) {
-        System.out.println(menu_id);
-        List<Object> ob = sqlSession.selectList("Board.CountBoard",menu_id);
-        System.out.println(ob);
-        return ob;
-    }
-
 
 }

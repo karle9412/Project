@@ -28,7 +28,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     }
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
-        throws Exception{
+            throws Exception{
         super.postHandle(request, response, handler, modelAndView);
     }
 }

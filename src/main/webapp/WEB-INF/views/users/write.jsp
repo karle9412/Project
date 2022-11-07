@@ -30,7 +30,7 @@
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="username" type="text" placeholder="NickName">
+                <input class="w3-input w3-border" name="nickname" type="text" placeholder="NickName">
             </div>
         </div>
         <div class="w3-row w3-section">
@@ -39,7 +39,7 @@
                 <input class="w3-input w3-border" name="email" type="text" placeholder="EMail">
             </div>
         </div>
-        <select id="LOACTION" name="userLocal">
+        <select id="LOACTION" name="user_local">
             <option value="">LOCATION</option>
             <option value="seoul">Seoul</option>
             <option value="incheon">Incheon</option>

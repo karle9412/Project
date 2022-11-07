@@ -17,14 +17,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserVo login(HashMap<String, Object> map) {
         UserVo vo = sqlSession.selectOne("User.login", map);
+        System.out.println(vo);
         return vo;
     }
 
     @Override
     public void userInsert(UserVo userVo) {
-        System.out.println(userVo);
         sqlSession.insert("User.UserInsert", userVo);
-
-
     }
 }

@@ -10,22 +10,22 @@
         SELECT USERID,
         PASSWD,
         NICKNAME,
-        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') as INDATE
         FROM  USERS
         WHERE USERID = #{userid}
         AND   PASSWD = #{passwd}
 
     </select>
     <update id="UserInsert"
-            parameterType="com.project.menus.vo.MenuVo">
+            parameterType="com.project.user.vo.UserVo">
         INSERT  INTO  USERS(
         USERID,
         PASSWD,
-        USERNAME,
+        NICKNAME,
         EMAIL,
         USER_LOCAL,
         RIDER)
-        VALUES (#{userid}, #{passwd}, #{username}, #{email} , #{user_local} , #{rider})
+        VALUES (#{userid}, #{passwd}, #{nickname}, #{email} , #{user_local} , #{rider})
     </update>
 
 </mapper>

@@ -4,25 +4,27 @@ public class UserVo {
 
     private String userid;
     private String passwd;
-    private String username;
+    private String nickname;
     private String email;
-    private String userLocal;
+    private String user_local;
     private String rider;
     private String indate;
 
-    public UserVo (){}
-    public UserVo(String userid, String passwd, String username, String email, String userLocal, String rider, String indate) {
-        this.userid = userid;
-        this.passwd = passwd;
-        this.username = username;
-        this.email = email;
-        this.userLocal = userLocal;
-        this.rider = rider;
-        this.indate = indate;
+    @Override
+    public String toString() {
+        return "UserVo{" +
+                "userid='" + userid + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", user_local='" + user_local + '\'' +
+                ", rider='" + rider + '\'' +
+                ", indate='" + indate + '\'' +
+                '}';
     }
 
     public String getUserid() {
-        return this.userid;
+        return userid;
     }
 
     public void setUserid(String userid) {
@@ -30,39 +32,39 @@ public class UserVo {
     }
 
     public String getPasswd() {
-        return this.passwd;
+        return passwd;
     }
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getUserLocal() {
-        return this.userLocal;
+    public String getUser_local() {
+        return user_local;
     }
 
-    public void setUserLocal(String userLocal) {
-        this.userLocal = userLocal;
+    public void setUser_local(String user_local) {
+        this.user_local = user_local;
     }
 
     public String getRider() {
-        return this.rider;
+        return rider;
     }
 
     public void setRider(String rider) {
@@ -70,23 +72,20 @@ public class UserVo {
     }
 
     public String getIndate() {
-        return this.indate;
+        return indate;
     }
 
     public void setIndate(String indate) {
         this.indate = indate;
     }
 
-    @Override
-    public String toString() {
-        return "UserVo{" +
-                "userid='" + this.userid + '\'' +
-                ", passwd='" + this.passwd + '\'' +
-                ", username='" + this.username + '\'' +
-                ", email='" + this.email + '\'' +
-                ", userLocal='" + this.userLocal + '\'' +
-                ", rider='" + this.rider + '\'' +
-                ", indate='" + this.indate + '\'' +
-                '}';
+    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate) {
+        this.userid = userid;
+        this.passwd = passwd;
+        this.nickname = nickname;
+        this.email = email;
+        this.user_local = user_local;
+        this.rider = rider;
+        this.indate = indate;
     }
 }

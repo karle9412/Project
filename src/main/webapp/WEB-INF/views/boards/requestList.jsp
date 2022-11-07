@@ -24,7 +24,6 @@
   <%@ include file="/WEB-INF/include/menus.jsp" %>
   <table id="boardList">
     <h2> 게시판</h2>
-
     <tr>
       <th>번호</th>
       <th>제목</th>

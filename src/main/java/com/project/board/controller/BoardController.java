@@ -29,7 +29,7 @@ public class BoardController {
     ReplyService replyService;
     @RequestMapping("/list")
     public String list(Model model){
-        List<MenuVo>  menuList =  menuService.getmenulist();
+        List<MenuVo>  menuList = this.menuService.getMenuList();
         model.addAttribute("menuList", menuList);
 
         return "boards/list";
@@ -39,8 +39,8 @@ public class BoardController {
     @RequestMapping("/Board/List")
     public String boardlist(Model model, String menu_id){
 
-        List<MenuVo>  menuList =  menuService.getMenuList();
-        List<BoardVo> boardlist = boardService.getlist(menu_id);
+        List<MenuVo>  menuList = this.menuService.getMenuList();
+        List<BoardVo> boardlist = this.boardService.getlist(menu_id);
         model.addAttribute("boardList", boardlist);
         model.addAttribute("menuList", menuList);
         model.addAttribute("menu_id",menu_id);
@@ -51,8 +51,8 @@ public class BoardController {
     @RequestMapping("/Board/RequestList")
     public String boardList(Model model, @RequestParam HashMap<String,Object> map){
 
-        List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getBoardList(map);
+        List<MenuVo>  menuList  = this.menuService.getMenuList();
+        List<BoardVo> boardList = this.boardService.getBoardList(map);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
@@ -65,8 +65,8 @@ public class BoardController {
     public String latterList(Model model, @RequestParam HashMap<String,Object> map){
 
 
-        List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getBoardList(map);
+        List<MenuVo>  menuList  = this.menuService.getMenuList();
+        List<BoardVo> boardList = this.boardService.getBoardList(map);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
@@ -85,7 +85,7 @@ public class BoardController {
     @RequestMapping("/Board/Write")
     public String wrtie(BoardVo boardVo) {
         System.out.println(boardVo);
-        boardService.insertboard(boardVo);
+        this.boardService.insertboard(boardVo);
         System.out.println(boardVo);
 
         return "redirect:/list";
@@ -94,12 +94,12 @@ public class BoardController {
     @RequestMapping("/Board/Detail")
     public String detail(	@RequestParam HashMap<String, Object> map, Model model){
         String menu_id = (String) map.get("menu_id");
-        BoardVo boardVo =  boardService.getboardlist(map);
+        BoardVo boardVo = this.boardService.getboardlist(map);
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id",menu_id);
 
-        List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
+        List<ReplyVo> replylist = this.replyService.getReplylist(boardVo.getBoard_number());
         model.addAttribute("replylist", replylist);
 
         return "boards/detail";

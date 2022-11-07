@@ -24,7 +24,7 @@ public class BoardVo {
     }
 
     public int getBoard_number() {
-        return board_number;
+        return this.board_number;
     }
 
     public void setBoard_number(int board_number) {
@@ -32,7 +32,7 @@ public class BoardVo {
     }
 
     public String getMenu_id() {
-        return menu_id;
+        return this.menu_id;
     }
 
     public void setMenu_id(String menu_id) {
@@ -41,7 +41,7 @@ public class BoardVo {
 
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -49,7 +49,7 @@ public class BoardVo {
     }
 
     public String getWriter() {
-        return writer;
+        return this.writer;
     }
 
     public void setWriter(String writer) {
@@ -57,7 +57,7 @@ public class BoardVo {
     }
 
     public String getBoard_local() {
-        return board_local;
+        return this.board_local;
     }
 
     public void setBoard_local(String board_local) {
@@ -65,7 +65,7 @@ public class BoardVo {
     }
 
     public String getCont() {
-        return cont;
+        return this.cont;
     }
 
     public void setCont(String cont) {
@@ -73,7 +73,7 @@ public class BoardVo {
     }
 
     public String getIndate() {
-        return indate;
+        return this.indate;
     }
 
     public void setIndate(String indate) {
@@ -81,7 +81,10 @@ public class BoardVo {
     }
 
     public String getBoard_check() {
-        return board_check;
+        return this.board_check;
+    }
+    public void setBoard_check (String board_check) {
+        this.board_check = this.board_check;
     }
 
     public BoardVo(int board_number, String menu_id,String title, String writer, String board_local, String cont, String indate) {
@@ -92,22 +95,19 @@ public class BoardVo {
         this.board_local = board_local;
         this.cont = cont;
         this.indate = indate;
-
-    public void setBoard_check(String board_check) {
-        this.board_check = board_check;
     }
 
     @Override
     public String toString() {
         return "BoardVo{" +
-                "board_number=" + board_number +
-                ", menu_id='" + menu_id + '\'' +
-                ", title='" + title + '\'' +
-                ", writer='" + writer + '\'' +
-                ", board_local='" + board_local + '\'' +
-                ", cont='" + cont + '\'' +
-                ", indate='" + indate + '\'' +
-                ", board_check='" + board_check + '\'' +
+                "board_number=" + this.board_number +
+                ", menu_id='" + this.menu_id + '\'' +
+                ", title='" + this.title + '\'' +
+                ", writer='" + this.writer + '\'' +
+                ", board_local='" + this.board_local + '\'' +
+                ", cont='" + this.cont + '\'' +
+                ", indate='" + this.indate + '\'' +
+                ", board_check='" + this.board_check + '\'' +
                 '}';
     }
 }

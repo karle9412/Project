@@ -68,5 +68,9 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping("/updateForm")
+    public String updateForm(){
+        return "/users/update";
+    }
 
 }

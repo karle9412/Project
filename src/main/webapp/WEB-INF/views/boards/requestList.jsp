@@ -26,7 +26,7 @@
     <h2>요청 게시판</h2>
     <tr>
       <td>
-      <a href="/Board/RequestWriterForm?menu_id=MENU_01">새글쓰기</a>
+      <a href="/Board/WriteForm?menu_id=MENU_01">새글쓰기</a>
       </td>
     </tr>
     <tr>
@@ -44,6 +44,7 @@
        <td>${board.writer}</td>
        <td>${board.indate}</td>
        <td>${board.board_local}</td>
+       <td>${board.board_check}</td>
     </tr>
     </c:forEach>
   </table>

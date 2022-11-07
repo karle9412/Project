@@ -12,12 +12,16 @@
   </tr>
   <tr>
     <td>
-    <a href="/Board/RequestList?menu_id=MENU_01">요청</a>
+    <a href="/Board/RequestList?menu_id=MENU_01">해주세요</a>
     </td>
   </tr>
   <tr>
     <td>
-    <a href="/Board/LatterList?menu_id=MENU_02">후기</a>
+    <a href="/Board/RequestList?menu_id=MENU_02">할게요</a>
+    </td>
+  </tr>
+    <td>
+    <a href="/Board/LatterList?menu_id=MENU_03">후기</a>
     </td>
   </tr>
   <tr>

@@ -17,7 +17,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserVo login(HashMap<String, Object> map) {
         UserVo vo = sqlSession.selectOne("User.login", map);
-        System.out.println(vo);
         return vo;
     }
 

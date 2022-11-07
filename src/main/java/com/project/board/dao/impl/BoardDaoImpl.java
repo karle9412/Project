@@ -21,7 +21,6 @@ public class BoardDaoImpl implements BoardDao {
        return boardList;
     }
 
-
     @Override
     public List<BoardVo> getBoardView(int board_number) {
         List<BoardVo> boardList = sqlSession.selectList("Board.BoardView",board_number);
@@ -32,6 +31,5 @@ public class BoardDaoImpl implements BoardDao {
     public void insertboard(BoardVo boardVo) {
         sqlSession.insert("Board.InsertBoard", boardVo);
     }
-
 
 }

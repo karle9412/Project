@@ -32,7 +32,6 @@ public class BoardController {
 
         String menu_id = (String) map.get("menu_id");
 
-
         return "boards/requestList";
     }
 
@@ -58,13 +57,13 @@ public class BoardController {
 
         return "boards/view";
     }
-    @RequestMapping("/board/WriteForm")
+    @RequestMapping("/WriteForm")
     public String writeform(){
 
         return "boards/write";
     }
 
-    @RequestMapping("/board/Write")
+    @RequestMapping("/Write")
     public String wrtie(BoardVo boardVo) {
         System.out.println(boardVo);
         boardService.insertboard(boardVo);

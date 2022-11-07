@@ -29,6 +29,20 @@
 
     </insert>
 
+    <select id            = "Board"
+            parameterType = "hashmap"
+            resultType    = "com.project.board.vo.BoardVo">
+        SELECT BOARD_NUMBER,
+        TITLE,
+        WRITER,
+        BOARD_LOCAL,
+        CONT,
+        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        from board
+
+        where board_number = #{board_number}
+    </select>
 
 
 </mapper>

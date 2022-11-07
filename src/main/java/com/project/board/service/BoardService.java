@@ -2,6 +2,7 @@ package com.project.board.service;
 
 import com.project.board.vo.BoardVo;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface BoardService {
@@ -11,4 +12,6 @@ public interface BoardService {
 
 
     void insertboard(BoardVo boardVo);
+
+    BoardVo getboardlist(HashMap<String, Object> map);
 }

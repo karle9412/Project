@@ -24,25 +24,25 @@
 </head>
 <body>
  <table id="board">
-       <caption><h2>내용 보기</h2></caption>
-       <tr>
-        <td>번호</td>
-        <td>테스트 </td>
-       </tr>
-       <tr>
-        <td>작성일</td>
-        <td>테스트 </td>
-        <td>작성자</td>
-        <td>테스트</td>
-       </tr>
-       <tr>
-        <td>제목</td>
-        <td colspan="3">테스트 </td>
-       </tr>
-       <tr>
-        <td>내용</td>
-        <td colspan="3">테스트</td>
-       </tr>
+             <caption><h2>내용 보기</h2></caption>
+             <tr>
+              <td>번호</td>
+              <td>${ boardVo.board_number } </td>
+             <tr>
+              <td>작성일</td>
+              <td>${ boardVo.indate } </td>
+              <td>작성자</td>
+              <td>${ boardVo.writer } </td>
+             </tr>
+             <tr>
+              <td>제목</td>
+              <td colspan="3">${ boardVo.title } </td>
+             </tr>
+             <tr>
+              <td>내용</td>
+              <td colspan="3">${ boardVo.cont }</td>
+             </tr>
+             <tr>
 
 </body>
 </html>

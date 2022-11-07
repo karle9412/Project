@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository("boardDao")
@@ -24,6 +25,12 @@ public class BoardDaoImpl implements BoardDao {
     @Override
     public void insertboard(BoardVo boardVo) {
         sqlSession.insert("Board.InsertBoard", boardVo);
+    }
+
+    @Override
+    public BoardVo getBoard(HashMap<String, Object> map) {
+        BoardVo boardVo = sqlSession.selectOne("Board.Board", map);
+        return boardVo;
     }
 
 

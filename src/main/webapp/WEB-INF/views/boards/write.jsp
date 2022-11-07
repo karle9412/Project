@@ -16,6 +16,7 @@
        <a href="/Board/List?menu_id=${menu.menu_id}"> ${ menu.menu_id }</a>
        ${ menu.menu_name }
     </td>
+    </c:forEach>
     </tr>
 
      <h2>글쓰기</h2>

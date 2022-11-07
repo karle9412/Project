@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -46,6 +48,7 @@ public class BoardController {
     @RequestMapping("/board/WriteForm")
     public String writeform(BoardVo boardVo,Model model){
         String menu_id = boardVo.getMenu_id();
+        System.out.println(menu_id);
 
 
        model.addAttribute("menu_id",menu_id);
@@ -66,6 +69,17 @@ public class BoardController {
 
 
         return "redirect:/list";
+    }
+
+    @RequestMapping("/board/detail")
+    public String detail(	@RequestParam HashMap<String, Object> map, Model model){
+        String menu_id = (String) map.get("menu_id");
+        BoardVo boardVo =  boardService.getboardlist(map);
+
+        model.addAttribute("boardVo", boardVo);
+        model.addAttribute("menu_id",menu_id);
+
+        return "boards/detail";
     }
 
 

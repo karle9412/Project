@@ -20,6 +20,8 @@
    </tr>
     </c:forEach>
 
+    <a href="/User/getUser"> 내 정보</a>
+
 
 </body>
 </html>

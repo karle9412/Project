@@ -24,4 +24,11 @@ public class UserServiceImpl implements UserService {
         UserVo vo = userDao.login(map);
         return vo;
     }
+
+    @Override
+    public Object getUser(Object login) {
+        System.out.println(login);
+        Object getUser = userDao.getUser(login);
+        return getUser;
+    }
 }

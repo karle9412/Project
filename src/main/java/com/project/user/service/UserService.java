@@ -9,4 +9,5 @@ public interface UserService {
     void userInsert(UserVo vo);
 
     UserVo login(HashMap<String, Object> map);
+    Object getUser(Object login);
 }

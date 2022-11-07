@@ -24,4 +24,10 @@ public class UserDaoImpl implements UserDao {
     public void userInsert(UserVo userVo) {
         sqlSession.insert("User.UserInsert", userVo);
     }
+
+    @Override
+    public Object getUser(Object login) {
+        Object getUser = sqlSession.selectOne("User.GetUser", login);
+        return getUser;
+    }
 }

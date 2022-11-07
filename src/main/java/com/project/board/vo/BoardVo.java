@@ -4,7 +4,6 @@ public class BoardVo {
 
     private int board_number;
     private String menu_id;
-    private String userid;
     private String title;
     private String writer;
     private String board_local;
@@ -27,13 +26,7 @@ public class BoardVo {
         this.menu_id = menu_id;
     }
 
-    public String getUserid() {
-        return userid;
-    }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
 
     public String getTitle() {
         return title;
@@ -77,10 +70,9 @@ public class BoardVo {
 
     public BoardVo(){}
 
-    public BoardVo(int board_number, String menu_id, String userid, String title, String writer, String board_local, String cont, String indate) {
+    public BoardVo(int board_number, String menu_id,String title, String writer, String board_local, String cont, String indate) {
         this.board_number = board_number;
         this.menu_id = menu_id;
-        this.userid = userid;
         this.title = title;
         this.writer = writer;
         this.board_local = board_local;
@@ -93,7 +85,6 @@ public class BoardVo {
         return "BoardVo{" +
                 "board_number=" + board_number +
                 ", menu_id='" + menu_id + '\'' +
-                ", userid='" + userid + '\'' +
                 ", title='" + title + '\'' +
                 ", writer='" + writer + '\'' +
                 ", board_local='" + board_local + '\'' +

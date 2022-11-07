@@ -4,12 +4,15 @@ import com.project.board.service.BoardService;
 import com.project.board.vo.BoardVo;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
+import com.project.reply.service.ReplyService;
+import com.project.reply.vo.ReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class BoardController {
     BoardService boardService;
     @Autowired
     MenuService menuService;
+
+    @Autowired
+    ReplyService replyService;
     @RequestMapping("/list")
     public String list(Model model){
         List<MenuVo>  menuList =  menuService.getmenulist();
@@ -54,9 +60,6 @@ public class BoardController {
        model.addAttribute("menu_id",menu_id);
 
 
-
-
-
         return "boards/write";
 
     }
@@ -78,6 +81,9 @@ public class BoardController {
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id",menu_id);
+
+        List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
+        model.addAttribute("replylist", replylist);
 
         return "boards/detail";
     }

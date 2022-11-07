@@ -33,6 +33,7 @@ public class BoardController {
         String menu_id = (String) map.get("menu_id");
 
         return "boards/requestList";
+
     }
 
     @RequestMapping("/LatterList")

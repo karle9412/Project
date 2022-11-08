@@ -48,8 +48,6 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
-        String menu_id = (String) map.get("menu_id");
-
         return "boards/requestList";
     }
 
@@ -81,12 +79,12 @@ public class BoardController {
     // 글 작성
 
     @RequestMapping("/Board/Write")
-    public String wrtie(BoardVo boardVo) {
+    public String write(BoardVo boardVo) {
         System.out.println(boardVo);
         boardService.insertboard(boardVo);
         System.out.println(boardVo);
 
-        return "redirect:/list";
+        return "boards/requestList";
     }
 
 

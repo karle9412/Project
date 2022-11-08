@@ -15,7 +15,8 @@
         TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
         BOARD_CHECK
 
-        FROM customer_BOARD
+        FROM CUSTOMER_BOARD
+
         WHERE MENU_ID = #{menu_id}
 
 
@@ -40,7 +41,7 @@
         CONT,
         TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
 
-        from customer_board
+        from CUSTOMER_BOARD
 
         where board_number = #{board_number}
     </select>

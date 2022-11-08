@@ -41,8 +41,6 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
-        String menu_id = (String) map.get("menu_id");
-
         return "boards/requestList";
     }
 

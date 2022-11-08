@@ -18,7 +18,6 @@
   #board  input     { width:100%; }
   #board  textarea  { width:100%; height: 400px;  }
 
-
 </style>
 
 </head>

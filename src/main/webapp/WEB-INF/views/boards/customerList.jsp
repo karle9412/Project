@@ -22,8 +22,9 @@
 <body>
   <div id="main">
   <%@ include file="/WEB-INF/include/menus.jsp" %>
+
   <table id="boardList">
-    <h2> 게시판</h2>
+    <h2>해주세요 게시판</h2>
     <tr>
       <th>번호</th>
       <th>제목</th>
@@ -35,7 +36,7 @@
     <c:forEach var="board" items="${boardList}">
     <tr>
        <td>${board.board_number}</td>
-       <td><a href="/Board/Detail?board_number=${board.board_number}">${board.title}</a></td>
+       <td><a href="/Board/Detail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
        <td>${board.writer}</td>
        <td>${board.indate}</td>
        <td>${board.board_local}</td>
@@ -50,7 +51,7 @@
     </c:forEach>
     <tr>
       <td>
-      <a href="/Board/WriteForm?menu_id=MENU_01">해주세요 새글쓰기</a>
+      <a href="/Board/CBoardWriteForm?menu_id=MENU_01">해주세요 새글쓰기</a>
       </td>
     </tr>
   </table>

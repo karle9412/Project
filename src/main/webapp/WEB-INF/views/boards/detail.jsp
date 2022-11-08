@@ -12,21 +12,20 @@
   #board  td:nth-of-type(2) { width:400px; text-align:left;}
   #board  td:nth-of-type(3) { width:150px; text-align:center;}
   #board  td:nth-of-type(4) { width:400px; text-align:left;}
-
   #board  tr:nth-of-type(4) { height : 400px; vertical-align: top; }
-
-
   #board  input     { width:100%; }
   #board  textarea  { width:100%; height: 400px;  }
-
-
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
 
 
 </head>
 <body>
  <table id="board">
+
 
              <caption><h2>내용 보기</h2></caption>
              <tr>
@@ -47,6 +46,15 @@
               <td colspan="3">${ boardVo.cont }</td>
              </tr>
              <tr>
+
+              <td colspan="4">
+                     [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
+                     [<a href="/Board/UpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}">수정</a>]
+                     [<a href="/Board/Delete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
+                     [<a href="/Board/RequestList?menu_id=${ menu_id }">목록으로</a>]
+                     [<a href="javascript:history.back()">이전으로</a>]
+                     [<a href="/">Home</a>]
+                     </td>
 
 
 <table id="reply1">

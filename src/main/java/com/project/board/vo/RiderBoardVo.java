@@ -34,6 +34,110 @@ public class RiderBoardVo {
         this.luggage = luggage;
     }
 
+    public int getBoard_number() {
+        return board_number;
+    }
+
+    public void setBoard_number(int board_number) {
+        this.board_number = board_number;
+    }
+
+    public String getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(String menu_id) {
+        this.menu_id = menu_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String getBoard_local() {
+        return board_local;
+    }
+
+    public void setBoard_local(String board_local) {
+        this.board_local = board_local;
+    }
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
+    }
+
+    public String getIndate() {
+        return indate;
+    }
+
+    public void setIndate(String indate) {
+        this.indate = indate;
+    }
+
+    public String getBoard_check() {
+        return board_check;
+    }
+
+    public void setBoard_check(String board_check) {
+        this.board_check = board_check;
+    }
+
+    public String getR_start() {
+        return r_start;
+    }
+
+    public void setR_start(String r_start) {
+        this.r_start = r_start;
+    }
+
+    public String getR_end() {
+        return r_end;
+    }
+
+    public void setR_end(String r_end) {
+        this.r_end = r_end;
+    }
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
+
+    public String getR_time() {
+        return r_time;
+    }
+
+    public void setR_time(String r_time) {
+        this.r_time = r_time;
+    }
+
+    public String getLuggage() {
+        return luggage;
+    }
+
+    public void setLuggage(String luggage) {
+        this.luggage = luggage;
+    }
+
     @Override
     public String toString() {
         return "RiderBoardVo{" +

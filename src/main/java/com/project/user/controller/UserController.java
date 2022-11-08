@@ -48,7 +48,7 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "/boards/requestList";
+            returnURL = "/boards/customerList";
         }else{
             returnURL = "redirect:/login";
         }

@@ -47,7 +47,6 @@ public class BoardController {
         List<BoardVo> boardList = boardService.getBoardList(map);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
-
         return "boards/requestList";
     }
 

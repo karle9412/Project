@@ -15,9 +15,29 @@
     <header class="w3-container w3-teal w3-center">
         <h1>회원정보 수정</h1>
     </header>
-
-    <a href="/update" class="w3-button w3-section w3-light-green w3-ripple w3-text-white">수정 완료</a>
-
-
+    <form action="/update">
+    <input type="hidden" name="userid" value="${userVo.userid}"></input>
+    nickname<input type="text" name="nickname" placeholder="nickname" value="${userVo.nickname}"></input></br>
+    <select id="LOACTION" name="user_local">
+                <option value="">LOCATION</option>
+                <option value="seoul">Seoul</option>
+                <option value="incheon">Incheon</option>
+                <option value="pusan">Pusan</option>
+                <option value="daejeon">Daejeon</option>
+                <option value="daegu">Daegu</option>
+                <option value="ulsan">Ulsan</option>
+                <option value="jeju">Jeju</option>
+                <option value="kyeonggi">Kyeonggi</option>
+                <option value="kangwon">Kangwon</option>
+                <option value="kyeonsang">Kyeonsang</option>
+                <option value="jeonra">Jeonra</option>
+                <option value="choongchung">Choongchung</option>
+            </select></br>
+    <input class="w3-radio w3-text-black" type="radio" name="rider" value="normal" checked>
+                <label>Normal User</label>
+                <input class="w3-radio" type="radio" name="rider" value="rider">
+                <label>Service User</label></br>
+    <button class="w3-button w3-section w3-light-green w3-ripple w3-text-white">수정 완료</a>
+    </form>
 </body>
 </html>

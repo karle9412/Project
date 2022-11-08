@@ -67,13 +67,19 @@ public class UserController {
     }
 
     @RequestMapping("/updateForm")
-    public String updateForm(){
-        return "users/update";
+    public ModelAndView updateForm(HttpSession httpSession){
+        ModelAndView mv = new ModelAndView();
+        Object getUser = userService.getUser(httpSession.getAttribute("login"));
+        mv.addObject(getUser);
+        mv.setViewName("users/update");
+        return mv;
     }
 
     @RequestMapping("/update")
-    public String update (){
-        return "boards/boardList";
+    public String update (UserVo userVo){
+        System.out.println(userVo);
+        userService.userUpdate(userVo);
+        return "users/getUser";
     }
 
 }

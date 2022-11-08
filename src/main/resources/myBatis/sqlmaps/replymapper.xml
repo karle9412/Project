@@ -19,11 +19,15 @@
         WHERE
         BOARD_NUMBER = #{board_number}
 
+        ORDER BY REPLY_NUMBER ASC
+
     </select>
 
     <insert id="WriteReply">
         INSERT INTO REPLY(REPLY_NUMBER,BOARD_NUMBER,WRITER,CONT)
-        VALUES(REPLY_NUMBER.NEXTVAL,${board_number},${writer},${cont})
+        VALUES(REPLY_NUMBER.NEXTVAL,#{board_number},#{writer},#{cont})
+
+
 
     </insert>
 

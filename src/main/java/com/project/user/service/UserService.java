@@ -10,4 +10,6 @@ public interface UserService {
 
     UserVo login(HashMap<String, Object> map);
     Object getUser(Object login);
+
+    void userUpdate(UserVo userVo);
 }

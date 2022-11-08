@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td>
-    <a href="/Board/List?menu_id=MENU_02">할게요</a>
+    <a href="/Board/RequestList?menu_id=MENU_02">할게요</a>
     </td>
   </tr>
     <td>
@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <td>
-    <a href="/User/getUser">내 정보</a>
+    <a href="/getUser">내 정보</a>
     </td>
   </tr>
   </table>

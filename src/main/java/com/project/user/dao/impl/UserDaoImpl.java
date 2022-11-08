@@ -30,4 +30,9 @@ public class UserDaoImpl implements UserDao {
         Object getUser = sqlSession.selectOne("User.GetUser", login);
         return getUser;
     }
+
+    @Override
+    public void userUpdate(UserVo userVo) {
+        sqlSession.update("User.UserUpdate",userVo);
+    }
 }

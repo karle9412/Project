@@ -57,7 +57,7 @@ public class UserVo {
         return this.user_local;
     }
 
-    public void setUserLocal(String user_local) {
+    public void setUser_local(String user_local) {
         this.user_local = user_local;
     }
 

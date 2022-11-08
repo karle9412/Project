@@ -15,6 +15,7 @@
     <header class="w3-container w3-teal w3-center">
         <h1>내 정보</h1>
     </header>
+    <%@ include file="/WEB-INF/include/menus.jsp" %>
 <ul>
 <li>
 id ${userVo.userid}

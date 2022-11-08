@@ -20,7 +20,7 @@
     </tr>
 
      <h2>글쓰기</h2>
-     <form action="/board/Write" method="POST">
+     <form action="/Board/Write" method="POST">
      <input type = "hidden" name = "menu_id" value = "${menu_id}"/>
      <div>
      제목:<input type="text" name="title" />

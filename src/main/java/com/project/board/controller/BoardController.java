@@ -67,12 +67,12 @@ public class BoardController {
     }
 
     @RequestMapping("/Board/Write")
-    public String wrtie(BoardVo boardVo) {
+    public String write(BoardVo boardVo) {
         System.out.println(boardVo);
         boardService.insertboard(boardVo);
         System.out.println(boardVo);
 
-        return "redirect:/list";
+        return "boards/requestList";
     }
 
     @RequestMapping("/Board/Detail")

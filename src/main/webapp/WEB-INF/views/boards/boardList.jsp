@@ -12,7 +12,7 @@
   <div id="main">
    <%@ include file="/WEB-INF/include/menus.jsp" %>
   <table id="boardList">
-    <h2>요청 게시판</h2>
+    <h2>할게요 게시판</h2>
     <tr>
       <th>번호</th>
       <th>제목</th>

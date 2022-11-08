@@ -97,9 +97,8 @@ public class BoardVo {
     public String getBoard_check() {
         return board_check;
     }
-
-    public void setBoard_check(String board_check) {
-        this.board_check = board_check;
+    public void setBoard_check (String board_check) {
+        this.board_check = this.board_check;
     }
 
     public String getC_start() {

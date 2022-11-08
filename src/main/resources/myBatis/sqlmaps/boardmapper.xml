@@ -8,6 +8,7 @@
     <select id="BoardList"
             resultType="com.project.board.vo.BoardVo">
         SELECT BOARD_NUMBER,
+        MENU_ID,
         TITLE,
         WRITER,
         BOARD_LOCAL,

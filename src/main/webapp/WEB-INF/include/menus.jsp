@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td>
-    <a href="/Board/RequestList?menu_id=MENU_01">해주세요</a>
+    <a href="/Board/RequestList?menu_id=MENU_01&nowpage=1&pagecount=3&pageboardnum=1">해주세요</a>
     </td>
   </tr>
   <tr>

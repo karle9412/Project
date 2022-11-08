@@ -31,6 +31,7 @@ public class BoardServiceImpl implements BoardService {
         BoardVo boardVo = boardDao.getBoard(map);
         return boardVo;
     }
+
     @Override
     public List<BoardVo> getlist(String menu_id) {
 

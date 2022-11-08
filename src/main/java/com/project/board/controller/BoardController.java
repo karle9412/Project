@@ -1,6 +1,7 @@
 package com.project.board.controller;
 
 import com.project.board.service.BoardService;
+import com.project.board.vo.BoardPagingVo;
 import com.project.board.vo.BoardVo;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
@@ -36,6 +37,20 @@ public class BoardController {
     @RequestMapping("/Board/RequestList")
     public String boardList(Model model, @RequestParam HashMap<String,Object> map){
 
+        System.out.println(map);
+
+        int nowpage    = Integer.parseInt(map.get("nowpage").toString());
+        int pagecount  = Integer.parseInt(map.get("pagecount").toString());
+        int startnum   = (nowpage - 1) * pagecount + 1;
+        int endnum     = nowpage * pagecount;
+
+        map.put("startnum",   startnum);
+        map.put("endnum",     endnum);
+
+        //List<BoardPagingVo>  pdsPagingList =  boardService.getPdsPagingList( map );
+
+        BoardPagingVo        pagePdsVo  = (BoardPagingVo) map.get("pageBoardVo");
+
         List<MenuVo>  menuList  = menuService.getMenuList();
         List<BoardVo> boardList = boardService.getBoardList(map);
         model.addAttribute("boardList", boardList);
@@ -58,7 +73,6 @@ public class BoardController {
     @RequestMapping("/Board/WriteForm")
     public String writeform(BoardVo boardVo,Model model){
         String menu_id = boardVo.getMenu_id();
-        System.out.println(menu_id);
 
         model.addAttribute("menu_id",menu_id);
         return "boards/write";
@@ -66,9 +80,7 @@ public class BoardController {
 
     @RequestMapping("/Board/Write")
     public String write(BoardVo boardVo) {
-        System.out.println(boardVo);
         boardService.insertboard(boardVo);
-        System.out.println(boardVo);
 
         return "boards/requestList";
     }

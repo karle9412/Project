@@ -22,7 +22,6 @@ public class BoardDaoImpl implements BoardDao {
         return boardList;
     }
 
-
     @Override
     public void insertboard(BoardVo boardVo) {
         sqlSession.insert("Board.InsertBoard", boardVo);
@@ -32,6 +31,7 @@ public class BoardDaoImpl implements BoardDao {
         BoardVo boardVo = sqlSession.selectOne("Board.Board", map);
         return boardVo;
     }
+
     @Override
     public List<BoardVo> getlist(String menu_id) {
         List<BoardVo> boardlist = sqlSession.selectList("Board.BoardList", menu_id);

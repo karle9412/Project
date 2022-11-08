@@ -16,23 +16,28 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public UserVo login(HashMap<String, Object> map) {
-        UserVo vo = sqlSession.selectOne("User.login", map);
+        UserVo vo = this.sqlSession.selectOne("User.login", map);
         return vo;
     }
 
     @Override
     public void userInsert(UserVo userVo) {
-        sqlSession.insert("User.UserInsert", userVo);
+        this.sqlSession.insert("User.UserInsert", userVo);
     }
 
     @Override
     public Object getUser(Object login) {
-        Object getUser = sqlSession.selectOne("User.GetUser", login);
+        Object getUser = this.sqlSession.selectOne("User.GetUser", login);
         return getUser;
     }
 
     @Override
     public void userUpdate(UserVo userVo) {
-        sqlSession.update("User.UserUpdate",userVo);
+        this.sqlSession.update("User.UserUpdate",userVo);
+    }
+
+    @Override
+    public void userDelete(UserVo userVo) {
+        this.sqlSession.delete("User.UserDelete",userVo);
     }
 }

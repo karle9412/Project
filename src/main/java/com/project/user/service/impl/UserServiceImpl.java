@@ -13,26 +13,33 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
     @Override
     public void userInsert(UserVo vo) {
-        userDao.userInsert(vo);
+        this.userDao.userInsert(vo);
 
     }
 
     @Override
     public UserVo login(HashMap<String, Object> map) {
-        UserVo vo = userDao.login(map);
+        UserVo vo = this.userDao.login(map);
         return vo;
     }
 
     @Override
     public Object getUser(Object login) {
-        Object getUser = userDao.getUser(login);
+        Object getUser = this.userDao.getUser(login);
         return getUser;
     }
 
     @Override
     public void userUpdate(UserVo userVo) {
-        userDao.userUpdate(userVo);
+        this.userDao.userUpdate(userVo);
+    }
+
+    @Override
+    public void userDelete(UserVo userVo) {
+        this.userDao.userDelete(userVo);
+
     }
 }

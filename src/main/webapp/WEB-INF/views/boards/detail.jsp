@@ -12,14 +12,9 @@
   #board  td:nth-of-type(2) { width:400px; text-align:left;}
   #board  td:nth-of-type(3) { width:150px; text-align:center;}
   #board  td:nth-of-type(4) { width:400px; text-align:left;}
-
   #board  tr:nth-of-type(4) { height : 400px; vertical-align: top; }
-
-
   #board  input     { width:100%; }
   #board  textarea  { width:100%; height: 400px;  }
-
-
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

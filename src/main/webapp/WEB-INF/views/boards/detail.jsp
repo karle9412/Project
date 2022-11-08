@@ -7,14 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script>
-
-$(".replyWriteBtn").on("click", function(){
-  var formObj = $("form[name='replyForm']");
-  formObj.attr("action", "/board/List");
-  formObj.submit();
-});
-</script>
 <style>
   #board  td:nth-of-type(1) { width:150px; text-align:center;}
   #board  td:nth-of-type(2) { width:400px; text-align:left;}
@@ -29,31 +21,13 @@ $(".replyWriteBtn").on("click", function(){
 
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 <body>
  <table id="board">
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/boards/Detail.jsp
-       <caption><h2>후기 내용 보기</h2></caption>
-       <tr>
-        <td>번호</td>
-        <td>테스트 </td>
-       </tr>
-       <tr>
-        <td>작성일</td>
-        <td>테스트 </td>
-        <td>작성자</td>
-        <td>테스트</td>
-       </tr>
-       <tr>
-        <td>제목</td>
-        <td colspan="3">테스트 </td>
-       </tr>
-       <tr>
-        <td>내용</td>
-        <td colspan="3">테스트</td>
-       </tr>
-=======
+
              <caption><h2>내용 보기</h2></caption>
              <tr>
               <td>번호</td>
@@ -73,7 +47,7 @@ $(".replyWriteBtn").on("click", function(){
               <td colspan="3">${ boardVo.cont }</td>
              </tr>
              <tr>
->>>>>>> cf00654053b69f5cadbe5d8c45dfa3f502504f68:src/main/webapp/WEB-INF/views/boards/detail.jsp
+
 
 <table id="reply1">
 <div id="reply">
@@ -90,20 +64,25 @@ $(".replyWriteBtn").on("click", function(){
 </table>
 
 
-<form name = "replyform" method= "post">
-<input type = "hidden"  id = "reply_number" name ="reply_number" value = ""/>
-<input type = "hidden"  id = "board_number" name ="board_number" value = ""/>
-<input type = "hidden"  id = "writer"       name ="writer"       value = ""/>
-
+<form name = "replyForm" method= "post">
+<input type = "hidden"  id = "board_number" name ="board_number" value = "${boardVo.board_number}"/>
+<input type = "hidden"  id = "writer"       name ="writer"       value = "${boardVo.writer}"/>
 <div>
-<label for="content">댓글 내용</label><input type="text" id="content" name="content" />
+<label for="content">댓글 내용</label><input type="text" id="cont" name="cont" />
   </div>
   <div>
    	 <button type="button" class="replyWriteBtn">작성</button>
     </div>
   </form>
 
-
+<script>
+$(".replyWriteBtn").on("click", function(){
+   console.log("click")
+  var formObj = $("form[name='replyForm']");
+  formObj.attr("action", "/Board/replyWrite");
+  formObj.submit();
+});
+</script>
 
 
 

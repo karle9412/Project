@@ -29,7 +29,7 @@
     </c:forEach>
     <tr>
       <td>
-      <a href="/Board/WriteForm?menu_id=MENU_03">후기 새글쓰기</a>
+      <a href="/Board/RVBoardWriteForm?menu_id=MENU_03">후기 새글쓰기</a>
       </td>
     </tr>
   </table>

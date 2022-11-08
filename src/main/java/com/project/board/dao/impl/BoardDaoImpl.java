@@ -23,21 +23,6 @@ public class BoardDaoImpl implements BoardDao {
         return boardList;
     }
 
-
-    @Override
-    public void C_insertboard(BoardVo boardVo) {
-        sqlSession.insert("Board.C_InsertBoard", boardVo);
-    }
-
-    public void R_insertboard(RiderBoardVo riderboardVo) {
-        sqlSession.insert("Board.R_InsertBoard", riderboardVo);
-    }
-    @Override
-    public BoardVo getBoard(HashMap<String, Object> map) {
-        BoardVo boardVo = sqlSession.selectOne("Board.Board", map);
-        return boardVo;
-    }
-
     @Override
     public List<BoardVo> getRiderBoardList(HashMap<String, Object> map) {
         List<BoardVo> boardList = sqlSession.selectList("Board.RiderBoardList",map.get("menu_id"));
@@ -45,9 +30,24 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public List<BoardVo> getlist(String menu_id) {
-        List<BoardVo> boardlist = sqlSession.selectList("Board.BoardList", menu_id);
-        return boardlist;
+    public void C_insertboard(BoardVo boardVo) {
+        sqlSession.insert("Board.C_InsertBoard", boardVo);
     }
+    public void R_insertboard(RiderBoardVo riderboardVo) {
+        sqlSession.insert("Board.R_InsertBoard", riderboardVo);
+    }
+
+    @Override
+    public BoardVo DetailCustomer(HashMap<String, Object> map) {
+        BoardVo boardVo = sqlSession.selectOne("Board.DetailCustomerBoard", map);
+        return boardVo;
+    }
+
+    @Override
+    public RiderBoardVo DetailRider(HashMap<String, Object> map) {
+        RiderBoardVo riderBoardVo = sqlSession.selectOne("Board.DetailRiderBoard",map);
+        return riderBoardVo;
+    }
+
 
 }

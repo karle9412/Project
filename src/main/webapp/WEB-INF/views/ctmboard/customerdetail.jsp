@@ -26,7 +26,6 @@
 <body>
  <table id="board">
 
-
              <caption><h2>내용 보기</h2></caption>
              <tr>
               <td>번호</td>
@@ -87,7 +86,7 @@
 $(".replyWriteBtn").on("click", function(){
    console.log("click")
   var formObj = $("form[name='replyForm']");
-  formObj.attr("action", "/Board/replyWrite");
+  formObj.attr("action", "/Board/CtmreplyWrite");
   formObj.submit();
 });
 </script>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
-        return "boards/customerList";
+        return "ctmboard/customerList";
     }
 
     // 할게여 게시판 글 전체 조회
@@ -53,7 +54,7 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
-        return "boards/riderList";
+        return "riderboard/riderList";
     }
 
 
@@ -61,15 +62,13 @@ public class BoardController {
     @RequestMapping("/Board/UpdateForm")
     public String updateform(@RequestParam HashMap<String, Object> map, Model model){
 
-        BoardVo boardVo   =  boardService.getboardlist(map);
+        BoardVo boardVo   =  boardService.DetailCustomer(map);
         String menu_id = (String) map.get("menu_id");
-        System.out.println(boardVo);
-        System.out.println(menu_id);
 
         model.addAttribute("boardVo", boardVo);
 
 
-        return "boards/update";
+        return "ctmboard/update";
     }
 
 
@@ -83,7 +82,7 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
 
-        return "boards/reviewList";
+        return "reviewboard/reviewList";
     }
 
     //해주세요 게시판 글 작성 페이지
@@ -94,16 +93,14 @@ public class BoardController {
 
 
         model.addAttribute("menu_id",menu_id);
-        return "boards/CBoardwrite";
+        return "ctmboard/CBoardwrite";
     }
 
     //해주세요 게시판 글 작성
 
     @RequestMapping("/Board/CBoardWrite")
     public String write(BoardVo boardVo) {
-        System.out.println(boardVo);
         boardService.C_insertboard(boardVo);
-        System.out.println(boardVo);
 
         return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id();
     }
@@ -115,26 +112,45 @@ public class BoardController {
         String menu_id = riderboardVo.getMenu_id();
 
         model.addAttribute("menu_id",menu_id);
-        return "boards/RBoardwrite";
+        return "riderboard/RBoardwrite";
     }
 
+
+    //리뷰게시판 글 작성 페이지
     @RequestMapping("/Board/RBoardWrite")
     public String RBoardwrite(RiderBoardVo riderboardVo) {
-        System.out.println(riderboardVo);
         boardService.R_insertboard(riderboardVo);
-        System.out.println(riderboardVo);
 
-        return "redirect:/Board/customerList?menu_id=" + riderboardVo.getMenu_id();
+        return "redirect:/Board/riderList?menu_id=" + riderboardVo.getMenu_id();
     }
+
+
+    //리뷰게시판 글 작성
+    @RequestMapping("/Board/RVBoardWriteForm")
+    public String RvBoardwriteform(RiderBoardVo riderboardVo, Model model){
+        String menu_id = riderboardVo.getMenu_id();
+
+        model.addAttribute("menu_id",menu_id);
+        return "reviewboard/RVBoardwrite";
+    }
+
+//    @RequestMapping("/Board/RVBoardWrite")
+//    public String RvVBoardwrite(BoardVo boardVo) {
+//
+//        boardService.RV_insertboard(riderboardVo);
+//
+//
+//        return "redirect:/Board/customerList?menu_id=" + riderboardVo.getMenu_id();
+//    }
 
 
 
     // 게시글 상세조회, 댓글 리스트 조회
-    @RequestMapping("/Board/Detail")
-    public String detail(	@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo){
+    @RequestMapping("/Board/CustomerDetail")
+    public String Customerdetail(	@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo){
         String menu_id = (String) map.get("menu_id");
         System.out.println(map);
-        BoardVo boardVo =  boardService.getboardlist(map);
+        BoardVo boardVo =  boardService.DetailCustomer(map);
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id",menu_id);
@@ -142,17 +158,39 @@ public class BoardController {
         List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
         model.addAttribute("replylist", replylist);
 
-        return "boards/detail";
+        return "ctmboard/customerdetail";
+    }
+
+    @RequestMapping("/Board/riderDetail")
+    public String riderdetail(	@RequestParam HashMap<String, Object> map, Model model){
+        String menu_id = (String) map.get("menu_id");
+        System.out.println(map);
+        RiderBoardVo riderBoardVo =  boardService.DetailRider(map);
+
+        model.addAttribute("riderBoardVo", riderBoardVo);
+        model.addAttribute("menu_id",menu_id);
+
+        List<ReplyVo> replylist = replyService.getReplylist(riderBoardVo.getBoard_number());
+        model.addAttribute("replylist", replylist);
+
+        return "riderboard/riderdetail";
     }
 
 
-    // 댓글 작성
-    @RequestMapping("/Board/replyWrite")
-    public String replyWrite(ReplyVo replyVo,BoardVo boardVo){
-        System.out.println(replyVo.getCont());
+    // 고객게시판 댓글 작성
+    @RequestMapping("/Board/CtmreplyWrite")
+    public String ctm_replyWrite(ReplyVo replyVo,BoardVo boardVo){
         System.out.println(replyVo);
         replyService.writeReply(replyVo);
-     return "redirect:/Board/Detail?board_number=" + boardVo.getBoard_number();
+     return "redirect:/Board/CustomerDetail?board_number=" + boardVo.getBoard_number();
+    }
+
+    @RequestMapping("/Board/RidreplyWrite")
+    public String rider_replyWrite(ReplyVo replyVo,RiderBoardVo riderBoardVo){
+
+        System.out.println(replyVo);
+        replyService.RiderwriteReply(replyVo);
+        return "redirect:/Board/riderdetail?board_number=" + riderBoardVo.getBoard_number();
     }
 
 

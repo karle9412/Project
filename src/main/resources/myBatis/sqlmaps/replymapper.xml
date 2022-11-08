@@ -29,5 +29,11 @@
 
     </insert>
 
+    <insert id ="RiderReply">
+        INSERT INTO REPLY(REPLY_NUMBER,BOARD_NUMBER,WRITER,CONT)
+        VALUES(REPLY_NUMBER.NEXTVAL,#{board_number},#{writer},#{cont})
+
+    </insert>
+
 
 </mapper>

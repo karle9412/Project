@@ -23,4 +23,9 @@ public class ReplyDaoImpl implements ReplyDao {
     public void writeReply(ReplyVo replyVo) {
         sqlSession.insert("Reply.WriteReply", replyVo);
     }
+
+    @Override
+    public void RiderwriteReply(ReplyVo replyVo) {
+        sqlSession.insert("Reply.RiderReply",replyVo);
+    }
 }

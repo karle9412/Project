@@ -24,7 +24,7 @@
     <tr>
        <td>${board.board_number}</td>
        <td>${board.menu_id}</td>
-       <td><a href="/Board/Detail?board_number=${board.board_number}">${board.title}</td>
+       <td><a href="/Board/riderDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</td>
        <td>${board.writer}</td>
        <td>${board.board_local}</td>
        <td>${board.cont}</td>

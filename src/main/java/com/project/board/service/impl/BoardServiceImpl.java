@@ -23,6 +23,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<BoardVo> getRiderBoardList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.getRiderBoardList(map);
+
+        return boardList;
+    }
+
+    @Override
     public void C_insertboard(BoardVo boardVo) {
         boardDao.C_insertboard(boardVo);
     }
@@ -35,22 +42,16 @@ public class BoardServiceImpl implements BoardService {
 
 
     @Override
-    public BoardVo getboardlist(HashMap<String, Object> map) {
-        BoardVo boardVo = boardDao.getBoard(map);
+    public BoardVo DetailCustomer(HashMap<String, Object> map) {
+        BoardVo boardVo = boardDao.DetailCustomer(map);
         return boardVo;
     }
 
     @Override
-    public List<BoardVo> getRiderBoardList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.getRiderBoardList(map);
-
-        return boardList;
+    public RiderBoardVo DetailRider(HashMap<String, Object> map) {
+        RiderBoardVo riderBoardVo = boardDao.DetailRider(map);
+        return riderBoardVo;
     }
 
-    @Override
-    public List<BoardVo> getlist(String menu_id) {
 
-        List<BoardVo> boardlist = boardDao.getlist(menu_id);
-        return boardlist;
-    }
 }

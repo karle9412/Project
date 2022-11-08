@@ -5,7 +5,7 @@ public class RiderBoardVo {
     private String menu_id;
     private String title;
     private String writer;
-    private String board_local;
+    private String rider_local;
     private String cont;
     private String indate;
     private String board_check;
@@ -18,12 +18,12 @@ public class RiderBoardVo {
     public RiderBoardVo() {
     }
 
-    public RiderBoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String r_start, String r_end, String money, String r_time, String luggage) {
+    public RiderBoardVo(int board_number, String menu_id, String title, String writer, String rider_local, String cont, String indate, String board_check, String r_start, String r_end, String money, String r_time, String luggage) {
         this.board_number = board_number;
         this.menu_id = menu_id;
         this.title = title;
         this.writer = writer;
-        this.board_local = board_local;
+        this.rider_local = rider_local;
         this.cont = cont;
         this.indate = indate;
         this.board_check = board_check;
@@ -67,11 +67,11 @@ public class RiderBoardVo {
     }
 
     public String getBoard_local() {
-        return board_local;
+        return rider_local;
     }
 
-    public void setBoard_local(String board_local) {
-        this.board_local = board_local;
+    public void setBoard_local(String rider_local) {
+        this.rider_local = rider_local;
     }
 
     public String getCont() {
@@ -145,7 +145,7 @@ public class RiderBoardVo {
                 ", menu_id='" + menu_id + '\'' +
                 ", title='" + title + '\'' +
                 ", writer='" + writer + '\'' +
-                ", board_local='" + board_local + '\'' +
+                ", rider_local='" + rider_local + '\'' +
                 ", cont='" + cont + '\'' +
                 ", indate='" + indate + '\'' +
                 ", board_check='" + board_check + '\'' +

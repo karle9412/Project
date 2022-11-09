@@ -10,6 +10,21 @@
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+$(function(){
+    $('form').on('submit',function(e){
+        if($('[name=userid]').val()==''){
+            alert('아이디를 입력하세요');
+            return false;
+        }
+        if($('[name=passwd]').val()==''){
+            alert('비밀번호를 입력하세요');
+            return false;
+        }
+    });
+});
+
+</script>
 
 </head>
 <body>
@@ -21,14 +36,14 @@
         <!--form action 조정 필요-->
         <form action="/loginProcess" method="POST" class="w3-container w3-card-4">
             <p>
-            <input class="w3-input" id="userid" name="userid" type="text" style="width:100%" required>
+            <input class="w3-input" id="userid" name="userid" type="text" style="width:100%">
             <label>ID</label></p>
             <p>
-            <input class="w3-input" name="passwd" type="password" style="width:100%" required>
+            <input class="w3-input" name="passwd" type="password" style="width:100%">
             <label>Password</label></p>
 
             <p>
-            <button type="submit" class="w3-button w3-section w3-teal w3-ripple w3-right"> Log In </button></p>
+            <button class="w3-button w3-section w3-teal w3-ripple w3-right"> Log In </button></p>
         </form>
 
         <div class="w3-container w3-border-top w3-padding-16">

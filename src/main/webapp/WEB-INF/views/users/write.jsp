@@ -14,8 +14,24 @@
 <script>
 $(function(){
     $('form').on('submit',function(e){
+     if($('[name=userid]').val()==''){
+                alert('아이디를 입력하세요');
+                return false;
+            }
+     if($('[name=passwd]').val()==''){
+                alert('비밀번호를 입력하세요');
+                return false;
+            }
+     if($('[name=nickname]').val()==''){
+                alert('닉네임을 입력하세요');
+                return false;
+            }
+     if($('[name=email]').val()==''){
+                alert('이메일을 입력하세요');
+                return false;
+            }
         if($('[name=user_local]').val()==''){
-            alert('LOCATION을 선택해주세요');
+            alert('지역을 선택해주세요');
             return false;
         }
     });
@@ -30,25 +46,25 @@ $(function(){
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="userid" type="text" placeholder="ID" required>
+                <input class="w3-input w3-border" name="userid" type="text" placeholder="ID">
             </div>
         </div>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="passwd" type="password" placeholder="Password" required>
+                <input class="w3-input w3-border" name="passwd" type="password" placeholder="Password">
             </div>
         </div>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="nickname" type="text" placeholder="NickName" required>
+                <input class="w3-input w3-border" name="nickname" type="text" placeholder="NickName">
             </div>
         </div>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="email" type="email" placeholder="EMail" required>
+                <input class="w3-input w3-border" name="email" type="email" placeholder="EMail">
             </div>
         </div>
         <select id="LOACTION" name="user_local">

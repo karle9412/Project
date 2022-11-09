@@ -1,7 +1,6 @@
 package com.project.board.controller;
 
 import com.project.board.service.BoardService;
-import com.project.board.vo.BoardPagingVo;
 import com.project.board.vo.BoardVo;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
@@ -12,14 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.sql.SQLOutput;
+import java.awt.print.Pageable;
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
-public class BoardController {
+public class BoardController{
 
     @Autowired
     BoardService boardService;
@@ -42,26 +40,17 @@ public class BoardController {
    // 게시판 글 전체 조회
 
     @RequestMapping("/Board/RequestList")
-    public String boardList(Model model, @RequestParam HashMap<String,Object> map){
-
-        System.out.println(map);
-
-        int nowpage    = Integer.parseInt(map.get("nowpage").toString());
-        int pagecount  = Integer.parseInt(map.get("pagecount").toString());
-        int startnum   = (nowpage - 1) * pagecount + 1;
-        int endnum     = nowpage * pagecount;
-
-        map.put("startnum",   startnum);
-        map.put("endnum",     endnum);
-
-        //List<BoardPagingVo>  pdsPagingList =  boardService.getPdsPagingList( map );
-
-        BoardPagingVo        pagePdsVo  = (BoardPagingVo) map.get("pageBoardVo");
+    public String boardList(Model model, @RequestParam HashMap<String,Object> map, Pageable pageable){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getBoardList(map);
+        //List<BoardVo> boardList = boardService.getBoardList(map);
+        System.out.println(map);
+        List<BoardVo> boardList = boardService.getBoardPaging(map);
         model.addAttribute("boardList", boardList);
         model.addAttribute("menuList", menuList);
+
+
+
         return "boards/requestList";
     }
 

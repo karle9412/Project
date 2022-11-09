@@ -77,7 +77,6 @@ public class UserController {
 
     @RequestMapping("/update")
     public String update (UserVo userVo){
-        System.out.println(userVo);
         userService.userUpdate(userVo);
         return "users/getUser";
     }

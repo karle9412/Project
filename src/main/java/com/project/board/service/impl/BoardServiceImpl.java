@@ -33,6 +33,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<BoardVo> getBoardPaging(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.getBoardPaging(map);
+        return boardList;
+    }
+
+    @Override
     public List<BoardVo> getlist(String menu_id) {
 
         List<BoardVo> boardlist = boardDao.getlist(menu_id);

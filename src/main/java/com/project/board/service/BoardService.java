@@ -11,4 +11,5 @@ public interface BoardService {
     void insertboard(BoardVo boardVo);
     BoardVo getboardlist(HashMap<String, Object> map);
 
+    List<BoardVo> getBoardPaging(HashMap<String, Object> map);
 }

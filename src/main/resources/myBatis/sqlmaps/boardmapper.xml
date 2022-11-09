@@ -5,6 +5,22 @@
 
 <mapper namespace="Board">
 
+    <select id="BoardPaging"
+            resultType="com.project.board.vo.BoardVo">
+        <![CDATA[
+        SELECT
+          FROM(
+            SELECT @ROWNUM := @ROWNUM + 1 as BOARD_NUMBER, TITLE, WRITER,
+             BOARD_LOCAL, CONT, TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+            FROM CUSTOMER_BOARD, (SELECT @ROWNUM :=0) A
+            ORDER BY INDATE ASC
+          ) RESULT
+          WHERE BOARD_NUMBER > 0
+          LIMIT 3
+        ]]>
+    </select>
+
+
     <select id="BoardList"
             resultType="com.project.board.vo.BoardVo">
         SELECT BOARD_NUMBER,

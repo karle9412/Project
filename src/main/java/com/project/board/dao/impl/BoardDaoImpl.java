@@ -33,6 +33,14 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    public List<BoardVo> getBoardPaging(HashMap<String, Object> map) {
+        System.out.println(map);
+        List<BoardVo> boardList = sqlSession.selectList("Board.BoardPaging",map);
+        System.out.println(boardList);
+        return boardList;
+    }
+
+    @Override
     public List<BoardVo> getlist(String menu_id) {
         List<BoardVo> boardlist = sqlSession.selectList("Board.BoardList", menu_id);
         return boardlist;

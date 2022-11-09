@@ -15,4 +15,5 @@ public interface BoardDao {
 
     BoardVo getBoard(HashMap<String, Object> map);
 
+    List<BoardVo> getBoardPaging(HashMap<String, Object> map);
 }

@@ -26,7 +26,12 @@
   </tr>
   <tr>
     <td>
-    <a href="/getUser">내 정보</a>
+     <a href="/logout">로그아웃</a>
+    </td>
+   </tr>
+  <tr>
+    <td>
+     <a href="/getUser">내 정보</a>
     </td>
   </tr>
   </table>

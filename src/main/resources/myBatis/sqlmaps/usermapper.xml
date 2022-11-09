@@ -50,6 +50,15 @@
         WHERE USERID=#{userid}
     </update>
 
+    <delete id="UserDelete">
+        DELETE
+        FROM USERS
+        WHERE USERID=#{userid}
+        AND PASSWD=#{passwd}
+
+
+    </delete>
+
 
 
 </mapper>

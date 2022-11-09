@@ -69,7 +69,7 @@ public class UserController {
     @RequestMapping("/updateForm")
     public ModelAndView updateForm(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
-        Object getUser = userService.getUser(httpSession.getAttribute("login"));
+        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
         mv.addObject(getUser);
         mv.setViewName("users/update");
         return mv;
@@ -77,8 +77,16 @@ public class UserController {
 
     @RequestMapping("/update")
     public String update (UserVo userVo){
-        userService.userUpdate(userVo);
+        System.out.println(userVo);
+        this.userService.userUpdate(userVo);
         return "users/getUser";
     }
 
+    @RequestMapping("/delete")
+    public String delete (HttpSession httpSession) {
+        UserVo userVo = (UserVo) httpSession.getAttribute("login");
+        this.userService.userDelete(userVo);
+
+        return "users/login";
+    }
 }

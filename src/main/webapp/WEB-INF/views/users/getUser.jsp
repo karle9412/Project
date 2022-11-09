@@ -37,7 +37,8 @@ indate ${userVo.indate}
 </li>
 
 <li>
-<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple" > 회원정보 수정</a>
+<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple"> 회원정보 수정 </a>
+<a href="/delete" class="w3-button w3-section w3-teal w3-ripple"> 회원정보 삭제 </a>
 </li>
 </ul>
 </body>

@@ -6,10 +6,13 @@ import java.util.HashMap;
 
 
 public interface UserService {
+
     void userInsert(UserVo vo);
 
     UserVo login(HashMap<String, Object> map);
     Object getUser(Object login);
 
     void userUpdate(UserVo userVo);
+
+    void userDelete(UserVo userVo);
 }

@@ -13,4 +13,6 @@ public interface UserDao {
     Object getUser(Object login);
 
     void userUpdate(UserVo userVo);
+
+    void userDelete(UserVo userVo);
 }

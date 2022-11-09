@@ -26,4 +26,9 @@ public class ReplyServiceImpl implements ReplyService {
     public void writeReply(ReplyVo replyVo) {
         replyDao.writeReply(replyVo);
     }
+
+    @Override
+    public void RiderwriteReply(ReplyVo replyVo) {
+        replyDao.RiderwriteReply(replyVo);
+    }
 }

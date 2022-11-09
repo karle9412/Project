@@ -5,27 +5,11 @@
 
 <mapper namespace="Board">
 
-    <select id="BoardPaging"
-            resultType="com.project.board.vo.BoardVo">
-        <![CDATA[
-        SELECT
-          FROM(
-            SELECT @ROWNUM := @ROWNUM + 1 as BOARD_NUMBER, TITLE, WRITER,
-             BOARD_LOCAL, CONT, TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
-            FROM CUSTOMER_BOARD, (SELECT @ROWNUM :=0) A
-            ORDER BY INDATE ASC
-          ) RESULT
-          WHERE BOARD_NUMBER > 0
-          LIMIT 3
-        ]]>
-    </select>
-
-
-    <select id="BoardList"
+    <select id="CustomerBoardList"
             resultType="com.project.board.vo.BoardVo">
         SELECT BOARD_NUMBER,
-        MENU_ID,
         TITLE,
+        MENU_ID,
         WRITER,
         BOARD_LOCAL,
         CONT,
@@ -41,14 +25,41 @@
 
     </select>
 
-    <insert id="InsertBoard" parameterType="com.project.board.vo.BoardVo">
-        INSERT INTO BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT)
+    <select id="RiderBoardList"
+            resultType="com.project.board.vo.RiderBoardVo">
+        SELECT BOARD_NUMBER,
+        TITLE,
+        MENU_ID,
+        WRITER,
+        RIDER_LOCAL,
+        CONT,
+        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
+        BOARD_CHECK
+
+        FROM RIDER_BOARD
+
+        WHERE MENU_ID = #{menu_id}
+
+
+        ORDER BY BOARD_NUMBER DESC
+
+    </select>
+
+    <insert id="C_InsertBoard" parameterType="com.project.board.vo.BoardVo">
+        INSERT INTO CUSTOMER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT)
         VALUES(BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{cont})
 
 
     </insert>
 
-    <select id            = "Board"
+    <insert id="R_InsertBoard" parameterType="com.project.board.vo.RiderBoardVo">
+        INSERT INTO RIDER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT)
+        VALUES(BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{cont})
+
+
+    </insert>
+
+    <select id            = "DetailCustomerBoard"
             parameterType = "hashmap"
             resultType    = "com.project.board.vo.BoardVo">
         SELECT BOARD_NUMBER,
@@ -58,7 +69,24 @@
         CONT,
         TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
 
-        from CUSTOMER_BOARD
+
+        FROM CUSTOMER_BOARD
+
+
+        where board_number = #{board_number}
+    </select>
+
+    <select id            = "DetailRiderBoard"
+            parameterType = "hashmap"
+            resultType    = "com.project.board.vo.RiderBoardVo">
+        SELECT BOARD_NUMBER,
+        TITLE,
+        WRITER,
+        RIDER_LOCAL,
+        CONT,
+        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        FROM RIDER_BOARD
 
         where board_number = #{board_number}
     </select>

@@ -1,19 +1,20 @@
 package com.project.board.dao;
 
 import com.project.board.vo.BoardVo;
+import com.project.board.vo.RiderBoardVo;
 
 import java.util.HashMap;
 import java.util.List;
 
 public interface BoardDao {
 
-    List<BoardVo> getBoardList(HashMap<String, Object> map);
+    List<BoardVo> getCustomerBoardList(HashMap<String, Object> map);
 
-    List<BoardVo> getlist(String menu_id);
+    List<BoardVo> getRiderBoardList(HashMap<String, Object> map);
 
-    void insertboard(BoardVo boardVo);
+    void C_insertboard(BoardVo boardVo);
 
-    BoardVo getBoard(HashMap<String, Object> map);
-
-    List<BoardVo> getBoardPaging(HashMap<String, Object> map);
+    void R_insertboard(RiderBoardVo riderboardVo);
+    BoardVo DetailCustomer(HashMap<String, Object> map);
+    RiderBoardVo DetailRider(HashMap<String, Object> map);
 }

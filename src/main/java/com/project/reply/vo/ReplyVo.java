@@ -11,7 +11,7 @@ public class ReplyVo {
     public ReplyVo() {
     }
 
-    public ReplyVo(int reply_number, int board_number,  String cont, String writer, String indate) {
+    public ReplyVo(int reply_number, int board_number, String cont, String writer, String indate) {
         this.reply_number = reply_number;
         this.board_number = board_number;
         this.cont = cont;
@@ -34,7 +34,6 @@ public class ReplyVo {
     public void setBoard_number(int board_number) {
         this.board_number = board_number;
     }
-
 
     public String getCont() {
         return cont;

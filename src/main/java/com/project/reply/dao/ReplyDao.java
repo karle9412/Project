@@ -10,4 +10,6 @@ public interface ReplyDao {
     List<ReplyVo> getReplylist(int board_number);
 
     void writeReply(ReplyVo replyVo);
+
+    void RiderwriteReply(ReplyVo replyVo);
 }

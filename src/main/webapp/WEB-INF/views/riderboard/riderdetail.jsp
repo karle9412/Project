@@ -22,13 +22,11 @@
 window.onload = function(){
     let form = document.querySelector('form');
     form.addEventListener('submit', function(e) {
-       if($('#replyWriteBtn').val() == ''){
-        e.preventDefault();
+       if( $('#cont').val() == ''){
         alert('댓글을 입력하세요');
-        }
-
+        e.preventDefault();
+                }
     });
-
 }
 
 </script>

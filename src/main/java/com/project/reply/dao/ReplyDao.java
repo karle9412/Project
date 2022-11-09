@@ -10,7 +10,7 @@ public interface ReplyDao {
 
     List<ReplyVo> getReplylist(int board_number);
 
-    List<ReplyVo> getRiderReplylist(int rider_board_number);
+    List<RiderReplyVo> getRiderReplylist(int rider_board_number);
 
     void writeReply(ReplyVo replyVo);
 

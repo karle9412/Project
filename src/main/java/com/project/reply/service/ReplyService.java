@@ -9,7 +9,7 @@ public interface ReplyService {
 
     List<ReplyVo> getReplylist(int board_number);
 
-    List<ReplyVo> getRiderReplylist(int board_number);
+    List<RiderReplyVo> getRiderReplylist(int board_number);
 
 
 

@@ -24,8 +24,8 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyVo> getRiderReplylist(int board_number) {
-        List<ReplyVo> readReply = replyDao.getRiderReplylist(board_number);
+    public List<RiderReplyVo> getRiderReplylist(int board_number) {
+        List<RiderReplyVo> readReply = replyDao.getRiderReplylist(board_number);
 
         return readReply;
     }

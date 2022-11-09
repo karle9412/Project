@@ -21,8 +21,8 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
-    public List<ReplyVo> getRiderReplylist(int board_number) {
-        List<ReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
+    public List<RiderReplyVo> getRiderReplylist(int board_number) {
+        List<RiderReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
 
         return readReply;
     }

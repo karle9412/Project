@@ -72,19 +72,6 @@ public class BoardController {
         return "reviewboard/reviewList";
     }
 
-    //게시글 수정
-    @RequestMapping("/Board/UpdateForm")
-    public String updateform(@RequestParam HashMap<String, Object> map, Model model){
-
-        BoardVo boardVo   =  boardService.DetailCustomer(map);
-        String menu_id = (String) map.get("menu_id");
-
-        model.addAttribute("boardVo", boardVo);
-
-
-        return "ctmboard/update";
-    }
-
 
     //해주세요 게시판 글 작성 페이지
 
@@ -105,8 +92,8 @@ public class BoardController {
 
         return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id();
     }
-     
-    
+
+
     //할게요 게시판 글 작성 페이지
     @RequestMapping("/Board/RBoardWriteForm")
     public String RBoardwriteform(RiderBoardVo riderboardVo, Model model){
@@ -135,7 +122,7 @@ public class BoardController {
         return "reviewboard/RVBoardwrite";
     }
 
-    
+
     //리뷰게시판 글 작성
     @RequestMapping("/Board/RVBoardWrite")
     public String RvVBoardwrite(ReviewVo reviewVo) {
@@ -169,13 +156,12 @@ public class BoardController {
     @RequestMapping("/Board/riderDetail")
     public String riderdetail(	@RequestParam HashMap<String, Object> map, Model model){
         String menu_id = (String) map.get("menu_id");
-        System.out.println(map);
         RiderBoardVo riderBoardVo =  boardService.DetailRider(map);
 
         model.addAttribute("riderBoardVo", riderBoardVo);
         model.addAttribute("menu_id",menu_id);
 
-        List<ReplyVo> replylist = replyService.getRiderReplylist(riderBoardVo.getBoard_number());
+        List<RiderReplyVo> replylist = replyService.getRiderReplylist(riderBoardVo.getBoard_number());
         model.addAttribute("replylist", replylist);
 
         return "riderboard/riderdetail";
@@ -207,6 +193,19 @@ public class BoardController {
         System.out.println(riderReplyVo);
         replyService.RiderwriteReply(riderReplyVo);
         return "redirect:/Board/riderDetail?board_number=" + riderBoardVo.getBoard_number();
+    }
+
+    //게시글 수정
+    @RequestMapping("/Board/UpdateForm")
+    public String updateform(@RequestParam HashMap<String, Object> map, Model model){
+
+        BoardVo boardVo   =  boardService.DetailCustomer(map);
+        String menu_id = (String) map.get("menu_id");
+
+        model.addAttribute("boardVo", boardVo);
+
+
+        return "ctmboard/update";
     }
 
 

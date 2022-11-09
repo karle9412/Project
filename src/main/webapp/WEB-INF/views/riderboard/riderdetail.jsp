@@ -18,6 +18,21 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+window.onload = function(){
+    let form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+       if($('#replyWriteBtn').val() == ''){
+        e.preventDefault();
+        alert('댓글을 입력하세요');
+        }
+
+    });
+
+}
+
+</script>
+
 
 
 
@@ -71,14 +86,14 @@
 </table>
 
 
-<form name = "replyForm" method= "post">
+<form name id=  = "replyForm" method= "post">
 <input type = "hidden"  id = "board_number" name ="board_number" value = "${riderBoardVo.board_number}"/>
 <input type = "hidden"  id = "writer"       name ="writer"       value = "${riderBoardVo.writer}"/>
 <div>
 <label for="content">댓글 내용</label><input type="text" id="cont" name="cont" />
   </div>
   <div>
-   	 <button type="button" class="replyWriteBtn">작성</button>
+   	 <button type="submit" id = 'replyWriteBtn' class="replyWriteBtn">작성</button>
     </div>
   </form>
 
@@ -87,7 +102,6 @@ $(".replyWriteBtn").on("click", function(){
    console.log("click")
   var formObj = $("form[name='replyForm']");
   formObj.attr("action", "/Board/RidreplyWrite");
-  formObj.submit();
 });
 </script>
 

@@ -2,6 +2,7 @@ package com.project.board.dao.impl;
 
 import com.project.board.dao.BoardDao;
 import com.project.board.vo.BoardVo;
+import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,16 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public List<BoardVo> getRiderBoardList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.RiderBoardList",map.get("menu_id"));
+    public List<RiderBoardVo> getRiderBoardList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RiderBoardList",map.get("menu_id"));
+        return boardList;
+    }
+
+    @Override
+    public List<ReviewVo> getReviewBoardList(HashMap<String, Object> map) {
+
+        List<ReviewVo> boardList = sqlSession.selectList("Board.ReviewBoardList",map.get("menu_id"));
+
         return boardList;
     }
 
@@ -38,6 +47,12 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    public void RV_insertboard(ReviewVo reviewVo) {
+        sqlSession.insert("Board.RV_InsertBoard", reviewVo);
+
+    }
+
+    @Override
     public BoardVo DetailCustomer(HashMap<String, Object> map) {
         BoardVo boardVo = sqlSession.selectOne("Board.DetailCustomerBoard", map);
         return boardVo;
@@ -47,6 +62,12 @@ public class BoardDaoImpl implements BoardDao {
     public RiderBoardVo DetailRider(HashMap<String, Object> map) {
         RiderBoardVo riderBoardVo = sqlSession.selectOne("Board.DetailRiderBoard",map);
         return riderBoardVo;
+    }
+
+    @Override
+    public ReviewVo DetailReview(HashMap<String, Object> map) {
+        ReviewVo reviewVo = sqlSession.selectOne("Board.DetailReviewBoard", map);
+        return reviewVo;
     }
 
 

@@ -22,7 +22,7 @@
     <c:forEach var="board" items="${boardList}">
     <tr>
        <td>${board.board_number}</td>
-       <td><a href="/">${board.title}</a></td>
+       <td><a href="/Board/ReviewDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
        <td>${board.writer}</td>
        <td>${board.board_local}</td>
     </tr>

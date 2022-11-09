@@ -2,6 +2,7 @@ package com.project.reply.dao.impl;
 
 import com.project.reply.dao.ReplyDao;
 import com.project.reply.vo.ReplyVo;
+import com.project.reply.vo.RiderReplyVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,12 +21,19 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
+    public List<ReplyVo> getRiderReplylist(int board_number) {
+        List<ReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
+
+        return readReply;
+    }
+
+    @Override
     public void writeReply(ReplyVo replyVo) {
         sqlSession.insert("Reply.WriteReply", replyVo);
     }
 
     @Override
-    public void RiderwriteReply(ReplyVo replyVo) {
-        sqlSession.insert("Reply.RiderReply",replyVo);
+    public void RiderwriteReply(RiderReplyVo riderReplyVo) {
+        sqlSession.insert("Reply.RiderReply",riderReplyVo);
     }
 }

@@ -23,6 +23,24 @@
 
     </select>
 
+    <select id="RiderReplylist"
+            resultType="com.project.reply.vo.ReplyVo">
+        SELECT
+        WRITER,
+        CONT,
+        REPLY_NUMBER,
+        BOARD_NUMBER,
+        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        FROM RIDER_REPLY
+
+        WHERE
+        BOARD_NUMBER = #{board_number}
+
+        ORDER BY REPLY_NUMBER ASC
+
+    </select>
+
     <insert id="WriteReply">
         INSERT INTO REPLY(REPLY_NUMBER,BOARD_NUMBER,WRITER,CONT)
         VALUES(REPLY_NUMBER.NEXTVAL,#{board_number},#{writer},#{cont})
@@ -30,8 +48,8 @@
     </insert>
 
     <insert id ="RiderReply">
-        INSERT INTO REPLY(REPLY_NUMBER,BOARD_NUMBER,WRITER,CONT)
-        VALUES(REPLY_NUMBER.NEXTVAL,#{board_number},#{writer},#{cont})
+        INSERT INTO RIDER_REPLY(REPLY_NUMBER,BOARD_NUMBER,WRITER,CONT)
+        VALUES(RIDER_REPLY_NUMBER.NEXTVAL,#{board_number},#{writer},#{cont})
 
     </insert>
 

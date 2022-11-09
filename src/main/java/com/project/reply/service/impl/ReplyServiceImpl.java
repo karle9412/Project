@@ -3,6 +3,7 @@ package com.project.reply.service.impl;
 import com.project.reply.dao.ReplyDao;
 import com.project.reply.service.ReplyService;
 import com.project.reply.vo.ReplyVo;
+import com.project.reply.vo.RiderReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +24,19 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public List<ReplyVo> getRiderReplylist(int board_number) {
+        List<ReplyVo> readReply = replyDao.getRiderReplylist(board_number);
+
+        return readReply;
+    }
+
+    @Override
     public void writeReply(ReplyVo replyVo) {
         replyDao.writeReply(replyVo);
     }
 
     @Override
-    public void RiderwriteReply(ReplyVo replyVo) {
-        replyDao.RiderwriteReply(replyVo);
+    public void RiderwriteReply(RiderReplyVo riderReplyVo) {
+        replyDao.RiderwriteReply(riderReplyVo);
     }
 }

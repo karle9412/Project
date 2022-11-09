@@ -3,6 +3,7 @@ package com.project.board.service.impl;
 import com.project.board.dao.BoardDao;
 import com.project.board.service.BoardService;
 import com.project.board.vo.BoardVo;
+import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardVo> getRiderBoardList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.getRiderBoardList(map);
+    public List<RiderBoardVo> getRiderBoardList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = boardDao.getRiderBoardList(map);
+
+        return boardList;
+    }
+
+    @Override
+    public List<ReviewVo> getReviewBoardList(HashMap<String, Object> map) {
+        List<ReviewVo> boardList = boardDao.getReviewBoardList(map);
 
         return boardList;
     }
@@ -38,7 +46,10 @@ public class BoardServiceImpl implements BoardService {
         boardDao.R_insertboard(riderboardVo);
     }
 
-
+    @Override
+    public void RV_insertboard(ReviewVo reviewVo) {
+        boardDao.RV_insertboard(reviewVo);
+    }
 
 
     @Override
@@ -51,6 +62,12 @@ public class BoardServiceImpl implements BoardService {
     public RiderBoardVo DetailRider(HashMap<String, Object> map) {
         RiderBoardVo riderBoardVo = boardDao.DetailRider(map);
         return riderBoardVo;
+    }
+
+    @Override
+    public ReviewVo DetailReview(HashMap<String, Object> map) {
+        ReviewVo reviewVo = boardDao.DetailReview(map);
+        return reviewVo;
     }
 
 

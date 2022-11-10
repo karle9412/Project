@@ -164,5 +164,17 @@
 
     </delete>
 
+    <delete id="RBoardDelete">
+        DELETE
+        FROM RIDER_BOARD
+        WHERE BOARD_NUMBER = #{board_number}
+    </delete>
+
+    <delete id="RVBoardDelete">
+        DELETE
+        FROM REVIEW_BOARD
+        WHERE BOARD_NUMBER = #{board_number}
+    </delete>
+
 
 </mapper>

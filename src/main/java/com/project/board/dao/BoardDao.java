@@ -32,4 +32,7 @@ public interface BoardDao {
     void RVBoardUpdate(HashMap<String, Object> map);
 
     void CBoardDelete(HashMap<String, Object> map);
+
+    void RBoardDelete(HashMap<String, Object> map);
+    void RVBoardDelete(HashMap<String, Object> map);
 }

@@ -91,5 +91,16 @@ public class BoardServiceImpl implements BoardService {
         boardDao.CBoardDelete(map);
     }
 
+    @Override
+    public void RBoardDelete(HashMap<String, Object> map) {
+        boardDao.RBoardDelete(map);
+    }
+
+    @Override
+    public void RVBoardDelete(HashMap<String, Object> map) {
+        boardDao.RVBoardDelete(map);
+
+    }
+
 
 }

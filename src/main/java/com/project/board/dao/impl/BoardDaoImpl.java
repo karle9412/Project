@@ -91,5 +91,15 @@ public class BoardDaoImpl implements BoardDao {
         sqlSession.delete("Board.CBoardDelete", map);
     }
 
+    @Override
+    public void RBoardDelete(HashMap<String, Object> map) {
+        sqlSession.delete("Board.RBoardDelete", map);
+    }
+
+    @Override
+    public void RVBoardDelete(HashMap<String, Object> map) {
+        sqlSession.delete("Board.RVBoardDelete", map);
+    }
+
 
 }

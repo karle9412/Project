@@ -28,7 +28,6 @@ window.onload = function(){
                 }
     });
 }
-
 </script>
 
 
@@ -60,7 +59,7 @@ window.onload = function(){
                      [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
                      [<a href="/Board/CBoardUpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}">수정</a>]
                      [<a href="/Board/CBoardDelete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
-                     [<a href="/Board/RequestList?menu_id=${ menu_id }">목록으로</a>]
+                     [<a href="/Board/customerList?menu_id=${ menu_id }">목록으로</a>]
                      [<a href="javascript:history.back()">이전으로</a>]
                      [<a href="/">Home</a>]
                      </td>
@@ -75,7 +74,9 @@ window.onload = function(){
         작성 날짜 :${replylist.indate}
         </p>
         <p>${replylist.cont}</p>
+        <button type="button" id="replyWriteBtn1" class="replyWriteBtn1">수정</button>
     </c:forEach>
+
   </ol>
 </div>
 </table>
@@ -85,13 +86,17 @@ window.onload = function(){
 <input type = "hidden"  id = "board_number" name ="board_number" value = "${boardVo.board_number}"/>
 <input type = "hidden"  id = "writer"       name ="writer"       value = "${boardVo.writer}"/>
 <div>
-<label for="content">댓글 내용</label><input type="text" id="cont" name="cont" />
+<textarea  id="cont" name="cont" placeholder = "여러분의 소중한 댓글을 입력해주세요"></textarea>
   </div>
   <div>
    	 <button type="submit" id="replyWriteBtn" class="replyWriteBtn">작성</button>
    	 <span id = "test"> </span>
     </div>
   </form>
+
+
+
+
 
 
 <script>
@@ -101,6 +106,23 @@ $(".replyWriteBtn").on("click", function(){
   formObj.attr("action", "/Board/CtmreplyWrite");
 });
 </script>
+$.(".replyWriteBtn1").on("click"
+
+<script>
+$('#replyWriteBtn1').
+
+
+</script>
+$(function(){
+   getreplylist();
+});
+
+function getreplylist(){
+
+
+}
+
+
 
 
 

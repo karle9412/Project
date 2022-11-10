@@ -3,6 +3,7 @@ package com.project.user.dao;
 import com.project.user.vo.UserVo;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public interface UserDao {
     UserVo login(HashMap<String, Object> map);
@@ -15,4 +16,6 @@ public interface UserDao {
     void userUpdate(UserVo userVo);
 
     void userDelete(UserVo userVo);
+
+    String getUserid(UserVo userVo);
 }

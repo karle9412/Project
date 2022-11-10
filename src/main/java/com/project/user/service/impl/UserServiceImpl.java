@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
@@ -41,5 +42,11 @@ public class UserServiceImpl implements UserService {
     public void userDelete(UserVo userVo) {
         this.userDao.userDelete(userVo);
 
+    }
+
+    @Override
+    public String getUserid(UserVo userVo) {
+        String getUserid = userDao.getUserid(userVo);
+        return getUserid;
     }
 }

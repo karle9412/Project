@@ -21,6 +21,11 @@ public class UserVo {
         this.indate = indate;
     }
 
+    public UserVo(String nickname, String email) {
+        this.nickname = nickname;
+        this.email = email;
+    }
+
     public String getuserid() {
         return this.userid;
     }

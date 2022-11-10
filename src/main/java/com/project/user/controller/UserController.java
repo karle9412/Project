@@ -2,14 +2,13 @@ package com.project.user.controller;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 @org.springframework.stereotype.Controller
@@ -95,10 +94,22 @@ public class UserController {
         return "users/login";
     }
 
-    @RequestMapping(value = "/logout", method= RequestMethod.GET)
+    @RequestMapping(value = "/logout", method= {RequestMethod.GET})
     public String logout(HttpServletRequest request){
         HttpSession httpSession = request.getSession();
         httpSession.invalidate();
         return "redirect:/login";
+    }
+
+    @RequestMapping(value = "/getUserid", method={RequestMethod.POST}, produces = "application/text; charset=UTF-8")
+    @ResponseBody
+    public String getUserid (@RequestParam("nickname") String nickname,
+                             @RequestParam("email") String email) throws UnsupportedEncodingException {
+        UserVo userVo = new UserVo(nickname, email);
+        String getUserid = userService.getUserid(userVo);
+        if (getUserid == null){
+            getUserid = "닉네임과 이메일을 다시 확인해주세요";//"check nickname, email";
+        }
+        return getUserid;
     }
 }

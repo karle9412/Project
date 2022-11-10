@@ -101,5 +101,33 @@ public class BoardDaoImpl implements BoardDao {
         sqlSession.delete("Board.RVBoardDelete", map);
     }
 
+    @Override
+    public List<BoardVo> customerList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.CustomerList",map);
+        return boardList;
+    }
+    @Override
+    public List<BoardVo> reviewList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.ReviewList",map);
+        return boardList;
+    }    @Override
+    public List<BoardVo> riderList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.RiderList",map);
+        return boardList;
+    }
+
+    @Override
+    public int customerCount() {
+        return sqlSession.selectOne("Board.CustomerCount");
+    }
+   @Override
+    public int reviewCount() {
+        return sqlSession.selectOne("Board.ReviewCount");
+    }
+    @Override
+    public int riderCount() {
+        return sqlSession.selectOne("Board.RiderCount");
+    }
+
 
 }

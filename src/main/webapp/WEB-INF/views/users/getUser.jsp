@@ -15,6 +15,7 @@
     <header class="w3-container w3-teal w3-center">
         <h1>내 정보</h1>
     </header>
+    <%@ include file="/WEB-INF/include/menus.jsp" %>
 <ul>
 <li>
 id ${userVo.userid}
@@ -36,7 +37,8 @@ indate ${userVo.indate}
 </li>
 
 <li>
-<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple" > 회원정보 수정</a>
+<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple"> 회원정보 수정 </a>
+<a href="/delete" class="w3-button w3-section w3-teal w3-ripple"> 회원정보 삭제 </a>
 </li>
 </ul>
 </body>

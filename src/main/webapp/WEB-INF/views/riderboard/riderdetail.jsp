@@ -63,7 +63,7 @@ window.onload = function(){
                      [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
                      [<a href="/Board/RBoardUpdateForm?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}">수정</a>]
                      [<a href="/Board/RBoardDelete?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}">삭제</a>]
-                     [<a href="/Board/riderList?menu_id=${ menu_id }">목록으로</a>]
+                     [<a href="/Board/riderList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                      [<a href="javascript:history.back()">이전으로</a>]
                      [<a href="/">Home</a>]
                      </td>

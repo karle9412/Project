@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+    @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler)
@@ -19,6 +20,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if(requestUrl.contains("/login")){
             return true;
         }
+
         Object obj = httpSession.getAttribute("login");
         if (obj == null){
             response.sendRedirect("/login");
@@ -27,6 +29,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         return super.preHandle(request, response, handler);
 
     }
+    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
             throws Exception{
         super.postHandle(request, response, handler, modelAndView);

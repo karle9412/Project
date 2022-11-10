@@ -40,5 +40,7 @@ public interface BoardService {
     List<BoardVo> customerList(HashMap<String, Object> map);
     List<BoardVo> reviewList(HashMap<String, Object> map);
     List<BoardVo> riderList(HashMap<String, Object> map);
+    int testCount();
 
+    List<BoardVo> testList(HashMap<String, Object> map);
 }

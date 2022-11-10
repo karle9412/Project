@@ -1,6 +1,7 @@
 package com.project.board.controller;
 
 import com.project.board.service.BoardService;
+import com.project.board.vo.BoardPager;
 import com.project.board.vo.BoardVo;
 import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
@@ -35,27 +36,78 @@ public class BoardController {
     ReplyService replyService;
 
 
+    BoardPager boardPager = new BoardPager();
     // 해주세요 게시판 글 전체 조회
 
     @RequestMapping("/Board/customerList")
-    public String CustomerboardList(Model model, @RequestParam HashMap<String, Object> map) {
-
+    public String CustomerBoardList(Model model, @RequestParam HashMap<String,Object> map) {
         List<MenuVo> menuList = menuService.getMenuList();
-        List<BoardVo> boardList = boardService.getCustomerBoardList(map);
-        model.addAttribute("boardList", boardList);
+
+        int cPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+
+        List<BoardVo> customerList = null;
+
+        boardPager.setTotalCount(boardService.customerCount()); // board 전체 게시글 개수를 지정
+        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        boardPager.setEndPage(); // 마지막 페이지
+
+        map.put("pageNum", boardPager.getPageNum());
+        map.put("contentNum", boardPager.getContentNum());
+
+        if (boardPager.getPageNum() == 0) {
+            customerList = boardService.customerList(map);
+        } else if (boardPager.getPageNum() != 0) {
+            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+            customerList = boardService.customerList(map);
+        }
+
+        model.addAttribute("customerList", customerList);
+        model.addAttribute("boardPager", boardPager);
         model.addAttribute("menuList", menuList);
 
         return "ctmboard/customerList";
-    }
 
+    }
     // 할게여 게시판 글 전체 조회
 
     @RequestMapping("/Board/riderList")
-    public String RiderboardList(Model model, @RequestParam HashMap<String, Object> map) {
+    public String RiderBoardList(Model model, @RequestParam HashMap<String,Object> map){
 
-        List<MenuVo> menuList = menuService.getMenuList();
-        List<RiderBoardVo> boardList = boardService.getRiderBoardList(map);
-        model.addAttribute("boardList", boardList);
+        List<MenuVo>  menuList  = menuService.getMenuList();
+
+        int cPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+
+        List<BoardVo> riderList = null;
+
+        boardPager.setTotalCount(boardService.riderCount()); // board 전체 게시글 개수를 지정
+        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        boardPager.setEndPage(); // 마지막 페이지
+
+        map.put("pageNum", boardPager.getPageNum());
+        map.put("contentNum", boardPager.getContentNum());
+
+        if (boardPager.getPageNum() == 0) {
+            riderList = boardService.riderList(map);
+        } else if (boardPager.getPageNum() != 0) {
+            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+            riderList = boardService.riderList(map);
+        }
+
+
+        model.addAttribute("riderList", riderList);
+        model.addAttribute("boardPager", boardPager);
         model.addAttribute("menuList", menuList);
 
         return "riderboard/riderList";
@@ -63,17 +115,39 @@ public class BoardController {
 
     // 후기 게시판 글 전체 조회
     @RequestMapping("/Board/reviewList")
-    public String latterList(Model model, @RequestParam HashMap<String, Object> map) {
+    public String reviewList(Model model, @RequestParam HashMap<String,Object> map){
 
+        List<MenuVo>  menuList  = menuService.getMenuList();
+        List<BoardVo> reviewList = null;
 
-        List<MenuVo> menuList = menuService.getMenuList();
-        List<ReviewVo> boardList = boardService.getReviewBoardList(map);
-        model.addAttribute("boardList", boardList);
+        int cPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+
+        boardPager.setTotalCount(boardService.reviewCount()); // board 전체 게시글 개수를 지정
+        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        boardPager.setEndPage(); // 마지막 페이지
+
+        map.put("pageNum", boardPager.getPageNum());
+        map.put("contentNum", boardPager.getContentNum());
+
+        if (boardPager.getPageNum() == 0) {
+            reviewList = boardService.reviewList(map);
+        } else if (boardPager.getPageNum() != 0) {
+            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+            reviewList = boardService.reviewList(map);
+        }
+
+        model.addAttribute("reviewList", reviewList);
         model.addAttribute("menuList", menuList);
+        model.addAttribute("boardPager", boardPager);
 
         return "reviewboard/reviewList";
     }
-
 
     //해주세요 게시판 글 작성 페이지
 

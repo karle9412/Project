@@ -129,5 +129,16 @@ public class BoardDaoImpl implements BoardDao {
         return sqlSession.selectOne("Board.RiderCount");
     }
 
+    @Override
+    public int testCount() {
+        return sqlSession.selectOne("Board.BoardCount");
+    }
+
+    @Override
+    public List<BoardVo> testList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.BoardPaging",map);
+        return boardList;
+    }
+
 
 }

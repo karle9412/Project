@@ -132,5 +132,17 @@ public class BoardServiceImpl implements BoardService {
         return boardList;
     }
 
+    @Override
+        public int testCount() {
+            return boardDao.testCount();
+        }
 
+
+    @Override
+    public List<BoardVo> testList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.testList(map);
+        return boardList;
+    }
 }
+
+

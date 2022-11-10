@@ -66,6 +66,8 @@ window.onload = function(){
                 [<a href="/">Home</a>]
               </td>
 
+
+
 <table id="reply1">
 <div id="reply">
   <ol class="replyList">

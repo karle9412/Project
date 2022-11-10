@@ -43,4 +43,8 @@ public interface BoardDao {
     public int customerCount();
     public int reviewCount();
     public int riderCount();
+
+    int testCount();
+
+    List<BoardVo> testList(HashMap<String, Object> map);
 }

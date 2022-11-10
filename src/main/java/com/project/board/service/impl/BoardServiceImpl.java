@@ -91,5 +91,35 @@ public class BoardServiceImpl implements BoardService {
         boardDao.CBoardDelete(map);
     }
 
+    @Override
+    public int customerCount() {
+        return boardDao.customerCount();
+    }
+
+    @Override
+    public int reviewCount() {
+        return boardDao.reviewCount();
+    }
+   @Override
+    public int riderCount() {
+        return boardDao.riderCount();
+    }
+
+    @Override
+    public List<BoardVo> customerList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.customerList(map);
+        return boardList;
+    }
+    @Override
+    public List<BoardVo> reviewList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.reviewList(map);
+        return boardList;
+    }
+    @Override
+    public List<BoardVo> riderList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.riderList(map);
+        return boardList;
+    }
+
 
 }

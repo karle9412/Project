@@ -32,6 +32,5 @@
     </tr>
     </c:forEach>
     <td><a href="/Board/RBoardWriteForm?menu_id=MENU_02">할게요 글쓰기</td>
-
 </body>
 </html>

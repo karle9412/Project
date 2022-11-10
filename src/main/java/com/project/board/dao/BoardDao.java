@@ -24,4 +24,12 @@ public interface BoardDao {
     RiderBoardVo DetailRider(HashMap<String, Object> map);
 
     ReviewVo DetailReview(HashMap<String, Object> map);
+
+    void CBoardUpdate(HashMap<String, Object> map);
+
+    void RBoardUpdate(HashMap<String, Object> map);
+
+    void RVBoardUpdate(HashMap<String, Object> map);
+
+    void CBoardDelete(HashMap<String, Object> map);
 }

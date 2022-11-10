@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLPermission;
 import java.util.HashMap;
 import java.util.List;
 
@@ -68,6 +69,26 @@ public class BoardDaoImpl implements BoardDao {
     public ReviewVo DetailReview(HashMap<String, Object> map) {
         ReviewVo reviewVo = sqlSession.selectOne("Board.DetailReviewBoard", map);
         return reviewVo;
+    }
+
+    @Override
+    public void CBoardUpdate(HashMap<String, Object> map) {
+      sqlSession.update("Board.CBoardUpdate", map);
+    }
+
+    @Override
+    public void RBoardUpdate(HashMap<String, Object> map) {
+        sqlSession.update("Board.RBoardUpdate", map);
+    }
+
+    @Override
+    public void RVBoardUpdate(HashMap<String, Object> map) {
+        sqlSession.update("Board.RVBoardUpdate", map);
+    }
+
+    @Override
+    public void CBoardDelete(HashMap<String, Object> map) {
+        sqlSession.delete("Board.CBoardDelete", map);
     }
 
 

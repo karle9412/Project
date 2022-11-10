@@ -139,7 +139,6 @@ public class BoardController {
     @RequestMapping("/Board/CustomerDetail")
     public String Customerdetail(	@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo){
         String menu_id = (String) map.get("menu_id");
-        System.out.println(map);
         BoardVo boardVo =  boardService.DetailCustomer(map);
 
         model.addAttribute("boardVo", boardVo);
@@ -170,7 +169,6 @@ public class BoardController {
     @RequestMapping("/Board/ReviewDetail")
     public String reviewdetail(	@RequestParam HashMap<String, Object> map, Model model) {
         String menu_id = (String) map.get("menu_id");
-        System.out.println(map);
         ReviewVo reviewBoardVo = boardService.DetailReview(map);
 
         model.addAttribute("reviewBoardVo", reviewBoardVo);
@@ -190,22 +188,93 @@ public class BoardController {
     @RequestMapping("/Board/RidreplyWrite")
     public String rider_replyWrite(RiderReplyVo riderReplyVo, RiderBoardVo riderBoardVo){
 
-        System.out.println(riderReplyVo);
         replyService.RiderwriteReply(riderReplyVo);
         return "redirect:/Board/riderDetail?board_number=" + riderBoardVo.getBoard_number();
     }
 
-    //게시글 수정
-    @RequestMapping("/Board/UpdateForm")
+    //해주세요 게시글 수정 페이지
+    @RequestMapping("/Board/CBoardUpdateForm")
     public String updateform(@RequestParam HashMap<String, Object> map, Model model){
 
         BoardVo boardVo   =  boardService.DetailCustomer(map);
         String menu_id = (String) map.get("menu_id");
 
         model.addAttribute("boardVo", boardVo);
+        model.addAttribute("menu_id", menu_id);
 
 
-        return "ctmboard/update";
+        return "ctmboard/CBoardupdate";
+    }
+
+    //해주세요 게시글 수정
+    @RequestMapping("/Board/CBoardUpdate")
+    public String update(@RequestParam HashMap<String, Object> map, Model model,BoardVo boardVo){
+        String menu_id = (String) map.get("menu_id");
+            boardService.CBoardUpdate(map);
+
+            return "redirect:/Board/CustomerDetail?board_number=" + boardVo.getBoard_number() + "&menu_id=" + menu_id;
+
+    }
+
+    //할게요 게시글 수정 페이지
+
+    @RequestMapping("/Board/RBoardUpdateForm")
+    public String RUpdateForm(@RequestParam HashMap<String, Object> map, Model model){
+       RiderBoardVo riderBoardVo = boardService.DetailRider(map);
+        System.out.println(riderBoardVo);
+        String menu_id = (String) map.get("menu_id");
+
+        model.addAttribute("riderBoardVo", riderBoardVo);
+        model.addAttribute("menu_id",menu_id);
+
+        return "riderboard/RBoardUpdate";
+    }
+
+    //할게요 게시글 수정
+    @RequestMapping("/Board/RBoardUpdate")
+    public String RBoardUpdate(@RequestParam HashMap<String, Object> map, Model model,RiderBoardVo riderBoardVo){
+        String menu_id = (String) map.get("menu_id");
+        boardService.RBoardUpdate(map);
+
+        return "redirect:/Board/riderDetail?board_number=" + riderBoardVo.getBoard_number() + "&menu_id=" + menu_id;
+
+
+    }
+
+    //후기 게시판 게시글 수정 페이지
+
+    @RequestMapping("/Board/RVUpdateForm")
+   public String RVUpdateForm(@RequestParam HashMap<String, Object>map, Model model){
+        ReviewVo reviewVo =  boardService.DetailReview(map);
+
+        String menu_id = (String) map.get("menu_id");
+
+        model.addAttribute("reviewVo", reviewVo);
+        model.addAttribute("menu_id",menu_id);
+
+        return "reviewboard/RVBoardUpdate";
+
+    }
+
+    //후기 게시판 게시글 수정
+
+    @RequestMapping("/Board/RVBoardUpdate")
+    public String RVUpdate(@RequestParam HashMap<String, Object> map, Model model, ReviewVo reviewVo){
+        String menu_id = (String) map.get("menu_id");
+           boardService.RVBoardUpdate(map);
+
+           return  "redirect:/Board/ReviewDetail?board_number=" + reviewVo.getBoard_number() + "&menu_id=" + menu_id;
+
+    }
+
+    @RequestMapping("/Board/CBoardDelete")
+    public String CDelete(@RequestParam HashMap<String, Object> map, Model model,BoardVo boardVo){
+        boardService.CBOardDelete(map);
+        String menu_id = (String) map.get("menu_id");
+
+        return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id();
+
+
     }
 
 

@@ -128,6 +128,41 @@
 
         where board_number = #{board_number}
     </select>
+    
+    <update id="CBoardUpdate">
+        UPDATE CUSTOMER_BOARD
+        SET TITLE = #{title},
+            CONT = #{cont}
+
+        where BOARD_NUMBER = #{board_number}
+
+    </update>
+
+    <update id= "RBoardUpdate">
+    UPDATE RIDER_BOARD
+        SET TITLE = #{title},
+            CONT = #{cont}
+
+        where BOARD_NUMBER = #{board_number}
+
+    </update>
+
+    <update id="RVBoardUpdate">
+        UPDATE REVIEW_BOARD
+        SET TITLE = #{title},
+           CONT = #{cont}
+
+        where BOARD_NUMBER = #{board_number}
+
+    </update>
+
+    <delete id="CBoardDelete">
+        DELETE
+        FROM CUSTOMER_BOARD
+        WHERE BOARD_NUMBER = #{board_number}
+
+
+    </delete>
 
 
 </mapper>

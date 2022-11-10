@@ -70,5 +70,26 @@ public class BoardServiceImpl implements BoardService {
         return reviewVo;
     }
 
+    @Override
+    public void CBoardUpdate(HashMap<String, Object> map) {
+            boardDao.CBoardUpdate(map);
+
+    }
+
+    @Override
+    public void RBoardUpdate(HashMap<String, Object> map) {
+        boardDao.RBoardUpdate(map);
+    }
+
+    @Override
+    public void RVBoardUpdate(HashMap<String, Object> map) {
+        boardDao.RVBoardUpdate(map);
+    }
+
+    @Override
+    public void CBOardDelete(HashMap<String, Object> map) {
+        boardDao.CBoardDelete(map);
+    }
+
 
 }

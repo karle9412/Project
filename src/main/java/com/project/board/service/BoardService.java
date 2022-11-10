@@ -20,4 +20,12 @@ public interface BoardService {
     RiderBoardVo DetailRider(HashMap<String, Object> map);
 
     ReviewVo DetailReview(HashMap<String, Object> map);
+
+    void CBoardUpdate(HashMap<String, Object> map);
+
+    void RBoardUpdate(HashMap<String, Object> map);
+
+    void RVBoardUpdate(HashMap<String, Object> map);
+
+    void CBOardDelete(HashMap<String, Object> map);
 }

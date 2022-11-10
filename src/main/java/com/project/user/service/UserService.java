@@ -3,6 +3,7 @@ package com.project.user.service;
 import com.project.user.vo.UserVo;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public interface UserService {
@@ -15,4 +16,6 @@ public interface UserService {
     void userUpdate(UserVo userVo);
 
     void userDelete(UserVo userVo);
+
+    String getUserid(UserVo userVo);
 }

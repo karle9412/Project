@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td>
-    <a href="/Board/customerList?menu_id=MENU_01">해주세요</a>
+    <a href="/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10">해주세요</a>
     </td>
   </tr>
   <tr>

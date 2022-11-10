@@ -12,10 +12,8 @@ import java.util.List;
 
 @Repository("boardDao")
 public class BoardDaoImpl implements BoardDao {
-
     @Autowired
     private SqlSession sqlSession;
-
 
     @Override
     public List<BoardVo> getCustomerBoardList(HashMap<String, Object> map) {
@@ -33,6 +31,7 @@ public class BoardDaoImpl implements BoardDao {
     public void C_insertboard(BoardVo boardVo) {
         sqlSession.insert("Board.C_InsertBoard", boardVo);
     }
+
     public void R_insertboard(RiderBoardVo riderboardVo) {
         sqlSession.insert("Board.R_InsertBoard", riderboardVo);
     }
@@ -49,5 +48,15 @@ public class BoardDaoImpl implements BoardDao {
         return riderBoardVo;
     }
 
+    @Override
+    public List<BoardVo> testList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.BoardPaging",map);
+        return boardList;
+    }
+
+    @Override
+    public int testCount() {
+        return sqlSession.selectOne("Board.BoardCount");
+    }
 
 }

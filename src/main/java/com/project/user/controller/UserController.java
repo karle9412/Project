@@ -48,7 +48,7 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "/boards/customerList";
+            returnURL = "ctmboard/customerList";
         }else{
             returnURL = "redirect:/login";
         }

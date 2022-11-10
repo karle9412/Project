@@ -1,5 +1,7 @@
 package com.project.board.vo;
 
+import org.springframework.stereotype.Controller;
+
 import java.util.Timer;
 
 public class BoardPager {
@@ -12,17 +14,17 @@ public class BoardPager {
     private boolean prev;     // 이전 페이지로 가는 화살표
     private boolean next;     // 다음 페이지로 가는 화살표
     private int currentBlock; // 다음 페이지로 가는 화살표
-    private int lastBlock;    // 다음 페이지로 가는 화살표
+    private double lastBlock;    // 다음 페이지로 가는 화살표
 
     public void prevNext(int pageNum){ // 이전, 다음 페이지 블록
 
-        if(calcpage(totalCount,contentNum)<6){
+        if(calcPage(totalCount)<6){
             setPrev(false);
             setNext(false);
-        }else if (pageNum>0 && pageNum<6){
+        }else if (pageNum>0 && pageNum<=5){
             setPrev(false);
             setNext(true);
-        }else if (getLastBlock() == getCurrentBlock()){
+        }else if (lastBlock == currentBlock){
             setPrev(true);
             setNext(false);
         }else {
@@ -30,13 +32,11 @@ public class BoardPager {
             setNext(true);
         }
     }
-    public int calcpage(int totalCount, int contentNum){ // 전체페이지 개수를 계산하는 함수
+    public int calcPage(int totalCount){ // 전체페이지 개수를 계산하는 함수
         //    12.5    =     125    /     10
         //   13페이지
-        int totalPage = totalCount / contentNum;
-        if (totalCount%contentNum>0){
-            totalPage++;
-        }
+        int totalPage = totalCount / 10;
+
         return totalPage;
     }
 
@@ -76,14 +76,16 @@ public class BoardPager {
         return endPage;
     }
 
-    public void setEndPage(int getLastBlock, int getCurrentBlock) { // 마지막 페이지 블록 구하는 곳
-        if(getLastBlock == getCurrentBlock){
-            this.endPage = calcpage(getTotalCount(),getContentNum()); // 전체페이지 개수가 오는곳
+    public void setEndPage() { // 마지막 페이지 블록 구하는 곳
+        if (lastBlock == currentBlock){
+            endPage = totalCount / 10;
+            if (0< (totalCount % 10)){
+                endPage++;
+            }
         }else {
-            this.endPage = getStartPage() + 4;
+            endPage = getStartPage() + 4;
         }
     }
-
     public boolean isPrev() {
         return prev;
     }
@@ -113,14 +115,29 @@ public class BoardPager {
         }
     }
 
-    public int getLastBlock() {
+    public double getLastBlock() {
         return lastBlock;
     }
 
-    public void setLastBlock(int lastBlock) {
-        this.lastBlock = totalCount / (5 * this.contentNum);
+    public void setLastBlock() {
+        lastBlock = totalCount / 50;
         if (totalCount % (5 * contentNum) > 0){
-            this.lastBlock++;
+            lastBlock++;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BoardPager{" +
+                "totalCount=" + totalCount +
+                ", pageNum=" + pageNum +
+                ", contentNum=" + contentNum +
+                ", startPage=" + startPage +
+                ", endPage=" + endPage +
+                ", prev=" + prev +
+                ", next=" + next +
+                ", currentBlock=" + currentBlock +
+                ", lastBlock=" + lastBlock +
+                '}';
     }
 }

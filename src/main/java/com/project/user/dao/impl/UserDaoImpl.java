@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String getUserid(UserVo userVo) {
-        UserVo getUserid = sqlSession.selectOne("User.getUserid", userVo);
+        UserVo getUserid = this.sqlSession.selectOne("User.getUserid", userVo);
         if (getUserid != null) {
             String realUserid = getUserid.getuserid();
             return realUserid;
@@ -54,5 +54,16 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
 
+    }
+
+    @Override
+    public String useridCheck(UserVo userVo) {
+        UserVo useridCheck = this.sqlSession.selectOne("User.useridCheck", userVo);
+        if (useridCheck != null) {
+            String check = useridCheck.getuserid();
+        return check;
+        } else{
+            return null;
+        }
     }
 }

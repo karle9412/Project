@@ -27,10 +27,7 @@ $(function(){
                      email : email},
             success : function(getUserid){
                 if(getUserid != null){
-                    console.log(getUserid);
-                    let decode_getUserid = decodeURIComponent(getUserid);
-                    console.log(decode_getUserid);
-                    $("#userid_check").html(decode_getUserid);
+                    $("#userid_check").html(getUserid);
                 }
             }
         })

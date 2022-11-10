@@ -35,6 +35,26 @@ $(function(){
             return false;
         }
     });
+
+    $('#idCheck').on('click', function(e){
+
+        let userid = $('[name=userid]').val();
+    $.ajax({
+        type : 'POST',
+        url : "useridCheck",
+        dataType : "text",
+        data : {
+            userid : userid
+        },
+        success : function(useridCheck){
+        $("#idCheckResult").html(useridCheck);
+        }
+
+        })
+
+        e.preventDefault();
+        e.stopPropagation();
+    });
 });
 </script>
 </head>
@@ -47,6 +67,14 @@ $(function(){
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
                 <input class="w3-input w3-border" name="userid" type="text" placeholder="ID">
+            </div>
+            <div class="w3-rest">
+                <div>
+                    <span id="idCheckResult">
+                </div>
+                <div>
+                    <button id="idCheck" class="w3-button w3-section w3-light-green w3-ripple w3-text-white w3-right">중복확인</button>
+                </div>
             </div>
         </div>
         <div class="w3-row w3-section">

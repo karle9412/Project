@@ -18,4 +18,6 @@ public interface UserDao {
     void userDelete(UserVo userVo);
 
     String getUserid(UserVo userVo);
+
+    String useridCheck(UserVo userVo);
 }

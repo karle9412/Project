@@ -17,9 +17,15 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         HttpSession httpSession = request.getSession();
 
         String requestUrl = request.getRequestURL().toString();
+        // 페이지 들어왔을 때 기본 화면으로 보내는 예외 처리
+        if(requestUrl.contains("/")){
+            return true;
+        }
+        //로그인 화면도 예외 처리
         if(requestUrl.contains("/login")){
             return true;
         }
+
 
         Object obj = httpSession.getAttribute("login");
         if (obj == null){

@@ -37,6 +37,10 @@ public class UserController {
     //유저 아이디 찾는 화면으로 보내는 컨트롤러
     @RequestMapping("/findUserid")
     public String findUserid(){return "users/findUserid";}
+    
+    //유저의 비밀번호를 변경하는 화면으로 보내는 컨트롤러
+    @RequestMapping("/findPasswd")
+    public String findPasswd(){return "users/findPasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
     @RequestMapping("/write")

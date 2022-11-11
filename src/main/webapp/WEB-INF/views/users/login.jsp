@@ -50,6 +50,7 @@ $(function(){
             <!-- href 조정 필요 -->
             <span class="w3-right w3-padding"><a href="/writeForm">회원가입하기</a>
             <a href="javascript:void(window.open('findUserid', '아이디 찾기','width=500, height=500'))">아이디 찾기</a>
+            <a href="javascript:void(window.open('findPasswd', '비밀번호 변경','width=500, height=500'))">비밀번호 변경</a>
         </div>
     </div>
 </body>

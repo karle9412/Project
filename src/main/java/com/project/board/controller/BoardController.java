@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLOutput;
@@ -80,7 +81,7 @@ public class BoardController {
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
-        List<BoardVo> riderList = null;
+        List<RiderBoardVo> riderList = null;
 
         boardPager.setTotalCount(boardService.riderCount()); // board 전체 게시글 개수를 지정
         boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
@@ -199,9 +200,7 @@ public class BoardController {
     //리뷰게시판 글 작성
     @RequestMapping("/Board/RVBoardWrite")
     public String RvVBoardwrite(ReviewVo reviewVo) {
-
         boardService.RV_insertboard(reviewVo);
-
 
        return "redirect:/Board/reviewList?menu_id=" + reviewVo.getMenu_id();
     }
@@ -210,7 +209,7 @@ public class BoardController {
 
     // 해주세요 게시글 상세조회, 댓글 리스트 조회
     @RequestMapping("/Board/CustomerDetail")
-    public String Customerdetail(	@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo){
+    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo){
         String menu_id = (String) map.get("menu_id");
         BoardVo boardVo =  boardService.DetailCustomer(map);
 
@@ -256,7 +255,9 @@ public class BoardController {
     // 고객게시판 댓글 작성
     @RequestMapping("/Board/CtmreplyWrite")
     public String ctm_replyWrite (ReplyVo replyVo,BoardVo boardVo){
+        System.out.println(replyVo);
         replyService.writeReply(replyVo);
+        System.out.println(replyVo);
      return "redirect:/Board/CustomerDetail?board_number=" + boardVo.getBoard_number();
     }
 
@@ -336,18 +337,17 @@ public class BoardController {
     @RequestMapping("/Board/RVBoardUpdate")
     public String RVUpdate(@RequestParam HashMap<String, Object> map, Model model, ReviewVo reviewVo){
         String menu_id = (String) map.get("menu_id");
-           boardService.RVBoardUpdate(map);
+        boardService.RVBoardUpdate(map);
 
-           return  "redirect:/Board/ReviewDetail?board_number=" + reviewVo.getBoard_number() + "&menu_id=" + menu_id;
+        return  "redirect:/Board/ReviewDetail?board_number=" + reviewVo.getBoard_number() + "&menu_id=" + menu_id;
 
     }
 
     @RequestMapping("/Board/CBoardDelete")
     public String CDelete(@RequestParam HashMap<String, Object> map, Model model,BoardVo boardVo){
         boardService.CBOardDelete(map);
-        String menu_id = (String) map.get("menu_id");
-
-        return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id();
+        int pageNum = boardPager.getPageNum();
+        return "redirect:/Board/customerList?menu_id=MENU_01&pageNum="+(boardPager.getPageNum()+1)+"&contentNum="+((boardPager.getPageNum()+1)*10);
 
 
     }

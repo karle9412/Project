@@ -25,12 +25,10 @@ window.onload = function(){
        if( $('#cont').val() == ''){
         alert('댓글을 입력하세요');
         e.preventDefault();
-                }
+       }
     });
 }
-
 </script>
-
 
 </head>
 <body>
@@ -57,7 +55,7 @@ window.onload = function(){
              <tr>
 
               <td colspan="4">
-                [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
+                [<a href="/Board/CBoardWriteForm?menu_id=MENU_01">새 글 쓰기</a>]
                 [<a href="/Board/CBoardUpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}">수정</a>]
                 [<a href="/Board/CBoardDelete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
                 [<a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]

@@ -71,6 +71,17 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public void RBoardDelete(HashMap<String, Object> map) {
+        boardDao.RBoardDelete(map);
+    }
+
+    @Override
+    public void RVBoardDelete(HashMap<String, Object> map) {
+        boardDao.RVBoardDelete(map);
+
+    }
+
+    @Override
     public int customerCount() {
         return boardDao.customerCount();
     }
@@ -100,5 +111,17 @@ public class BoardServiceImpl implements BoardService {
         return boardList;
     }
 
+    @Override
+        public int testCount() {
+            return boardDao.testCount();
+        }
 
+
+    @Override
+    public List<BoardVo> testList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.testList(map);
+        return boardList;
+    }
 }
+
+

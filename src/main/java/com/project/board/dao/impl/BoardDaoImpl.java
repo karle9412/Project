@@ -69,6 +69,16 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    public void RBoardDelete(HashMap<String, Object> map) {
+        sqlSession.delete("Board.RBoardDelete", map);
+    }
+
+    @Override
+    public void RVBoardDelete(HashMap<String, Object> map) {
+        sqlSession.delete("Board.RVBoardDelete", map);
+    }
+
+    @Override
     public List<BoardVo> customerList(HashMap<String, Object> map) {
         List<BoardVo> boardList = sqlSession.selectList("Board.CustomerList",map);
         return boardList;
@@ -94,6 +104,17 @@ public class BoardDaoImpl implements BoardDao {
     @Override
     public int riderCount() {
         return sqlSession.selectOne("Board.RiderCount");
+    }
+
+    @Override
+    public int testCount() {
+        return sqlSession.selectOne("Board.BoardCount");
+    }
+
+    @Override
+    public List<BoardVo> testList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.BoardPaging",map);
+        return boardList;
     }
 
 

@@ -17,18 +17,13 @@
   #board  textarea  { width:100%; height: 400px;  }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
 window.onload = function(){
-    let form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-       if( $('#cont').val() == ''){
-        alert('댓글을 입력하세요');
-        e.preventDefault();
-       }
-    });
+replylist();
 }
+
 </script>
+
 
 </head>
 <body>
@@ -55,50 +50,101 @@ window.onload = function(){
              <tr>
 
               <td colspan="4">
-                [<a href="/Board/CBoardWriteForm?menu_id=MENU_01">새 글 쓰기</a>]
+                     </td>
+                [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
                 [<a href="/Board/CBoardUpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}">수정</a>]
                 [<a href="/Board/CBoardDelete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
                 [<a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                 [<a href="javascript:history.back()">이전으로</a>]
                 [<a href="/">Home</a>]
               </td>
+              </table>
 
-<table id="reply1">
-<div id="reply">
-  <ol class="replyList">
-    <c:forEach items="${replylist}" var="replylist">
-        <p>
-        작성자 : ${replylist.writer}<br />
-        작성 날짜 :${replylist.indate}
-        </p>
-        <p>${replylist.cont}</p>
-    </c:forEach>
-  </ol>
+<div id = Replyli>
+
 </div>
-</table>
+
+<div style="width:700px; text-align:center;">
+
+       <br>
+      <textarea rows ="5" cols="80" id="replytext"
+      placeholder="댓글을 작성하세요"></textarea>
+       <button type="button" id="btnReply" class="btnReply">작성</button>
+       </br>
 
 
-<form id="replyForm"name = "replyForm" method= "post">
-<input type = "hidden"  id = "board_number" name ="board_number" value = "${boardVo.board_number}"/>
-<input type = "hidden"  id = "writer"       name ="writer"       value = "${boardVo.writer}"/>
-<div>
-<label for="content">댓글 내용</label><input type="text" id="cont" name="cont" />
-  </div>
-  <div>
-   	 <button type="submit" id="replyWriteBtn" class="replyWriteBtn">작성</button>
-   	 <span id = "test"> </span>
-    </div>
-  </form>
+
 
 
 <script>
-$(".replyWriteBtn").on("click", function(){
-   console.log("click")
-  var formObj = $("form[name='replyForm']");
-  formObj.attr("action", "/Board/CtmreplyWrite");
-});
-</script>
 
+
+
+$("#btnReply").click(function(){
+ let cont  = $("#replytext").val();
+ let board_number = "${boardVo.board_number }";
+ let menu_id = "${menu_id}";
+ let writer = "${boardVo.writer}"
+ let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+
+ $.ajax({
+  type: "post",
+  url: "/Board/CtmreplyWrite",
+  data: param,
+  success: function(result){
+   alert("댓글이 등록되었습니다");
+    $("#replytext").val('');
+     replylist();
+
+  }
+  });
+ });
+
+function replylist(list){
+
+
+ $.ajax({
+ type:"get",
+ url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+ success: function(resultList){
+ console.log(resultList);
+ let html = "";
+ html+= '<table>';
+
+     for(var i =0; i<resultList.length; i++){
+                html += "<tr>";
+          		html += "<th>작성자</th>";
+          		html += "<th>내용</th>";
+          		html += "<th>작성일</th>";
+          		html += "<th>수정</th>";
+          		html += "<th>삭제</th>";
+          		html += "</tr>";
+
+          html+= '<tr>';
+          html+= '<td>';
+          html+= resultList[i].writer;
+          html+= '</td>';
+          html+= '<td>';
+          html+= resultList[i].cont;
+          html+= '</td>';
+          html+='<td>';
+          html+= resultList[i].indate;
+          html+='</td>';
+          html+= '</tr>';
+    }
+
+    html+='</table>';
+    console.log(html);
+    $('#Replyli').html(html);
+
+
+
+
+
+}
+ });
+}
+</script>
 
 
 </body>

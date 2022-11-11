@@ -27,6 +27,9 @@ public interface BoardDao {
 
     void CBoardDelete(HashMap<String, Object> map);
 
+    void RBoardDelete(HashMap<String, Object> map);
+    void RVBoardDelete(HashMap<String, Object> map);
+
     public List<BoardVo> customerList(HashMap<String, Object> map);
     public List<BoardVo> reviewList(HashMap<String, Object> map);
     public List<RiderBoardVo> riderList(HashMap<String, Object> map);
@@ -34,4 +37,8 @@ public interface BoardDao {
     public int customerCount();
     public int reviewCount();
     public int riderCount();
+
+    int testCount();
+
+    List<BoardVo> testList(HashMap<String, Object> map);
 }

@@ -5,6 +5,25 @@
 
 <mapper namespace="Board">
 
+    <select id="BoardPaging"
+            resultType="com.project.board.vo.BoardVo">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        C.*
+        FROM CUSTOMER_BOARD C
+        ORDER BY BOARD_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+    </select>
+
+    <select id="BoardCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM CUSTOMER_BOARD
+    </select>
+
+
+
     <select id="CustomerList"
             resultType="com.project.board.vo.BoardVo">
         SELECT *
@@ -213,6 +232,18 @@
         WHERE BOARD_NUMBER = #{board_number}
 
 
+    </delete>
+
+    <delete id="RBoardDelete">
+        DELETE
+        FROM RIDER_BOARD
+        WHERE BOARD_NUMBER = #{board_number}
+    </delete>
+
+    <delete id="RVBoardDelete">
+        DELETE
+        FROM REVIEW_BOARD
+        WHERE BOARD_NUMBER = #{board_number}
     </delete>
 
 

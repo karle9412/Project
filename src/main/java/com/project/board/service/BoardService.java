@@ -27,6 +27,10 @@ public interface BoardService {
 
     void CBOardDelete(HashMap<String, Object> map);
 
+    void RBoardDelete(HashMap<String, Object> map);
+
+    void RVBoardDelete(HashMap<String, Object> map);
+
     int customerCount();
     int reviewCount();
     int riderCount();
@@ -35,4 +39,6 @@ public interface BoardService {
     List<BoardVo> reviewList(HashMap<String, Object> map);
     List<RiderBoardVo> riderList(HashMap<String, Object> map);
 
+    int testCount();
+    List<BoardVo> testList(HashMap<String, Object> map);
 }

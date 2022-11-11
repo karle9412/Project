@@ -149,4 +149,11 @@ public class UserController {
             return check;
         }
     }
+
+    @RequestMapping("/passwdChange")
+    @ResponseBody
+    public String passwdChange(UserVo userVo){
+        System.out.println(userVo);
+        return null;
+    }
 }

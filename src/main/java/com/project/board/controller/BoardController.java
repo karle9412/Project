@@ -280,7 +280,7 @@ public class BoardController {
     //배달게시판 댓글 작성
     @RequestMapping("/Board/RidreplyWrite")
     @ResponseBody
-    public void rider_replyWrite(RiderReplyVo riderReplyVo, RiderBoardVo riderBoardVo) {
+    public void rider_replyWrite(RiderReplyVo riderReplyVo) {
         replyService.RiderwriteReply(riderReplyVo);
     }
 

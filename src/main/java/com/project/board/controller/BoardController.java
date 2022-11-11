@@ -268,6 +268,7 @@ public class BoardController {
 
         return "reviewboard/reviewdetail";
 
+
     }
 
     // 고객게시판 댓글 작성

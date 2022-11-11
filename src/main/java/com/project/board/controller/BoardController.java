@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLOutput;
@@ -211,7 +212,7 @@ public class BoardController {
     }
 
 
-    // 해주세요 게시글 상세조회, 댓글 리스트 조회
+    // 해주세요 게시글 상세조회
     @RequestMapping("/Board/CustomerDetail")
     public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo) {
         String menu_id = (String) map.get("menu_id");
@@ -220,13 +221,19 @@ public class BoardController {
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
 
-        List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
-        model.addAttribute("replylist", replylist);
-
         return "ctmboard/customerdetail";
     }
+    
+    
+    //해주세요 댓글 조회
+    @RequestMapping("/Board/CReplyList")
+    @ResponseBody
+    public List<ReplyVo> replylist(BoardVo boardVo){
+        List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
+        return replylist;
+    }
 
-    // 할게요 게시글 상세조회, 댓글 리스트 조회
+    // 할게요 게시글 상세조회
 
     @RequestMapping("/Board/riderDetail")
     public String riderdetail(@RequestParam HashMap<String, Object> map, Model model) {
@@ -236,10 +243,17 @@ public class BoardController {
         model.addAttribute("riderBoardVo", riderBoardVo);
         model.addAttribute("menu_id", menu_id);
 
-        List<RiderReplyVo> replylist = replyService.getRiderReplylist(riderBoardVo.getBoard_number());
-        model.addAttribute("replylist", replylist);
+
 
         return "riderboard/riderdetail";
+    }
+     
+    //할게요 댓글 조회
+    @RequestMapping("/Board/RReplyList")
+    @ResponseBody
+    public List<RiderReplyVo> Rreplylist(RiderBoardVo riderBoardVo){
+        List<RiderReplyVo> replylist = replyService.getRiderReplylist(riderBoardVo.getBoard_number());
+        return replylist;
     }
     
     // 후기 게시글 상세조회
@@ -258,17 +272,16 @@ public class BoardController {
 
     // 고객게시판 댓글 작성
     @RequestMapping("/Board/CtmreplyWrite")
-    public String ctm_replyWrite(ReplyVo replyVo, BoardVo boardVo) {
+    @ResponseBody
+    public void ctm_replyWrite(ReplyVo replyVo, BoardVo boardVo) {
         replyService.writeReply(replyVo);
-        return "redirect:/Board/CustomerDetail?board_number=" + boardVo.getBoard_number();
     }
 
     //배달게시판 댓글 작성
     @RequestMapping("/Board/RidreplyWrite")
-    public String rider_replyWrite(RiderReplyVo riderReplyVo, RiderBoardVo riderBoardVo) {
-
+    @ResponseBody
+    public void rider_replyWrite(RiderReplyVo riderReplyVo, RiderBoardVo riderBoardVo) {
         replyService.RiderwriteReply(riderReplyVo);
-        return "redirect:/Board/riderDetail?board_number=" + riderBoardVo.getBoard_number();
     }
 
     //해주세요 게시글 수정 페이지

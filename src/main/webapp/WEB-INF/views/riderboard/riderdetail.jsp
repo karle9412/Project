@@ -20,19 +20,10 @@
 
 <script>
 window.onload = function(){
-    let form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-       if( $('#cont').val() == ''){
-        alert('댓글을 입력하세요');
-        e.preventDefault();
-                }
-    });
+replylist();
 }
 
 </script>
-
-
-
 
 
 </head>
@@ -84,25 +75,84 @@ window.onload = function(){
 </table>
 
 
-<form name id=  = "replyForm" method= "post">
-<input type = "hidden"  id = "board_number" name ="board_number" value = "${riderBoardVo.board_number}"/>
-<input type = "hidden"  id = "writer"       name ="writer"       value = "${riderBoardVo.writer}"/>
-<div>
-<label for="content">댓글 내용</label><input type="text" id="cont" name="cont" />
-  </div>
-  <div>
-   	 <button type="submit" id = 'replyWriteBtn' class="replyWriteBtn">작성</button>
-    </div>
-  </form>
+<div id = Replyli>
+
+</div>
+
+<div style="width:700px; text-align:center;">
+
+       <br>
+      <textarea rows ="5" cols="80" id="replytext"
+      placeholder="댓글을 작성하세요"></textarea>
+       <button type="button" id="btnReply" class="btnReply">작성</button>
+       </br>
 
 <script>
-$(".replyWriteBtn").on("click", function(){
-   console.log("click")
-  var formObj = $("form[name='replyForm']");
-  formObj.attr("action", "/Board/RidreplyWrite");
-});
-</script>
 
+$("#btnReply").click(function(){
+ let cont  = $("#replytext").val();
+ let board_number = "${riderBoardVo.board_number }";
+ let menu_id = "${menu_id}";
+ let writer = "${riderBoardVo.writer}"
+ let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+ $.ajax({
+  type: "post",
+  url: "/Board/RidreplyWrite",
+  data: param,
+  success: function(result){
+   alert("댓글이 등록되었습니다");
+    $("#replytext").val('');
+     replylist();
+
+  }
+  });
+ });
+
+function replylist(list){
+
+
+ $.ajax({
+ type:"get",
+ url: "/Board/RReplyList?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+ success: function(resultList){
+ console.log(resultList);
+ let html = "";
+ html+= '<table>';
+
+     for(var i =0; i<resultList.length; i++){
+                html += "<tr>";
+          		html += "<th>작성자</th>";
+          		html += "<th>내용</th>";
+          		html += "<th>작성일</th>";
+          		html += "<th>수정</th>";
+          		html += "<th>삭제</th>";
+          		html += "</tr>";
+
+          html+= '<tr>';
+          html+= '<td>';
+          html+= resultList[i].writer;
+          html+= '</td>';
+          html+= '<td>';
+          html+= resultList[i].cont;
+          html+= '</td>';
+          html+='<td>';
+          html+= resultList[i].indate;
+          html+='</td>';
+          html+= '</tr>';
+    }
+
+    html+='</table>';
+    console.log(html);
+    $('#Replyli').html(html);
+
+
+
+
+
+}
+ });
+}
+</script>
 
 
 </body>

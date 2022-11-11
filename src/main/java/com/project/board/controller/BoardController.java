@@ -255,9 +255,7 @@ public class BoardController {
     // 고객게시판 댓글 작성
     @RequestMapping("/Board/CtmreplyWrite")
     public String ctm_replyWrite (ReplyVo replyVo,BoardVo boardVo){
-        System.out.println(replyVo);
         replyService.writeReply(replyVo);
-        System.out.println(replyVo);
      return "redirect:/Board/CustomerDetail?board_number=" + boardVo.getBoard_number();
     }
 

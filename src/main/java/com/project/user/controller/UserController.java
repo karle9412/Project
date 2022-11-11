@@ -136,6 +136,7 @@ public class UserController {
         UserVo userVo = new UserVo(userid);
         String useridCheck = this.userService.useridCheck(userVo);
         String check = "";
+
         if (useridCheck != null){
             check = "중복된 아이디입니다.";
             return check;

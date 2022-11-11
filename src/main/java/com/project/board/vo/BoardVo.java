@@ -17,11 +17,13 @@ public class BoardVo {
     private String c_time;
     private String luggage;
 
+    private String delivery_indate;
 
 
     //CUSTOMER_BOARD 생성자
     public BoardVo() {}
-    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String delivery_check, String c_start, String c_end, String money, String c_time, String luggage) {
+
+    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String delivery_check, String c_start, String c_end, String money, String c_time, String luggage, String delivery_indate) {
         this.board_number = board_number;
         this.menu_id = menu_id;
         this.title = title;
@@ -36,6 +38,15 @@ public class BoardVo {
         this.money = money;
         this.c_time = c_time;
         this.luggage = luggage;
+        this.delivery_indate = delivery_indate;
+    }
+
+    public String getDelivery_indate() {
+        return delivery_indate;
+    }
+
+    public void setDelivery_indate(String delivery_indate) {
+        this.delivery_indate = delivery_indate;
     }
 
     public String getDelivery_check() {
@@ -166,6 +177,7 @@ public class BoardVo {
                 ", money='" + money + '\'' +
                 ", c_time='" + c_time + '\'' +
                 ", luggage='" + luggage + '\'' +
+                ", delivery_indate='" + delivery_indate + '\'' +
                 '}';
     }
 }

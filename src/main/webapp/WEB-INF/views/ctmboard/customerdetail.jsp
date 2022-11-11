@@ -100,43 +100,41 @@ $("#btnReply").click(function(){
   });
  });
 
-function replylist(list){
+function replylist(){
 
 
  $.ajax({
  type:"get",
  url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}",
  success: function(resultList){
- console.log(resultList);
  let html = "";
  html+= '<table>';
 
      for(var i =0; i<resultList.length; i++){
-                html += "<tr>";
-          		html += "<th>작성자</th>";
-          		html += "<th>내용</th>";
-          		html += "<th>작성일</th>";
-          		html += "<th>수정</th>";
-          		html += "<th>삭제</th>";
-          		html += "</tr>";
 
           html+= '<tr>';
           html+= '<td>';
           html+= resultList[i].writer;
           html+= '</td>';
-          html+= '<td>';
+          html+= '</tr>';
+          html+= '<tr>';
+          html+= "<td id = \"resultList[i].reply_number\">";
           html+= resultList[i].cont;
           html+= '</td>';
+          html+= '</tr>';
+          html+= '<tr>';
           html+='<td>';
           html+= resultList[i].indate;
           html+='</td>';
+          html+='<td>';
+          html+="<button type=\"button\" class=\"btn\" id = \"replyupdateBtn\" onclick=\"updatereply("+ resultList[i].reply_number + ")\" >수정</button>";
+          html+= '</td>';
+          html += "<td>삭제</td>";
           html+= '</tr>';
     }
 
     html+='</table>';
-    console.log(html);
     $('#Replyli').html(html);
-
 
 
 
@@ -144,6 +142,14 @@ function replylist(list){
 }
  });
 }
+
+function updatereply(reply_number){
+
+
+    }
+
+
+
 </script>
 
 

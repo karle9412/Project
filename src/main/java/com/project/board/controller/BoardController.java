@@ -284,6 +284,11 @@ public class BoardController {
         replyService.RiderwriteReply(riderReplyVo);
     }
 
+    @RequestMapping("/Board/CtmreplyUpdate")
+    public String ctm_replyUpdate(){
+
+    }
+
     //해주세요 게시글 수정 페이지
     @RequestMapping("/Board/CBoardUpdateForm")
     public String updateform(@RequestParam HashMap<String, Object> map, Model model) {

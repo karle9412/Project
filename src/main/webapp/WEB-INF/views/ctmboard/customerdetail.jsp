@@ -137,10 +137,6 @@ function replylist(list){
     console.log(html);
     $('#Replyli').html(html);
 
-
-
-
-
 }
  });
 }

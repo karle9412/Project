@@ -40,6 +40,7 @@
         AND  PASSWD = #{passwd}
     </select>
 
+    <!--아이디 찾는 화면에서 유저 아이디 찾기 매퍼 -->
     <select id="useridCheck"
             resultType="com.project.user.vo.UserVo">
         SELECT USERID

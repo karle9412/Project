@@ -37,10 +37,12 @@ public class UserController {
     //유저 아이디 찾는 화면으로 보내는 컨트롤러
     @RequestMapping("/findUserid")
     public String findUserid(){return "users/findUserid";}
-    
-    //유저의 비밀번호를 변경하는 화면으로 보내는 컨트롤러
-    @RequestMapping("/findPasswd")
-    public String findPasswd(){return "users/findPasswd";}
+
+    //비밀번호 변경을 위해 유저아이디를 찾는 화면으로 보내는 컨트롤러
+    @RequestMapping("/changePasswdForm")
+    public String findPasswd(UserVo userVo){
+        System.out.println(userVo);
+        return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
     @RequestMapping("/write")
@@ -127,6 +129,7 @@ public class UserController {
         UserVo userVo = new UserVo(nickname, email);
         String getUserid = this.userService.getUserid(userVo);
         if (getUserid == null){
+
             getUserid = "닉네임과 이메일을 다시 확인해주세요";//"check nickname, email";
         }
         return getUserid;
@@ -148,12 +151,5 @@ public class UserController {
             check = "중복되지 않은 아이디입니다.";
             return check;
         }
-    }
-
-    @RequestMapping("/passwdChange")
-    @ResponseBody
-    public String passwdChange(UserVo userVo){
-        System.out.println(userVo);
-        return null;
     }
 }

@@ -47,7 +47,17 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public void UpdateR_Reply(HashMap<String, Object> map) {
+        replyDao.UpdateR_Reply(map);
+    }
+
+    @Override
     public void DeleteReply(int reply_number) {
         replyDao.DeleteReply(reply_number);
+    }
+
+    @Override
+    public void DeleteR_Reply(int reply_number) {
+        replyDao.DeleteR_Reply(reply_number);
     }
 }

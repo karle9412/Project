@@ -44,7 +44,17 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
+    public void UpdateR_Reply(HashMap<String, Object> map) {
+        sqlSession.update("Reply.UpdateR_Reply",map);
+    }
+
+    @Override
     public void DeleteReply(int reply_number) {
         sqlSession.delete("Reply.DeleteReply",reply_number);
+    }
+
+    @Override
+    public void DeleteR_Reply(int reply_number) {
+        sqlSession.delete("Reply.DeleteR_Reply", reply_number);
     }
 }

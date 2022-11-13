@@ -21,4 +21,8 @@ public interface ReplyService {
     void UpdateReply(HashMap<String, Object> map);
 
     void DeleteReply(int reply_number);
+
+    void DeleteR_Reply(int reply_number);
+
+    void UpdateR_Reply(HashMap<String, Object> map);
 }

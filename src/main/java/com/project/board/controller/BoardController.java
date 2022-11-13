@@ -410,11 +410,25 @@ public class BoardController {
 
     };
 
+    //할게요 게시판 댓글 수정
+    @RequestMapping("/Board/R_replyUpdate")
+    @ResponseBody
+    public void r_replyUpdate(@RequestParam HashMap<String, Object> map){
+        replyService.UpdateR_Reply(map);
+    }
+
     //해주세요 게시판 댓글 삭제
     @RequestMapping("/Board/ReplyDelete")
     @ResponseBody
     public void ctm_replyDelete(@RequestParam int reply_number){
         replyService.DeleteReply(reply_number);
+    }
+
+    //할게요 게시판 댓글 삭제
+    @RequestMapping("/Board/R_ReplyDelete")
+    @ResponseBody
+    public void R_replyDelete(@RequestParam int reply_number){
+        replyService.DeleteR_Reply(reply_number);
     }
 
 

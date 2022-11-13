@@ -60,9 +60,23 @@
 
     </update>
 
+    <update id="UpdateR_Reply">
+        UPDATE RIDER_REPLY
+        SET CONT= #{cont}
+        WHERE REPLY_NUMBER = #{reply_number}
+
+    </update>
+
     <delete id="DeleteReply">
         DELETE
         FROM REPLY
+        WHERE REPLY_NUMBER = #{reply_number}
+
+    </delete>
+
+    <delete id="DeleteR_Reply">
+        DELETE
+        FROM RIDER_REPLY
         WHERE REPLY_NUMBER = #{reply_number}
 
     </delete>

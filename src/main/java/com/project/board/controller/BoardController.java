@@ -214,12 +214,17 @@ public class BoardController {
 
     // 해주세요 게시글 상세조회
     @RequestMapping("/Board/CustomerDetail")
-    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo) {
+    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo) {
         String menu_id = (String) map.get("menu_id");
         BoardVo boardVo = boardService.DetailCustomer(map);
 
+
+
+
+
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
+
 
         return "ctmboard/customerdetail";
     }
@@ -228,8 +233,11 @@ public class BoardController {
     //해주세요 댓글 조회
     @RequestMapping("/Board/CReplyList")
     @ResponseBody
-    public List<ReplyVo> replylist(BoardVo boardVo){
+    public List<ReplyVo> replylist(BoardVo boardVo,Model model){
         List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
+
+
+
         return replylist;
     }
 
@@ -270,24 +278,6 @@ public class BoardController {
 
     }
 
-    // 고객게시판 댓글 작성
-    @RequestMapping("/Board/CtmreplyWrite")
-    @ResponseBody
-    public void ctm_replyWrite(ReplyVo replyVo, BoardVo boardVo) {
-        replyService.writeReply(replyVo);
-    }
-
-    //배달게시판 댓글 작성
-    @RequestMapping("/Board/RidreplyWrite")
-    @ResponseBody
-    public void rider_replyWrite(RiderReplyVo riderReplyVo) {
-        replyService.RiderwriteReply(riderReplyVo);
-    }
-
-    @RequestMapping("/Board/CtmreplyUpdate")
-    public String ctm_replyUpdate(){
-
-    }
 
     //해주세요 게시글 수정 페이지
     @RequestMapping("/Board/CBoardUpdateForm")
@@ -395,6 +385,36 @@ public class BoardController {
         String menu_id = (String) map.get("menu_id");
 
         return "redirect:/Board/reviewList?menu_id=" + reviewVo.getMenu_id();
+    }
+
+    // 해주세요 댓글 작성
+    @RequestMapping("/Board/CtmreplyWrite")
+    @ResponseBody
+    public void ctm_replyWrite(ReplyVo replyVo, BoardVo boardVo) {
+        replyService.writeReply(replyVo);
+    }
+
+    //할게요 댓글 작성
+    @RequestMapping("/Board/RidreplyWrite")
+    @ResponseBody
+    public void rider_replyWrite(RiderReplyVo riderReplyVo) {
+        replyService.RiderwriteReply(riderReplyVo);
+    }
+
+    //해주세요 게시판 댓글 수정
+    @RequestMapping("/Board/CtmreplyUpdate")
+    @ResponseBody
+    public void ctm_replyUpdate(@RequestParam HashMap<String, Object> map){
+        System.out.println(map);
+        replyService.UpdateReply(map);
+
+    };
+
+    //해주세요 게시판 댓글 삭제
+    @RequestMapping("/Board/ReplyDelete")
+    @ResponseBody
+    public void ctm_replyDelete(@RequestParam int reply_number){
+        replyService.DeleteReply(reply_number);
     }
 
 

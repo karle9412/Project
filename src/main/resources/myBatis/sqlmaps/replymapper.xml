@@ -53,5 +53,19 @@
 
     </insert>
 
+    <update id="UpdateReply">
+        UPDATE REPLY
+        SET CONT = #{cont}
+        WHERE REPLY_NUMBER = #{reply_number}
+
+    </update>
+
+    <delete id="DeleteReply">
+        DELETE
+        FROM REPLY
+        WHERE REPLY_NUMBER = #{reply_number}
+
+    </delete>
+
 
 </mapper>

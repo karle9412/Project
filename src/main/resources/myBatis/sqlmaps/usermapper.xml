@@ -5,6 +5,15 @@
 
 <mapper namespace="User">
 
+    <select id="getUserid"
+            resultType="com.project.user.vo.UserVo">
+        SELECT USERID
+        FROM USERS
+        WHERE NICKNAME = #{nickname}
+        AND   EMAIL    = #{email}
+
+    </select>
+
     <select id="login"
             resultType="com.project.user.vo.UserVo">
         SELECT USERID,

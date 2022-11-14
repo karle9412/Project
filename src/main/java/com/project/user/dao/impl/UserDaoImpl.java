@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Repository("UserDao")
 public class UserDaoImpl implements UserDao {
@@ -38,6 +39,20 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void userDelete(UserVo userVo) {
+
+
         this.sqlSession.delete("User.UserDelete",userVo);
+    }
+
+    @Override
+    public String getUserid(UserVo userVo) {
+        UserVo getUserid = sqlSession.selectOne("User.getUserid", userVo);
+        if (getUserid != null) {
+            String realUserid = getUserid.getuserid();
+            return realUserid;
+        } else{
+            return null;
+        }
+
     }
 }

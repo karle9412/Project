@@ -95,7 +95,7 @@ $.ajax({
 
 </head>
 <body>
- <table id="board">
+ <table id="board_">
 
              <caption><h2>내용 보기</h2></caption>
              <tr>
@@ -107,10 +107,26 @@ $.ajax({
               <td>작성자</td>
               <td>${ boardVo.writer } </td>
              </tr>
-             <tr>
+             <t r>
               <td>제목</td>
               <td colspan="3">${ boardVo.title } </td>
              </tr>
+             <tr>
+             <div id = "startline">
+             <td>출발지</td>
+             <td >${boardVo.c_start}</td>
+             <td>목적지</td>
+             <td>${boardVo.c_end}</td>
+             <td>일자</td>
+             <td>${boardVo.delivery_indate}</td>
+             </tr>
+             <tr>
+             <td>비용</td>
+             <td>${boardVo.money}</td>
+             <td>수화물</td>
+             <td>${boardVo.luggage}</td>
+             </div>
+             <tr>
              <tr>
               <td>내용</td>
               <td colspan="3">${ boardVo.cont }</td>
@@ -126,6 +142,7 @@ $.ajax({
                 [<a href="javascript:history.back()">이전으로</a>]
                 [<a href="/">Home</a>]
               </td>
+              </tr>
               </table>
 
 <div id = Replyli>
@@ -152,8 +169,9 @@ $("#btnReply").click(function(){
  let cont  = $("#replytext").val();
  let board_number = "${boardVo.board_number }";
  let menu_id = "${menu_id}";
- let writer = "${boardVo.writer}"
+ let writer = "${writer}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+ console.log(param)
 
  $.ajax({
   type: "post",

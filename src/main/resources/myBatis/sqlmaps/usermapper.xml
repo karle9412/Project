@@ -69,6 +69,13 @@
             RIDER=#{rider}
         WHERE USERID=#{userid}
     </update>
+    
+    <!-- 비밀번호 변경 -->
+    <update id="changePasswd">
+        UPDATE USERS
+        SET PASSWD=#{passwd}
+        WHERE USERID=#{userid}
+    </update>
 
     <!-- 회원 정보 삭제 -->
     <delete id="UserDelete">

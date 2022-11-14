@@ -2,14 +2,13 @@ package com.project.user.controller;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 @org.springframework.stereotype.Controller
@@ -41,8 +40,8 @@ public class UserController {
 
     //비밀번호 변경을 위해 유저아이디를 찾는 화면으로 보내는 컨트롤러
     @RequestMapping("/changePasswdForm")
-    public String findPasswd(UserVo userVo){
-        System.out.println(userVo);
+    public String findPasswd(UserVo userVo, Model model){
+        model.addAttribute(userVo);
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
@@ -61,9 +60,7 @@ public class UserController {
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
-        System.out.println("map:" + map);
         UserVo vo = userService.login(map);
-        System.out.println("vo:" + vo);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
@@ -101,7 +98,6 @@ public class UserController {
     //유저 회원 정보 수정 할 때 쓰는 컨트롤러
     @RequestMapping("/update")
     public String update (UserVo userVo){
-        System.out.println(userVo);
         this.userService.userUpdate(userVo);
         return "users/getUser";
     }
@@ -153,5 +149,12 @@ public class UserController {
             check = "중복되지 않은 아이디입니다.";
             return check;
         }
+    }
+
+    //비밀번호 변경창에서 비밀번호 변경
+    @RequestMapping("/changePasswd")
+    public String changePasswd(UserVo userVo){
+        userService.changePasswd(userVo);
+        return "users/finishPasswd";
     }
 }

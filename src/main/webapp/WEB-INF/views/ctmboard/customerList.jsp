@@ -32,18 +32,18 @@
     </tr>
     <c:forEach var="board" items="${customerList}">
     <tr>
-       <td>${board.board_number}</td>
-       <td><a href="/Board/CustomerDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
-       <td>${board.writer}</td>
-       <td>${board.indate}</td>
-       <td>${board.board_local}</td>
-       <c:set var="check" value="${board.board_check}"/>
-       <c:if test="${check == 0}">
-         <td>접수대기<td>
-       </c:if>
-       <c:if test="${check == 1}">
-         <td>접수완료<td>
-       </c:if>
+      <td>${board.board_number}</td>
+      <td><a href="/Board/CustomerDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
+      <td>${board.writer}</td>
+      <td>${board.indate}</td>
+      <td>${board.board_local}</td>
+      <c:set var="check" value="${board.board_check}"/>
+      <c:if test="${check == 0}">
+        <td>접수대기<td>
+      </c:if>
+      <c:if test="${check == 1}">
+        <td>접수완료<td>
+      </c:if>
     </tr>
   </div>
     </c:forEach>

@@ -5,22 +5,30 @@
 
 <mapper namespace="Reply">
 
+    <select id="ReplyPaging"
+            resultType="com.project.reply.vo.ReplyVo">
+        SELECT *
+        FROM (SELECT   ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM, R.*
+              FROM     REPLY R
+              WHERE    BOARD_NUMBER = #{board_number}
+              ORDER BY REPLY_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+    </select>
+
+    <select id="ReplyCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM REPLY
+        WHERE BOARD_NUMBER = #{board_number}
+    </select>
+
     <select id="Replylist"
             resultType="com.project.reply.vo.ReplyVo">
-        SELECT
-        WRITER,
-        CONT,
-        REPLY_NUMBER,
-        BOARD_NUMBER,
-        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
-
-        FROM REPLY
-
-        WHERE
-        BOARD_NUMBER = #{board_number}
-
-        ORDER BY REPLY_NUMBER ASC
-
+        SELECT *
+        FROM (SELECT   ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM, R.*
+        FROM     REPLY R
+        WHERE    BOARD_NUMBER = #{board_number}
+        ORDER BY REPLY_NUMBER ASC)
     </select>
 
     <select id="RiderReplylist"

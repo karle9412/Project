@@ -3,6 +3,7 @@ package com.project.board.service;
 import com.project.board.vo.BoardVo;
 import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
+import com.project.reply.vo.ReplyVo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,4 +44,8 @@ public interface BoardService {
     int testCount();
 
     List<BoardVo> testList(HashMap<String, Object> map);
+
+    List<ReplyVo> replyList(HashMap<String, Object> map);
+
+    int replyCount(HashMap<String, Object> map);
 }

@@ -24,4 +24,8 @@ public interface ReplyDao {
     void DeleteR_Reply(int reply_number);
 
     void UpdateR_Reply(HashMap<String, Object> map);
+
+    int ReplyCount(HashMap<String, Object> map);
+
+    List<ReplyVo> ReplyList(HashMap<String, Object> map);
 }

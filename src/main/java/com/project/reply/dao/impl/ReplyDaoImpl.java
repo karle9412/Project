@@ -49,6 +49,16 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
+    public int ReplyCount(HashMap<String, Object> map) {
+        return sqlSession.selectOne("Reply.ReplyCount",map);
+    }
+
+    @Override
+    public List<ReplyVo> ReplyList(HashMap<String, Object> map) {
+        return sqlSession.selectList("Reply.ReplyPager",map);
+    }
+
+    @Override
     public void DeleteReply(int reply_number) {
         sqlSession.delete("Reply.DeleteReply",reply_number);
     }

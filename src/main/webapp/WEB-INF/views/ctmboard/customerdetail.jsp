@@ -82,21 +82,12 @@ $.ajax({
     alert("댓글이 삭제되었습니다");
     replylist();
 }
-
 });
 }
-
-
-
-
-
 </script>
-
-
 </head>
 <body>
  <table id="board">
-
              <caption><h2>내용 보기</h2></caption>
              <tr>
               <td>번호</td>
@@ -127,27 +118,15 @@ $.ajax({
                 [<a href="/">Home</a>]
               </td>
               </table>
-
 <div id = Replyli>
-
 </div>
-
 <div style="width:700px; text-align:center;">
-
        <br>
       <textarea rows ="5" cols="80" id="replytext"
       placeholder="댓글을 작성하세요"></textarea>
        <button type="button" id="btnReply" class="btnReply">작성</button>
        </br>
-
-
-
-
-
 <script>
-
-
-
 $("#btnReply").click(function(){
  let cont  = $("#replytext").val();
  let board_number = "${boardVo.board_number }";
@@ -168,15 +147,34 @@ $("#btnReply").click(function(){
     if($("#replytext").val() == ''){
       alert('댓글을 입력해주세요.')
      }
-
   }
-
   });
-
  });
-
-
-
+function replypaging(){
+$.ajax({
+ type:"get",
+ url: "/Board/ReplyPager?board_number=${boardVo.board_number}&menu_id=${menu_id}&pageNum=2&contentNum=10",
+ success: function(resultList){
+ let tal = "";
+ tal += '<table id="pager">'
+ tal += '<tr>'
+ tal += '<td>'
+ tal += '<c:if test="${replyPager.prev}">'
+ tal += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>'
+ tal += '</c:if>'
+ tal += '<c:forEach begin="${replyPager.getStartPage()}" end="${replyPager.getEndPage()}" var="idx">'
+ tal += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${idx}&contentNum=${idx*10}">${idx}</a>'
+ tal += '</c:forEach>'
+ tal += '<c:if test="${replyPager.next}">'
+ tal += '<a href="/Board/ReplyPager?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>'
+ tal += '</c:if>'
+ tal += '</td>'
+ tal += '</tr>'
+ tal += '</table>'
+ $('#ReplyPager').html(tal);
+}
+});
+}
 
 
 
@@ -184,11 +182,11 @@ function replylist(){
 
  $.ajax({
  type:"get",
- url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+ url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getPageNum()+1}&contentNum=${(replyPager.getContentNum())}",
  success: function(resultList){
  let html = "";
- html+= '<table>';
-     for(var i =0; i<resultList.length; i++){
+ html += '<table>';
+     for(var i =${replyPager.getStartPage()}-1; i<${replyPager.getStartPage()}*10; i++){
           html+= '<tr>';
           html+= '<td>';
           html+= resultList[i].writer;
@@ -211,21 +209,17 @@ function replylist(){
           html+='</td>'
           html+= '</tr>';
     }
-
-    html+='</table>';
-    $('#Replyli').html(html);
-
+ html+='</table>';
+replypaging();
 
 
-
-}
+ $('#Replyli').html(html);
+ }
  });
+
 }
-
-
-
 </script>
-
-
+<div id="ReplyPager">
+<div>
 </body>
 </html>

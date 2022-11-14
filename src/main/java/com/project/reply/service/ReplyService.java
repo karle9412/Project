@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ReplyService {
 
-    List<ReplyVo> getReplylist(int board_number);
+    List<ReplyVo> getReplylist(int boardVo);
 
     List<RiderReplyVo> getRiderReplylist(int board_number);
 
@@ -25,4 +25,8 @@ public interface ReplyService {
     void DeleteR_Reply(int reply_number);
 
     void UpdateR_Reply(HashMap<String, Object> map);
+
+    int replyCount(HashMap<String, Object> map);
+
+    List<ReplyVo> replyList(HashMap<String, Object> map);
 }

@@ -1,16 +1,20 @@
 package com.project.board.vo;
 
-public class BoardPager {
+public class ReplyPager {
 
-    private int totalCount;   // 게시글 총 개수
+
+    private int totalCount;   // 댓글 총 개수
     private int pageNum;      // 현재 페이지 번호
-    private int contentNum;   // 한 페이지에 보여줄 게시글 개수
+    private int contentNum;   // 한 페이지에 보여줄 댓글 개수
     private int startPage=1;  // 현재 페이지 블록 시작 번호
     private int endPage=5;    // 현재 페이지 블록 종료 번호
     private boolean prev;     // 이전 페이지로 가는 화살표
     private boolean next;     // 다음 페이지로 가는 화살표
     private int currentBlock; // 다음 페이지로 가는 화살표
-    private double lastBlock;    // 다음 페이지로 가는 화살표
+    private double lastBlock; // 다음 페이지로 가는 화살표
+    private int board_number;
+
+
 
     public void prevNext(int pageNum){ // 이전, 다음 페이지 블록
 
@@ -34,6 +38,14 @@ public class BoardPager {
         int totalPage = totalCount / 10;
 
         return totalPage;
+    }
+
+    public int getBoard_number() {
+        return board_number;
+    }
+
+    public void setBoard_number(int board_number) {
+        this.board_number = board_number;
     }
 
     public int getTotalCount() {
@@ -124,7 +136,7 @@ public class BoardPager {
 
     @Override
     public String toString() {
-        return "BoardPager{" +
+        return "ReplyPager{" +
                 "totalCount=" + totalCount +
                 ", pageNum=" + pageNum +
                 ", contentNum=" + contentNum +
@@ -134,6 +146,7 @@ public class BoardPager {
                 ", next=" + next +
                 ", currentBlock=" + currentBlock +
                 ", lastBlock=" + lastBlock +
+                ", board_number=" + board_number +
                 '}';
     }
 }

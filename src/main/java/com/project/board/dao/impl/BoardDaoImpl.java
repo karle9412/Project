@@ -2,8 +2,10 @@ package com.project.board.dao.impl;
 
 import com.project.board.dao.BoardDao;
 import com.project.board.vo.BoardVo;
+import com.project.board.vo.ReplyPager;
 import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
+import com.project.reply.vo.ReplyVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -139,6 +141,15 @@ public class BoardDaoImpl implements BoardDao {
         List<BoardVo> boardList = sqlSession.selectList("Board.BoardPaging",map);
         return boardList;
     }
+
+    @Override
+    public List<ReplyVo> replyList(HashMap<String, Object> map) {
+        List<ReplyVo> replyList = sqlSession.selectList("Reply.ReplyPaging",map);
+        return replyList;
+    }
+
+    @Override
+    public int replyCount(HashMap<String, Object> map) { return sqlSession.selectOne("Reply.ReplyCount",map) ; }
 
 
 }

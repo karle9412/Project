@@ -48,7 +48,9 @@ public class UserController {
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
+        System.out.println("map:" + map);
         UserVo vo = userService.login(map);
+        System.out.println("vo:" + vo);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);

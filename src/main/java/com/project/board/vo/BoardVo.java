@@ -10,19 +10,20 @@ public class BoardVo {
     private String cont;
     private String indate;
     private String board_check;
+    private String delivery_check;
     private String c_start;
     private String c_end;
     private String money;
     private String c_time;
     private String luggage;
 
-
-
-    public BoardVo() {}
+    private String delivery_indate;
 
 
     //CUSTOMER_BOARD 생성자
-    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String c_start, String c_end, String money, String c_time, String luggage) {
+    public BoardVo() {}
+
+    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String delivery_check, String c_start, String c_end, String money, String c_time, String luggage, String delivery_indate) {
         this.board_number = board_number;
         this.menu_id = menu_id;
         this.title = title;
@@ -31,11 +32,29 @@ public class BoardVo {
         this.cont = cont;
         this.indate = indate;
         this.board_check = board_check;
+        this.delivery_check = delivery_check;
         this.c_start = c_start;
         this.c_end = c_end;
         this.money = money;
         this.c_time = c_time;
         this.luggage = luggage;
+        this.delivery_indate = delivery_indate;
+    }
+
+    public String getDelivery_indate() {
+        return delivery_indate;
+    }
+
+    public void setDelivery_indate(String delivery_indate) {
+        this.delivery_indate = delivery_indate;
+    }
+
+    public String getDelivery_check() {
+        return delivery_check;
+    }
+
+    public void setDelivery_check(String delivery_check) {
+        this.delivery_check = delivery_check;
     }
 
     public int getBoard_number() {
@@ -98,7 +117,7 @@ public class BoardVo {
         return board_check;
     }
     public void setBoard_check (String board_check) {
-        this.board_check = this.board_check;
+        this.board_check = board_check;
     }
 
     public String getC_start() {
@@ -152,11 +171,13 @@ public class BoardVo {
                 ", cont='" + cont + '\'' +
                 ", indate='" + indate + '\'' +
                 ", board_check='" + board_check + '\'' +
+                ", delivery_check='" + delivery_check + '\'' +
                 ", c_start='" + c_start + '\'' +
                 ", c_end='" + c_end + '\'' +
                 ", money='" + money + '\'' +
                 ", c_time='" + c_time + '\'' +
                 ", luggage='" + luggage + '\'' +
+                ", delivery_indate='" + delivery_indate + '\'' +
                 '}';
     }
 }

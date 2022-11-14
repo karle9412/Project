@@ -9,11 +9,12 @@ public class UserVo {
     private String user_local;
     private String rider;
     private String indate;
+    private String phonenumber;
 
     public UserVo (){}
-    
+
     //기본적인 생성자
-    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate) {
+    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate, String phonenumber) {
         this.userid = userid;
         this.passwd = passwd;
         this.nickname = nickname;
@@ -21,7 +22,15 @@ public class UserVo {
         this.user_local = user_local;
         this.rider = rider;
         this.indate = indate;
+        this.phonenumber = phonenumber;
     }
+
+
+    public String getPhonenumber() { return phonenumber; }
+
+    public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
+
+    public String getUserid() {
 
     //유저아이디 찾기 할 때 쓰는 생성자
     public UserVo(String nickname, String email) {
@@ -93,13 +102,14 @@ public class UserVo {
     @Override
     public String toString() {
         return "UserVo{" +
-                "userid='" + this.userid + '\'' +
-                ", passwd='" + this.passwd + '\'' +
-                ", nickname='" + this.nickname + '\'' +
-                ", email='" + this.email + '\'' +
-                ", userLocal='" + this.user_local + '\'' +
-                ", rider='" + this.rider + '\'' +
-                ", indate='" + this.indate + '\'' +
+                "userid='" + userid + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", user_local='" + user_local + '\'' +
+                ", rider='" + rider + '\'' +
+                ", indate='" + indate + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
                 '}';
     }
 }

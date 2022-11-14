@@ -3,6 +3,7 @@ package com.project.reply.service;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ReplyService {
@@ -16,4 +17,12 @@ public interface ReplyService {
     void writeReply(ReplyVo replyVo);
 
     void RiderwriteReply(RiderReplyVo riderReplyVo);
+
+    void UpdateReply(HashMap<String, Object> map);
+
+    void DeleteReply(int reply_number);
+
+    void DeleteR_Reply(int reply_number);
+
+    void UpdateR_Reply(HashMap<String, Object> map);
 }

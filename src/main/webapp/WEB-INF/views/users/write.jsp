@@ -9,6 +9,65 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<script>
+$(function(){
+    $('form').on('submit',function(e){
+
+        if($('[name=userid]').val()==''){
+            alert('아이디를 입력하세요');
+            return false;
+        }
+
+        if($('[name=idCheckResult]').html()== "중복된 아이디입니다."){
+            alert('중복확인을 다시 해주세요');
+            return false;
+        }
+
+        if($('[name=passwd]').val()==''){
+            alert('비밀번호를 입력하세요');
+            return false;
+        }
+
+        if($('[name=nickname]').val()==''){
+            alert('닉네임을 입력하세요');
+            return false;
+        }
+
+        if($('[name=email]').val()==''){
+            alert('이메일을 입력하세요');
+            return false;
+        }
+
+        if($('[name=user_local]').val()==''){
+            alert('지역을 선택해주세요');
+            return false;
+        }
+
+    });
+
+    $('#idCheck').on('click', function(e){
+
+        let userid = $('[name=userid]').val();
+
+    $.ajax({
+        type : 'POST',
+        url : "useridCheck",
+        dataType : "text",
+        data : {
+            userid : userid
+        },
+        success : function(useridCheck){
+            $("#idCheckResult").html(useridCheck);
+        }
+    })
+        e.preventDefault();
+        e.stopPropagation();
+    });
+});
+
+</script>
 </head>
 <body>
     <header class="w3-container w3-teal w3-center">
@@ -19,6 +78,13 @@
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
                 <input class="w3-input w3-border" name="userid" type="text" placeholder="ID">
+            </div>
+            <div class="w3-rest">
+                <div>
+                    <span id="idCheckResult" name="idCheckResult"></span>
+                    <button id="idCheck" class="w3-button w3-section w3-light-green w3-ripple w3-text-white w3-right"
+                     style=" margin-top: 10px; padding-top: 4px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px;">중복확인</button>
+                </div>
             </div>
         </div>
         <div class="w3-row w3-section">
@@ -36,7 +102,7 @@
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="email" type="text" placeholder="EMail">
+                <input class="w3-input w3-border" name="email" type="email" placeholder="EMail">
             </div>
         </div>
         <select id="LOACTION" name="user_local">

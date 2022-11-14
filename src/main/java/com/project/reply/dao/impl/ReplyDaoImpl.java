@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -34,5 +35,25 @@ public class ReplyDaoImpl implements ReplyDao {
     @Override
     public void RiderwriteReply(RiderReplyVo riderReplyVo) {
         sqlSession.insert("Reply.RiderReply",riderReplyVo);
+    }
+
+    @Override
+    public void UpdateReply(HashMap<String, Object> map) {
+        sqlSession.update("Reply.UpdateReply", map);
+    }
+
+    @Override
+    public void UpdateR_Reply(HashMap<String, Object> map) {
+        sqlSession.update("Reply.UpdateR_Reply",map);
+    }
+
+    @Override
+    public void DeleteReply(int reply_number) {
+        sqlSession.delete("Reply.DeleteReply",reply_number);
+    }
+
+    @Override
+    public void DeleteR_Reply(int reply_number) {
+        sqlSession.delete("Reply.DeleteR_Reply", reply_number);
     }
 }

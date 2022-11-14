@@ -20,7 +20,75 @@
 <script>
 window.onload = function(){
 replylist();
+
 }
+
+function updateReplyForm(reply_number,writer){
+let k = document.getElementById("R"+reply_number);
+
+   let form = "";
+   form += '<div>';
+   form += '<input type= "hidden" name="reply_numbery" id ="reply_number" value= '+reply_number+'>';
+   form += '<input type= "hidden"  name="writer" id= "writer" value='+ writer +'>'
+   form += '<textarea class = "replyclass" id= "replycontent" cols="80" rows="3">';
+   form += k.textContent;
+   form += "</textarea>";
+   form += "<br/>";
+   form +='<button type = "button" class="Updatebtn" onClick="updateReply(' + reply_number +',\'' + writer + '\')"> 완료 </button>';
+   form +='<button type = "button" class="DeleteBtn" onClick="replylist()" >';
+   form += '취소';
+   form += '</button>';
+   form += '</div>';
+   form += '</br>';
+   document.getElementById("R"+reply_number).innerHTML = form;
+   $("#replyupdateBtn").css('display', 'none');
+   $("#replydeleteBtn").css('display', 'none');
+    }
+
+function updateReply(reply_number, writer){
+let reply_content = $("#replycontent").val();
+let replynumber = reply_number;
+let reply_writer = writer;
+let updateurl = "/Board/CtmreplyUpdate?reply_number=";
+let updateurl1= "&cont="
+let param = {"cont":reply_content, "reply_number":replynumber, "writer":reply_writer};
+
+$.ajax({
+ type: "POST",
+   url: updateurl + replynumber + updateurl1 + reply_content,
+   data: param,
+   success: function(result){
+    alert("댓글이  수정되었습니다");
+      replylist();
+},
+
+   error: function(error_){
+   if($('#replycontent').val() == ''){
+         alert('댓글을 입력해주세요.')
+   }
+   }
+
+});
+}
+
+function deleteReply(reply_number){
+let deleturl = "/Board/ReplyDelete?reply_number="
+let DeleteReply_number = reply_number
+
+$.ajax({
+    type: "POST",
+    url: deleturl + DeleteReply_number,
+    success: function(deleteresult){
+    alert("댓글이 삭제되었습니다");
+    replylist();
+}
+
+});
+}
+
+
+
+
 
 </script>
 
@@ -95,51 +163,63 @@ $("#btnReply").click(function(){
    alert("댓글이 등록되었습니다");
     $("#replytext").val('');
      replylist();
+   },
+   error: function(xhr){
+    if($("#replytext").val() == ''){
+      alert('댓글을 입력해주세요.')
+     }
 
   }
+
   });
+
  });
 
-function replylist(list){
 
+
+
+
+
+function replylist(){
 
  $.ajax({
  type:"get",
  url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}",
  success: function(resultList){
- console.log(resultList);
  let html = "";
  html+= '<table>';
-
      for(var i =0; i<resultList.length; i++){
-                html += "<tr>";
-          		html += "<th>작성자</th>";
-          		html += "<th>내용</th>";
-          		html += "<th>작성일</th>";
-          		html += "<th>수정</th>";
-          		html += "<th>삭제</th>";
-          		html += "</tr>";
-
           html+= '<tr>';
           html+= '<td>';
           html+= resultList[i].writer;
           html+= '</td>';
-          html+= '<td>';
+          html+= '</tr>';
+          html+= '<tr>';
+          html+= '<td id="R'+ resultList[i].reply_number +'">';
           html+= resultList[i].cont;
           html+= '</td>';
+          html+= '</tr>';
+          html+= '<tr>';
           html+='<td>';
           html+= resultList[i].indate;
           html+='</td>';
+          html+='<td>';
+          html+='<button type="button" class="btn" id = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+          html+= '</td>';
+          html+= '<td>';
+          html+='<button type="button" class="btndelte" id = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ')">삭제</button>';
+          html+='</td>'
           html+= '</tr>';
     }
 
     html+='</table>';
-    console.log(html);
     $('#Replyli').html(html);
-
 }
  });
 }
+
+
+
 </script>
 
 

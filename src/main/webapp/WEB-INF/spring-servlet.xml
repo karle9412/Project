@@ -72,7 +72,8 @@
 
     <!--
       Interceptor 설정 추가
-공통 Interceptor
+    공통 Interceptor
+    -->
     <mvc:interceptors>       
        <mvc:interceptor>
          <mvc:mapping path="/**"/>
@@ -83,7 +84,6 @@
          </bean>       
        </mvc:interceptor>    
     </mvc:interceptors>
-    -->
 </beans>
 
 

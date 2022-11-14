@@ -49,7 +49,7 @@
               <td colspan="4">
                      [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
                      [<a href="/Board/RVUpdateForm?board_number=${reviewBoardVo.board_number}&menu_id=${menu_id}">수정</a>]
-                     [<a href="/Board/Delete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
+                     [<a href="/Board/RVBoardDelete?board_number=${reviewBoardVo.board_number}&menu_id=${menu_id}">삭제</a>]
                      [<a href="/Board/reviewList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                      [<a href="javascript:history.back()">이전으로</a>]
                      [<a href="/">Home</a>]

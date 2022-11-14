@@ -177,7 +177,7 @@ $("#btnReply").click(function(){
  let cont  = $("#replytext").val();
  let board_number = "${riderBoardVo.board_number }";
  let menu_id = "${menu_id}";
- let writer = "${riderBoardVo.writer}"
+ let writer = "${writer}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
  $.ajax({
   type: "post",

@@ -23,6 +23,25 @@ replylist();
 
 }
 
+function DeleteBoard(e){
+if("${writer}" != "${boardVo.writer}"){
+alert("권한이 없습니다");
+}
+else{
+$.ajax({
+type:"get",
+url:"/Board/CBoardDelete?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+
+success:function(result){
+alert("삭제되었습니다");
+location.href='/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10';
+}
+
+
+});
+}
+}
+
 function updateReplyForm(reply_number,writer){
 let k = document.getElementById("R"+reply_number);
 
@@ -137,7 +156,7 @@ $.ajax({
                      </td>
                 [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
                 [<a href="/Board/CBoardUpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}">수정</a>]
-                [<a href="/Board/CBoardDelete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
+                <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
                 [<a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                 [<a href="javascript:history.back()">이전으로</a>]
                 [<a href="/">Home</a>]

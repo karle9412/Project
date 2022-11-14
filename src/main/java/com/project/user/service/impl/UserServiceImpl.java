@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService {
         String getUserid = userDao.getUserid(userVo);
         return getUserid;
     }
+
+    @Override
+    public String useridCheck(UserVo userVo) {
+        String useridCheck = this.userDao.useridCheck(userVo);
+        return useridCheck;
+    }
 }

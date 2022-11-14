@@ -55,4 +55,14 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
+
+    public String useridCheck(UserVo userVo) {
+        UserVo useridCheck = this.sqlSession.selectOne("User.useridCheck", userVo);
+        if (useridCheck != null) {
+            String check = useridCheck.getuserid();
+            return check;
+        } else{
+            return null;
+        }
+    }
 }

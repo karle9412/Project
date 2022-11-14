@@ -25,6 +25,9 @@ public class UserVo {
         this.nickname = nickname;
         this.email = email;
     }
+    public UserVo(String userid){
+        this.userid = userid;
+    }
 
     public String getuserid() {
         return this.userid;

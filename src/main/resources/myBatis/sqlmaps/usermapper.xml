@@ -70,6 +70,14 @@
 
     </delete>
 
+    <select id="useridCheck"
+            resultType="com.project.user.vo.UserVo">
+        SELECT USERID
+        FROM USERS
+        WHERE USERID = #{userid}
+    </select>
+
+
 
 
 </mapper>

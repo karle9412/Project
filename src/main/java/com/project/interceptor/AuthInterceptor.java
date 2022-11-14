@@ -27,6 +27,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if(requestUrl.contains("/login")){
             return true;
         }
+        if(requestUrl.contains("/writeForm")) {
+            return true;
+        }
 
 
         Object obj = httpSession.getAttribute("login");

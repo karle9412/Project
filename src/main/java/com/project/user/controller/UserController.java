@@ -33,7 +33,7 @@ public class UserController {
     public String writeForm(){
         return "users/write";
     }
-    
+
     //유저 아이디 찾는 화면으로 보내는 컨트롤러
     @RequestMapping("/findUserid")
     public String findUserid(){return "users/findUserid";}
@@ -47,7 +47,7 @@ public class UserController {
     //회원 가입 시 쓰는 컨트롤러
     @RequestMapping("/write")
     public String write(UserVo vo){
-        this.userService.userInsert(vo);
+        userService.userInsert(vo);
         return "redirect:/login";
     }
 
@@ -60,11 +60,11 @@ public class UserController {
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
-        UserVo vo = this.userService.login(map);
+        UserVo vo = userService.login(map);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "boards/requestList";
+            returnURL = "/ctmboard/customerList";
         }else{
             returnURL = "redirect:/login";
         }
@@ -73,10 +73,10 @@ public class UserController {
     }
 
     //유저 상세 정보 화면에서 쓰는 컨트롤러
-    @RequestMapping("/getUser")
+    @RequestMapping("/User/getUser")
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
-        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
+        Object getUser = userService.getUser(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
         mv.setViewName("users/getUser");
@@ -127,14 +127,13 @@ public class UserController {
     public String getUserid (@RequestParam("nickname") String nickname,
                              @RequestParam("email") String email) throws UnsupportedEncodingException {
         UserVo userVo = new UserVo(nickname, email);
-        String getUserid = this.userService.getUserid(userVo);
+        String getUserid = userService.getUserid(userVo);
         if (getUserid == null){
-
             getUserid = "닉네임과 이메일을 다시 확인해주세요";//"check nickname, email";
         }
         return getUserid;
     }
-    
+
     //회원 가입 창에서 아이디 중복확인을 하기 위해
     //사용하는 컨트롤러
     @RequestMapping(value = "/useridCheck", method={RequestMethod.POST}, produces = "application/text; charset=UTF-8")

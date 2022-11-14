@@ -7,21 +7,21 @@
   <table id="menu">
   <tr>
     <td>
-    <a href="/Board/RequestList?menu_id=MENU_01">메인(일단 해주세요로감)</a>
+    <a href="/Board/customerList?menu_id=MENU_01">메인(일단 해주세요로감)</a>
     </td>
   </tr>
   <tr>
     <td>
-    <a href="/Board/RequestList?menu_id=MENU_01">해주세요</a>
+    <a href="/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10">해주세요</a>
     </td>
   </tr>
   <tr>
     <td>
-    <a href="/Board/RequestList?menu_id=MENU_02">할게요</a>
+    <a href="/Board/riderList?menu_id=MENU_02&pageNum=1&contentNum=10">할게요</a>
     </td>
   </tr>
     <td>
-    <a href="/Board/LatterList?menu_id=MENU_03">후기</a>
+    <a href="/Board/reviewList?menu_id=MENU_03&pageNum=1&contentNum=10">후기</a>
     </td>
   </tr>
   <tr>

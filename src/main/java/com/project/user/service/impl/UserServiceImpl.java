@@ -18,21 +18,21 @@ public class UserServiceImpl implements UserService {
     //회원가입
     @Override
     public void userInsert(UserVo vo) {
-        this.userDao.userInsert(vo);
+        userDao.userInsert(vo);
 
     }
 
     //로그인
     @Override
     public UserVo login(HashMap<String, Object> map) {
-        UserVo vo = this.userDao.login(map);
+        UserVo vo = userDao.login(map);
         return vo;
     }
 
     //회원정보 상세내용
     @Override
     public Object getUser(Object login) {
-        Object getUser = this.userDao.getUser(login);
+        Object getUser = userDao.getUser(login);
         return getUser;
     }
 
@@ -46,12 +46,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void userDelete(UserVo userVo) {
         this.userDao.userDelete(userVo);
+
     }
 
     //유저아이디 찾기
     @Override
     public String getUserid(UserVo userVo) {
-        String getUserid = this.userDao.getUserid(userVo);
+        String getUserid = userDao.getUserid(userVo);
         return getUserid;
     }
 

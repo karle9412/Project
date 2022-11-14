@@ -1,6 +1,6 @@
 package com.project.reply.vo;
 
-public class ReplyVo {
+public class RiderReplyVo {
 
     private int reply_number;
     private int board_number;
@@ -8,10 +8,10 @@ public class ReplyVo {
     private String writer;
     private String indate;
 
-    public ReplyVo() {
+    public RiderReplyVo() {
     }
 
-    public ReplyVo(int reply_number, int board_number, String cont, String writer, String indate) {
+    public RiderReplyVo(int reply_number, int board_number, String cont, String writer, String indate) {
         this.reply_number = reply_number;
         this.board_number = board_number;
         this.cont = cont;
@@ -61,7 +61,7 @@ public class ReplyVo {
 
     @Override
     public String toString() {
-        return "ReplyVo{" +
+        return "RiderReplyVo{" +
                 "reply_number=" + reply_number +
                 ", board_number=" + board_number +
                 ", cont='" + cont + '\'' +
@@ -70,5 +70,3 @@ public class ReplyVo {
                 '}';
     }
 }
-
-

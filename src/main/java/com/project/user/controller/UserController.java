@@ -36,7 +36,7 @@ public class UserController {
 
     @RequestMapping("/write")
     public String write(UserVo vo){
-        this.userService.userInsert(vo);
+        userService.userInsert(vo);
         return "redirect:/login";
     }
 
@@ -48,11 +48,11 @@ public class UserController {
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
-        UserVo vo = this.userService.login(map);
+        UserVo vo = userService.login(map);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "boards/requestList";
+            returnURL = "/ctmboard/customerList";
         }else{
             returnURL = "redirect:/login";
         }
@@ -60,31 +60,21 @@ public class UserController {
 
     }
 
-    @RequestMapping("/getUser")
+    @RequestMapping("/User/getUser")
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
-        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
+        Object getUser = userService.getUser(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
-        mv.setViewName("users/getUser");
+        mv.setViewName("/users/getUser");
         return mv;
     }
 
     @RequestMapping("/updateForm")
-    public ModelAndView updateForm(HttpSession httpSession){
-        ModelAndView mv = new ModelAndView();
-        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
-        mv.addObject(getUser);
-        mv.setViewName("users/update");
-        return mv;
+    public String updateForm(){
+        return "/users/update";
     }
 
-    @RequestMapping("/update")
-    public String update (UserVo userVo){
-        System.out.println(userVo);
-        this.userService.userUpdate(userVo);
-        return "users/getUser";
-    }
 
     @RequestMapping("/delete")
     public String delete (HttpSession httpSession) {

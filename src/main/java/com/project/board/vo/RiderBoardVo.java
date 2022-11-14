@@ -5,7 +5,7 @@ public class RiderBoardVo {
     private String menu_id;
     private String title;
     private String writer;
-    private String board_local;
+    private String rider_local;
     private String cont;
     private String indate;
     private String board_check;
@@ -18,12 +18,12 @@ public class RiderBoardVo {
     public RiderBoardVo() {
     }
 
-    public RiderBoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String r_start, String r_end, String money, String r_time, String luggage) {
+    public RiderBoardVo(int board_number, String menu_id, String title, String writer, String rider_local, String cont, String indate, String board_check, String r_start, String r_end, String money, String r_time, String luggage) {
         this.board_number = board_number;
         this.menu_id = menu_id;
         this.title = title;
         this.writer = writer;
-        this.board_local = board_local;
+        this.rider_local = rider_local;
         this.cont = cont;
         this.indate = indate;
         this.board_check = board_check;
@@ -34,6 +34,110 @@ public class RiderBoardVo {
         this.luggage = luggage;
     }
 
+    public int getBoard_number() {
+        return board_number;
+    }
+
+    public void setBoard_number(int board_number) {
+        this.board_number = board_number;
+    }
+
+    public String getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(String menu_id) {
+        this.menu_id = menu_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String getBoard_local() {
+        return rider_local;
+    }
+
+    public void setBoard_local(String rider_local) {
+        this.rider_local = rider_local;
+    }
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
+    }
+
+    public String getIndate() {
+        return indate;
+    }
+
+    public void setIndate(String indate) {
+        this.indate = indate;
+    }
+
+    public String getBoard_check() {
+        return board_check;
+    }
+
+    public void setBoard_check(String board_check) {
+        this.board_check = board_check;
+    }
+
+    public String getR_start() {
+        return r_start;
+    }
+
+    public void setR_start(String r_start) {
+        this.r_start = r_start;
+    }
+
+    public String getR_end() {
+        return r_end;
+    }
+
+    public void setR_end(String r_end) {
+        this.r_end = r_end;
+    }
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
+
+    public String getR_time() {
+        return r_time;
+    }
+
+    public void setR_time(String r_time) {
+        this.r_time = r_time;
+    }
+
+    public String getLuggage() {
+        return luggage;
+    }
+
+    public void setLuggage(String luggage) {
+        this.luggage = luggage;
+    }
+
     @Override
     public String toString() {
         return "RiderBoardVo{" +
@@ -41,7 +145,7 @@ public class RiderBoardVo {
                 ", menu_id='" + menu_id + '\'' +
                 ", title='" + title + '\'' +
                 ", writer='" + writer + '\'' +
-                ", board_local='" + board_local + '\'' +
+                ", rider_local='" + rider_local + '\'' +
                 ", cont='" + cont + '\'' +
                 ", indate='" + indate + '\'' +
                 ", board_check='" + board_check + '\'' +

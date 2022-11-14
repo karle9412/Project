@@ -8,19 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
- <div id="main">
- <table id="menu">
-   <tr>
-   <c:forEach var="menu"  items="${ menuList }" >
-    <td>
-       <a href="/Board/List?menu_id=${menu.menu_id}"> ${ menu.menu_id }</a>
-       ${ menu.menu_name }
-    </td>
-    </c:forEach>
-    </tr>
 
      <h2>글쓰기</h2>
-     <form action="/Board/Write" method="POST">
+     <form action="/Board/RBoardWrite" method="POST">
      <input type = "hidden" name = "menu_id" value = "${menu_id}"/>
      <div>
      제목:<input type="text" name="title" />

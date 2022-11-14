@@ -45,6 +45,10 @@ $(function(){
             alert('지역을 선택해주세요');
             return false;
         }
+        if($('[name=phoneNumber]').val()==''){
+            alert('전화번호를 입력해주세요');
+            return false;
+        }
 
     });
 
@@ -129,7 +133,7 @@ $(function(){
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="upfile" type="file"/>
+                <input class="w3-input w3-border" name="phoneNumber" type="text" placeholder="000-0000-0000"/>
             </div>
         </div>
         <select id="LOACTION" name="user_local">

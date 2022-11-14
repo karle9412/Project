@@ -35,7 +35,8 @@
         EMAIL,
         USER_LOCAL,
         RIDER,
-        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE,
+        PHONENUMBER
         FROM USERS
         WHERE USERID = #{userid}
         AND  PASSWD = #{passwd}
@@ -58,8 +59,9 @@
         NICKNAME,
         EMAIL,
         USER_LOCAL,
-        RIDER)
-        VALUES (#{userid}, #{passwd}, #{nickname}, #{email} , #{user_local} , #{rider})
+        RIDER,
+        PHONENUMBER)
+        VALUES (#{userid}, #{passwd}, #{nickname}, #{email} , #{user_local} , #{rider}, #{phoneNumber})
     </update>
 
     <!-- 회원 정보 수정 -->

@@ -16,20 +16,52 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                              Object handler)
             throws Exception {
         HttpSession httpSession = request.getSession();
-        System.out.println(httpSession.getAttribute("login"));
 
         String requestUrl = request.getRequestURL().toString();
         // 페이지 들어왔을 때 기본 화면으로 보내는 예외 처리
-        if(requestUrl.equals("/")){
+
+        if(requestUrl.equals("http://localhost:8080/")){
             return true;
         }
         //로그인 화면도 예외 처리
         if(requestUrl.contains("/login")){
             return true;
         }
+        //회원가입 화면 예외 처리
         if(requestUrl.contains("/writeForm")) {
             return true;
         }
+        //유저 아이디 찾는 화면 예외 처리
+        if(requestUrl.contains("/findUserid")) {
+            return true;
+        }
+        //비밀번호 찾는 화면 예외 처리
+        if(requestUrl.contains("/changePasswdForm")) {
+            return true;
+        }
+        //회원가입 예외처리
+        if(requestUrl.contains("/write")) {
+            return true;
+        }
+        //로그인 예외처리
+        if(requestUrl.contains("/loginProcess")) {
+            return true;
+        }
+        
+        //유저 아이디 찾기에서 중복확인 예외처리
+        if(requestUrl.contains("/getUserid")) {
+            return true;
+        }
+
+        //회원가입 창에서 중복확인 예외처리
+        if(requestUrl.contains("/useridCheck")) {
+            return true;
+        }
+        //비밀번호 변경창에서 비밀번호 변경 예외 처리
+        if(requestUrl.contains("/changePasswd")) {
+            return true;
+        }
+
 
 
         Object obj = httpSession.getAttribute("login");

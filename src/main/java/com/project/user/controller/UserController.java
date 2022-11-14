@@ -2,6 +2,7 @@ package com.project.user.controller;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -60,11 +61,13 @@ public class UserController {
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
+        System.out.println("map:" + map);
         UserVo vo = userService.login(map);
+        System.out.println("vo:" + vo);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "/ctmboard/customerList";
+            returnURL = "ctmboard/customerList";
         }else{
             returnURL = "redirect:/login";
         }
@@ -73,7 +76,7 @@ public class UserController {
     }
 
     //유저 상세 정보 화면에서 쓰는 컨트롤러
-    @RequestMapping("/User/getUser")
+    @RequestMapping("/getUser")
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
         Object getUser = userService.getUser(httpSession.getAttribute("login"));

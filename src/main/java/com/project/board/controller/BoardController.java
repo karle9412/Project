@@ -10,6 +10,9 @@ import com.project.menus.vo.MenuVo;
 import com.project.reply.service.ReplyService;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
+import com.project.user.dao.UserDao;
+import com.project.user.service.UserService;
+import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
@@ -153,11 +157,15 @@ public class BoardController {
     //해주세요 게시판 글 작성 페이지
 
     @RequestMapping("/Board/CBoardWriteForm")
-    public String CBoardwriteform(BoardVo boardVo, Model model) {
+    public String CBoardwriteform(BoardVo boardVo, HttpSession httpSession, Model model) {
+        String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
+        System.out.println(nickName);
+
+
         String menu_id = boardVo.getMenu_id();
         System.out.println(menu_id);
 
-
+        model.addAttribute("writer", nickName);
         model.addAttribute("menu_id", menu_id);
         return "ctmboard/CBoardwrite";
     }

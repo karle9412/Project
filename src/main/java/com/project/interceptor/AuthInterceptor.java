@@ -9,16 +9,18 @@ import javax.servlet.http.HttpSession;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+    // preHandle() : controller 보다 먼저 실행되는 메소드
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler)
             throws Exception {
         HttpSession httpSession = request.getSession();
+        System.out.println(httpSession.getAttribute("login"));
 
         String requestUrl = request.getRequestURL().toString();
         // 페이지 들어왔을 때 기본 화면으로 보내는 예외 처리
-        if(requestUrl.contains("/")){
+        if(requestUrl.equals("/")){
             return true;
         }
         //로그인 화면도 예외 처리

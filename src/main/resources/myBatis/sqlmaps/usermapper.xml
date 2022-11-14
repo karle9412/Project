@@ -19,6 +19,7 @@
         SELECT USERID,
         PASSWD,
         NICKNAME,
+        RIDER,
         TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
         FROM  USERS
         WHERE USERID = #{userid}

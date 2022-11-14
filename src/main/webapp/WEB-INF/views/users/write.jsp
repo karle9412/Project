@@ -13,6 +13,7 @@
 
 <script>
 $(function(){
+
     $('form').on('submit',function(e){
 
         if($('[name=userid]').val()==''){
@@ -51,20 +52,32 @@ $(function(){
 
         let userid = $('[name=userid]').val();
 
-    $.ajax({
-        type : 'POST',
-        url : "useridCheck",
-        dataType : "text",
-        data : {
-            userid : userid
-        },
-        success : function(useridCheck){
-            $("#idCheckResult").html(useridCheck);
-        }
-    })
+        $.ajax({
+            type : 'POST',
+            url : "useridCheck",
+            dataType : "text",
+            data : {
+                userid : userid
+            },
+            success : function(useridCheck){
+                $("#idCheckResult").html(useridCheck);
+            }
+        })
         e.preventDefault();
         e.stopPropagation();
     });
+
+    $('[name=passwdCheck]').keyup(function(){
+        let passwd = $('[name=passwd]').val();
+        let passwdCheck = $('[name=passwdCheck]').val();
+
+        if (passwd == passwdCheck){
+            $('#passwdCheck').html("비밀번호가 일치합니다.")
+        } else{
+            $('#passwdCheck').html("비밀번호가 일치하지 않습니다.")
+        }
+    })
+
 });
 
 </script>
@@ -90,7 +103,15 @@ $(function(){
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="passwd" type="password" placeholder="Password">
+                <input class="w3-input w3-border" name="passwd" type="password" placeholder="Password"/>
+            </div>
+        </div>
+            <div class="w3-col" style="width:50px"></div>
+            <div class="w3-rest">
+                <input class="w3-input w3-border" name="passwdCheck" type="password" placeholder="passwordCheck"/>
+            </div>
+            <div class="w3-rest">
+                <span id="passwdCheck"></span>
             </div>
         </div>
         <div class="w3-row w3-section">
@@ -103,6 +124,12 @@ $(function(){
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
                 <input class="w3-input w3-border" name="email" type="email" placeholder="EMail">
+            </div>
+        </div>
+        <div class="w3-row w3-section">
+            <div class="w3-col" style="width:50px"></div>
+            <div class="w3-rest">
+                <input class="w3-input w3-border" name="upfile" type="file"/>
             </div>
         </div>
         <select id="LOACTION" name="user_local">

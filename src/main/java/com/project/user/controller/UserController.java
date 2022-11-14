@@ -155,6 +155,6 @@ public class UserController {
     @RequestMapping("/changePasswd")
     public String changePasswd(UserVo userVo){
         userService.changePasswd(userVo);
-        return "users/finishPasswd";
+        return "users/popupOut";
     }
 }

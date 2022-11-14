@@ -11,6 +11,8 @@ public class UserVo {
     private String indate;
 
     public UserVo (){}
+    
+    //기본적인 생성자
     public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate) {
         this.userid = userid;
         this.passwd = passwd;
@@ -21,9 +23,15 @@ public class UserVo {
         this.indate = indate;
     }
 
+    //유저아이디 찾기 할 때 쓰는 생성자
     public UserVo(String nickname, String email) {
         this.nickname = nickname;
         this.email = email;
+    }
+
+    //유저아이디 중복체크할 때 쓰는 생성자
+    public UserVo(String userid) {
+        this.userid = userid;
     }
 
     public String getuserid() {

@@ -14,28 +14,59 @@
 <script>
 $(function(){
     $('form').on('submit',function(e){
-     if($('[name=userid]').val()==''){
-                alert('아이디를 입력하세요');
-                return false;
-            }
-     if($('[name=passwd]').val()==''){
-                alert('비밀번호를 입력하세요');
-                return false;
-            }
-     if($('[name=nickname]').val()==''){
-                alert('닉네임을 입력하세요');
-                return false;
-            }
-     if($('[name=email]').val()==''){
-                alert('이메일을 입력하세요');
-                return false;
-            }
+
+        if($('[name=userid]').val()==''){
+            alert('아이디를 입력하세요');
+            return false;
+        }
+
+        if($('[name=idCheckResult]').html()== "중복된 아이디입니다."){
+            alert('중복확인을 다시 해주세요');
+            return false;
+        }
+
+        if($('[name=passwd]').val()==''){
+            alert('비밀번호를 입력하세요');
+            return false;
+        }
+
+        if($('[name=nickname]').val()==''){
+            alert('닉네임을 입력하세요');
+            return false;
+        }
+
+        if($('[name=email]').val()==''){
+            alert('이메일을 입력하세요');
+            return false;
+        }
+
         if($('[name=user_local]').val()==''){
             alert('지역을 선택해주세요');
             return false;
         }
+
+    });
+
+    $('#idCheck').on('click', function(e){
+
+        let userid = $('[name=userid]').val();
+
+    $.ajax({
+        type : 'POST',
+        url : "useridCheck",
+        dataType : "text",
+        data : {
+            userid : userid
+        },
+        success : function(useridCheck){
+            $("#idCheckResult").html(useridCheck);
+        }
+    })
+        e.preventDefault();
+        e.stopPropagation();
     });
 });
+
 </script>
 </head>
 <body>
@@ -47,6 +78,13 @@ $(function(){
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
                 <input class="w3-input w3-border" name="userid" type="text" placeholder="ID">
+            </div>
+            <div class="w3-rest">
+                <div>
+                    <span id="idCheckResult" name="idCheckResult"></span>
+                    <button id="idCheck" class="w3-button w3-section w3-light-green w3-ripple w3-text-white w3-right"
+                     style=" margin-top: 10px; padding-top: 4px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px;">중복확인</button>
+                </div>
             </div>
         </div>
         <div class="w3-row w3-section">

@@ -22,17 +22,17 @@
 function DeleteBoard(){
 let ans = confirm("삭제하시겠습니까?");
 if(ans){
-if("${writer}" != "${reviewBoardVo.writer}"){
+if("${nickName}" != "${reviewBoardVo.writer}"){
 alert("본인이 작성한 게시글만 삭제 가능합니다");
 }
 else{
 $.ajax({
 type:"get",
-url:"/Board/RBoardDelete?board_number=${reviewBoardVo.board_number}&menu_id=${menu_id}",
+url:"/Board/RVBoardDelete?board_number=${reviewBoardVo.board_number}&menu_id=${menu_id}",
 
 success:function(result){
 alert("삭제되었습니다");
-location.href='/Board/reviewBoardVo?menu_id=MENU_03&pageNum=1&contentNum=10';
+location.href='/Board/reviewList?menu_id=MENU_03&pageNum=1&contentNum=10';
 }
 
 

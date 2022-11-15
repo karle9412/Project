@@ -44,29 +44,37 @@
        <c:if test="${check == 1}">
          <td>접수완료<td>
        </c:if>
+       <c:set var="check" value="${board.delivery_check}"/>
+       <c:if test="${check == 0}">
+         <td>배달대기<td>
+       </c:if>
+       <c:if test="${check == 1}">
+         <td>배달완료<td>
+       </c:if>
+    </tr>
+
+    </c:forEach>
+  </div>
+  <tr>
+    <td>
+    <a href="/Board/CBoardWriteForm?menu_id=MENU_01">해주세요 새글쓰기</a>
+    </td>
+  </tr>
+  <div id="paging">
+    <tr>
+      <td>
+        <c:if test="${boardPager.prev}">
+          <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}">< 이전</a>
+        </c:if>
+        <c:forEach begin="${boardPager.getStartPage()}" end="${boardPager.getEndPage()}" var="idx">
+          <a href="/Board/customerList?menu_id=MENU_01&pageNum=${idx}&contentNum=${idx*10}">${idx}</a>
+        </c:forEach>
+        <c:if test="${boardPager.next}">
+          <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}">다음 ></a>
+        </c:if>
+      </td>
     </tr>
   </div>
-    </c:forEach>
-        <div id="paging">
-          <tr>
-            <td>
-              <c:if test="${boardPager.prev}">
-                <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}">< 이전</a>
-              </c:if>
-              <c:forEach begin="${boardPager.getStartPage()}" end="${boardPager.getEndPage()}" var="idx">
-                <a href="/Board/customerList?menu_id=MENU_01&pageNum=${idx}&contentNum=${idx*10}">${idx}</a>
-              </c:forEach>
-              <c:if test="${boardPager.next}">
-                <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}">다음 ></a>
-              </c:if>
-            </td>
-          </tr>
-        </div>
-        <tr>
-          <td>
-          <a href="/Board/CBoardWriteForm?menu_id=MENU_01">해주세요 새글쓰기</a>
-          </td>
-        </tr>
   </table>
 </body>
 </html>

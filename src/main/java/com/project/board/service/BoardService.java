@@ -8,9 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface BoardService {
-    List<BoardVo> getCustomerBoardList(HashMap<String, Object> map);
-    List<RiderBoardVo> getRiderBoardList(HashMap<String, Object> map);
-    List<ReviewVo> getReviewBoardList(HashMap<String, Object> map);
+
     void C_insertboard(BoardVo boardVo);
     void R_insertboard(RiderBoardVo riderboardVo);
     void RV_insertboard(ReviewVo reviewVo);
@@ -39,8 +37,8 @@ public interface BoardService {
 
     List<BoardVo> customerList(HashMap<String, Object> map);
     List<BoardVo> reviewList(HashMap<String, Object> map);
-    List<BoardVo> riderList(HashMap<String, Object> map);
-    int testCount();
+    List<RiderBoardVo> riderList(HashMap<String, Object> map);
 
+    int testCount();
     List<BoardVo> testList(HashMap<String, Object> map);
 }

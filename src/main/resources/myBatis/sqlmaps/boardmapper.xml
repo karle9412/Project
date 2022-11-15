@@ -47,7 +47,7 @@
     </select>
 
     <select id="RiderList"
-            resultType="com.project.board.vo.BoardVo">
+            resultType="com.project.board.vo.RiderBoardVo">
         SELECT *
         FROM (
         SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,

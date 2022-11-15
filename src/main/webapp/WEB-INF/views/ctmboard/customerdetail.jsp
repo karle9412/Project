@@ -215,10 +215,6 @@ function replylist(){
 
     html+='</table>';
     $('#Replyli').html(html);
-
-
-
-
 }
  });
 }

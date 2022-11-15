@@ -9,12 +9,6 @@ import java.util.List;
 
 public interface BoardDao {
 
-    List<BoardVo> getCustomerBoardList(HashMap<String, Object> map);
-
-    List<RiderBoardVo> getRiderBoardList(HashMap<String, Object> map);
-
-    List<ReviewVo> getReviewBoardList(HashMap<String, Object> map);
-
     void C_insertboard(BoardVo boardVo);
     void R_insertboard(RiderBoardVo riderboardVo);
     void RV_insertboard(ReviewVo reviewVo);
@@ -38,7 +32,7 @@ public interface BoardDao {
 
     public List<BoardVo> customerList(HashMap<String, Object> map);
     public List<BoardVo> reviewList(HashMap<String, Object> map);
-    public List<BoardVo> riderList(HashMap<String, Object> map);
+    public List<RiderBoardVo> riderList(HashMap<String, Object> map);
 
     public int customerCount();
     public int reviewCount();

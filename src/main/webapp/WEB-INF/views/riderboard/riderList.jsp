@@ -21,21 +21,21 @@
     </tr>
     <c:forEach var="board" items="${riderList}">
     <tr>
-       <td>${board.board_number}</td>
-       <td><a href="/Board/riderDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
-       <td>${board.writer}</td>
-       <td>${board.indate}</td>
-       <td>${board.board_local}</td>
-       <c:set var="check" value="${board.board_check}"/>
-       <c:if test="${check == 0}">
-         <td>접수대기<td>
-       </c:if>
-       <c:if test="${check == 1}">
-         <td>접수완료<td>
-       </c:if>
+      <td>${board.board_number}</td>
+      <td><a href="/Board/riderDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
+      <td>${board.writer}</td>
+      <td>${board.indate}</td>
+      <td>${board.rider_local}</td>
+    <c:set var="check" value="${board.board_check}"/>
+    <c:if test="${check == 0}">
+      <td>접수대기<td>
+    </c:if>
+    <c:if test="${check == 1}">
+      <td>접수완료<td>
+    </c:if>
     </tr>
-  </div>
     </c:forEach>
+
         <div id="paging">
           <tr>
             <td>
@@ -56,6 +56,7 @@
           <a href="/Board/RBoardWriteForm?menu_id=MENU_02&pageNum=${boardPager.getEndPage()}&contentNum=${(boardPager.getEndPage())*10}">할게요 새글쓰기</a>
           </td>
         </tr>
+
   </table>
 </body>
 </html>

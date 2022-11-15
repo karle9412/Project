@@ -3,7 +3,6 @@ package com.project.user.service;
 import com.project.user.vo.UserVo;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 public interface UserService {
@@ -20,4 +19,7 @@ public interface UserService {
     String getUserid(UserVo userVo);
 
     String useridCheck(UserVo userVo);
+
+    void changePasswd(UserVo userVo);
+
 }

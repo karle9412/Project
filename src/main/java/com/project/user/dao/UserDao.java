@@ -20,4 +20,7 @@ public interface UserDao {
     String getUserid(UserVo userVo);
 
     String useridCheck(UserVo userVo);
+
+    void changePasswd(UserVo userVo);
+
 }

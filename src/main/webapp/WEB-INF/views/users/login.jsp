@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,21 @@
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <script>
+$(document).ready(function() {
+    let message = "${fail}";
+    console.log(message);
+    if (message != "") {
+        alert(message);
+    }else {
+        pass;
+    }
+})
+
 $(function(){
     $('form').on('submit',function(e){
+
         if($('[name=userid]').val()==''){
             alert('아이디를 입력하세요');
             return false;
@@ -31,6 +44,7 @@ $(function(){
     <header class="w3-container w3-teal w3-center">
         <h1>Login</h1>
     </header>
+    <input type="hidden" name="fail" id="fail" value="${fail}"></input>
 
     <div class="w3-container w3-half w3-margin-top w3-display-middle" style="height:70%">
         <!--form action 조정 필요-->
@@ -39,7 +53,7 @@ $(function(){
             <input class="w3-input" id="userid" name="userid" type="text" style="width:100%">
             <label>ID</label></p>
             <p>
-            <input class="w3-input" name="passwd" type="password" style="width:100%">
+            <input class="w3-input" id="passwd" name="passwd" type="password" style="width:100%">
             <label>Password</label></p>
 
             <p>
@@ -49,7 +63,7 @@ $(function(){
         <div class="w3-container w3-border-top w3-padding-16">
             <!-- href 조정 필요 -->
             <span class="w3-right w3-padding"><a href="/writeForm">회원가입하기</a>
-            <a href="javascript:void(window.open('findUserid', '아이디 찾기','width=500, height=500'))">아이디 찾기</a>
+            <a href="javascript:void(window.open('findUserid', '아이디 찾기','width=500, height=500'))">아이디 찾기/비밀번호 변경</a>
         </div>
     </div>
 </body>

@@ -56,6 +56,7 @@ alert("본인이 작성한 댓글만 수정 가능합니다.");
 }
 else{
 
+
 let k = document.getElementById("R"+reply_number);
 
    let form = "";
@@ -283,10 +284,6 @@ function replylist(){
 
     html+='</table>';
     $('#Replyli').html(html);
-
-
-
-
 }
  });
 }

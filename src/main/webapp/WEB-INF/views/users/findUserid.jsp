@@ -10,12 +10,11 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+
 $(function(){
+
     $('#findUserid').on('click', function(e){
-        if($('[name=nickname]').val()=='' && $('[name=passwd]').val()==''){
-            alert('닉네임과 이메일을 입력하세요');
-            return false;
-        }
+
         let nickname = $('#nickname').val();
         let email = $('#email').val();
 
@@ -23,21 +22,26 @@ $(function(){
             type : 'POST',
             url : "getUserid",
             dataType : "text",
-            data : { nickname : nickname,
-                     email : email},
+            data : {
+                nickname : nickname,
+                email : email},
             success : function(getUserid){
-                if(getUserid != null){
-                    console.log(getUserid);
-                    let decode_getUserid = decodeURIComponent(getUserid);
-                    console.log(decode_getUserid);
-                    $("#userid_check").html(decode_getUserid);
+                if (getUserid =="닉네임과 이메일을 다시 확인해주세요"){
+                    $("#userid_check").html(getUserid);
+                } else {
+                    let changePasswd = "";
+                    changePasswd += "<form action=\"/changePasswdForm\" method=\"POST\">";
+                    changePasswd += '<input type="hidden" name="userid" value=' + getUserid + '></input>';
+                    changePasswd += getUserid;
+                    changePasswd += "</br>"
+                    changePasswd += "<button id=\"changePasswd\" class=\"w3-button w3-section w3-teal w3-ripple\">비밀번호 변경</button>";
+                    changePasswd += "</form>";
+                    $("#userid_check").html(changePasswd);
                 }
             }
         })
-
-
-    e.preventDefault();
-    e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
     })
 });
 
@@ -47,10 +51,9 @@ $(function(){
 <form>
 닉네임<input type="text" name="nickname" id="nickname"></input></br>
 이메일<input type="email" name="email" id="email"></input></br>
-<button id="findUserid" class="w3-button w3-section w3-teal w3-ripple"> 아이디 찾기 </button>
-<li><span id="userid_check"></span></li><br>
-
+<button id="findUserid" class="w3-button w3-section w3-teal w3-ripple"> 아이디 찾기 </button></br>
 </form>
+<div id="userid_check"></div></br>
 
 </body>
 </html>

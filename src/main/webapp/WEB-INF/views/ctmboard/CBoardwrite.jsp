@@ -60,6 +60,7 @@ body {
 </head>
 <body>
 
+
         <h2 >글쓰기</h2>
                  <form action="/Board/CBoardWrite" method="POST">
                  <input type = "hidden" name = "menu_id" value = "${menu_id}"/>

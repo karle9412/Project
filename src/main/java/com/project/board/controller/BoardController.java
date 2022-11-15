@@ -317,7 +317,7 @@ public class BoardController {
             replyService.updateEndPage(map);
             replylist = replyService.getReplylist(map);
         }
-        System.out.println(replyPager.getEndPage());
+
         model.addAttribute("pagerEnd",replyPager.getEndPage());
 
         return replylist;

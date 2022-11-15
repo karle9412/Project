@@ -26,7 +26,7 @@ let k = document.getElementById("R"+reply_number);
    let form = "";
    form += '<div>';
    form += '<input type= "hidden" name="reply_numbery" id ="reply_number" value= '+reply_number+'>';
-   form += '<input type= "hidden"  name="writer" id= "writer" value='+ writer +'>'
+   form += '<input type= "hidden"  name="writer" id= "writer" value='+ writer +'>';
    form += '<textarea class = "replyclass" id= "replycontent" cols="80" rows="3">';
    form += k.textContent;
    form += "</textarea>";
@@ -46,7 +46,7 @@ let reply_content = $("#replycontent").val();
 let replynumber = reply_number;
 let reply_writer = writer;
 let updateurl = "/Board/CtmreplyUpdate?reply_number=";
-let updateurl1= "&cont="
+let updateurl1= "&cont=";
 let param = {"cont":reply_content, "reply_number":replynumber, "writer":reply_writer};
 $.ajax({
  type: "POST",
@@ -152,10 +152,8 @@ function replylist(){
  let html = "";
  let pager = "";
  let end = parseInt(resultList[0].rend_page);
- console.log(resultList);
- console.log(end);
- console.log(typeof(end));
- console.log('${pagerEnd}');
+ let startP = parseInt("${replyPager.getStartPage()}");
+ console.log(typeof(start));
  html+= '<table>';
    for(var i=0; i<resultList.length; i++){
      html+= '<tr>';
@@ -180,30 +178,26 @@ function replylist(){
      html+= '</td>'
      html+= '</tr>';
      if ((i+1) == resultList.length){
-       html += '</table>'
-       html += '<table id="pager">'
-       html += '<tr>'
-       html += '<td>'
-       html += '<c:if test="${replyPager.prev}">'
-       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>'
-       html += '</c:if>'
-       html += '</td>'
-       html += '<td>'
-       for (j = ${replyPager.getStartPage()}; j=end; j++){
-       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}'
-       html += '&menu_id=${menu_id}&pageNum='+j+'&contentNum='+j+'*10>1</a>'
+       html += '</table>';
+       html += '<table id="pager">';
+       html += '<tr>';
+       html += '<td>';
+       html += '<c:if test="${replyPager.prev}">';
+       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>';
+       html += '</c:if>';
+       html += '</td>';
+       html += '<td>';
+       for (var j=startP; j<=end; j++){
+       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+j+'&contentNum='+j*10+'">'+j+'</a>';
        }
-       html += '<c:forEach begin="${replyPager.getStartPage()}" end="${replyPager.getEndPage()}" var="idx">'
-
-       html += '</c:forEach>'
-       html += '</td>'
-       html += '<td>'
-       html += '<c:if test="${replyPager.next}">'
-       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>'
-       html += '</c:if>'
-       html += '</td>'
-       html += '</tr>'
-       html += '</table>'
+       html += '</td>';
+       html += '<td>';
+       if("${replyPager.next}"=="true"){
+         html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>';
+       }
+       html += '</td>';
+       html += '</tr>';
+       html += '</table>';
      }
    }
    $('#Replyli').html(html);

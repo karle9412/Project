@@ -110,7 +110,7 @@ public class ReplyPager {
     }
 
     public void setRend_page() {
-        if (endPage < (totalCount % 10)){
+        if (endPage < (totalCount / 10)){
             endPage++;
         }
         this.rend_page = rend_page;

@@ -16,7 +16,7 @@
      제목:<input type="text" name="title" />
      </div>
      <div>
-     작성자:<input type="text" name="writer"/>
+     작성자:<input type="text" name="writer" value ="${writer}"/>
      </div>
      <div>
      내용:<input type="text" name="cont" />

@@ -24,6 +24,7 @@ replylist();
 }
 
 function updateReplyForm(reply_number,writer){
+
 let k = document.getElementById("R"+reply_number);
 
    let form = "";

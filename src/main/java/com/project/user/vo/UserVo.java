@@ -11,10 +11,12 @@ public class UserVo {
     private String indate;
     private String phonenumber;
 
+    private String phoneNumber;
+
     public UserVo (){}
 
     //기본적인 생성자
-    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate, String phonenumber) {
+    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate, String PhoneNumber) {
         this.userid = userid;
         this.passwd = passwd;
         this.nickname = nickname;
@@ -22,7 +24,7 @@ public class UserVo {
         this.user_local = user_local;
         this.rider = rider;
         this.indate = indate;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = PhoneNumber;
     }
 
 
@@ -40,7 +42,15 @@ public class UserVo {
 
     //유저아이디 중복체크할 때 쓰는 생성자
     public UserVo(String userid) {
-        this.userid = userid;
+            this.userid = userid;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getuserid() {
@@ -102,14 +112,14 @@ public class UserVo {
     @Override
     public String toString() {
         return "UserVo{" +
-                "userid='" + userid + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", user_local='" + user_local + '\'' +
-                ", rider='" + rider + '\'' +
-                ", indate='" + indate + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
+                "userid='" + this.userid + '\'' +
+                ", passwd='" + this.passwd + '\'' +
+                ", nickname='" + this.nickname + '\'' +
+                ", email='" + this.email + '\'' +
+                ", userLocal='" + this.user_local + '\'' +
+                ", rider='" + this.rider + '\'' +
+                ", indate='" + this.indate + '\'' +
+                ", phoneNumber='" + this.phoneNumber + '\'' +
                 '}';
     }
 }

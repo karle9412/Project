@@ -75,4 +75,10 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
+
+    @Override
+    public void changePasswd(UserVo userVo) {
+        sqlSession.update("User.changePasswd", userVo);
+
+    }
 }

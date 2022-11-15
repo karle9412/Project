@@ -15,20 +15,30 @@
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
-    <select id="ReplyCount"
+    <select id="Replylist"
+            resultType="com.project.board.vo.ReplyPager">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM,
+        R.WRITER,
+        R.CONT,
+        R.REPLY_NUMBER,
+        R.BOARD_NUMBER,
+        TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
+        R.REND_PAGE
+
+        FROM REPLY R
+        WHERE BOARD_NUMBER = #{board_number}
+        ORDER BY REPLY_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+
+    </select>
+
+    <select id="CReplyCount"
             resultType="int">
         SELECT COUNT(*)
         FROM REPLY
         WHERE BOARD_NUMBER = #{board_number}
-    </select>
-
-    <select id="Replylist"
-            resultType="com.project.reply.vo.ReplyVo">
-        SELECT *
-        FROM (SELECT   ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM, R.*
-        FROM     REPLY R
-        WHERE    BOARD_NUMBER = #{board_number}
-        ORDER BY REPLY_NUMBER ASC)
     </select>
 
     <select id="RiderReplylist"
@@ -60,6 +70,13 @@
         VALUES(RIDER_REPLY_NUMBER.NEXTVAL,#{board_number},#{writer},#{cont})
 
     </insert>
+
+    <update id="UpdateEndPage">
+        UPDATE REPLY
+        SET REND_PAGE = #{endPage}
+        WHERE BOARD_NUMBER = #{board_number}
+
+    </update>
 
     <update id="UpdateReply">
         UPDATE REPLY

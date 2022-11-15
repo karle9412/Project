@@ -1,5 +1,6 @@
 package com.project.reply.dao;
 
+import com.project.board.vo.ReplyPager;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public interface ReplyDao {
 
 
-    List<ReplyVo> getReplylist(int board_number);
+    List<ReplyPager> getReplylist(HashMap<String, Object> map);
 
     List<RiderReplyVo> getRiderReplylist(int rider_board_number);
 
@@ -28,4 +29,8 @@ public interface ReplyDao {
     int ReplyCount(HashMap<String, Object> map);
 
     List<ReplyVo> ReplyList(HashMap<String, Object> map);
+
+    int CReplyCount(int board_number);
+
+    void updateEndpage(HashMap<String, Object> map);
 }

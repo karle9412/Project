@@ -1,5 +1,6 @@
 package com.project.reply.service.impl;
 
+import com.project.board.vo.ReplyPager;
 import com.project.reply.dao.ReplyDao;
 import com.project.reply.service.ReplyService;
 import com.project.reply.vo.ReplyVo;
@@ -17,17 +18,14 @@ public class ReplyServiceImpl implements ReplyService {
     @Autowired
     ReplyDao replyDao;
 
-    public List<ReplyVo> getReplylist(int board_number) {
-        List<ReplyVo> readReply = replyDao.getReplylist(board_number);
-
+    public List<ReplyPager> getReplylist(HashMap<String, Object> board_number) {
+        List<ReplyPager> readReply = replyDao.getReplylist(board_number);
         return readReply;
-
     }
 
     @Override
     public List<RiderReplyVo> getRiderReplylist(int board_number) {
         List<RiderReplyVo> readReply = replyDao.getRiderReplylist(board_number);
-
         return readReply;
     }
 
@@ -58,6 +56,17 @@ public class ReplyServiceImpl implements ReplyService {
     public List<ReplyVo> replyList(HashMap<String, Object> map) {
         return replyDao.ReplyList(map);
     }
+
+    @Override
+    public int CReplyCount(int board_number) {
+        return replyDao.CReplyCount(board_number);
+    }
+
+    @Override
+    public void updateEndPage(HashMap<String, Object> map) {
+        replyDao.updateEndpage(map);
+    }
+
 
     @Override
     public void DeleteReply(int reply_number) {

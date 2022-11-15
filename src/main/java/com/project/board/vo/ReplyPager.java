@@ -2,6 +2,74 @@ package com.project.board.vo;
 
 public class ReplyPager {
 
+    private int reply_number;
+    private int board_number;
+    private String cont;
+    private String writer;
+    private String indate;
+    private String menu_id;
+    private int rend_page;
+
+    public ReplyPager(){}
+
+    public ReplyPager(int reply_number, int board_number, String cont, String writer, String indate, String menu_id, int rend_page) {
+        this.reply_number = reply_number;
+        this.board_number = board_number;
+        this.cont = cont;
+        this.writer = writer;
+        this.indate = indate;
+        this.menu_id = menu_id;
+        this.rend_page = rend_page;
+    }
+
+
+    public int getReply_number() {
+        return reply_number;
+    }
+
+    public void setReply_number(int reply_number) {
+        this.reply_number = reply_number;
+    }
+
+    public int getBoard_number() {
+        return board_number;
+    }
+
+    public void setBoard_number(int board_number) {
+        this.board_number = board_number;
+    }
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String getIndate() {
+        return indate;
+    }
+
+    public void setIndate(String indate) {
+        this.indate = indate;
+    }
+
+    public String getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(String menu_id) {
+        this.menu_id = menu_id;
+    }
 
     private int totalCount;   // 댓글 총 개수
     private int pageNum;      // 현재 페이지 번호
@@ -12,19 +80,17 @@ public class ReplyPager {
     private boolean next;     // 다음 페이지로 가는 화살표
     private int currentBlock; // 다음 페이지로 가는 화살표
     private double lastBlock; // 다음 페이지로 가는 화살표
-    private int board_number;
-
 
 
     public void prevNext(int pageNum){ // 이전, 다음 페이지 블록
 
-        if(calcPage(totalCount)<6){
+        if(calcPage(totalCount)<5){
             setPrev(false);
             setNext(false);
-        }else if (pageNum>0 && pageNum<=5){
+        }else if (pageNum<=5){
             setPrev(false);
             setNext(true);
-        }else if (lastBlock == currentBlock){
+        }else if (currentBlock == lastBlock){
             setPrev(true);
             setNext(false);
         }else {
@@ -36,16 +102,18 @@ public class ReplyPager {
         //    12.5    =     125    /     10
         //   13페이지
         int totalPage = totalCount / 10;
-
         return totalPage;
     }
 
-    public int getBoard_number() {
-        return board_number;
+    public int getRend_page() {
+        return rend_page;
     }
 
-    public void setBoard_number(int board_number) {
-        this.board_number = board_number;
+    public void setRend_page() {
+        if (endPage < (totalCount % 10)){
+            endPage++;
+        }
+        this.rend_page = rend_page;
     }
 
     public int getTotalCount() {
@@ -72,28 +140,6 @@ public class ReplyPager {
         this.contentNum = contentNum;
     }
 
-    public int getStartPage() {
-        return startPage;
-    }
-
-    public void setStartPage(int startPage) {
-        this.startPage = (currentBlock * 5) - 4;
-    }
-
-    public int getEndPage() {
-        return endPage;
-    }
-
-    public void setEndPage() { // 마지막 페이지 블록 구하는 곳
-        if (lastBlock == currentBlock){
-            endPage = totalCount / 10;
-            if (0< (totalCount % 10)){
-                endPage++;
-            }
-        }else {
-            endPage = getStartPage() + 4;
-        }
-    }
     public boolean isPrev() {
         return prev;
     }
@@ -122,6 +168,28 @@ public class ReplyPager {
             this.currentBlock++;
         }
     }
+    public int getStartPage() {
+        return startPage;
+    }
+
+    public void setStartPage(int startPage) {
+        this.startPage = (currentBlock * 5) - 4;
+    }
+
+    public int getEndPage() {
+        return endPage;
+    }
+
+    public void setEndPage() { // 마지막 페이지 블록 구하는 곳
+        if (lastBlock == currentBlock){
+            endPage = totalCount / 10;
+            if (0< (totalCount % 10)){
+                endPage++;
+            }
+        }else {
+            endPage = getStartPage() + 4;
+        }
+    }
 
     public double getLastBlock() {
         return lastBlock;
@@ -137,7 +205,13 @@ public class ReplyPager {
     @Override
     public String toString() {
         return "ReplyPager{" +
-                "totalCount=" + totalCount +
+                "reply_number=" + reply_number +
+                ", board_number=" + board_number +
+                ", cont='" + cont + '\'' +
+                ", writer='" + writer + '\'' +
+                ", indate='" + indate + '\'' +
+                ", menu_id='" + menu_id + '\'' +
+                ", totalCount=" + totalCount +
                 ", pageNum=" + pageNum +
                 ", contentNum=" + contentNum +
                 ", startPage=" + startPage +
@@ -146,7 +220,7 @@ public class ReplyPager {
                 ", next=" + next +
                 ", currentBlock=" + currentBlock +
                 ", lastBlock=" + lastBlock +
-                ", board_number=" + board_number +
+                ", rend_page=" + rend_page +
                 '}';
     }
 }

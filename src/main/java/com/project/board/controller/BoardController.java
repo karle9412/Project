@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
@@ -207,64 +208,129 @@ public class BoardController {
 
 
     // 해주세요 게시글 상세조회
+//    @RequestMapping("/Board/CustomerDetail")
+//    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo) {
+//        String menu_id = (String) map.get("menu_id");
+//        BoardVo boardVo = boardService.DetailCustomer(map);
+//        model.addAttribute("boardVo", boardVo);
+//        model.addAttribute("menu_id", menu_id);
+//
+//        // int cPageNum = Integer.parseInt((String) map.get("pageNum"));
+//        // int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+//        int cPageNum = 1;
+//        int cContentNum = 10;
+//        int board_number = Integer.parseInt((String) map.get("board_number"));
+//        List<ReplyVo> replyList = null;
+//
+//        replyPager.setTotalCount(boardService.replyCount(map)); // board 전체 게시글 개수를 지정
+//        replyPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+//        replyPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+//        replyPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+//        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+//        replyPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+//        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+//        replyPager.setEndPage(); // 마지막 페이지
+//        replyPager.setBoard_number(board_number);
+//
+//        map.put("pageNum", replyPager.getPageNum());
+//        map.put("contentNum", replyPager.getContentNum());
+//
+//        if (replyPager.getPageNum() == 0) {
+//            replyList = boardService.replyList(map);
+//        } else if (replyPager.getPageNum() != 0) {
+//            map.put("pageNum", replyPager.getPageNum() * 10 + 1);
+//            replyList = boardService.replyList(map);
+//        }
+//
+//        model.addAttribute("replyPager", replyPager);
+//
+//        return "ctmboard/customerdetail";
+//    }
+
+    // 해주세요 게시글보기
     @RequestMapping("/Board/CustomerDetail")
     public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo) {
+
         String menu_id = (String) map.get("menu_id");
-        BoardVo boardVo = boardService.DetailCustomer(map);
+        BoardVo boardVo =  boardService.DetailCustomer(map);
+
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
+        model.addAttribute("boardPager", boardPager);
 
-        // int cPageNum = Integer.parseInt((String) map.get("pageNum"));
-        // int cContentNum = Integer.parseInt((String) map.get("contentNum"));
-        int cPageNum = 1;
-        int cContentNum = 10;
-        int board_number = Integer.parseInt((String) map.get("board_number"));
-        List<ReplyVo> replyList = null;
+        ReplyPager replyPager = new ReplyPager();
 
-        replyPager.setTotalCount(boardService.replyCount(map)); // board 전체 게시글 개수를 지정
-        replyPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
-        replyPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
-        replyPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
-        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
-        replyPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        int rPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int rContentNum = Integer.parseInt((String) map.get("contentNum"));
+        int Board_number = Integer.parseInt((String) map.get("board_number"));
+
+        replyPager.setBoard_number(Board_number);
+        replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setPageNum(rPageNum-1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        replyPager.setCurrentBlock(rPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
         replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
-        replyPager.setEndPage(); // 마지막 페이지
-        replyPager.setBoard_number(board_number);
-
+        replyPager.setEndPage(); //
+        // 마지막 페이지
         map.put("pageNum", replyPager.getPageNum());
         map.put("contentNum", replyPager.getContentNum());
 
-        if (replyPager.getPageNum() == 0) {
-            replyList = boardService.replyList(map);
-        } else if (replyPager.getPageNum() != 0) {
-            map.put("pageNum", replyPager.getPageNum() * 10 + 1);
-            replyList = boardService.replyList(map);
-        }
-
-        model.addAttribute("replyPager", replyPager);
+        model.addAttribute("map",map);
+        model.addAttribute("replyPager",replyPager);
 
         return "ctmboard/customerdetail";
+    }
+
+    //해주세요 댓글 조회
+    @RequestMapping("/Board/CReplyList")
+    @ResponseBody
+    public List<ReplyPager> replylist(@RequestParam(required=false) HashMap<String,Object> map, Model model){
+
+        List<ReplyPager> replylist = null;
+
+        int rPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int rContentNum = Integer.parseInt((String) map.get("contentNum"));
+        int Board_number = Integer.parseInt((String) map.get("board_number"));
+
+        replyPager.setBoard_number(Board_number);
+        replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setPageNum(rPageNum); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        replyPager.setCurrentBlock(rPageNum+1); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        replyPager.setEndPage();
+        replyPager.setRend_page();
+
+        map.put("pageNum", replyPager.getPageNum());
+        map.put("contentNum", replyPager.getContentNum());
+        map.put("endPage",replyPager.getEndPage());
+
+        if (replyPager.getPageNum() == 0) {
+            replyService.updateEndPage(map);
+            replylist = replyService.getReplylist(map);
+        } else if (replyPager.getPageNum() != 0) {
+            map.put("pageNum", replyPager.getPageNum()*10+1);
+            replyService.updateEndPage(map);
+            replylist = replyService.getReplylist(map);
+        }
+        System.out.println(replyPager.getEndPage());
+        model.addAttribute("pagerEnd",replyPager.getEndPage());
+
+        return replylist;
     }
 
     @RequestMapping("/Board/ReplyPager")
     @ResponseBody
     public HashMap<String, Object> ReplyPager(Model model, @RequestParam HashMap<String,Object> map){
-        System.out.println(map);
         HashMap<String, Object> replyVo = map;
         model.addAttribute("map",map);
         return replyVo;
     }
 
-
-    //해주세요 댓글 조회
-    @RequestMapping("/Board/CReplyList")
-    @ResponseBody
-    public List<ReplyVo> replylist(BoardVo boardVo,Model model,@RequestParam HashMap<String, Object> map){
-        System.out.println(map);
-        List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
-
-        return replylist;
-    }
 
     // 할게요 게시글 상세조회
 

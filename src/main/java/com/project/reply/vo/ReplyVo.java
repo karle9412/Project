@@ -7,9 +7,9 @@ public class ReplyVo {
     private String cont;
     private String writer;
     private String indate;
+    private String menu_id;
     private int pagNum;
     private int contentNum;
-    private String menu_id;
 
 
     public ReplyVo() {

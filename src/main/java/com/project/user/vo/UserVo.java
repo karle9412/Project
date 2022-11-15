@@ -9,11 +9,12 @@ public class UserVo {
     private String user_local;
     private String rider;
     private String indate;
+    private String phonenumber;
 
     private String phoneNumber;
 
     public UserVo (){}
-    
+
     //기본적인 생성자
     public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate, String PhoneNumber) {
         this.userid = userid;
@@ -25,6 +26,13 @@ public class UserVo {
         this.indate = indate;
         this.phoneNumber = PhoneNumber;
     }
+
+
+    public String getPhonenumber() { return phonenumber; }
+
+    public void setPhonenumber(String phonenumber) { this.phonenumber = phonenumber; }
+
+    public String getUserid() {
 
     //유저아이디 찾기 할 때 쓰는 생성자
     public UserVo(String nickname, String email) {

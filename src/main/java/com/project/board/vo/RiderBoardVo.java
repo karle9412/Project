@@ -66,11 +66,11 @@ public class RiderBoardVo {
         this.writer = writer;
     }
 
-    public String getBoard_local() {
+    public String getRider_local() {
         return rider_local;
     }
 
-    public void setBoard_local(String rider_local) {
+    public void setRider_local(String rider_local) {
         this.rider_local = rider_local;
     }
 

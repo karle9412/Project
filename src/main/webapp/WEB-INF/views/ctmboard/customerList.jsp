@@ -44,8 +44,15 @@
        <c:if test="${check == 1}">
          <td>접수완료<td>
        </c:if>
+       <c:set var="check" value="${board.delivery_check}"/>
+       <c:if test="${check == 0}">
+         <td>배달대기<td>
+       </c:if>
+       <c:if test="${check == 1}">
+         <td>배달완료<td>
+       </c:if>
     </tr>
-  </div>
+
     </c:forEach>
         <div id="paging">
           <tr>
@@ -67,6 +74,7 @@
           <a href="/Board/CBoardWriteForm?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}">해주세요 새글쓰기</a>
           </td>
         </tr>
+
   </table>
 </body>
 </html>

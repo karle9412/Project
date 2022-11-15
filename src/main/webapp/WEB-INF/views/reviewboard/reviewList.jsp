@@ -20,13 +20,12 @@
     </tr>
     <c:forEach var="board" items="${reviewList}">
     <tr>
-       <td>${board.board_number}</td>
-       <td><a href="/Board/ReviewDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
-       <td>${board.writer}</td>
-       <td>${board.indate}</td>
-       <td>${board.board_local}</td>
+      <td>${board.board_number}</td>
+      <td><a href="/Board/ReviewDetail?board_number=${board.board_number}&menu_id=${board.menu_id}">${board.title}</a></td>
+      <td>${board.writer}</td>
+      <td>${board.indate}</td>
+      <td>${board.board_local}</td>
     </tr>
-  </div>
     </c:forEach>
         <div id="paging">
           <tr>
@@ -48,6 +47,7 @@
           <a href="/Board/RVBoardWriteForm?menu_id=MENU_03&pageNum=1&contentNum=10">후기 새글쓰기</a>
           </td>
         </tr>
+
   </table>
 </body>
 </html>

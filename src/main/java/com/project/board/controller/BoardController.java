@@ -191,7 +191,7 @@ public class BoardController {
 
 
 
-        return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id() + "&pageNum=" + cPageNum + "&contentNum=" + cContentNum;
+        return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id() + "&pageNum=" + (cPageNum)+ "&contentNum=" + cContentNum;
     }
 
 
@@ -266,7 +266,7 @@ public class BoardController {
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
-        model.addAttribute("writer",nickName);
+        model.addAttribute("nickName",nickName);
 
 
         return "ctmboard/customerdetail";
@@ -293,10 +293,10 @@ public class BoardController {
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
 
 
+
         model.addAttribute("riderBoardVo", riderBoardVo);
         model.addAttribute("menu_id", menu_id);
-        model.addAttribute("wrtier", nickName);
-
+        model.addAttribute("nickName", nickName);
 
         return "riderboard/riderdetail";
     }
@@ -312,12 +312,15 @@ public class BoardController {
     // 후기 게시글 상세조회
 
     @RequestMapping("/Board/ReviewDetail")
-    public String reviewdetail(@RequestParam HashMap<String, Object> map, Model model) {
+    public String reviewdetail(@RequestParam HashMap<String, Object> map, Model model,HttpSession httpSession) {
         String menu_id = (String) map.get("menu_id");
         ReviewVo reviewBoardVo = boardService.DetailReview(map);
+        String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
+
 
         model.addAttribute("reviewBoardVo", reviewBoardVo);
         model.addAttribute("menu_id", menu_id);
+        model.addAttribute("nickName", nickName);
 
         return "reviewboard/reviewdetail";
 
@@ -330,6 +333,7 @@ public class BoardController {
 
         BoardVo boardVo = boardService.DetailCustomer(map);
         String menu_id = (String) map.get("menu_id");
+
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
@@ -353,7 +357,6 @@ public class BoardController {
     @RequestMapping("/Board/RBoardUpdateForm")
     public String RUpdateForm(@RequestParam HashMap<String, Object> map, Model model) {
         RiderBoardVo riderBoardVo = boardService.DetailRider(map);
-        System.out.println(riderBoardVo);
         String menu_id = (String) map.get("menu_id");
 
         model.addAttribute("riderBoardVo", riderBoardVo);
@@ -452,7 +455,6 @@ public class BoardController {
     @RequestMapping("/Board/CtmreplyUpdate")
     @ResponseBody
     public void ctm_replyUpdate(@RequestParam HashMap<String, Object> map){
-        System.out.println(map);
         replyService.UpdateReply(map);
 
     };

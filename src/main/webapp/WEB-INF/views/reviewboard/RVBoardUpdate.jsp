@@ -6,15 +6,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
 <link rel="stylesheet" href="/css/common.css" />
 <style>
-  .td1 { width:150px; text-align: center; }
-  .td2 { width:400px; text-align: left; }
-  .td3 { width:150px; text-align: center; }
-  .td4 { width:400px; text-align: left; }
+  body {
 
-  [type=text]  { width:100%;  }
-  textarea     { width:100%; height: 300px;  }
+      padding-top: 70px;
+
+      padding-bottom: 30px;
+
+    }
+
+    #title{
+      width: 1000px;
+      margin-left: 100px;
+    }
+
+    #c_start{
+      width: 300px;
+      margin-left:100px;
+      display: inline-block
+
+    }
+    #c_end{
+      width:300px;
+
+      display: inline-block
+    }
+    #delivery_indate{
+      width:300px;
+      display: inline-block
+
+    }
+    #money{
+      width: 300px;
+      margin-left:100px;
+      display: inline-block
+
+    }
+    #luggage{
+      width: 300px;
+      display: inline-block
+    }
+    #cont{
+      margin-left:100px;
+      width: 1500px;
+      height: 500px;
+    }
 </style>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -25,36 +64,22 @@
     <input type="hidden" name="menu_id" value="${ menu_id } " />
 
     <table  id="boardUpdate">
-     <caption><h2>${ menu_id } 게시물 수정</h2></caption>
-       <td class="td3">날짜</td>
-       <td class="td4">${ reviewVo.indate }</td>
-     </tr>
-     <tr>
-       <td class="td1">글쓴이</td>
-       <td class="td2">${ reviewVo.writer }</td>
-     </tr>
-     <tr>
-       <td class="td1">제목</td>
-       <td class="td2"  colspan="3">
-       	 <input type="text" name="title" value="${ reviewVo.title }" />
-       </td>
-     </tr>
-     <tr>
-       <td class="td1">내용</td>
-       <td class="td2"  colspan="3">
-       	 <textarea name="cont">${ reviewVo.cont }</textarea>
-       </td>
-     </tr>
-     <tr>
-       <td class="td1" colspan="4">
-         <input type="submit"  value="수정" />
-         <a href="/Board/reviewList?menu_id=${menu_id}">글 목록</a>
-       </td>
-     </tr>
-    </table>
-    </form>
+    <label for="title"></label>
 
-  </div>
+         <input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
+          </div>
+          <div class="mb-3">
+
+        <label for="cont"></label>
+
+        <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" ></textarea>
+
+        </div>
+         <div>
+          <input class = "btn btn-sm btn-primary" type="submit" value="저장" />
+         </div>
+         </form>
+       </div>
 </body>
 </html>
 

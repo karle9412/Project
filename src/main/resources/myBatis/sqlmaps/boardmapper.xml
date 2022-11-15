@@ -147,6 +147,11 @@
         WRITER,
         RIDER_LOCAL,
         CONT,
+        R_START,
+        R_END,
+        MONEY,
+        LUGGAGE,
+        DELIVERY_INDATE,
         TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
 
         FROM RIDER_BOARD
@@ -172,7 +177,12 @@
     <update id="CBoardUpdate">
         UPDATE CUSTOMER_BOARD
         SET TITLE = #{title},
-        CONT = #{cont}
+        CONT = #{cont},
+        LUGGAGE = #{luggage},
+        MONEY = #{money},
+        C_START = #{c_start},
+        C_END = #{c_end},
+        DELIVERY_INDATE = #{delivery_indate}
 
         where BOARD_NUMBER = #{board_number}
 
@@ -181,7 +191,12 @@
     <update id= "RBoardUpdate">
         UPDATE RIDER_BOARD
         SET TITLE = #{title},
-        CONT = #{cont}
+        CONT = #{cont},
+        LUGGAGE = #{luggage},
+        MONEY = #{money},
+        R_START = #{r_start},
+        R_END = #{r_end},
+        DELIVERY_INDATE = #{delivery_indate}
 
         where BOARD_NUMBER = #{board_number}
 

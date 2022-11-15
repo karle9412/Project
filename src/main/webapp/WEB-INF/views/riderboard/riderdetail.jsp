@@ -24,7 +24,36 @@ replylist();
 }
 
 
+function DeleteBoard(){
+let ans = confirm("삭제하시겠습니까?");
+if(ans){
+if("${nickName}" != "${riderBoardVo.writer}"){
+alert("본인이 작성한 게시글만 삭제 가능합니다");
+}
+else{
+$.ajax({
+type:"get",
+url:"/Board/RBoardDelete?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+
+success:function(result){
+alert("삭제되었습니다");
+location.href='/Board/riderList?menu_id=MENU_02&pageNum=1&contentNum=10';
+}
+
+
+});
+}
+}
+}
+
+
 function updateReplyForm(reply_number,writer){
+let k = document.getElementById("R"+reply_number);
+if("${nickName}" != writer){
+alert("본인이 작성한 댓글만 수정 가능합니다.");
+}
+else{
+const writer_check =confirm("수정하시겠습니까?");
 let k = document.getElementById("R"+reply_number);
 
    let form = "";
@@ -42,8 +71,9 @@ let k = document.getElementById("R"+reply_number);
    form += '</div>';
    form += '</br>';
    document.getElementById("R"+reply_number).innerHTML = form;
-   $("#replyupdateBtn").css('display', 'none');
-   $("#replydeleteBtn").css('display', 'none');
+   $("[name=replyupdateBtn]").css('display', 'none');
+   $("[name=replydeleteBtn]").css('display', 'none');
+    }
     }
 
 function updateReply(reply_number, writer){
@@ -72,27 +102,17 @@ $.ajax({
 });
 }
 
-function deleteReply(reply_number){
-let deleturl = "/Board/ReplyDelete?reply_number="
-let DeleteReply_number = reply_number
-
-$.ajax({
-    type: "POST",
-    url: deleturl + DeleteReply_number,
-    success: function(deleteresult){
-    alert("댓글이 삭제되었습니다");
-    replylist();
-}
-
-});
-}
-
-
-
-function deleteReply(reply_number){
+function deleteReply(reply_number,writer){
 let deleturl = "/Board/R_ReplyDelete?reply_number="
 let DeleteReply_number = reply_number
 
+
+let ans = confirm("삭제하시겠습니까?");
+if("${nickName}" != writer){
+alert("본인이 작성한 댓글만 삭제 가능합니다");
+}
+else{
+if(ans === true){
 $.ajax({
     type: "POST",
     url: deleturl + DeleteReply_number,
@@ -102,6 +122,8 @@ $.ajax({
 }
 
 });
+}
+}
 }
 
 
@@ -113,35 +135,60 @@ $.ajax({
 </head>
 <body>
  <table id="board">
+ <table>
 
              <caption><h2>내용 보기</h2></caption>
-             <tr>
-              <td>번호</td>
-              <td>${ riderBoardVo.board_number } </td>
-             <tr>
-              <td>작성일</td>
-              <td>${ riderBoardVo.indate } </td>
-              <td>작성자</td>
-              <td>${ riderBoardVo.writer } </td>
-             </tr>
-             <tr>
-              <td>제목</td>
-              <td colspan="3">${ riderBoardVo.title } </td>
-             </tr>
-             <tr>
-              <td>내용</td>
-              <td colspan="3">${ riderBoardVo.cont }</td>
-             </tr>
-             <tr>
+                         <tr>
+                          <td>번호</td>
+                          <td>${ riderBoardVo.board_number } </td>
+                         <tr>
+                          <td>작성일</td>
+                          <td>${ riderBoardVo.indate } </td>
+                          <td>작성자</td>
+                          <td>${ riderBoardVo.writer } </td>
+                         </tr>
+                         <t r>
+                          <td>제목</td>
+                          <td colspan="3">${ riderBoardVo.title } </td>
+                         </tr>
+                         <tr>
+                         <div id = "startline">
+                         <td>출발지</td>
+                         <td >${riderBoardVo.r_start}</td>
+                         <td>목적지</td>
+                         <td>${riderBoardVo.r_end}</td>
+                         <td>일자</td>
+                         <td>${riderBoardVo.delivery_indate}</td>
+                         </tr>
+                         <tr>
+                         <td>비용</td>
+                         <td>${riderBoardVo.money}</td>
+                         <td>수화물</td>
+                         <td>${riderBoardVo.luggage}</td>
+                         </div>
+                         <tr>
+                         <tr>
+                          <td>내용</td>
+                          <td colspan="3">${ riderBoardVo.cont }</td>
+                         </tr>
+                         <tr>
+
 
               <td colspan="4">
-                     [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
-                     [<a href="/Board/RBoardUpdateForm?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}">수정</a>]
-                     [<a href="/Board/RBoardDelete?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}">삭제</a>]
+              </td>
+                     <form name = "RUpdateBoard" method = "get">
+                     <input type = "hidden" name ="board_number" value= "${riderBoardVo.board_number}"/>
+                     <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                     <input type = "hidden" name=  "writer"  value = "${riderBoardVo.writer}"/>
+                      <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
+                     </form>
+                     <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
                      [<a href="/Board/riderList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                      [<a href="javascript:history.back()">이전으로</a>]
                      [<a href="/">Home</a>]
                      </td>
+                     </tr>
+                     </table>
 
 
 <table id="reply1">
@@ -177,7 +224,7 @@ $("#btnReply").click(function(){
  let cont  = $("#replytext").val();
  let board_number = "${riderBoardVo.board_number }";
  let menu_id = "${menu_id}";
- let writer = "${writer}"
+ let writer = "${nickName}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
  $.ajax({
   type: "post",
@@ -219,10 +266,10 @@ function replylist(list){
               html+= resultList[i].indate;
               html+='</td>';
               html+='<td>';
-              html+='<button type="button" class="btn" id = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html+='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
               html+= '</td>';
               html+= '<td>';
-              html+='<button type="button" class="btndelte" id = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ')">삭제</button>';
+              html+='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
               html+='</td>'
               html+= '</tr>';
         }
@@ -235,6 +282,18 @@ function replylist(list){
 
     }
      });
+    }
+    function UpdateBoard_(){
+    if("${nickName}" != "${riderBoardVo.writer}"){
+    alert("본인이 작성한 게시글만 수정 가능합니다");
+    }
+    else{
+    $("#update").on("click", function(){
+    let formobj = $("form[name='RUpdateBoard']");
+    formobj.attr("action", "/Board/RBoardUpdateForm");
+    formobj.submit();
+    });
+    }
     }
 
 </script>

@@ -18,31 +18,44 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-window.onload = function(){
+$(document).ready(function(){
 replylist();
+});
 
-}
+
 
 function DeleteBoard(e){
-if("${writer}" != "${boardVo.writer}"){
-alert("권한이 없습니다");
+let ans = confirm("삭제하시겠습니까?");
+if(ans){
+if("${nickName}" != "${boardVo.writer}"){
+alert("본인이 작성한 게시글만 삭제 가능합니다");
 }
 else{
 $.ajax({
 type:"get",
 url:"/Board/CBoardDelete?board_number=${boardVo.board_number}&menu_id=${menu_id}",
-
 success:function(result){
 alert("삭제되었습니다");
 location.href='/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10';
 }
 
-
 });
 }
 }
+}
+
+
+
 
 function updateReplyForm(reply_number,writer){
+const writer_check =confirm("수정하시겠습니까?");
+if( writer_check ===true){
+
+if("${nickName}" != writer){
+alert("본인이 작성한 댓글만 수정 가능합니다.");
+}
+else{
+
 let k = document.getElementById("R"+reply_number);
 
    let form = "";
@@ -60,8 +73,14 @@ let k = document.getElementById("R"+reply_number);
    form += '</div>';
    form += '</br>';
    document.getElementById("R"+reply_number).innerHTML = form;
-   $("#replyupdateBtn").css('display', 'none');
-   $("#replydeleteBtn").css('display', 'none');
+   $("[name=replyupdateBtn]").css("display", "none");
+   $("[name=replydeleteBtn]").css("display", "none");
+
+
+
+
+}
+   }
     }
 
 function updateReply(reply_number, writer){
@@ -71,6 +90,8 @@ let reply_writer = writer;
 let updateurl = "/Board/CtmreplyUpdate?reply_number=";
 let updateurl1= "&cont="
 let param = {"cont":reply_content, "reply_number":replynumber, "writer":reply_writer};
+
+
 
 $.ajax({
  type: "POST",
@@ -88,12 +109,21 @@ $.ajax({
    }
 
 });
+
 }
 
-function deleteReply(reply_number){
+
+function deleteReply(reply_number,writer){
 let deleturl = "/Board/ReplyDelete?reply_number="
 let DeleteReply_number = reply_number
 
+
+let ans = confirm("삭제하시겠습니까?");
+if("${nickName}" != writer){
+alert("본인이 작성한 댓글만 삭제 가능합니다");
+}
+else{
+if(ans === true){
 $.ajax({
     type: "POST",
     url: deleturl + DeleteReply_number,
@@ -104,7 +134,8 @@ $.ajax({
 
 });
 }
-
+}
+}
 
 
 
@@ -155,7 +186,12 @@ $.ajax({
               <td colspan="4">
                      </td>
                 [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
-                [<a href="/Board/CBoardUpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}">수정</a>]
+                <form name = "UpdateBoard" method = "get">
+                                <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
+                                <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                                <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
+                                <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
+                                </form>
                 <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
                 [<a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                 [<a href="javascript:history.back()">이전으로</a>]
@@ -188,7 +224,7 @@ $("#btnReply").click(function(){
  let cont  = $("#replytext").val();
  let board_number = "${boardVo.board_number }";
  let menu_id = "${menu_id}";
- let writer = "${writer}"
+ let writer = "${nickName}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
  console.log(param)
 
@@ -211,10 +247,6 @@ $("#btnReply").click(function(){
   });
 
  });
-
-
-
-
 
 
 function replylist(){
@@ -241,10 +273,10 @@ function replylist(){
           html+= resultList[i].indate;
           html+='</td>';
           html+='<td>';
-          html+='<button type="button" class="btn" id = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+          html+='<button type="button" class="btn"  name="replyupdateBtn"  onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
           html+= '</td>';
           html+= '<td>';
-          html+='<button type="button" class="btndelte" id = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ')">삭제</button>';
+          html+='<button type="button" class="btndelte" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
           html+='</td>'
           html+= '</tr>';
     }
@@ -258,6 +290,22 @@ function replylist(){
 }
  });
 }
+function UpdateBoard_(){
+if("${nickName}" != "${boardVo.writer}"){
+alert("본인이 작성한 게시글만 수정 가능합니다");
+}
+else{
+$("#update").on("click", function(){
+let formobj = $("form[name='UpdateBoard']");
+formobj.attr("action", "/Board/CBoardUpdateForm");
+formobj.submit();
+});
+}
+}
+
+
+
+
 
 
 

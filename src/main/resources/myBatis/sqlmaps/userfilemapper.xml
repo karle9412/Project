@@ -13,6 +13,14 @@
         WHERE USERID = #{vo.userid}
     </select>
 
+    <!-- 유저 상세화면에서 지정된 화면을 불러들이기 위함 -->
+    <select id="getProfile"
+            resultType="com.project.pds.user.vo.FilesVo">
+        SELECT SFILENAME
+        FROM USER_FILE
+        WHERE USERID=#{userid}
+    </select>
+
     <!-- db에 데이터를 넣는 -->
     <insert id="insertUserProfile">
         INSERT  INTO  USER_FILE(

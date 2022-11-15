@@ -12,16 +12,20 @@ public class PdsDaoImpl implements PdsDao {
     private SqlSession sqlSession;
     @Override
     public void setWrite(HashMap<String, Object> map) {
-        System.out.println("dao map: " + map);
-        String Check = sqlSession.selectOne("UserFile.getUserProfile", map);
-        System.out.println(Check);
+        String Check = this.sqlSession.selectOne("UserFile.getUserProfile", map);
 
         if (Check != null){
-            sqlSession.update("UserFile.updateUserProfile",map);
+            this.sqlSession.update("UserFile.updateUserProfile",map);
         } else {
-            sqlSession.insert("UserFile.insertUserProfile", map);
+            this.sqlSession.insert("UserFile.insertUserProfile", map);
         }
 
 
+    }
+
+    @Override
+    public Object getUserProfile(Object login) {
+        Object getUserProfile = this.sqlSession.selectOne("UserFile.getProfile", login);
+        return getUserProfile;
     }
 }

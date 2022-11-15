@@ -10,31 +10,46 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
-$(function(){
+$(function (){
+
+    $('#passwd').keyup(function(){
+        $("#passwdDoubleCheck").empty();
+    })
+
     $('#passwdCheck').on('focusout', function(e){
         let passwd = $('#passwd').val();
         let passwdCheck = $('#passwdCheck').val();
+        let userid = $('[name=userid]').val();
 
         console.log(passwd);
-        console.log(passwdCheck);
+
+        let passwdChange = ""
 
         if (passwd == passwdCheck){
-            $("#passwdDoubleCheck").html("비밀번호 중복체크 완료.");
+            passwdChange = '<form action="/changePasswd" id="changePasswd">';
+            passwdChange += "비밀번호 중복체크 완료</br>";
+            passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
+            passwdChange += '<input type="hidden" name="passwd" value=' + passwd + '></input>';
+            passwdChange += '<button type="submit" id="send">비밀번호변경</input>';
+            passwdChange += '</form>';
+            $("#passwdDoubleCheck").html(passwdChange);
         } else {
             $("#passwdDoubleCheck").html("비밀번호가 다릅니다.");
             alert('비밀번호를 다시 확인하세요.')
             return false;
         }
-        })
-    });
+    })
+
+});
+
 </script>
 </head>
 <body>
+<input type="hidden" name="userid" value="${userVo.userid}"> </input>
 비밀번호를 입력하세요</br>
 <input type="password" id="passwd"></input></br>
 비밀번호를 다시 입력하세요</br>
 <input type="password" id="passwdCheck"></input></br>
 <div id="passwdDoubleCheck"></div>
-
 </body>
 </html>

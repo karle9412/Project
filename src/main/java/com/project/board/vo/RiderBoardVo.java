@@ -14,11 +14,12 @@ public class RiderBoardVo {
     private String money;
     private String r_time;
     private String luggage;
+    private String delivery_indate;
 
     public RiderBoardVo() {
     }
 
-    public RiderBoardVo(int board_number, String menu_id, String title, String writer, String rider_local, String cont, String indate, String board_check, String r_start, String r_end, String money, String r_time, String luggage) {
+    public RiderBoardVo(int board_number, String menu_id, String title, String writer, String rider_local, String cont, String indate, String board_check, String r_start, String r_end, String money, String r_time, String luggage, String delivery_indate) {
         this.board_number = board_number;
         this.menu_id = menu_id;
         this.title = title;
@@ -32,6 +33,7 @@ public class RiderBoardVo {
         this.money = money;
         this.r_time = r_time;
         this.luggage = luggage;
+        this.delivery_indate = delivery_indate;
     }
 
     public int getBoard_number() {
@@ -66,11 +68,11 @@ public class RiderBoardVo {
         this.writer = writer;
     }
 
-    public String getBoard_local() {
+    public String getRider_local() {
         return rider_local;
     }
 
-    public void setBoard_local(String rider_local) {
+    public void setRider_local(String rider_local) {
         this.rider_local = rider_local;
     }
 
@@ -138,6 +140,14 @@ public class RiderBoardVo {
         this.luggage = luggage;
     }
 
+    public String getDelivery_indate() {
+        return delivery_indate;
+    }
+
+    public void setDelivery_indate(String delivery_indate) {
+        this.delivery_indate = delivery_indate;
+    }
+
     @Override
     public String toString() {
         return "RiderBoardVo{" +
@@ -154,6 +164,7 @@ public class RiderBoardVo {
                 ", money='" + money + '\'' +
                 ", r_time='" + r_time + '\'' +
                 ", luggage='" + luggage + '\'' +
+                ", delivery_indate='" + delivery_indate + '\'' +
                 '}';
     }
 }

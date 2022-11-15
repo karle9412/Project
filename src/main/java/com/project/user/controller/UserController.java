@@ -1,15 +1,16 @@
 package com.project.user.controller;
+import com.project.pds.user.controller.UserFileController;
+import com.project.pds.user.service.PdsService;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 @org.springframework.stereotype.Controller
@@ -17,6 +18,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PdsService pdsService;
     //홈 화면 보내는 컨트롤러
     @RequestMapping("/")
     public String index() {
@@ -39,34 +42,38 @@ public class UserController {
     @RequestMapping("/findUserid")
     public String findUserid(){return "users/findUserid";}
 
-    //비밀번호 변경을 위해 유저아이디를 찾는 화면으로 보내는 컨트롤러
+    //비밀번호 변경을 하는 화면으로 보내는 컨트롤러
     @RequestMapping("/changePasswdForm")
-    public String findPasswd(UserVo userVo){
+    public String findPasswd(UserVo userVo, Model model){
+        model.addAttribute(userVo);
+        System.out.println(model);
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
-    @RequestMapping("/write")
+    @RequestMapping("/userProfileUploadForm")
     public String write(UserVo vo){
-        userService.userInsert(vo);
-        return "redirect:/login";
+        this.userService.userInsert(vo);
+        return "users/login";
     }
 
     //로그인 할 때 쓰는 컨트롤러
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
-                             @RequestParam HashMap<String, Object> map){
+                             @RequestParam HashMap<String, Object> map,
+                             Model model){
 
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){
             httpSession.removeAttribute("login");
         }
-        UserVo vo = userService.login(map);
+        UserVo vo = this.userService.login(map);
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
             returnURL = "ctmboard/customerList";
         }else{
-            returnURL = "redirect:/login";
+            model.addAttribute("fail","로그인 실패");
+            returnURL = "users/login";
         }
         return returnURL;
 
@@ -76,9 +83,12 @@ public class UserController {
     @RequestMapping("/getUser")
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
-        Object getUser = userService.getUser(httpSession.getAttribute("login"));
+        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
+        Object getUserProfile = this.pdsService.getUserProfile(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
+        mv.addObject(getUserProfile);
+        System.out.println(mv.getModel());
         mv.setViewName("users/getUser");
         return mv;
     }
@@ -126,7 +136,7 @@ public class UserController {
     public String getUserid (@RequestParam("nickname") String nickname,
                              @RequestParam("email") String email) throws UnsupportedEncodingException {
         UserVo userVo = new UserVo(nickname, email);
-        String getUserid = userService.getUserid(userVo);
+        String getUserid = this.userService.getUserid(userVo);
         if (getUserid == null){
             getUserid = "닉네임과 이메일을 다시 확인해주세요";//"check nickname, email";
         }
@@ -149,5 +159,12 @@ public class UserController {
             check = "중복되지 않은 아이디입니다.";
             return check;
         }
+    }
+
+    //비밀번호 변경창에서 비밀번호 변경
+    @RequestMapping("/changePasswd")
+    public String changePasswd(UserVo userVo){
+        this.userService.changePasswd(userVo);
+        return "users/popupOut";
     }
 }

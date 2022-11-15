@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
@@ -61,5 +60,10 @@ public class UserServiceImpl implements UserService {
     public String useridCheck(UserVo userVo) {
         String useridCheck = this.userDao.useridCheck(userVo);
         return useridCheck;
+    }
+
+    @Override
+    public void changePasswd(UserVo userVo) {
+        userDao.changePasswd(userVo);
     }
 }

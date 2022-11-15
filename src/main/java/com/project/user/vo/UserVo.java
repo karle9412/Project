@@ -9,11 +9,12 @@ public class UserVo {
     private String user_local;
     private String rider;
     private String indate;
+    private String phoneNumber;
 
     public UserVo (){}
-    
+
     //기본적인 생성자
-    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate) {
+    public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate, String PhoneNumber) {
         this.userid = userid;
         this.passwd = passwd;
         this.nickname = nickname;
@@ -21,6 +22,7 @@ public class UserVo {
         this.user_local = user_local;
         this.rider = rider;
         this.indate = indate;
+        this.phoneNumber = PhoneNumber;
     }
 
     //유저아이디 찾기 할 때 쓰는 생성자
@@ -31,7 +33,15 @@ public class UserVo {
 
     //유저아이디 중복체크할 때 쓰는 생성자
     public UserVo(String userid) {
-        this.userid = userid;
+            this.userid = userid;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getuserid() {
@@ -100,6 +110,7 @@ public class UserVo {
                 ", userLocal='" + this.user_local + '\'' +
                 ", rider='" + this.rider + '\'' +
                 ", indate='" + this.indate + '\'' +
+                ", phoneNumber='" + this.phoneNumber + '\'' +
                 '}';
     }
 }

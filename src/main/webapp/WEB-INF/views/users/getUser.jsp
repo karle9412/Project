@@ -18,6 +18,9 @@
     <%@ include file="/WEB-INF/include/menus.jsp" %>
 <ul>
 <li>
+<img src="/userProfile/${filesVo.sFileName}"/>
+</li>
+<li>
 id ${userVo.userid}
 </li>
 <li>

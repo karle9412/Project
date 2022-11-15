@@ -1,4 +1,6 @@
 package com.project.user.controller;
+import com.project.pds.user.controller.UserFileController;
+import com.project.pds.user.service.PdsService;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PdsService pdsService;
     //홈 화면 보내는 컨트롤러
     @RequestMapping("/")
     public String index() {
@@ -80,8 +84,11 @@ public class UserController {
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
         Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
+        Object getUserProfile = this.pdsService.getUserProfile(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
+        mv.addObject(getUserProfile);
+        System.out.println(mv.getModel());
         mv.setViewName("users/getUser");
         return mv;
     }

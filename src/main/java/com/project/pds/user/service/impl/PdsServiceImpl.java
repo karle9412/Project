@@ -20,7 +20,13 @@ public class PdsServiceImpl implements PdsService {
 
         PdsFile.save(map, request, httpSession);
 
-        pdsDao.setWrite(map);
+        this.pdsDao.setWrite(map);
 
+    }
+
+    @Override
+    public Object getUserProfile(Object login) {
+        Object getUserProfile = this.pdsDao.getUserProfile(login);
+        return getUserProfile;
     }
 }

@@ -24,9 +24,8 @@ public class UserFileController {
     @RequestMapping("/profileUpdate")
     public String profileUpdate(@RequestParam HashMap<String, Object> map,
                                 HttpServletRequest request,
-                                HttpSession httpSession){
-        System.out.println(map);
-        pdsService.setWrite(map, request, httpSession);
+                                HttpSession httpSession) {
+        this.pdsService.setWrite(map, request, httpSession);
 
         return "users/getUser";
     }

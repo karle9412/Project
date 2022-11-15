@@ -40,8 +40,9 @@ phoneNumber ${userVo.phoneNumber}
 </li>
 
 <li>
-<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple"> 회원정보 수정 </a>
+<a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple" enc-type = "multipart/form-data"> 회원정보 수정 </a>
 <a href="/delete" class="w3-button w3-section w3-teal w3-ripple" >회원탈퇴</a>
+<a href="/pds/profileUpdateForm" class="w3-button w3-section w3-teal w3-ripple"> 프로필 사진 업데이트</a>
 </li>
 </ul>
 </body>

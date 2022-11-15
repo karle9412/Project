@@ -46,11 +46,10 @@ public class UserController {
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
-    @RequestMapping("/write")
+    @RequestMapping("/userProfileUploadForm")
     public String write(UserVo vo){
-        System.out.println(vo);
         this.userService.userInsert(vo);
-        return "redirect:/login";
+        return "users/login";
     }
 
     //로그인 할 때 쓰는 컨트롤러

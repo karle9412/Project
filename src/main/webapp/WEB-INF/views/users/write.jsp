@@ -90,7 +90,7 @@ $(function(){
     <header class="w3-container w3-teal w3-center">
         <h1>Register</h1>
     </header>
-    <form action="/write" method="POST" class="w3-container w3-card-4 w3-light-grey w3-margin">
+    <form action="/userProfileUploadForm" method="POST" class="w3-container w3-card-4 w3-light-grey w3-margin">
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">

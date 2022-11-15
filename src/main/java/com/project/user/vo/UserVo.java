@@ -10,6 +10,8 @@ public class UserVo {
     private String rider;
     private String indate;
 
+    //테스트
+
     public UserVo (){}
     public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate) {
         this.userid = userid;

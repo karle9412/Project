@@ -1,10 +1,7 @@
 package com.project.board.controller;
 
 import com.project.board.service.BoardService;
-import com.project.board.vo.BoardPager;
-import com.project.board.vo.BoardVo;
-import com.project.board.vo.ReviewVo;
-import com.project.board.vo.RiderBoardVo;
+import com.project.board.vo.*;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
 import com.project.reply.service.ReplyService;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Base64;
 import javax.servlet.http.HttpSession;
 import java.io.Writer;
 import java.sql.SQLOutput;
@@ -41,6 +39,7 @@ public class BoardController {
 
 
     BoardPager boardPager = new BoardPager();
+    ReplyPager replyPager = new ReplyPager();
     // 해주세요 게시판 글 전체 조회
 
     @RequestMapping("/Board/customerList")
@@ -183,7 +182,6 @@ public class BoardController {
     public String write(BoardVo boardVo, BoardPager boardPager, @RequestParam HashMap<String,Object> map) {
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
-        System.out.println(cPageNum);
 
 
 
@@ -254,35 +252,90 @@ public class BoardController {
 
     // 해주세요 게시글 상세조회
     @RequestMapping("/Board/CustomerDetail")
-    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo, ReplyVo replyVo, UserVo userVo,HttpSession httpSession) {
-        String menu_id = (String) map.get("menu_id");
-        BoardVo boardVo = boardService.DetailCustomer(map);
+    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo,HttpSession httpSession) {
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
-
-
-
-
-
+        String menu_id = (String) map.get("menu_id");
+        BoardVo boardVo =  boardService.DetailCustomer(map);
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
+        model.addAttribute("boardPager", boardPager);
+
+        ReplyPager replyPager = new ReplyPager();
         model.addAttribute("nickName",nickName);
 
+        int rPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int rContentNum = Integer.parseInt((String) map.get("contentNum"));
+        int Board_number = Integer.parseInt((String) map.get("board_number"));
+
+        replyPager.setBoard_number(Board_number);
+        replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setPageNum(rPageNum-1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        replyPager.setCurrentBlock(rPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        replyPager.setEndPage(); //
+        // 마지막 페이지
+        map.put("pageNum", replyPager.getPageNum());
+        map.put("contentNum", replyPager.getContentNum());
+
+        model.addAttribute("map",map);
+        model.addAttribute("replyPager",replyPager);
 
         return "ctmboard/customerdetail";
     }
-
-
+    
+    
     //해주세요 댓글 조회
     @RequestMapping("/Board/CReplyList")
     @ResponseBody
-    public List<ReplyVo> replylist(BoardVo boardVo,Model model){
-        List<ReplyVo> replylist = replyService.getReplylist(boardVo.getBoard_number());
+    public List<ReplyPager> replylist(@RequestParam(required=false) HashMap<String,Object> map, Model model){
 
+        List<ReplyPager> replylist = null;
 
+        int rPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int rContentNum = Integer.parseInt((String) map.get("contentNum"));
+        int Board_number = Integer.parseInt((String) map.get("board_number"));
+
+        replyPager.setBoard_number(Board_number);
+        replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setPageNum(rPageNum); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        replyPager.setCurrentBlock(rPageNum+1); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        replyPager.setEndPage();
+        replyPager.setRend_page();
+
+        map.put("pageNum", replyPager.getPageNum());
+        map.put("contentNum", replyPager.getContentNum());
+        map.put("endPage",replyPager.getEndPage());
+
+        if (replyPager.getPageNum() == 0) {
+            replyService.updateEndPage(map);
+            replylist = replyService.getReplylist(map);
+        } else if (replyPager.getPageNum() != 0) {
+            map.put("pageNum", replyPager.getPageNum()*10+1);
+            replyService.updateEndPage(map);
+            replylist = replyService.getReplylist(map);
+        }
+
+        model.addAttribute("pagerEnd",replyPager.getEndPage());
 
         return replylist;
     }
+
+    @RequestMapping("/Board/ReplyPager")
+    @ResponseBody
+    public HashMap<String, Object> ReplyPager(Model model, @RequestParam HashMap<String,Object> map){
+        HashMap<String, Object> replyVo = map;
+        model.addAttribute("map",map);
+        return replyVo;
+    }
+
 
     // 할게요 게시글 상세조회
 

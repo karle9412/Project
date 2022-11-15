@@ -1,9 +1,5 @@
 package com.project.board.vo;
 
-import org.springframework.stereotype.Controller;
-
-import java.util.Timer;
-
 public class BoardPager {
 
     private int totalCount;   // 게시글 총 개수

@@ -116,6 +116,7 @@ $.ajax({
 function deleteReply(reply_number,writer){
 let deleturl = "/Board/ReplyDelete?reply_number="
 let DeleteReply_number = reply_number
+console.log("writer")
 
 
 let ans = confirm("삭제하시겠습니까?");
@@ -157,7 +158,7 @@ $.ajax({
               <td>작성자</td>
               <td>${ boardVo.writer } </td>
              </tr>
-             <tr>
+             <t r>
               <td>제목</td>
               <td colspan="3">${ boardVo.title } </td>
              </tr>
@@ -226,6 +227,7 @@ $("#btnReply").click(function(){
  let menu_id = "${menu_id}";
  let writer = "${nickName}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+ console.log(param)
 
  $.ajax({
   type: "post",
@@ -251,41 +253,61 @@ $("#btnReply").click(function(){
 function replylist(){
 
  $.ajax({
- type:"get",
- url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+ type:"GET",
+ url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}&pageNum=${map.pageNum}&contentNum=${map.contentNum}",
  success: function(resultList){
  let html = "";
+ let pager = "";
+ let end = parseInt(resultList[0].rend_page);
+ let startP = parseInt("${replyPager.getStartPage()}");
+ console.log(typeof(start));
  html+= '<table>';
-     for(var i =0; i<resultList.length; i++){
-          html+= '<tr>';
-          html+= '<td>';
-          html+= resultList[i].writer;
-          html+= '</td>';
-          html+= '</tr>';
-          html+= '<tr>';
-          html+= '<td id="R'+ resultList[i].reply_number +'">';
-          html+= resultList[i].cont;
-          html+= '</td>';
-          html+= '</tr>';
-          html+= '<tr>';
-          html+='<td>';
-          html+= resultList[i].indate;
-          html+='</td>';
-          html+='<td>';
-          html+='<button type="button" class="btn"  name="replyupdateBtn"  onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
-          html+= '</td>';
-          html+= '<td>';
-          html+='<button type="button" class="btndelte" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
-          html+='</td>'
-          html+= '</tr>';
-    }
-
-    html+='</table>';
-    $('#Replyli').html(html);
-
-
-
-
+   for(var i=0; i<resultList.length; i++){
+     html+= '<tr>';
+     html+= '<td>';
+     html+= resultList[i].writer;
+     html+= '</td>';
+     html+= '</tr>';
+     html+= '<tr>';
+     html+= '<td id="R'+ resultList[i].reply_number +'">';
+     html+= resultList[i].cont;
+     html+= '</td>';
+     html+= '</tr>';
+     html+= '<tr>';
+     html+= '<td>';
+     html+= resultList[i].indate;
+     html+= '</td>';
+     html+= '<td>';
+     html+= '<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+     html+= '</td>';
+     html+= '<td>';
+     html+='<button type="button" class="btndelte" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
+     html+= '</td>'
+     html+= '</tr>';
+     if ((i+1) == resultList.length){
+       html += '</table>';
+       html += '<table id="pager">';
+       html += '<tr>';
+       html += '<td>';
+       html += '<c:if test="${replyPager.prev}">';
+       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>';
+       html += '</c:if>';
+       html += '</td>';
+       html += '<td>';
+       for (var j=startP; j<=end; j++){
+       html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+j+'&contentNum='+j*10+'">'+j+'</a>';
+       }
+       html += '</td>';
+       html += '<td>';
+       if("${replyPager.next}"=="true"){
+         html += '<a href="/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>';
+       }
+       html += '</td>';
+       html += '</tr>';
+       html += '</table>';
+     }
+   }
+   $('#Replyli').html(html);
 }
  });
 }

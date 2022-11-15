@@ -1,5 +1,6 @@
 package com.project.reply.dao.impl;
 
+import com.project.board.vo.ReplyPager;
 import com.project.reply.dao.ReplyDao;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,9 +18,15 @@ public class ReplyDaoImpl implements ReplyDao {
     @Autowired
     SqlSession sqlSession;
 
-    public List<ReplyVo> getReplylist(int board_number){
-        List<ReplyVo> readReply = sqlSession.selectList("Reply.Replylist", board_number);
+    public List<ReplyPager> getReplylist(HashMap<String, Object> map){
+        List<ReplyPager> readReply = sqlSession.selectList("Reply.Replylist", map);
+
         return readReply;
+    }
+
+    @Override
+    public void updateEndpage(HashMap<String, Object> map) {
+        sqlSession.update("Reply.UpdateEndPage",map);
     }
 
     @Override
@@ -47,6 +55,24 @@ public class ReplyDaoImpl implements ReplyDao {
     public void UpdateR_Reply(HashMap<String, Object> map) {
         sqlSession.update("Reply.UpdateR_Reply",map);
     }
+
+    @Override
+    public int ReplyCount(HashMap<String, Object> map) {
+        return sqlSession.selectOne("Reply.ReplyCount",map);
+    }
+
+    @Override
+    public List<ReplyVo> ReplyList(HashMap<String, Object> map) {
+        return sqlSession.selectList("Reply.ReplyPager",map);
+    }
+
+    @Override
+    public int CReplyCount(int board_number) {
+        return sqlSession.selectOne("Reply.CReplyCount",board_number);
+    }
+
+
+
 
     @Override
     public void DeleteReply(int reply_number) {

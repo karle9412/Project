@@ -5,6 +5,7 @@ import com.project.board.service.BoardService;
 import com.project.board.vo.BoardVo;
 import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
+import com.project.reply.vo.ReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -143,6 +144,15 @@ public class BoardServiceImpl implements BoardService {
         List<BoardVo> boardList = boardDao.testList(map);
         return boardList;
     }
+
+    @Override
+    public List<ReplyVo> replyList(HashMap<String, Object> map) {
+        List<ReplyVo> replyList = boardDao.replyList(map);
+        return replyList;
+    }
+
+    @Override
+    public int replyCount(HashMap<String, Object> map) { return boardDao.replyCount(map); }
 }
 
 

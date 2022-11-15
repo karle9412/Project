@@ -40,20 +40,20 @@
           <tr>
             <td>
               <c:if test="${boardPager.prev}">
-                <a href="/Board/riderList?menu_id=MENU_03&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}">< 이전</a>
+                <a href="/Board/riderList?menu_id=MENU_02&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}">< 이전</a>
               </c:if>
               <c:forEach begin="${boardPager.getStartPage()}" end="${boardPager.getEndPage()}" var="idx">
-                <a href="/Board/riderList?menu_id=MENU_03&pageNum=${idx}&contentNum=${idx*10}">${idx}</a>
+                <a href="/Board/riderList?menu_id=MENU_02&pageNum=${idx}&contentNum=${idx*10}">${idx}</a>
               </c:forEach>
               <c:if test="${boardPager.next}">
-                <a href="/Board/riderList?menu_id=MENU_03&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}">다음 ></a>
+                <a href="/Board/riderList?menu_id=MENU_02&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}">다음 ></a>
               </c:if>
             </td>
           </tr>
         </div>
         <tr>
           <td>
-          <a href="/Board/RBoardWriteForm?menu_id=MENU_03">할게요 새글쓰기</a>
+          <a href="/Board/RBoardWriteForm?menu_id=MENU_02&pageNum=${boardPager.getEndPage()}&contentNum=${(boardPager.getEndPage())*10}">할게요 새글쓰기</a>
           </td>
         </tr>
   </table>

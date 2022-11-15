@@ -64,7 +64,7 @@
         </div>
         <tr>
           <td>
-          <a href="/Board/CBoardWriteForm?menu_id=MENU_01">해주세요 새글쓰기</a>
+          <a href="/Board/CBoardWriteForm?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}">해주세요 새글쓰기</a>
           </td>
         </tr>
   </table>

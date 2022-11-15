@@ -9,11 +9,10 @@ public class UserVo {
     private String user_local;
     private String rider;
     private String indate;
-
     private String phoneNumber;
 
     public UserVo (){}
-    
+
     //기본적인 생성자
     public UserVo(String userid, String passwd, String nickname, String email, String user_local, String rider, String indate, String PhoneNumber) {
         this.userid = userid;

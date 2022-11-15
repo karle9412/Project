@@ -49,6 +49,7 @@
       <property name="dataSource"      ref="dataSource" />
       <property name="mapperLocations" value="classpath:myBatis/sqlmaps/*.xml" />
    </bean>
+
     <!--
       SqlSessionTemplate 설정
      SqlSessionTemplate  sqlSession = new SqlSessionTemplate( sqlSessionFactory );
@@ -84,6 +85,7 @@
          </bean>       
        </mvc:interceptor>    
     </mvc:interceptors>
+
 </beans>
 
 

@@ -17,7 +17,30 @@
   #board  textarea  { width:100%; height: 400px;  }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 
+function DeleteBoard(){
+let ans = confirm("삭제하시겠습니까?");
+if(ans){
+if("${writer}" != "${reviewBoardVo.writer}"){
+alert("본인이 작성한 게시글만 삭제 가능합니다");
+}
+else{
+$.ajax({
+type:"get",
+url:"/Board/RBoardDelete?board_number=${reviewBoardVo.board_number}&menu_id=${menu_id}",
+
+success:function(result){
+alert("삭제되었습니다");
+location.href='/Board/reviewBoardVo?menu_id=MENU_03&pageNum=1&contentNum=10';
+}
+
+
+});
+}
+}
+}
+</script>
 
 
 
@@ -25,6 +48,7 @@
 </head>
 <body>
  <table id="board">
+ <table>
 
              <caption><h2>내용 보기</h2></caption>
              <tr>
@@ -47,14 +71,35 @@
              <tr>
 
               <td colspan="4">
-                     [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
-                     [<a href="/Board/RVUpdateForm?board_number=${reviewBoardVo.board_number}&menu_id=${menu_id}">수정</a>]
-                     [<a href="/Board/Delete?board_number=${boardVo.board_number}&menu_id=${menu_id}">삭제</a>]
+              </td>
+                     <form name = "RVUpdateBoard" method = "get">
+                                         <input type = "hidden" name ="board_number" value= "${reviewBoardVo.board_number}"/>
+                                         <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                                         <input type = "hidden" name=  "writer"  value = "${reviewBoardVo.writer}"/>
+                                          <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
+                                         </form>
+                     <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
                      [<a href="/Board/reviewList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
                      [<a href="javascript:history.back()">이전으로</a>]
                      [<a href="/">Home</a>]
                      </td>
+                     </tr>
+                     </table>
 
+<script>
+function UpdateBoard_(){
+if("${nickName}" != "${reviewBoardVo.writer}"){
+alert("본인이 작성한 게시글만 수정 가능합니다");
+}
+else{
+$("#update").on("click", function(){
+let formobj = $("form[name='RVUpdateBoard']");
+formobj.attr("action", "/Board/RVUpdateForm");
+formobj.submit();
+});
+}
+}
+</script>
 
 
 </body>

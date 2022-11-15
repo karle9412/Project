@@ -16,14 +16,13 @@ public class BoardVo {
     private String c_time;
     private String luggage;
 
+    private String delivery_indate;
+
 
 
     public BoardVo() {}
 
-
-    //CUSTOMER_BOARD 생성자
-    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String c_start, String c_end, String money, String c_time, String luggage) {
-        this.board_number = board_number;
+    public BoardVo(int board_number, String menu_id, String title, String writer, String board_local, String cont, String indate, String board_check, String c_start, String c_end, String money, String c_time, String luggage, String delivery_indate) {        this.board_number = board_number;
         this.menu_id = menu_id;
         this.title = title;
         this.writer = writer;
@@ -36,6 +35,7 @@ public class BoardVo {
         this.money = money;
         this.c_time = c_time;
         this.luggage = luggage;
+        this.delivery_indate = delivery_indate;
     }
 
     public int getBoard_number() {
@@ -97,8 +97,9 @@ public class BoardVo {
     public String getBoard_check() {
         return board_check;
     }
-    public void setBoard_check (String board_check) {
-        this.board_check = this.board_check;
+
+    public void setBoard_check(String board_check) {
+        this.board_check = board_check;
     }
 
     public String getC_start() {
@@ -141,6 +142,14 @@ public class BoardVo {
         this.luggage = luggage;
     }
 
+    public String getDelivery_indate() {
+        return delivery_indate;
+    }
+
+    public void setDelivery_indate(String delivery_indate) {
+        this.delivery_indate = delivery_indate;
+    }
+
     @Override
     public String toString() {
         return "BoardVo{" +
@@ -157,6 +166,7 @@ public class BoardVo {
                 ", money='" + money + '\'' +
                 ", c_time='" + c_time + '\'' +
                 ", luggage='" + luggage + '\'' +
+                ", delivery_indate='" + delivery_indate + '\'' +
                 '}';
     }
 }

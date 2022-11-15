@@ -46,7 +46,6 @@ public class UserController {
     @RequestMapping("/changePasswdForm")
     public String findPasswd(UserVo userVo, Model model){
         model.addAttribute(userVo);
-        System.out.println(model);
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
@@ -83,12 +82,9 @@ public class UserController {
     @RequestMapping("/getUser")
     public ModelAndView userInformation(HttpSession httpSession){
         ModelAndView mv = new ModelAndView();
-        Object getUser = this.userService.getUser(httpSession.getAttribute("login"));
-        Object getUserProfile = this.pdsService.getUserProfile(httpSession.getAttribute("login"));
+        Object getUser = userService.getUser(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
-        mv.addObject(getUserProfile);
-        System.out.println(mv.getModel());
         mv.setViewName("users/getUser");
         return mv;
     }

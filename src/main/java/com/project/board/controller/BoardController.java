@@ -182,7 +182,6 @@ public class BoardController {
     public String write(BoardVo boardVo, BoardPager boardPager, @RequestParam HashMap<String,Object> map) {
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
-        System.out.println(cPageNum);
 
 
 
@@ -253,8 +252,8 @@ public class BoardController {
 
     // 해주세요 게시글 상세조회
     @RequestMapping("/Board/CustomerDetail")
-    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo) {
-
+    public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo,HttpSession httpSession) {
+        String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
         String menu_id = (String) map.get("menu_id");
         BoardVo boardVo =  boardService.DetailCustomer(map);
 
@@ -411,7 +410,6 @@ public class BoardController {
     @RequestMapping("/Board/RBoardUpdateForm")
     public String RUpdateForm(@RequestParam HashMap<String, Object> map, Model model) {
         RiderBoardVo riderBoardVo = boardService.DetailRider(map);
-        System.out.println(riderBoardVo);
         String menu_id = (String) map.get("menu_id");
 
         model.addAttribute("riderBoardVo", riderBoardVo);
@@ -510,7 +508,6 @@ public class BoardController {
     @RequestMapping("/Board/CtmreplyUpdate")
     @ResponseBody
     public void ctm_replyUpdate(@RequestParam HashMap<String, Object> map){
-        System.out.println(map);
         replyService.UpdateReply(map);
 
     };

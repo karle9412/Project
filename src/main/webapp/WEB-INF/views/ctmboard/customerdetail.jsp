@@ -116,6 +116,7 @@ $.ajax({
 function deleteReply(reply_number,writer){
 let deleturl = "/Board/ReplyDelete?reply_number="
 let DeleteReply_number = reply_number
+console.log("writer")
 
 
 let ans = confirm("삭제하시겠습니까?");
@@ -157,7 +158,7 @@ $.ajax({
               <td>작성자</td>
               <td>${ boardVo.writer } </td>
              </tr>
-             <tr>
+             <t r>
               <td>제목</td>
               <td colspan="3">${ boardVo.title } </td>
              </tr>
@@ -226,6 +227,7 @@ $("#btnReply").click(function(){
  let menu_id = "${menu_id}";
  let writer = "${nickName}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+ console.log(param)
 
  $.ajax({
   type: "post",
@@ -276,10 +278,10 @@ function replylist(){
      html+= resultList[i].indate;
      html+= '</td>';
      html+= '<td>';
-     html+= '<button type="button" class="btn" id = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+     html+= '<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
      html+= '</td>';
      html+= '<td>';
-     html+= '<button type="button" class="btndelte" id = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ')">삭제</button>';
+     html+='<button type="button" class="btndelte" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
      html+= '</td>'
      html+= '</tr>';
      if ((i+1) == resultList.length){

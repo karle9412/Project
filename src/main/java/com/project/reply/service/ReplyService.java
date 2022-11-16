@@ -1,5 +1,6 @@
 package com.project.reply.service;
 
+import com.project.board.vo.ReplyPager;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 
@@ -8,11 +9,9 @@ import java.util.List;
 
 public interface ReplyService {
 
-    List<ReplyVo> getReplylist(int board_number);
+    List<ReplyPager> getReplylist(HashMap<String, Object> map);
 
     List<RiderReplyVo> getRiderReplylist(int board_number);
-
-
 
     void writeReply(ReplyVo replyVo);
 
@@ -25,4 +24,12 @@ public interface ReplyService {
     void DeleteR_Reply(int reply_number);
 
     void UpdateR_Reply(HashMap<String, Object> map);
+
+    int replyCount(HashMap<String, Object> map);
+
+    List<ReplyVo> replyList(HashMap<String, Object> map);
+
+    int CReplyCount(int board_number);
+
+    void updateEndPage(HashMap<String, Object> map);
 }

@@ -13,6 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <%@ include file="/WEB-INF/include/menus.jsp" %>
 <div id="main">
     <div class="w3-teal1" >
@@ -95,5 +96,6 @@ function w3_close() {
   document.getElementById("openNav").style.display = "inline-block";
 }
 </script>
+
 </body>
 </html>

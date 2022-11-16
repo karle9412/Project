@@ -87,9 +87,4 @@
         WHERE USERID=#{userid}
         AND PASSWD=#{passwd}
     </delete>
-
-
-
-
-
 </mapper>

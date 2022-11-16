@@ -7,16 +7,53 @@ public class ReplyVo {
     private String cont;
     private String writer;
     private String indate;
+    private String menu_id;
+    private int pagNum;
+    private int contentNum;
+
 
     public ReplyVo() {
     }
 
-    public ReplyVo(int reply_number, int board_number, String cont, String writer, String indate) {
+    public ReplyVo(int board_number, int pagNum, int contentNum, String menu_id) {
+        this.board_number = board_number;
+        this.pagNum = pagNum;
+        this.contentNum = contentNum;
+        this.menu_id = menu_id;
+    }
+
+    public ReplyVo(int reply_number, int board_number, String cont, String writer, String indate, int pagNum, int contentNum) {
         this.reply_number = reply_number;
         this.board_number = board_number;
         this.cont = cont;
         this.writer = writer;
         this.indate = indate;
+        this.pagNum = pagNum;
+        this.contentNum = contentNum;
+    }
+
+    public String getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(String menu_id) {
+        this.menu_id = menu_id;
+    }
+
+    public int getPagNum() {
+        return pagNum;
+    }
+
+    public void setPagNum(int pagNum) {
+        this.pagNum = pagNum;
+    }
+
+    public int getContentNum() {
+        return contentNum;
+    }
+
+    public void setContentNum(int contentNum) {
+        this.contentNum = contentNum;
     }
 
     public int getReply_number() {
@@ -67,6 +104,8 @@ public class ReplyVo {
                 ", cont='" + cont + '\'' +
                 ", writer='" + writer + '\'' +
                 ", indate='" + indate + '\'' +
+                ", pagNum=" + pagNum +
+                ", contentNum=" + contentNum +
                 '}';
     }
 }

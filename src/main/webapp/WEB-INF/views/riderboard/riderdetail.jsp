@@ -165,6 +165,16 @@ $.ajax({
                          <td>${riderBoardVo.money}</td>
                          <td>수화물</td>
                          <td>${riderBoardVo.luggage}</td>
+                          <td>접수</td>
+                               <c:if test="${riderBoardVo.board_check == 0}">
+                                 <td>접수대기<td>
+                               </c:if>
+                               <c:if test="${riderBoardVo.board_check == 1}">
+                                 <td>접수중<td>
+                                </c:if>
+                               <c:if test="${riderBoardVo.board_check == 2}">
+                                 <td>접수완료<td>
+                               </c:if>
                          </div>
                          <tr>
                          <tr>
@@ -270,7 +280,13 @@ function replylist(list){
               html+= '</td>';
               html+= '<td>';
               html+='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
-              html+='</td>'
+              html+= '</td>';
+              html+= '<td>';
+              html+= '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html+= '</td>';
+              html+= '<td>';
+              html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html+= '</td>';
               html+= '</tr>';
         }
 
@@ -295,6 +311,59 @@ function replylist(list){
     });
     }
     }
+
+
+
+           function checkbutton(){
+                 let checkcheck = 1
+                 let ggg = {"board_check": checkcheck}
+                 let ans = confirm("접수하시겠습니까?");
+                 let a = "${riderBoardVo.writer}"
+                 let b = "${nickName}"
+                     if("${riderBoardVo.board_check}" == 2){
+                       alert("이미 접수완료된 게시글입니다.")
+                       return false;
+                       }
+                 if(a != b){
+                 alert("본인이 작성한 게시글만 접수 가능합니다")
+                 }
+                 else{
+                   $.ajax({
+                   type:"get",
+                   url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+                   data: ggg,
+                   success:function(resultcheck){
+                   alert("접수완료")
+                   location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_01&board_check=1';
+                   }
+                   })
+                 }
+               }
+
+              function checkbuttonbtn(){
+                let checkcheck = 2;
+                    let ggg = {"board_check": checkcheck}
+                    let ans = confirm("접수완료 시 취소가 불가능합니다.");
+                    let a = "${riderBoardVo.writer}"
+                    let b = "${nickName}"
+                    if(ans === true){
+                    if(a != b){
+                    alert("본인이 작성한 게시글만 접수 가능합니다")
+                    }
+                    else{
+                      $.ajax({
+                      type:"get",
+                      url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+                      data: ggg,
+                      success:function(resultcheck){
+                      alert("접수완료")
+                      location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&board_check=2';
+                      }
+                      })
+                      }
+                      }
+
+                  }
 
 </script>
 

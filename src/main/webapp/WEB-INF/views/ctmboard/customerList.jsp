@@ -6,17 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<style>
-		ul {
-			list-style: none;
-			width : 30%;
-			display: inline-block;
-		}
-		li {
-			float: left;
-			margin-left : 5px;
-		}
-	</style>
+   <style>
+      ul {
+         list-style: none;
+         width : 30%;
+         display: inline-block;
+      }
+      li {
+         float: left;
+         margin-left : 5px;
+      }
+   </style>
 </head>
 <body>
   <div id="main">
@@ -33,7 +33,7 @@
     <c:forEach var="board" items="${customerList}">
     <tr>
       <td>${board.board_number}</td>
-      <td><a href="/Board/CustomerDetail?board_number=${board.board_number}&menu_id=${board.menu_id}&pageNum=1&contentNum=10">${board.title}</a></td>
+      <td><a href="/Board/CustomerDetail?board_number=${board.board_number}&menu_id=${board.menu_id}&pageNum=1&contentNum=10&board_check=0">${board.title}</a></td>
       <td>${board.writer}</td>
       <td>${board.indate}</td>
       <td>${board.board_local}</td>
@@ -42,7 +42,10 @@
         <td>접수대기<td>
       </c:if>
       <c:if test="${check == 1}">
-        <td>접수완료<td>
+        <td>접수중<td>
+      </c:if>
+       <c:if test="${check == 2}">
+       <td>접수완료<td>
       </c:if>
     </tr>
   </div>

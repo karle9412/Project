@@ -10,23 +10,18 @@ import com.project.reply.vo.RiderReplyVo;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Base64;
 import javax.servlet.http.HttpSession;
-import java.io.Writer;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class BoardController {
+
 
     @Autowired
     BoardService boardService;
@@ -52,7 +47,7 @@ public class BoardController {
         List<BoardVo> customerList = null;
 
         boardPager.setTotalCount(boardService.customerCount()); // board 전체 게시글 개수를 지정
-        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        boardPager.setPageNum(cPageNum -1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
         boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
         boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
         boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
@@ -270,7 +265,7 @@ public class BoardController {
 
         replyPager.setBoard_number(Board_number);
         replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
-        replyPager.setPageNum(rPageNum-1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setPageNum(rPageNum-1); // 현재 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
         replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
         replyPager.setCurrentBlock(rPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
         replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
@@ -323,7 +318,6 @@ public class BoardController {
             replylist = replyService.getReplylist(map);
         }
 
-        model.addAttribute("pagerEnd",replyPager.getEndPage());
 
         return replylist;
     }
@@ -534,8 +528,31 @@ public class BoardController {
     }
 
 
+    //해주세요 게시판 접수하기,접수완료
+    @RequestMapping("/Board/check")
+    @ResponseBody
+    public HashMap<String, Object> check(@RequestParam HashMap<String, Object> map) {
+        boardService.CBOardCheck(map);
+        return map;
+    }
+    //할게요 게시판 접수하기,접수완료
+    @RequestMapping("/Board/Rcheck")
+    @ResponseBody
+    public HashMap<String, Object> Rcheck(@RequestParam HashMap<String, Object> map){
+        boardService.RBOardCheck(map);
+        return map;
+
+        }
 
 
 
 
-}
+
+
+    }
+
+
+
+
+
+

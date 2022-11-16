@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/common.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <script>
@@ -41,7 +42,7 @@ $(function(){
 
 </head>
 <body>
-    <header class="w3-container w3-teal w3-center">
+    <header class="w3-container w3-teal1 w3-center">
         <h1>Login</h1>
     </header>
     <input type="hidden" name="fail" id="fail" value="${fail}"></input>
@@ -57,7 +58,7 @@ $(function(){
             <label>Password</label></p>
 
             <p>
-            <button class="w3-button w3-section w3-teal w3-ripple w3-right"> Log In </button></p>
+            <button class="w3-button w3-section w3-ripple w3-right w3-border"> Log In </button></p>
         </form>
 
         <div class="w3-container w3-border-top w3-padding-16">

@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/common.css">
 
 <style>
   #board  td:nth-of-type(1) { width:150px; text-align:center;}
@@ -145,77 +149,95 @@ $.ajax({
 
 </head>
 <body>
- <table id="board_">
+<%@ include file="/WEB-INF/include/menus.jsp" %>
+<div id="main">
+    <div class="w3-teal1" >
+        <table>
+            <tr>
+                <td>
+                    <button id="openNav" class="w3-button w3-teal1 w3-xlarge" onclick="w3_open()">&#9776;</button>
+                </td>
+                <td>
+                    <div class="w3-container w3-center">
+                        <h1>내용보기</h1>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-             <caption><h2>내용 보기</h2></caption>
-             <tr>
-              <td>번호</td>
-              <td>${ boardVo.board_number } </td>
-             <tr>
-              <td>작성일</td>
-              <td>${ boardVo.indate } </td>
-              <td>작성자</td>
-              <td>${ boardVo.writer } </td>
-             </tr>
-             <tr>
-              <td>제목</td>
-              <td colspan="3">${ boardVo.title } </td>
-             </tr>
-             <tr>
-             <div id = "startline">
-             <td>출발지</td>
-             <td >${boardVo.c_start}</td>
-             <td>목적지</td>
-             <td>${boardVo.c_end}</td>
-             <td>일자</td>
-             <td>${boardVo.delivery_indate}</td>
-             </tr>
-             <tr>
-             <td>비용</td>
-             <td>${boardVo.money}</td>
-             <td>수화물</td>
-             <td>${boardVo.luggage}</td>
-             </div>
-             <tr>
-             <tr>
-              <td>내용</td>
-              <td colspan="3">${ boardVo.cont }</td>
-             </tr>
-             <tr>
+    <div class="w3-container w3-margin-top">
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>제목 : ${ boardVo.title } </p>
+            </div>
+        </div>
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>번호 : ${ boardVo.board_number } </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>작성자 : ${ boardVo.writer } </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>작성일 : ${ boardVo.indate } </p>
+            </div>
+        </div>
+        <div class="w3-cell-row" id = "startline">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>출발지 : ${boardVo.c_start} </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>목적지 : ${boardVo.c_end}</p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>일자 : ${boardVo.delivery_indate}</p>
+            </div>
+        </div>
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>비용 : ${boardVo.money} </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>수화물 : ${boardVo.luggage} </p>
+            </div>
+        </div>
+        <div class="w3-display-container w3-border" style="height:300px;">
+            <div class="w3-display-topleft">
+                ${ boardVo.cont }
+            </div>
+            <div class="w3-display-bottomright">
+                <div class="w3-cell-row">
+                    <div class="w3-cell w3-center">
+                        <form name = "UpdateBoard" method = "get">
+                            <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
+                            <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                            <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
+                            <button type = "button" id = "update" onClick = "UpdateBoard_()" class="w3-button w3-white">수정</button>
+                        </form>
+                    </div>
+                    <div class="w3-cell w3-center">
+                        <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()" class="w3-button w3-white"></input>
+                    </div>
+                    <div class="w3-cell w3-center">
+                        <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}"
+                            class="w3-button w3-white">목록으로</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-              <td colspan="4">
-                     </td>
-                [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
-                <form name = "UpdateBoard" method = "get">
-                                <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
-                                <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
-                                <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
-                                <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
-                                </form>
-                <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
-                [<a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
-                [<a href="javascript:history.back()">이전으로</a>]
-                [<a href="/">Home</a>]
-              </td>
-              </tr>
-              </table>
+        <div id = Replyli>
+        </div>
 
-<div id = Replyli>
-
+        <div class="w3-display-container w3-border" style="width:700px; text-align:center;">
+        <p>
+            <textarea rows ="5" cols="80" id="replytext"
+                placeholder="댓글을 작성하세요" class="w3-input"></textarea>
+            <button type="button" id="btnReply" class="btnReply">작성</button>
+        </p>
+    </div>
 </div>
-
-<div style="width:700px; text-align:center;">
-
-       <br>
-      <textarea rows ="5" cols="80" id="replytext"
-      placeholder="댓글을 작성하세요"></textarea>
-       <button type="button" id="btnReply" class="btnReply">작성</button>
-       </br>
-
-
-
-
-
 <script>
 
 
@@ -255,32 +277,35 @@ function replylist(){
  url: "/Board/CReplyList?board_number=${boardVo.board_number}&menu_id=${menu_id}",
  success: function(resultList){
  let html = "";
- html+= '<table>';
+ html+= '<div class="w3-container" style="padding: 0;">';
      for(var i =0; i<resultList.length; i++){
-          html+= '<tr>';
-          html+= '<td>';
+          html+= '<div class="w3-cell-row w3-center w3-border">';
+          html+= '<div class="w3-cell w3-center">';
+          html+= '<p>';
           html+= resultList[i].writer;
-          html+= '</td>';
-          html+= '</tr>';
-          html+= '<tr>';
-          html+= '<td id="R'+ resultList[i].reply_number +'">';
+          html+= '</p>';
+          html+= '</div>';
+          html+= '<div class="w3-cell w3-center">';
+          html+= '<p id="R'+ resultList[i].reply_number +'">';
           html+= resultList[i].cont;
-          html+= '</td>';
-          html+= '</tr>';
-          html+= '<tr>';
-          html+='<td>';
+          html+= '</p>';
+          html+= '</div>';
+          html+= '<div class="w3-cell w3-center">';
+          html+= '<p>';
           html+= resultList[i].indate;
-          html+='</td>';
-          html+='<td>';
-          html+='<button type="button" class="btn"  name="replyupdateBtn"  onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
-          html+= '</td>';
-          html+= '<td>';
-          html+='<button type="button" class="btndelte" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
-          html+='</td>'
-          html+= '</tr>';
+          html+= '</p>';
+          html+= '</div>';
+          html+= '<div class="w3-cell w3-center">';
+          html+= '<p>';
+          html+= '<button type="button" class="btn w3-button w3-white w3-right"  name="replyupdateBtn"  onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+          html+= '<button type="button" class="btndelte w3-button w3-white w3-right" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
+          html+= '</p>';
+          html+= '</div>'
+          html+= '</div>'
+
     }
 
-    html+='</table>';
+    html+='</div>';
     $('#Replyli').html(html);
 
 
@@ -300,6 +325,18 @@ formobj.attr("action", "/Board/CBoardUpdateForm");
 formobj.submit();
 });
 }
+}
+
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "15%";
+  document.getElementById("mySidebar").style.width = "15%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
 }
 
 

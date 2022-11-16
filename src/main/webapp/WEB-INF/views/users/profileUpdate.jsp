@@ -14,9 +14,13 @@
 
 </head>
 <body>
-    <form action="/profileUpdate" method="POST" encType = "multipart/form-data">
-    <input type="file" name="upfile" class="upfile"/><br>
-    <button type="submit">프로필 업로드</button>
-    </form>
+    <div class="w3-container w3-half w3-margin-top w3-display-middle" style="height:70%">
+        <form action="/profileUpdate" class="w3-container w3-card-4" method="POST" encType = "multipart/form-data">
+            <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"
+                name="upfile" class="upfile w3-input"/><br>
+            <button type="submit" class="w3-button w3-section w3-light-green w3-ripple w3-text-white w3-right">프로필 업로드</button>
+        </form>
+    </div>
+
 </body>
 </html>

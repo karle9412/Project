@@ -37,12 +37,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/common.css">
 
 </head>
 <body>
 
     <!-- 헤더 -->
-    <header class="w3-container w3-theme w3-center" style="height:20%">
+    <header class="w3-container w3-teal1 w3-center" style="height:20%">
         <h1 class="w3-xxxlarge">TITLE</h1>
     </header>
 

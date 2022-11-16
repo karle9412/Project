@@ -4,6 +4,7 @@ import com.project.pds.user.service.PdsService;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
-@org.springframework.stereotype.Controller
+@Controller
 public class UserController {
 
     @Autowired
@@ -85,6 +86,8 @@ public class UserController {
         Object getUser = userService.getUser(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
+        mv.addObject(getUserProfile);
+
         mv.setViewName("users/getUser");
         return mv;
     }

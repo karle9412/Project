@@ -30,11 +30,12 @@ $(function(){
                     $("#userid_check").html(getUserid);
                 } else {
                     let changePasswd = "";
-                    changePasswd += "<form action=\"/changePasswdForm\" method=\"POST\">";
+                    changePasswd += "<form action=\"/changePasswdForm\" class=\"w3-container w3-card-4\" method=\"POST\">";
                     changePasswd += '<input type="hidden" name="userid" value=' + getUserid + '></input>';
-                    changePasswd += getUserid;
-                    changePasswd += "</br>"
-                    changePasswd += "<button id=\"changePasswd\" class=\"w3-button w3-section w3-teal w3-ripple\">비밀번호 변경</button>";
+                    changePasswd += "<div class=\"w3-container w3-center\">";
+                    changePasswd += "<p> userid : " + getUserid + "</p>";
+                    changePasswd += "</div>";
+                    changePasswd += "<button id=\"changePasswd\" class=\"w3-button w3-section w3-teal w3-ripple w3-right\">비밀번호 변경</button>";
                     changePasswd += "</form>";
                     $("#userid_check").html(changePasswd);
                 }
@@ -48,12 +49,28 @@ $(function(){
 </script>
 </head>
 <body>
-<form>
-닉네임<input type="text" name="nickname" id="nickname"></input></br>
-이메일<input type="email" name="email" id="email"></input></br>
-<button id="findUserid" class="w3-button w3-section w3-teal w3-ripple"> 아이디 찾기 </button></br>
-</form>
-<div id="userid_check"></div></br>
-
+<header class="w3-container w3-teal w3-center">
+    <h1>Userid 찾기</h1>
+</header>
+    <div class="w3-container w3-half w3-margin-top w3-display-middle" style="height:70%">
+        <form class="w3-container w3-card-4">
+            <p>
+                <input class="w3-input" id="nickname" name="nickname" type="text" style="width:100%">
+                <label>nickname</label>
+            </p>
+            <p>
+                <input class="w3-input" id="email" name="email" type="text" style="width:100%">
+                <label>email</label>
+            </p>
+            <p>
+                <input type="button" id="findUserid" class="w3-button w3-section w3-teal w3-ripple w3-right" value="아이디 찾기"></button>
+            </p>
+        </form>
+            <p>
+                <div id="userid_check"></div>
+            </p>
+    </div>
 </body>
 </html>
+
+

@@ -87,7 +87,7 @@ $(function(){
 </script>
 </head>
 <body>
-    <header class="w3-container w3-teal w3-center">
+    <header class="w3-container w3-teal1 w3-center">
         <h1>Register</h1>
     </header>
     <form action="/userProfileUploadForm" method="POST" class="w3-container w3-card-4 w3-light-grey w3-margin">
@@ -136,7 +136,7 @@ $(function(){
                 <input class="w3-input w3-border" name="phoneNumber" type="text" placeholder="000-0000-0000"/>
             </div>
         </div>
-        <select id="LOACTION" name="user_local">
+        <select class="w3-select" id="LOACTION" name="user_local">
             <option value="">LOCATION</option>
             <option value="seoul">Seoul</option>
             <option value="incheon">Incheon</option>

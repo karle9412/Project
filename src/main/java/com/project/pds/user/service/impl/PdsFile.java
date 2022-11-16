@@ -19,8 +19,9 @@ public class PdsFile {
         String userid = userVo.getuserid();
 
         String filePath = "D:\\Project\\src\\main\\webapp\\WEB-INF\\resources\\img\\userProfile\\";
+        filePath += userid;
+        filePath += "\\";
         File dir = new File(filePath);
-
         if (!dir.exists()){
             dir.mkdir();
         }

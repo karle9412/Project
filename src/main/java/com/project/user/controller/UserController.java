@@ -89,6 +89,7 @@ public class UserController {
 
         mv.addObject(getUser);
         mv.addObject(getUserProfile);
+
         mv.setViewName("users/getUser");
         return mv;
     }

@@ -15,7 +15,6 @@
 <script>
 $(document).ready(function() {
     let message = "${fail}";
-    console.log(message);
     if (message != "") {
         alert(message);
     }else {

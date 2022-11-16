@@ -11,8 +11,6 @@ public interface ReplyService {
 
     List<ReplyPager> getReplylist(HashMap<String, Object> map);
 
-    List<RiderReplyVo> getRiderReplylist(int board_number);
-
     void writeReply(ReplyVo replyVo);
 
     void RiderwriteReply(RiderReplyVo riderReplyVo);
@@ -34,4 +32,10 @@ public interface ReplyService {
     void updateEndPage(HashMap<String, Object> map);
 
     void DUpdateEndPage(HashMap<String, Object> map);
+
+    int RReplyCount(int board_number);
+
+    void RUpdateEndPage(HashMap<String, Object> map);
+
+    List<ReplyPager> getRReplylist(HashMap<String, Object> map);
 }

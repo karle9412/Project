@@ -24,12 +24,6 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<RiderReplyVo> getRiderReplylist(int board_number) {
-        List<RiderReplyVo> readReply = replyDao.getRiderReplylist(board_number);
-        return readReply;
-    }
-
-    @Override
     public void writeReply(ReplyVo replyVo) {
         replyDao.writeReply(replyVo);
     }
@@ -72,6 +66,20 @@ public class ReplyServiceImpl implements ReplyService {
         replyDao.DUpdateEndPage(map);
     }
 
+    @Override
+    public int RReplyCount(int board_number) {
+        return replyDao.RReplyCount(board_number);
+    }
+
+    @Override
+    public void RUpdateEndPage(HashMap<String, Object> map) {
+        replyDao.RUpdateEndpage(map);
+    }
+
+    @Override
+    public List<ReplyPager> getRReplylist(HashMap<String, Object> map) {
+        return replyDao.getRReplylist(map);
+    }
 
     @Override
     public void DeleteReply(HashMap<String, Object> map) {

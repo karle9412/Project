@@ -12,8 +12,6 @@ public interface ReplyDao {
 
     List<ReplyPager> getReplylist(HashMap<String, Object> map);
 
-    List<RiderReplyVo> getRiderReplylist(int rider_board_number);
-
     void writeReply(ReplyVo replyVo);
 
     void RiderwriteReply(RiderReplyVo riderReplyVo);
@@ -35,4 +33,10 @@ public interface ReplyDao {
     void updateEndpage(HashMap<String, Object> map);
 
     void DUpdateEndPage(HashMap<String, Object> map);
+
+    int RReplyCount(int board_number);
+
+    void RUpdateEndpage(HashMap<String, Object> map);
+
+    List<ReplyPager> getRReplylist(HashMap<String, Object> map);
 }

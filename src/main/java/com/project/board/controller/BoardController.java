@@ -17,13 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Base64;
+import java.util.*;
 import javax.servlet.http.HttpSession;
 import java.io.Writer;
 import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class BoardController {
@@ -309,7 +306,6 @@ public class BoardController {
         replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
         replyPager.setEndPage();
         replyPager.setRend_page();
-        System.out.println(replyPager);
 
         map.put("pageNum", replyPager.getPageNum());
         map.put("contentNum", replyPager.getContentNum());
@@ -340,15 +336,37 @@ public class BoardController {
 
     @RequestMapping("/Board/riderDetail")
     public String riderdetail(@RequestParam HashMap<String, Object> map, Model model,HttpSession httpSession) {
+
+        System.out.println(map);
+        String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
         String menu_id = (String) map.get("menu_id");
         RiderBoardVo riderBoardVo = boardService.DetailRider(map);
-        String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
-
-
 
         model.addAttribute("riderBoardVo", riderBoardVo);
         model.addAttribute("menu_id", menu_id);
         model.addAttribute("nickName", nickName);
+
+        ReplyPager replyPager = new ReplyPager();
+
+        int rPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int rContentNum = Integer.parseInt((String) map.get("contentNum"));
+        int Board_number = Integer.parseInt((String) map.get("board_number"));
+
+        replyPager.setBoard_number(Board_number);
+        replyPager.setTotalCount(replyService.RReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setPageNum(rPageNum-1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        replyPager.setCurrentBlock(rPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        replyPager.setEndPage(); // 마지막 페이지
+
+        map.put("pageNum", replyPager.getPageNum());
+        map.put("contentNum", replyPager.getContentNum());
+
+        model.addAttribute("map",map);
+        model.addAttribute("replyPager",replyPager);
 
         return "riderboard/riderdetail";
     }
@@ -356,8 +374,39 @@ public class BoardController {
     //할게요 댓글 조회
     @RequestMapping("/Board/RReplyList")
     @ResponseBody
-    public List<RiderReplyVo> Rreplylist(RiderBoardVo riderBoardVo){
-        List<RiderReplyVo> replylist = replyService.getRiderReplylist(riderBoardVo.getBoard_number());
+    public List<ReplyPager> Rreplylist(@RequestParam(required = false) HashMap<String,Object> map, Model model){
+
+        List<ReplyPager> replylist = null;
+
+        int rPageNum = Integer.parseInt((String) map.get("pageNum"));
+        int rContentNum = Integer.parseInt((String) map.get("contentNum"));
+        int Board_number = Integer.parseInt((String) map.get("board_number"));
+
+        replyPager.setBoard_number(Board_number);
+        replyPager.setTotalCount(replyService.RReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setPageNum(rPageNum); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        replyPager.setCurrentBlock(rPageNum+1); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        replyPager.setEndPage();
+        replyPager.setRend_page();
+
+        map.put("pageNum", replyPager.getPageNum());
+        map.put("contentNum", replyPager.getContentNum());
+        map.put("endPage",replyPager.getEndPage());
+
+        if (replyPager.getPageNum() == 0) {
+            replyService.RUpdateEndPage(map);
+            replylist = replyService.getRReplylist(map);
+        } else if (replyPager.getPageNum() != 0) {
+            map.put("pageNum", replyPager.getPageNum()*10+1);
+            replyService.RUpdateEndPage(map);
+            replylist = replyService.getRReplylist(map);
+        }
+        model.addAttribute("pagerEnd",replyPager.getEndPage());
+        System.out.println(replylist);
         return replylist;
     }
 

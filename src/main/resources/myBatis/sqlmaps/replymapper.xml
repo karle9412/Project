@@ -24,10 +24,36 @@
 
     </select>
 
+    <select id="RReplyList"
+            resultType="com.project.board.vo.ReplyPager">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM,
+        R.WRITER,
+        R.CONT,
+        R.REPLY_NUMBER,
+        R.BOARD_NUMBER,
+        TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
+        R.REND_PAGE
+
+        FROM RIDER_REPLY R
+        WHERE BOARD_NUMBER = #{board_number}
+        ORDER BY REPLY_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+
+    </select>
+
     <select id="CReplyCount"
             resultType="int">
         SELECT COUNT(*)
         FROM REPLY
+        WHERE BOARD_NUMBER = #{board_number}
+    </select>
+
+    <select id="RReplyCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM RIDER_REPLY
         WHERE BOARD_NUMBER = #{board_number}
     </select>
 
@@ -62,6 +88,13 @@
     </insert>
 
     <update id="UpdateEndPage">
+        UPDATE REPLY
+        SET REND_PAGE = #{endPage}
+        WHERE BOARD_NUMBER = #{board_number}
+
+    </update>
+
+    <update id="RUpdateEndPage">
         UPDATE REPLY
         SET REND_PAGE = #{endPage}
         WHERE BOARD_NUMBER = #{board_number}

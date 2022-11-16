@@ -34,10 +34,18 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
-    public List<RiderReplyVo> getRiderReplylist(int board_number) {
-        List<RiderReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
+    public int RReplyCount(int board_number) {
+        return sqlSession.selectOne("Reply.RReplyCount",board_number);
+    }
 
-        return readReply;
+    @Override
+    public void RUpdateEndpage(HashMap<String, Object> map) {
+        sqlSession.update("Reply.RUpdateEndPage",map);
+    }
+
+    @Override
+    public List<ReplyPager> getRReplylist(HashMap<String, Object> map) {
+        return sqlSession.selectList("Reply.RReplyList",map);
     }
 
     @Override

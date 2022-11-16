@@ -153,6 +153,11 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public int replyCount(HashMap<String, Object> map) { return boardDao.replyCount(map); }
+
+    @Override
+    public void CBOardCheck(HashMap<String, Object> map) {
+        boardDao.CBOardCheck(map);
+    }
 }
 
 

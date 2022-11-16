@@ -128,9 +128,8 @@
         MONEY,
         LUGGAGE,
         DELIVERY_INDATE,
-
-
-        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+        TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
+        BOARD_CHECK
 
 
         FROM CUSTOMER_BOARD
@@ -231,5 +230,11 @@
         WHERE BOARD_NUMBER = #{board_number}
     </delete>
 
+    <update id="Check">
+        UPDATE CUSTOMER_BOARD
+        SET BOARD_CHECK = #{board_check}
+        WHERE BOARD_NUMBER = #{board_number}
+
+    </update>
 
 </mapper>

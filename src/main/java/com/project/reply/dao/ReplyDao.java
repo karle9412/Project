@@ -20,7 +20,7 @@ public interface ReplyDao {
 
     void UpdateReply(HashMap<String, Object> map);
 
-    void DeleteReply(int reply_number);
+    void DeleteReply(HashMap<String, Object> map);
 
     void DeleteR_Reply(int reply_number);
 
@@ -33,4 +33,6 @@ public interface ReplyDao {
     int CReplyCount(int board_number);
 
     void updateEndpage(HashMap<String, Object> map);
+
+    void DUpdateEndPage(HashMap<String, Object> map);
 }

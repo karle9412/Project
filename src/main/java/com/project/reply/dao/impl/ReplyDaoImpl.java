@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,6 +26,11 @@ public class ReplyDaoImpl implements ReplyDao {
     @Override
     public void updateEndpage(HashMap<String, Object> map) {
         sqlSession.update("Reply.UpdateEndPage",map);
+    }
+
+    @Override
+    public void DUpdateEndPage(HashMap<String, Object> map) {
+        sqlSession.update("Reply.DUpdateEndPage", map);
     }
 
     @Override
@@ -71,12 +75,9 @@ public class ReplyDaoImpl implements ReplyDao {
         return sqlSession.selectOne("Reply.CReplyCount",board_number);
     }
 
-
-
-
     @Override
-    public void DeleteReply(int reply_number) {
-        sqlSession.delete("Reply.DeleteReply",reply_number);
+    public void DeleteReply(HashMap<String, Object> map) {
+        sqlSession.delete("Reply.DeleteReply", map);
     }
 
     @Override

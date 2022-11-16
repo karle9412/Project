@@ -52,4 +52,6 @@ public interface BoardDao {
     List<ReplyVo> replyList(HashMap<String, Object> map);
 
     int replyCount(HashMap<String, Object> map);
+
+    void CBOardCheck(HashMap<String, Object> map);
 }

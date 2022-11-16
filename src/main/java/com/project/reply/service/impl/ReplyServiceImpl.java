@@ -67,10 +67,15 @@ public class ReplyServiceImpl implements ReplyService {
         replyDao.updateEndpage(map);
     }
 
+    @Override
+    public void DUpdateEndPage(HashMap<String, Object> map) {
+        replyDao.DUpdateEndPage(map);
+    }
+
 
     @Override
-    public void DeleteReply(int reply_number) {
-        replyDao.DeleteReply(reply_number);
+    public void DeleteReply(HashMap<String, Object> map) {
+        replyDao.DeleteReply(map);
     }
 
     @Override

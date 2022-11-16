@@ -254,7 +254,7 @@ public class BoardController {
     @RequestMapping("/Board/CustomerDetail")
     public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo,HttpSession httpSession) {
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
-        String menu_id = (String) map.get("menu_id");
+        String menu_id  = (String)  map.get("menu_id");
         BoardVo boardVo =  boardService.DetailCustomer(map);
 
         model.addAttribute("boardVo", boardVo);
@@ -309,6 +309,7 @@ public class BoardController {
         replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
         replyPager.setEndPage();
         replyPager.setRend_page();
+        System.out.println(replyPager);
 
         map.put("pageNum", replyPager.getPageNum());
         map.put("contentNum", replyPager.getContentNum());
@@ -322,9 +323,7 @@ public class BoardController {
             replyService.updateEndPage(map);
             replylist = replyService.getReplylist(map);
         }
-
         model.addAttribute("pagerEnd",replyPager.getEndPage());
-
         return replylist;
     }
 
@@ -522,8 +521,9 @@ public class BoardController {
     //해주세요 게시판 댓글 삭제
     @RequestMapping("/Board/ReplyDelete")
     @ResponseBody
-    public void ctm_replyDelete(@RequestParam int reply_number){
-        replyService.DeleteReply(reply_number);
+    public void ctm_replyDelete(@RequestParam HashMap<String,Object> map){
+        replyService.DeleteReply(map);
+        replyService.DUpdateEndPage(map);
     }
 
     //할게요 게시판 댓글 삭제
@@ -533,6 +533,12 @@ public class BoardController {
         replyService.DeleteR_Reply(reply_number);
     }
 
+    @RequestMapping("/Board/check")
+    @ResponseBody
+    public HashMap<String, Object> check(@RequestParam HashMap<String, Object> map){
+        boardService.CBOardCheck(map);
+        return map;
+    }
 
 
 

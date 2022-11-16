@@ -19,7 +19,7 @@ public interface ReplyService {
 
     void UpdateReply(HashMap<String, Object> map);
 
-    void DeleteReply(int reply_number);
+    void DeleteReply(HashMap<String, Object> map);
 
     void DeleteR_Reply(int reply_number);
 
@@ -32,4 +32,6 @@ public interface ReplyService {
     int CReplyCount(int board_number);
 
     void updateEndPage(HashMap<String, Object> map);
+
+    void DUpdateEndPage(HashMap<String, Object> map);
 }

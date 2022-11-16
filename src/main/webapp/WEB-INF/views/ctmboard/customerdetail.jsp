@@ -114,6 +114,7 @@ function deleteReply(reply_number,writer,endPage){
 </script>
 </head>
 <body>
+
   <table id="board_">
     <caption><h2>내용 보기</h2></caption>
     <tr>
@@ -183,6 +184,7 @@ function deleteReply(reply_number,writer,endPage){
     </br>
   <div>
   <div id = ReplyPa></div>
+  <div id = smssend ></div>
   <script>
     $("#btnReply").click(function(){
       let cont  = $("#replytext").val();
@@ -249,6 +251,9 @@ function deleteReply(reply_number,writer,endPage){
                         html+= '</td>';
                         html+= '<td>';
                         html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
+                        html+= '</td>';
+                        html+= '<td>';
+                        html+=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
                         html+= '</td>';
                         html+= '</tr>';
                       }
@@ -428,6 +433,20 @@ function  checkdelitebtn(){
            }
 
        }
+
+function sendSMS(){
+ let ab = "0104800579" // 내번호
+ let ac = "테스트 입니다" // 텍스트
+ let param = {"from":ab, "text":ac}
+ $.ajax({
+ type:"post",
+ url:"/Board/SMS",
+ data:param,
+ success:function(result){
+ alert("성공!")
+ }
+ })
+  }
 
 
   </script>

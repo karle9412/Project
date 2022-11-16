@@ -8,13 +8,18 @@ import com.project.reply.service.ReplyService;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 import com.project.user.vo.UserVo;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -278,6 +283,9 @@ public class BoardController {
 
         model.addAttribute("map",map);
         model.addAttribute("replyPager",replyPager);
+
+
+
 
         return "ctmboard/customerdetail";
     }
@@ -544,6 +552,37 @@ public class BoardController {
 
         }
 
+    @Controller
+    public class RefundMessageController {
+        @PostMapping("/Board/SMS")
+        public String sendSms(HttpServletRequest request) throws Exception {
+
+            String api_key = "NCSI63DGQEUWZPJE";
+            String api_secret = "2MP0QF6VI94CIRR0VGDF1RRFQ0QC6Z33";
+            Message coolsms = new Message(api_key, api_secret);
+
+            HashMap<String, String> set = new HashMap<String, String>();
+            set.put("to", "01048005799"); // 수신번호
+
+            set.put("from", (String)request.getParameter("from")); // 발신번호
+            set.put("text", (String)request.getParameter("text")); // 문자내용
+            set.put("type", "sms"); // 문자 타입
+            set.put("app_version", "test app 1.2");
+
+            System.out.println(set);
+            try {
+                JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+                System.out.println(result.toString());
+            } catch (CoolsmsException e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCode());
+            }
+
+            return "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
+        }
+
+    }
 
 
 

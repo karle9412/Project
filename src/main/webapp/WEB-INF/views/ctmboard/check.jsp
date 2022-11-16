@@ -6,16 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 
 </head>
 <body>
-  <form method="post" id="smsForm">
-    <ul>
-      <li>보낼사람 : <input type="text" name="from"/></li>
-      <li>내용 : <textarea name="text"></textarea></li>
-      <li><input type="button" onclick="sendSMS('sendSms')" value="전송하기" /></li>
-    </ul>
+<form method="post" id="smsForm">
+      <input type="hidden" name="from" value="01048005799"/></li>
+       <input type="hidden" name="text" value=""/>
   </form>
 
+<script>
+function sendSMS(){
+
+
+$("#smsForm").attr("action", "/Board/SMS");
+$("#smsForm").submit();
+      }
+    </script>
 </body>
 </html>

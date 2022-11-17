@@ -153,6 +153,23 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public int replyCount(HashMap<String, Object> map) { return boardDao.replyCount(map); }
+
+    @Override
+    public void CBOardCheck(HashMap<String, Object> map) {
+        boardDao.CBoardCheck(map);
+    }
+
+    @Override
+    public void RBOardCheck(HashMap<String, Object> map) {
+        boardDao.RBoardCheck(map);
+    }
+
+    @Override
+    public List<BoardVo> myWritePage(String nickname) {
+        List<BoardVo> myWritePage = boardDao.myWritePage(nickname);
+
+        return myWritePage;
+    }
 }
 
 

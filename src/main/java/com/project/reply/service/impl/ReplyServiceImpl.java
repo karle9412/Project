@@ -67,6 +67,12 @@ public class ReplyServiceImpl implements ReplyService {
         replyDao.updateEndpage(map);
     }
 
+    @Override
+    public List<ReplyVo> myReplyPage(String nickname) {
+        List<ReplyVo>  myReplyPage = replyDao.myReplyPage(nickname);
+        return myReplyPage;
+    }
+
 
     @Override
     public void DeleteReply(int reply_number) {

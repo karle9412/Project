@@ -33,4 +33,6 @@ public interface ReplyDao {
     int CReplyCount(int board_number);
 
     void updateEndpage(HashMap<String, Object> map);
+
+    List<ReplyVo> myReplyPage(String nickname);
 }

@@ -106,5 +106,12 @@
 
     </delete>
 
+    <select id="myReplyPage"
+            resultType="com.project.reply.vo.ReplyVo">
+        SELECT *
+        FROM REPLY
+        WHERE WRITER = #{nickname}
+    </select>
+
 
 </mapper>

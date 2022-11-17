@@ -31,8 +31,11 @@
          <td>접수대기<td>
        </c:if>
        <c:if test="${check == 1}">
-         <td>접수완료<td>
+         <td>접수중<td>
        </c:if>
+       <c:if test="${check == 2}">
+                <td>접수완료<td>
+              </c:if>
     </tr>
   </div>
     </c:forEach>

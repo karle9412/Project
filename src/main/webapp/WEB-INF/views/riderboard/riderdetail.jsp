@@ -246,6 +246,19 @@ function replylist(list){
           html += '<td>';
           html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
           html +='</td>'
+          html+= '<td>';
+                                  html+= '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+                                  html+= '</td>';
+                                  html+= '</tr>';
           html += '</tr>';
         }
         html+='</table>';
@@ -299,6 +312,19 @@ function replylist(list){
           html += '<td>';
           html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
           html +='</td>'
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+                                  html+= '</td>';
+                                  html+= '</tr>';
           html += '</tr>';
         }
         html+='</table>';
@@ -342,8 +368,7 @@ function UpdateBoard_(){
     });
   }
 }
-    }
-    }
+
 
 
 
@@ -353,6 +378,8 @@ function UpdateBoard_(){
                  let ans = confirm("접수하시겠습니까?");
                  let a = "${riderBoardVo.writer}"
                  let b = "${nickName}"
+                   if (ans === false){
+                   return false;}
                      if("${riderBoardVo.board_check}" == 2){
                        alert("이미 접수완료된 게시글입니다.")
                        return false;
@@ -367,7 +394,7 @@ function UpdateBoard_(){
                    data: ggg,
                    success:function(resultcheck){
                    alert("접수완료")
-                   location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_01&board_check=1';
+                   location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=1';
                    }
                    })
                  }
@@ -390,7 +417,7 @@ function UpdateBoard_(){
                       data: ggg,
                       success:function(resultcheck){
                       alert("접수완료")
-                      location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&board_check=2';
+                      location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=2';
                       }
                       })
                       }

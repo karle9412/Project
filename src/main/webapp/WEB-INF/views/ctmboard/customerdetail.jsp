@@ -11,15 +11,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/css/common.css">
 
-<style>
-  #board  td:nth-of-type(1) { width:150px; text-align:center;}
-  #board  td:nth-of-type(2) { width:400px; text-align:left;}
-  #board  td:nth-of-type(3) { width:150px; text-align:center;}
-  #board  td:nth-of-type(4) { width:400px; text-align:left;}
-  #board  tr:nth-of-type(4) { height : 400px; vertical-align: top; }
-  #board  input     { width:100%; }
-  #board  textarea  { width:100%; height: 400px;  }
-</style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -294,6 +286,16 @@ function replylist(){
           html += '<td>';
           html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
           html += '</td>';
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
+                                  html+= '</td>';
+                                  html+= '<td>';
+                                  html+=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+                                  html+= '</td>';
+                                  html+= '</tr>';
           html += '</tr>';
         }
         $('#Replyli').html(html);
@@ -397,6 +399,12 @@ function checkbutton(){
   let c  = "${boardVo.board_check}"
   let a = "${boardVo.writer}"
   let b = "${nickName}"
+  if (ans === false){
+  return false;}
+  if("${boardVo.board_check}" == 2){
+    alert("이미 접수완료된 게시글입니다.")
+    return false;
+  }
   if(a != b){
     alert("본인이 작성한 게시글만 접수 가능합니다")
   }
@@ -406,12 +414,13 @@ function checkbutton(){
       url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
       data: ggg,
       success:function(resultcheck){
+       location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=2';
         alert("접수완료")
       }
    })
   }
 }
-</script>
+
 function w3_open() {
   document.getElementById("main").style.marginLeft = "15%";
   document.getElementById("mySidebar").style.width = "15%";

@@ -10,7 +10,7 @@
 body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 .bgimg {
-  background: url("img/home.jpg");
+  background-color: rgb(30, 38, 78);
   height: 100%;
   background-position: center;
   background-size: cover;

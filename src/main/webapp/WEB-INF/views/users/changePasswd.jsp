@@ -25,11 +25,14 @@ $(function (){
         let passwdChange = ""
 
         if (passwd == passwdCheck){
-            passwdChange = '<form action="/changePasswd" id="changePasswd">';
-            passwdChange += "비밀번호 중복체크 완료</br>";
+            passwdChange = '<form action="/changePasswd" id="changePasswd" class="w3-container w3-card-4">';
+            passwdChange += "<div class=\"w3-container w3-center\">";
+            passwdChange += "<p>Passwd Check<br>";
+            passwdChange += "Complite</p>";
+            passwdChange += "</div>";
             passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
             passwdChange += '<input type="hidden" name="passwd" value=' + passwd + '></input>';
-            passwdChange += '<button type="submit" id="send">비밀번호변경</input>';
+            passwdChange += '<button type="submit" id="send" class="w3-button w3-section w3-teal w3-ripple w3-right">비밀번호변경</input>';
             passwdChange += '</form>';
             $("#passwdDoubleCheck").html(passwdChange);
         } else {
@@ -44,11 +47,21 @@ $(function (){
 </script>
 </head>
 <body>
+<header class="w3-container w3-teal w3-center">
+    <h1>Passwd 변경</h1>
+</header>
 <input type="hidden" name="userid" value="${userVo.userid}"> </input>
-비밀번호를 입력하세요</br>
-<input type="password" id="passwd"></input></br>
-비밀번호를 다시 입력하세요</br>
-<input type="password" id="passwdCheck"></input></br>
+
+<div class="w3-container w3-half w3-margin-top w3-display-middle" style="height:70%">
+    <p>
+        <input class="w3-input" id="passwd" type="password" style="width:100%">
+        <label>passwd</label>
+    </p>
+    <p>
+    <input class="w3-input" id="passwdCheck" type="password" style="width:100%">
+        <label>passwd Check</label>
+    </p>
 <div id="passwdDoubleCheck"></div>
+</div>
 </body>
 </html>

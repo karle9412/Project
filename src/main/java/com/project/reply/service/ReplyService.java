@@ -40,4 +40,6 @@ public interface ReplyService {
     List<ReplyPager> getRReplyList(HashMap<String, Object> map);
 
     void updateREndPage(HashMap<String, Object> map);
+
+    List<ReplyVo> myReplyPage(String nickname);
 }

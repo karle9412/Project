@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/common.css">
+
 <style>
   #board  td:nth-of-type(1) { width:150px; text-align:center;}
   #board  td:nth-of-type(2) { width:400px; text-align:left;}
@@ -121,98 +126,136 @@ function deleteReply(reply_number,writer,endPage){
 </script>
 </head>
 <body>
-<table id="board_">
-  <caption><h2>내용 보기</h2></caption>
-  <tr>
-    <td>번호</td>
-    <td>${ boardVo.board_number } </td>
-  <tr>
-    <td>작성일</td>
-    <td>${ boardVo.indate } </td>
-    <td>작성자</td>
-    <td>${ boardVo.writer } </td>
-  </tr>
-  <tr>
-    <td>제목</td>
-    <td colspan="3">${ boardVo.title } </td>
-  </tr>
-  <tr>
-    <div id = "startline">
-      <td>출발지</td>
-      <td >${boardVo.c_start}</td>
-      <td>목적지</td>
-      <td>${boardVo.c_end}</td>
-      <td>일자</td>
-      <td>${boardVo.delivery_indate}</td>
+<%@ include file="/WEB-INF/include/menus.jsp" %>
+<div id="main">
+    <div class="w3-teal1" >
+        <table>
+            <tr>
+                <td>
+                    <button id="openNav" class="w3-button w3-teal1 w3-xlarge" onclick="w3_open()">&#9776;</button>
+                </td>
+                <td>
+                    <div class="w3-container w3-center">
+                        <h1>내용보기</h1>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-  </tr>
-  <tr>
-    <td>비용</td>
-    <td>${boardVo.money}</td>
-    <td>수화물</td>
-    <td>${boardVo.luggage}</td>
-    <td>접수</td>
-    <c:if test="${boardVo.board_check == 0}">
-      <td>접수대기<td>
-    </c:if>
-    <c:if test="${boardVo.board_check == 1}">
-      <td>접수중<td>
-    </c:if>
-    <c:if test="${boardVo.board_check == 2}">
-      <td>접수완료<td>
-    </c:if>
-  </tr>
-  <tr>
-    <td>내용</td>
-    <td colspan="3">${ boardVo.cont }</td>
-  </tr>
-  <tr>
-    <td colspan="4"></td>
-    [<a href="/Board/WriteForm?menu_id=${menu_id}&bnum=0&lvl=0&step=0&nref=0">새 글 쓰기</a>]
-    <form name = "UpdateBoard" method = "get">
-      <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
-      <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
-      <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
-      <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
-    </form>
-    <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
-    [<a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
-    [<a href="javascript:history.back()">이전으로</a>]
-    [<a href="/">Home</a>]
-  </tr>
-</table>
-<div id = Replyli></div>
-<div style="width:700px; text-align:center;">
-  <br>
-    <textarea rows ="5" cols="80" id="replytext" placeholder="댓글을 작성하세요"></textarea>
-    <button type="button" id="btnReply" class="btnReply">작성</button>
-  </br>
+
+    <div class="w3-container w3-margin-top">
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>제목 : ${ boardVo.title } </p>
+            </div>
+        </div>
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>번호 : ${ boardVo.board_number } </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>작성자 : ${ boardVo.writer } </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>작성일 : ${ boardVo.indate } </p>
+            </div>
+        </div>
+        <div class="w3-cell-row" id = "startline">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>출발지 : ${boardVo.c_start} </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>목적지 : ${boardVo.c_end}</p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>일자 : ${boardVo.delivery_indate}</p>
+            </div>
+        </div>
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>비용 : ${boardVo.money} </p>
+            </div>
+            <div class="w3-container w3-cell w3-center w3-border">
+                <p>수화물 : ${boardVo.luggage} </p>
+            </div>
+            <td>접수</td>
+                <c:if test="${boardVo.board_check == 0}">
+                    <td>접수대기<td>
+                </c:if>
+                <c:if test="${boardVo.board_check == 1}">
+                    <td>접수중<td>
+                </c:if>
+                <c:if test="${boardVo.board_check == 2}">
+                    <td>접수완료<td>
+                </c:if>
+        </div>
+        <div class="w3-display-container w3-border" style="height:300px;">
+            <div class="w3-display-topleft">
+                ${ boardVo.cont }
+            </div>
+            <div class="w3-display-bottomright">
+                <div class="w3-cell-row">
+                    <div class="w3-cell w3-center">
+                        <form name = "UpdateBoard" method = "get">
+                            <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
+                            <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                            <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
+                            <button type = "button" id = "update" onClick = "UpdateBoard_()" class="w3-button w3-white">수정</button>
+                        </form>
+                    </div>
+                    <div class="w3-cell w3-center">
+                        <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()" class="w3-button w3-white"></input>
+                    </div>
+                    <div class="w3-cell w3-center">
+                        <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}"
+                            class="w3-button w3-white">목록으로</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id = Replyli>
+        </div>
+
+        <div class="w3-display-container w3-border" style="width:700px; text-align:center;">
+        <p>
+            <textarea rows ="5" cols="80" id="replytext"
+                placeholder="댓글을 작성하세요" class="w3-input"></textarea>
+            <button type="button" id="btnReply" class="btnReply">작성</button>
+        </p>
+    </div>
 </div>
-<div id = ReplyPa></div>
 <script>
-  $("#btnReply").click(function(){
-    let cont  = $("#replytext").val();
-    let board_number = "${boardVo.board_number }";
-    let menu_id = "${menu_id}";
-    let writer = "${nickName}"
-    let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
-    $.ajax({
-      type: "post",
-      url: "/Board/CtmreplyWrite",
-      data: param,
-      success: function(result){
-        alert("댓글이 등록되었습니다");
-        $("#replytext").val('');
-        window.location.reload();
-        replylist();
-      },
-      error: function(xhr){
-        if($("#replytext").val() == ''){
-          alert('댓글을 입력해주세요.')
-        }
-      }
-    });
+
+
+
+$("#btnReply").click(function(){
+ let cont  = $("#replytext").val();
+ let board_number = "${boardVo.board_number }";
+ let menu_id = "${menu_id}";
+ let writer = "${nickName}"
+ let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+
+ $.ajax({
+  type: "post",
+  url: "/Board/CtmreplyWrite",
+  data: param,
+  success: function(result){
+   alert("댓글이 등록되었습니다");
+    $("#replytext").val('');
+     replylist();
+   },
+   error: function(xhr){
+    if($("#replytext").val() == ''){
+      alert('댓글을 입력해주세요.')
+     }
+
+  }
+
   });
+
+ });
+
 
 function replylist(){
   $.ajax({
@@ -369,5 +412,89 @@ function checkbutton(){
   }
 }
 </script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "15%";
+  document.getElementById("mySidebar").style.width = "15%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+
+   function checkbuttonbtn(){
+     let checkcheck = 2;
+         let ggg = {"board_check": checkcheck}
+         let ans = confirm("접수완료 시 취소가 불가능합니다.");
+         let c  = "${boardVo.board_check}"
+         let a = "${boardVo.writer}"
+         let b = "${nickName}"
+         if(ans === true){
+         if(a != b){
+         alert("본인이 작성한 게시글만 접수 가능합니다")
+         }
+         else{
+           $.ajax({
+           type:"get",
+           url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+           data: ggg,
+           success:function(resultcheck){
+           alert("접수완료")
+           location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=2';
+           }
+           })
+           }
+           }
+
+       }
+
+function  checkdelitebtn(){
+ let checkcheck = 0;
+         let ggg = {"board_check": checkcheck}
+         let ans = confirm("접수취소 하시겠습니까?");
+         let c  = "${boardVo.board_check}"
+         let a = "${boardVo.writer}"
+         let b = "${nickName}"
+         if("${boardVo.board_check}" == 0 ){
+         alert("접수가 되지 않아 취소할 수 없습니다")
+         return false;
+         }
+         if(ans === true){
+         if(a != b){
+         alert("본인이 작성한 게시글만 접수 가능합니다")
+         }
+         else{
+           $.ajax({
+           type:"get",
+           url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+           data: ggg,
+           success:function(resultcheck){
+           alert("접수취소 되었습니다")
+           location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=1';
+           }
+           })
+           }
+           }
+
+       }
+
+function sendSMS(){
+ let ab = "01048195535" // 내번호
+ let ac = "테스트 입니다" // 텍스트
+ let param = {"from":ab, "text":ac}
+ $.ajax({
+ type:"post",
+ url:"/Board/SMS",
+ data:param,
+ success:function(result){
+ alert("성공!")
+ }
+ })
+  }
+
+
+  </script>
 </body>
 </html>

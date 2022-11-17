@@ -151,6 +151,7 @@
         MONEY,
         LUGGAGE,
         DELIVERY_INDATE,
+        BOARD_CHECK,
         TO_CHAR(INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
 
         FROM RIDER_BOARD
@@ -230,11 +231,27 @@
         WHERE BOARD_NUMBER = #{board_number}
     </delete>
 
+
     <update id="Check">
         UPDATE CUSTOMER_BOARD
         SET BOARD_CHECK = #{board_check}
         WHERE BOARD_NUMBER = #{board_number}
 
     </update>
+
+    <update id="RCheck">
+        UPDATE RIDER_BOARD
+        SET BOARD_CHECK = #{board_check}
+        WHERE BOARD_NUMBER = #{board_number}
+
+    </update>
+
+    <select id="myWritePage"
+            resultType="com.project.board.vo.BoardVo">
+        SELECT *
+        FROM CUSTOMER_BOARD
+        WHERE WRITER = #{nickname}
+
+    </select>
 
 </mapper>

@@ -45,13 +45,19 @@ public class ReplyDaoImpl implements ReplyDao {
     @Override
     public int RReplyCount(int board_number) { return sqlSession.selectOne("Reply.RReplyCount",board_number); }
 
-
     @Override
     public int CReplyCount(int board_number) { return sqlSession.selectOne("Reply.CReplyCount",board_number); }
 
     @Override
+    public List<ReplyVo> myReplyPage(String nickname) {
+        List<ReplyVo>  myReplyPage = sqlSession.selectList("Reply.myReplyPage", nickname);
+        return myReplyPage;
+    }
+
+    @Override
     public List<RiderReplyVo> getRiderReplylist(int board_number) {
         List<RiderReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
+
         return readReply;
     }
 

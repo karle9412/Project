@@ -53,5 +53,11 @@ public interface BoardDao {
 
     int replyCount(HashMap<String, Object> map);
 
+    void CBoardCheck(HashMap<String, Object> map);
+
+    void RBoardCheck(HashMap<String, Object> map);
+
+    List<BoardVo> myWritePage(String nickname);
+
     void CBOardCheck(HashMap<String, Object> map);
 }

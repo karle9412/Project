@@ -50,4 +50,10 @@ public interface BoardService {
     int replyCount(HashMap<String, Object> map);
 
     void CBOardCheck(HashMap<String, Object> map);
+
+    void CBOardCheck(HashMap<String, Object> map);
+
+    void RBOardCheck(HashMap<String, Object> map);
+
+    List<BoardVo> myWritePage(String nickname);
 }

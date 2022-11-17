@@ -8,22 +8,21 @@ import com.project.reply.service.ReplyService;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 import com.project.user.vo.UserVo;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Base64;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.Writer;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class BoardController {
@@ -571,16 +570,82 @@ public class BoardController {
     public void R_replyDelete(@RequestParam int reply_number){
         replyService.DeleteR_Reply(reply_number);
     }
-
+    //해주세요 게시판 접수하기,접수완료
     @RequestMapping("/Board/check")
     @ResponseBody
-    public HashMap<String, Object> check(@RequestParam HashMap<String, Object> map){
+    public HashMap<String, Object> check(@RequestParam HashMap<String, Object> map) {
         boardService.CBOardCheck(map);
         return map;
+    }
+    //할게요 게시판 접수하기,접수완료
+    @RequestMapping("/Board/Rcheck")
+    @ResponseBody
+    public HashMap<String, Object> Rcheck(@RequestParam HashMap<String, Object> map){
+        boardService.RBOardCheck(map);
+        return map;
+
+        }
+
+    @Controller
+    public class RefundMessageController {
+        @PostMapping("/Board/SMS")
+        public String sendSms(HttpServletRequest request) throws Exception {
+
+            String api_key = "NCSFK7VPJZONYO8Y";
+            String api_secret = "IA0TMBQVKQYV9O3JOOS1AOFIJSI4A25H";
+            Message coolsms = new Message(api_key, api_secret);
+
+            HashMap<String, String> set = new HashMap<String, String>();
+            set.put("to", "01048005799"); // 수신번호
+
+            set.put("from", (String)request.getParameter("from")); // 발신번호
+            set.put("text", (String)request.getParameter("text")); // 문자내용
+            set.put("type", "sms"); // 문자 타입
+            set.put("app_version", "test app 1.2");
+
+            System.out.println(set);
+            try {
+                JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+                System.out.println(result.toString());
+            } catch (CoolsmsException e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCode());
+            }
+
+            return "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
+        }
+
+          @RequestMapping("/myWritePage")
+         public String myWritePage(@RequestParam String nickname,Model model){
+              List<BoardVo> writePage = boardService.myWritePage(nickname);
+              model.addAttribute("writePage", writePage);
+              System.out.println(writePage);
+
+              return "ctmboard/CWritePage";
+          }
+
+          @RequestMapping("/myReplyPage")
+        public String myReplyPage(@RequestParam String nickname,Model model){
+            List<ReplyVo> replyPage = replyService.myReplyPage(nickname);
+            model.addAttribute("replylist",replyPage);
+
+            return "users/CReplyPage";
+
+          }
+
     }
 
 
 
 
 
-}
+
+
+    }
+
+
+
+
+
+

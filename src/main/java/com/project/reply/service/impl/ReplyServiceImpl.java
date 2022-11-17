@@ -80,6 +80,13 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public List<ReplyVo> myReplyPage(String nickname) {
+        List<ReplyVo>  myReplyPage = replyDao.myReplyPage(nickname);
+        return myReplyPage;
+    }
+
+
+    @Override
     public void DUpdateEndPage(HashMap<String, Object> map) {
         replyDao.DUpdateEndPage(map);
     }

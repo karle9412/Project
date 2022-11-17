@@ -152,6 +152,24 @@ public class BoardDaoImpl implements BoardDao {
     public int replyCount(HashMap<String, Object> map) { return sqlSession.selectOne("Reply.ReplyCount",map) ; }
 
     @Override
+    public void CBoardCheck(HashMap<String, Object> map) {
+             sqlSession.update("Board.Check", map);
+
+    }
+
+    @Override
+    public void RBoardCheck(HashMap<String, Object> map) {
+            sqlSession.update("Board.RCheck", map);
+    }
+
+    @Override
+    public List<BoardVo> myWritePage(String nickname) {
+        List<BoardVo> myWritePage = sqlSession.selectList("Board.myWritePage", nickname);
+
+        return myWritePage;
+    }
+
+    @Override
     public void CBOardCheck(HashMap<String, Object> map) {
         sqlSession.update("Board.Check",map);
     }

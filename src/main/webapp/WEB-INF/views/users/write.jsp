@@ -12,7 +12,34 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <script>
+function email_check( email ) {
+
+    var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return (email != '' && email != 'undefined' && regex.test(email));
+
+}
+
+const autoHyphen = (target) => {
+ target.value = target.value
+   .replace(/[^0-9]/g, '')
+   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
+
+
 $(function(){
+
+    $('[name=email]').on('focusout',function(){
+
+            var email = $(this).val();
+
+            if( email == '' || email == 'undefined') return;
+
+            if(! email_check(email) ) {
+                $('#emailCheck').html('잘못된 형식의 이메일 주소입니다.');
+            } else {
+                $('#emailCheck').html('정확한 이메일입니다.');
+            }
+        });
 
     $('form').on('submit',function(e){
 
@@ -31,6 +58,11 @@ $(function(){
             return false;
         }
 
+        if($('#passwdCheck').html()== "비밀번호가 일치하지 않습니다."){
+            alert('비밀번호가 일치 않네요!');
+            return false;
+        }
+
         if($('[name=nickname]').val()==''){
             alert('닉네임을 입력하세요');
             return false;
@@ -41,12 +73,23 @@ $(function(){
             return false;
         }
 
-        if($('[name=user_local]').val()==''){
-            alert('지역을 선택해주세요');
+        if($('#emailCheck').html()== "잘못된 형식의 이메일 주소입니다."){
+            alert('이메일이 틀렸어요!');
             return false;
         }
-        if($('[name=phoneNumber]').val()==''){
+
+        if($('[name=phoneNumber]').val() == ''){
             alert('전화번호를 입력해주세요');
+            return false;
+        }
+
+        if($('[name=phoneNumber]').val().length != 13){
+            alert('전화번호는 -포함 13자리어야 해요');
+            return false;
+        }
+
+        if($('[name=user_local]').val()==''){
+            alert('지역을 선택해주세요');
             return false;
         }
 
@@ -127,13 +170,17 @@ $(function(){
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="email" type="email" placeholder="EMail">
+                <input class="w3-input w3-border" name="email" type="text" placeholder="EMail"/>
+            </div>
+            <div class="w3-rest">
+                <span id="emailCheck"></span>
             </div>
         </div>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" name="phoneNumber" type="text" placeholder="000-0000-0000"/>
+                <input class="w3-input w3-border" name="phoneNumber" type="text"
+                    oninput="autoHyphen(this)" maxlength="13" placeholder="000-0000-0000" autofocus/>
             </div>
         </div>
         <select class="w3-select" id="LOACTION" name="user_local">

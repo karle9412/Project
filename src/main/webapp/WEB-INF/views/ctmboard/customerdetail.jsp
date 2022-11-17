@@ -136,51 +136,41 @@ function deleteReply(reply_number,writer,endPage){
         </table>
     </div>
 
-    <div class="w3-container w3-margin-top">
+    <div class="w3-container">
         <div class="w3-cell-row">
-            <div class="w3-container w3-cell w3-center w3-border">
-                <p>제목 : ${ boardVo.title } </p>
+            <div class="w3-container w3-cell ">
+                <p style="height:30px; font-size:25px;"> ${ boardVo.title } </p>
             </div>
         </div>
         <div class="w3-cell-row">
-            <div class="w3-container w3-cell w3-center w3-border">
-                <p>번호 : ${ boardVo.board_number } </p>
-            </div>
-            <div class="w3-container w3-cell w3-center w3-border">
-                <p>작성자 : ${ boardVo.writer } </p>
-            </div>
-            <div class="w3-container w3-cell w3-center w3-border">
-                <p>작성일 : ${ boardVo.indate } </p>
+            <div class="w3-container w3-cell">
+                <p style:"font-size:3px;">${ boardVo.writer }
+                ${ boardVo.indate } </p>
             </div>
         </div>
         <div class="w3-cell-row" id = "startline">
-            <div class="w3-container w3-cell w3-center w3-border">
+            <div class="w3-container w3-cell w3-center w3-third">
                 <p>출발지 : ${boardVo.c_start} </p>
             </div>
-            <div class="w3-container w3-cell w3-center w3-border">
+            <div class="w3-container w3-cell w3-center w3-third">
                 <p>목적지 : ${boardVo.c_end}</p>
             </div>
-            <div class="w3-container w3-cell w3-center w3-border">
+            <div class="w3-container w3-cell w3-center w3-third">
                 <p>일자 : ${boardVo.delivery_indate}</p>
             </div>
         </div>
         <div class="w3-cell-row">
-            <div class="w3-container w3-cell w3-center w3-border">
+            <div class="w3-container w3-cell w3-center w3-third">
                 <p>비용 : ${boardVo.money} </p>
             </div>
-            <div class="w3-container w3-cell w3-center w3-border">
+            <div class="w3-container w3-cell w3-center w3-third">
                 <p>수화물 : ${boardVo.luggage} </p>
             </div>
-            <td>접수</td>
-                <c:if test="${boardVo.board_check == 0}">
-                    <td>접수대기<td>
-                </c:if>
-                <c:if test="${boardVo.board_check == 1}">
-                    <td>접수중<td>
-                </c:if>
-                <c:if test="${boardVo.board_check == 2}">
-                    <td>접수완료<td>
-                </c:if>
+            <div class="w3-container w3-cell w3-center w3-third">
+                접수 : <c:if test="${boardVo.board_check == 0}"> 접수대기 </c:if>
+                      <c:if test="${boardVo.board_check == 1}"> 접수중 </c:if>
+                      <c:if test="${boardVo.board_check == 2}"> 접수완료 </c:if>
+            </div>
         </div>
         <div class="w3-display-container w3-border" style="height:300px;">
             <div class="w3-display-topleft">

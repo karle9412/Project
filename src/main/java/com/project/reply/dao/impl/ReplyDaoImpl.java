@@ -30,6 +30,12 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
+    public List<ReplyVo> myReplyPage(String nickname) {
+        List<ReplyVo>  myReplyPage = sqlSession.selectList("Reply.myReplyPage", nickname);
+        return myReplyPage;
+    }
+
+    @Override
     public List<RiderReplyVo> getRiderReplylist(int board_number) {
         List<RiderReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
 

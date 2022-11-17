@@ -56,4 +56,6 @@ public interface BoardDao {
     void CBoardCheck(HashMap<String, Object> map);
 
     void RBoardCheck(HashMap<String, Object> map);
+
+    List<BoardVo> myWritePage(String nickname);
 }

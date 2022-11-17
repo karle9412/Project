@@ -32,4 +32,6 @@ public interface ReplyService {
     int CReplyCount(int board_number);
 
     void updateEndPage(HashMap<String, Object> map);
+
+    List<ReplyVo> myReplyPage(String nickname);
 }

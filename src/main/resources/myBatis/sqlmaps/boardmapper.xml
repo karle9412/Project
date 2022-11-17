@@ -245,4 +245,12 @@
 
     </update>
 
+    <select id="myWritePage"
+            resultType="com.project.board.vo.BoardVo">
+        SELECT *
+        FROM CUSTOMER_BOARD
+        WHERE WRITER = #{nickname}
+
+    </select>
+
 </mapper>

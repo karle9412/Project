@@ -582,7 +582,27 @@ public class BoardController {
             return "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
         }
 
+          @RequestMapping("/myWritePage")
+         public String myWritePage(@RequestParam String nickname,Model model){
+              List<BoardVo> writePage = boardService.myWritePage(nickname);
+              model.addAttribute("writePage", writePage);
+              System.out.println(writePage);
+
+              return "ctmboard/CWritePage";
+          }
+
+          @RequestMapping("/myReplyPage")
+        public String myReplyPage(@RequestParam String nickname,Model model){
+            List<ReplyVo> replyPage = replyService.myReplyPage(nickname);
+            model.addAttribute("replylist",replyPage);
+
+            return "users/CReplyPage";
+
+          }
+
     }
+
+
 
 
 

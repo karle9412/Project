@@ -163,6 +163,13 @@ public class BoardServiceImpl implements BoardService {
     public void RBOardCheck(HashMap<String, Object> map) {
         boardDao.RBoardCheck(map);
     }
+
+    @Override
+    public List<BoardVo> myWritePage(String nickname) {
+        List<BoardVo> myWritePage = boardDao.myWritePage(nickname);
+
+        return myWritePage;
+    }
 }
 
 

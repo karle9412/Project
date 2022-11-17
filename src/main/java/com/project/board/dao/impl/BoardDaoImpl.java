@@ -162,5 +162,12 @@ public class BoardDaoImpl implements BoardDao {
             sqlSession.update("Board.RCheck", map);
     }
 
+    @Override
+    public List<BoardVo> myWritePage(String nickname) {
+        List<BoardVo> myWritePage = sqlSession.selectList("Board.myWritePage", nickname);
+
+        return myWritePage;
+    }
+
 
 }

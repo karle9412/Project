@@ -88,6 +88,7 @@ public class UserController {
         Object getUserProfile = this.pdsService.getUserProfile(httpSession.getAttribute("login"));
 
         mv.addObject(getUser);
+
         if (getUserProfile != null){
             mv.addObject(getUserProfile);
         }

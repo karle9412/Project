@@ -557,8 +557,8 @@ public class BoardController {
         @PostMapping("/Board/SMS")
         public String sendSms(HttpServletRequest request) throws Exception {
 
-            String api_key = "NCSI63DGQEUWZPJE";
-            String api_secret = "2MP0QF6VI94CIRR0VGDF1RRFQ0QC6Z33";
+            String api_key = "NCSFK7VPJZONYO8Y";
+            String api_secret = "IA0TMBQVKQYV9O3JOOS1AOFIJSI4A25H";
             Message coolsms = new Message(api_key, api_secret);
 
             HashMap<String, String> set = new HashMap<String, String>();

@@ -43,11 +43,28 @@
             <p> rider : ${userVo.rider}</p>
             <p> indate : ${userVo.indate}</p>
             <p> phoneNumber : ${userVo.phoneNumber}</p>
-
+            <p>
             <a href="/updateForm" class="w3-button w3-section w3-teal w3-ripple" enc-type = "multipart/form-data"> 회원정보 수정 </a>
             <a href="/delete" class="w3-button w3-section w3-teal w3-ripple" >회원탈퇴</a>
             <a href="javascript:void(window.open('pds/profileUpdateForm', '아이디 찾기','width=500, height=500'))"
                 class="w3-button w3-section w3-teal w3-ripple"> 프로필 사진 업데이트</a>
+            </p>
+            <table>
+                <tr>
+                    <td>
+                        <form action="/myWritePage" method="GET">
+                            <input type="hidden" name="nickname" value="${userVo.nickname}"/>
+                            <button type="submit" class="w3-button w3-section w3-teal w3-ripple"> 내 게시글 보기</a>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/myReplyPage" method="GET">
+                            <input type="hidden" name="nickname" value="${userVo.nickname}"/>
+                            <button type="submit" class="w3-button w3-section w3-teal w3-ripple"> 내 댓글 보기</a>
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div
 </div>

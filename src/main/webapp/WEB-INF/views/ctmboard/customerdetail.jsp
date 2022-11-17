@@ -488,7 +488,7 @@ function  checkdelitebtn(){
        }
 
 function sendSMS(){
- let ab = "0104800579" // 내번호
+ let ab = "01048195535" // 내번호
  let ac = "테스트 입니다" // 텍스트
  let param = {"from":ab, "text":ac}
  $.ajax({

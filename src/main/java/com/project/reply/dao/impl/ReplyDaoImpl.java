@@ -24,6 +24,15 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
+    public List<ReplyPager> getRReplyList(HashMap<String, Object> map) {
+        List<ReplyPager> replyList = sqlSession.selectList("Reply.RReplyList",map);
+        return replyList;
+    }
+
+    @Override
+    public void updateREndPage(HashMap<String, Object> map) { sqlSession.update("Reply.UpdateREndPage",map); }
+
+    @Override
     public void updateEndpage(HashMap<String, Object> map) {
         sqlSession.update("Reply.UpdateEndPage",map);
     }
@@ -34,9 +43,15 @@ public class ReplyDaoImpl implements ReplyDao {
     }
 
     @Override
+    public int RReplyCount(int board_number) { return sqlSession.selectOne("Reply.RReplyCount",board_number); }
+
+
+    @Override
+    public int CReplyCount(int board_number) { return sqlSession.selectOne("Reply.CReplyCount",board_number); }
+
+    @Override
     public List<RiderReplyVo> getRiderReplylist(int board_number) {
         List<RiderReplyVo> readReply = sqlSession.selectList("Reply.RiderReplylist", board_number);
-
         return readReply;
     }
 
@@ -68,11 +83,6 @@ public class ReplyDaoImpl implements ReplyDao {
     @Override
     public List<ReplyVo> ReplyList(HashMap<String, Object> map) {
         return sqlSession.selectList("Reply.ReplyPager",map);
-    }
-
-    @Override
-    public int CReplyCount(int board_number) {
-        return sqlSession.selectOne("Reply.CReplyCount",board_number);
     }
 
     @Override

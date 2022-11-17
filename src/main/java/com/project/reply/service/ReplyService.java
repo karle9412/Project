@@ -34,4 +34,10 @@ public interface ReplyService {
     void updateEndPage(HashMap<String, Object> map);
 
     void DUpdateEndPage(HashMap<String, Object> map);
+
+    int RReplyCount(int board_number);
+
+    List<ReplyPager> getRReplyList(HashMap<String, Object> map);
+
+    void updateREndPage(HashMap<String, Object> map);
 }

@@ -21,7 +21,6 @@ $(function (){
         let passwdCheck = $('#passwdCheck').val();
         let userid = $('[name=userid]').val();
 
-        console.log(passwd);
 
         let passwdChange = ""
 

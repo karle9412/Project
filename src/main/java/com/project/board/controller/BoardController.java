@@ -44,34 +44,34 @@ public class BoardController {
 
     @RequestMapping("/Board/customerList")
     public String CustomerBoardList(Model model, @RequestParam HashMap<String,Object> map) {
-        List<MenuVo> menuList = menuService.getMenuList();
+        List<MenuVo> menuList = this.menuService.getMenuList();
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
         List<BoardVo> customerList = null;
 
-        boardPager.setTotalCount(boardService.customerCount()); // board 전체 게시글 개수를 지정
-        boardPager.setPageNum(cPageNum -1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
-        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
-        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
-        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
-        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
-        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
-        boardPager.setEndPage(); // 마지막 페이지
+        this.boardPager.setTotalCount(this.boardService.customerCount()); // board 전체 게시글 개수를 지정
+        this.boardPager.setPageNum(cPageNum -1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        this.boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+        this.boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        this.boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+        this.boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        this.boardPager.setStartPage(this.boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        this.boardPager.setEndPage(); // 마지막 페이지
 
-        map.put("pageNum", boardPager.getPageNum());
-        map.put("contentNum", boardPager.getContentNum());
+        map.put("pageNum", this.boardPager.getPageNum());
+        map.put("contentNum", this.boardPager.getContentNum());
 
-        if (boardPager.getPageNum() == 0) {
-            customerList = boardService.customerList(map);
-        } else if (boardPager.getPageNum() != 0) {
-            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
-            customerList = boardService.customerList(map);
+        if (this.boardPager.getPageNum() == 0) {
+            customerList = this.boardService.customerList(map);
+        } else if (this.boardPager.getPageNum() != 0) {
+            map.put("pageNum", this.boardPager.getPageNum() * 10 + 1);
+            customerList = this.boardService.customerList(map);
         }
 
         model.addAttribute("customerList", customerList);
-        model.addAttribute("boardPager", boardPager);
+        model.addAttribute("boardPager", this.boardPager);
         model.addAttribute("menuList", menuList);
 
         return "ctmboard/customerList";
@@ -82,35 +82,35 @@ public class BoardController {
     @RequestMapping("/Board/riderList")
     public String RiderBoardList(Model model, @RequestParam HashMap<String,Object> map){
 
-        List<MenuVo>  menuList  = menuService.getMenuList();
+        List<MenuVo>  menuList  = this.menuService.getMenuList();
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
         List<BoardVo> riderList = null;
 
-        boardPager.setTotalCount(boardService.riderCount()); // board 전체 게시글 개수를 지정
-        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
-        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
-        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
-        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
-        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
-        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
-        boardPager.setEndPage(); // 마지막 페이지
+        this.boardPager.setTotalCount(this.boardService.riderCount()); // board 전체 게시글 개수를 지정
+        this.boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        this.boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+        this.boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        this.boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+        this.boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        this.boardPager.setStartPage(this.boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        this.boardPager.setEndPage(); // 마지막 페이지
 
-        map.put("pageNum", boardPager.getPageNum());
-        map.put("contentNum", boardPager.getContentNum());
+        map.put("pageNum", this.boardPager.getPageNum());
+        map.put("contentNum", this.boardPager.getContentNum());
 
-        if (boardPager.getPageNum() == 0) {
-            riderList = boardService.riderList(map);
-        } else if (boardPager.getPageNum() != 0) {
-            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
-            riderList = boardService.riderList(map);
+        if (this.boardPager.getPageNum() == 0) {
+            riderList = this.boardService.riderList(map);
+        } else if (this.boardPager.getPageNum() != 0) {
+            map.put("pageNum", this.boardPager.getPageNum() * 10 + 1);
+            riderList = this.boardService.riderList(map);
         }
 
 
         model.addAttribute("riderList", riderList);
-        model.addAttribute("boardPager", boardPager);
+        model.addAttribute("boardPager", this.boardPager);
         model.addAttribute("menuList", menuList);
 
         return "riderboard/riderList";
@@ -120,34 +120,34 @@ public class BoardController {
     @RequestMapping("/Board/reviewList")
     public String reviewList(Model model, @RequestParam HashMap<String,Object> map){
 
-        List<MenuVo>  menuList  = menuService.getMenuList();
+        List<MenuVo>  menuList  = this.menuService.getMenuList();
         List<BoardVo> reviewList = null;
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
-        boardPager.setTotalCount(boardService.reviewCount()); // board 전체 게시글 개수를 지정
-        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
-        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
-        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
-        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
-        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
-        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
-        boardPager.setEndPage(); // 마지막 페이지
+        this.boardPager.setTotalCount(this.boardService.reviewCount()); // board 전체 게시글 개수를 지정
+        this.boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        this.boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
+        this.boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        this.boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
+        this.boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        this.boardPager.setStartPage(this.boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        this.boardPager.setEndPage(); // 마지막 페이지
 
-        map.put("pageNum", boardPager.getPageNum());
-        map.put("contentNum", boardPager.getContentNum());
+        map.put("pageNum", this.boardPager.getPageNum());
+        map.put("contentNum", this.boardPager.getContentNum());
 
-        if (boardPager.getPageNum() == 0) {
-            reviewList = boardService.reviewList(map);
-        } else if (boardPager.getPageNum() != 0) {
-            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
-            reviewList = boardService.reviewList(map);
+        if (this.boardPager.getPageNum() == 0) {
+            reviewList = this.boardService.reviewList(map);
+        } else if (this.boardPager.getPageNum() != 0) {
+            map.put("pageNum", this.boardPager.getPageNum() * 10 + 1);
+            reviewList = this.boardService.reviewList(map);
         }
 
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("menuList", menuList);
-        model.addAttribute("boardPager", boardPager);
+        model.addAttribute("boardPager", this.boardPager);
 
         return "reviewboard/reviewList";
     }
@@ -184,8 +184,7 @@ public class BoardController {
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
 
-
-        boardService.C_insertboard(boardVo);
+        this.boardService.C_insertboard(boardVo);
 
 
 
@@ -212,7 +211,7 @@ public class BoardController {
     //할게요 글 작성
     @RequestMapping("/Board/RBoardWrite")
     public String RBoardwrite(RiderBoardVo riderboardVo,@RequestParam HashMap<String,Object> map) {
-        boardService.R_insertboard(riderboardVo);
+        this.boardService.R_insertboard(riderboardVo);
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
@@ -241,7 +240,7 @@ public class BoardController {
     @RequestMapping("/Board/RVBoardWrite")
     public String RvVBoardwrite(ReviewVo reviewVo,@RequestParam HashMap<String,Object> map) {
 
-        boardService.RV_insertboard(reviewVo);
+        this.boardService.RV_insertboard(reviewVo);
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
@@ -255,11 +254,11 @@ public class BoardController {
     public String Customerdetail(@RequestParam HashMap<String, Object> map, Model model, MenuVo menuVo,ReplyVo replyVo,HttpSession httpSession) {
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
         String menu_id = (String) map.get("menu_id");
-        BoardVo boardVo =  boardService.DetailCustomer(map);
+        BoardVo boardVo = this.boardService.DetailCustomer(map);
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
-        model.addAttribute("boardPager", boardPager);
+        model.addAttribute("boardPager", this.boardPager);
 
         ReplyPager replyPager = new ReplyPager();
         model.addAttribute("nickName",nickName);
@@ -269,7 +268,7 @@ public class BoardController {
         int Board_number = Integer.parseInt((String) map.get("board_number"));
 
         replyPager.setBoard_number(Board_number);
-        replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        replyPager.setTotalCount(this.replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
         replyPager.setPageNum(rPageNum-1); // 현재 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
         replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
         replyPager.setCurrentBlock(rPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
@@ -302,28 +301,28 @@ public class BoardController {
         int rContentNum = Integer.parseInt((String) map.get("contentNum"));
         int Board_number = Integer.parseInt((String) map.get("board_number"));
 
-        replyPager.setBoard_number(Board_number);
-        replyPager.setTotalCount(replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
-        replyPager.setPageNum(rPageNum); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
-        replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
-        replyPager.setCurrentBlock(rPageNum+1); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
-        replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
-        replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
-        replyPager.setStartPage(replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
-        replyPager.setEndPage();
-        replyPager.setRend_page();
+        this.replyPager.setBoard_number(Board_number);
+        this.replyPager.setTotalCount(this.replyService.CReplyCount(Board_number)); // board 전체 댓글 개수를 지정
+        this.replyPager.setPageNum(rPageNum); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
+        this.replyPager.setContentNum(rContentNum); // 한 페이지에 몇개씩 댓글을 보여줄지 정함
+        this.replyPager.setCurrentBlock(rPageNum+1); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
+        this.replyPager.setLastBlock(); // 마지막 블록 번호를 전체 댓글 수를 통해서 정함
+        this.replyPager.prevNext(rPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
+        this.replyPager.setStartPage(this.replyPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
+        this.replyPager.setEndPage();
+        this.replyPager.setRend_page();
 
-        map.put("pageNum", replyPager.getPageNum());
-        map.put("contentNum", replyPager.getContentNum());
-        map.put("endPage",replyPager.getEndPage());
+        map.put("pageNum", this.replyPager.getPageNum());
+        map.put("contentNum", this.replyPager.getContentNum());
+        map.put("endPage", this.replyPager.getEndPage());
 
-        if (replyPager.getPageNum() == 0) {
-            replyService.updateEndPage(map);
-            replylist = replyService.getReplylist(map);
-        } else if (replyPager.getPageNum() != 0) {
-            map.put("pageNum", replyPager.getPageNum()*10+1);
-            replyService.updateEndPage(map);
-            replylist = replyService.getReplylist(map);
+        if (this.replyPager.getPageNum() == 0) {
+            this.replyService.updateEndPage(map);
+            replylist = this.replyService.getReplylist(map);
+        } else if (this.replyPager.getPageNum() != 0) {
+            map.put("pageNum", this.replyPager.getPageNum()*10+1);
+            this.replyService.updateEndPage(map);
+            replylist = this.replyService.getReplylist(map);
         }
 
 
@@ -344,7 +343,7 @@ public class BoardController {
     @RequestMapping("/Board/riderDetail")
     public String riderdetail(@RequestParam HashMap<String, Object> map, Model model,HttpSession httpSession) {
         String menu_id = (String) map.get("menu_id");
-        RiderBoardVo riderBoardVo = boardService.DetailRider(map);
+        RiderBoardVo riderBoardVo = this.boardService.DetailRider(map);
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
 
 
@@ -360,7 +359,7 @@ public class BoardController {
     @RequestMapping("/Board/RReplyList")
     @ResponseBody
     public List<RiderReplyVo> Rreplylist(RiderBoardVo riderBoardVo){
-        List<RiderReplyVo> replylist = replyService.getRiderReplylist(riderBoardVo.getBoard_number());
+        List<RiderReplyVo> replylist = this.replyService.getRiderReplylist(riderBoardVo.getBoard_number());
         return replylist;
     }
 
@@ -369,7 +368,7 @@ public class BoardController {
     @RequestMapping("/Board/ReviewDetail")
     public String reviewdetail(@RequestParam HashMap<String, Object> map, Model model,HttpSession httpSession) {
         String menu_id = (String) map.get("menu_id");
-        ReviewVo reviewBoardVo = boardService.DetailReview(map);
+        ReviewVo reviewBoardVo = this.boardService.DetailReview(map);
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
 
 
@@ -384,10 +383,16 @@ public class BoardController {
 
     //해주세요 게시글 수정 페이지
     @RequestMapping("/Board/CBoardUpdateForm")
-    public String updateform(@RequestParam HashMap<String, Object> map, Model model) {
+    public String updateform(@RequestParam HashMap<String, Object> map, Model model, HttpSession httpSession) {
 
-        BoardVo boardVo = boardService.DetailCustomer(map);
+        BoardVo boardVo = this.boardService.DetailCustomer(map);
         String menu_id = (String) map.get("menu_id");
+        String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
+
+
+        if(!boardVo.getWriter().equals(nickName)){
+            return "redirect:/Board/CustomerDetail?board_number="+ boardVo.getBoard_number() + "&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=0";
+        }
 
 
         model.addAttribute("boardVo", boardVo);
@@ -401,7 +406,7 @@ public class BoardController {
     @RequestMapping("/Board/CBoardUpdate")
     public String update(@RequestParam HashMap<String, Object> map, Model model, BoardVo boardVo) {
         String menu_id = (String) map.get("menu_id");
-        boardService.CBoardUpdate(map);
+        this.boardService.CBoardUpdate(map);
 
         return "redirect:/Board/CustomerDetail?board_number=" + boardVo.getBoard_number() + "&menu_id=" + menu_id;
 
@@ -411,7 +416,7 @@ public class BoardController {
 
     @RequestMapping("/Board/RBoardUpdateForm")
     public String RUpdateForm(@RequestParam HashMap<String, Object> map, Model model) {
-        RiderBoardVo riderBoardVo = boardService.DetailRider(map);
+        RiderBoardVo riderBoardVo = this.boardService.DetailRider(map);
         String menu_id = (String) map.get("menu_id");
 
         model.addAttribute("riderBoardVo", riderBoardVo);
@@ -424,7 +429,7 @@ public class BoardController {
     @RequestMapping("/Board/RBoardUpdate")
     public String RBoardUpdate(@RequestParam HashMap<String, Object> map, Model model, RiderBoardVo riderBoardVo) {
         String menu_id = (String) map.get("menu_id");
-        boardService.RBoardUpdate(map);
+        this.boardService.RBoardUpdate(map);
 
         return "redirect:/Board/riderDetail?board_number=" + riderBoardVo.getBoard_number() + "&menu_id=" + menu_id;
 
@@ -435,7 +440,7 @@ public class BoardController {
 
     @RequestMapping("/Board/RVUpdateForm")
     public String RVUpdateForm(@RequestParam HashMap<String, Object> map, Model model) {
-        ReviewVo reviewVo = boardService.DetailReview(map);
+        ReviewVo reviewVo = this.boardService.DetailReview(map);
 
         String menu_id = (String) map.get("menu_id");
 
@@ -451,7 +456,7 @@ public class BoardController {
     @RequestMapping("/Board/RVBoardUpdate")
     public String RVUpdate(@RequestParam HashMap<String, Object> map, Model model, ReviewVo reviewVo) {
         String menu_id = (String) map.get("menu_id");
-        boardService.RVBoardUpdate(map);
+        this.boardService.RVBoardUpdate(map);
 
         return "redirect:/Board/ReviewDetail?board_number=" + reviewVo.getBoard_number() + "&menu_id=" + menu_id;
 
@@ -463,7 +468,7 @@ public class BoardController {
     @ResponseBody
 
     public String CDelete(@RequestParam HashMap<String, Object> map, BoardVo boardVo) {
-        boardService.CBOardDelete(map);
+        this.boardService.CBOardDelete(map);
         String menu_id = (String) map.get("menu_id");
 
         return "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
@@ -475,7 +480,7 @@ public class BoardController {
 
     @RequestMapping("/Board/RBoardDelete")
     public String RDelete(@RequestParam HashMap<String, Object> map, RiderBoardVo riderBoardVo) {
-        boardService.RBoardDelete(map);
+        this.boardService.RBoardDelete(map);
         String menu_id = (String) map.get("menu_id");
 
         return "redirect:/Board/riderList?menu_id=MENU_02&pageNum=1&contentNum=10";
@@ -486,7 +491,7 @@ public class BoardController {
 
     @RequestMapping("/Board/RVBoardDelete")
     public String RVDelete(@RequestParam HashMap<String, Object> map, ReviewVo reviewVo) {
-        boardService.RVBoardDelete(map);
+        this.boardService.RVBoardDelete(map);
         String menu_id = (String) map.get("menu_id");
 
         return "redirect:/Board/reviewList?menu_id=MENU_03&pageNum=1&contentNum=10";
@@ -496,21 +501,21 @@ public class BoardController {
     @RequestMapping("/Board/CtmreplyWrite")
     @ResponseBody
     public void ctm_replyWrite(ReplyVo replyVo, BoardVo boardVo) {
-        replyService.writeReply(replyVo);
+        this.replyService.writeReply(replyVo);
     }
 
     //할게요 댓글 작성
     @RequestMapping("/Board/RidreplyWrite")
     @ResponseBody
     public void rider_replyWrite(RiderReplyVo riderReplyVo) {
-        replyService.RiderwriteReply(riderReplyVo);
+        this.replyService.RiderwriteReply(riderReplyVo);
     }
 
     //해주세요 게시판 댓글 수정
     @RequestMapping("/Board/CtmreplyUpdate")
     @ResponseBody
     public void ctm_replyUpdate(@RequestParam HashMap<String, Object> map){
-        replyService.UpdateReply(map);
+        this.replyService.UpdateReply(map);
 
     };
 
@@ -518,21 +523,21 @@ public class BoardController {
     @RequestMapping("/Board/R_replyUpdate")
     @ResponseBody
     public void r_replyUpdate(@RequestParam HashMap<String, Object> map){
-        replyService.UpdateR_Reply(map);
+        this.replyService.UpdateR_Reply(map);
     }
 
     //해주세요 게시판 댓글 삭제
     @RequestMapping("/Board/ReplyDelete")
     @ResponseBody
     public void ctm_replyDelete(@RequestParam int reply_number){
-        replyService.DeleteReply(reply_number);
+        this.replyService.DeleteReply(reply_number);
     }
 
     //할게요 게시판 댓글 삭제
     @RequestMapping("/Board/R_ReplyDelete")
     @ResponseBody
     public void R_replyDelete(@RequestParam int reply_number){
-        replyService.DeleteR_Reply(reply_number);
+        this.replyService.DeleteR_Reply(reply_number);
     }
 
 
@@ -540,14 +545,14 @@ public class BoardController {
     @RequestMapping("/Board/check")
     @ResponseBody
     public HashMap<String, Object> check(@RequestParam HashMap<String, Object> map) {
-        boardService.CBOardCheck(map);
+        this.boardService.CBOardCheck(map);
         return map;
     }
     //할게요 게시판 접수하기,접수완료
     @RequestMapping("/Board/Rcheck")
     @ResponseBody
     public HashMap<String, Object> Rcheck(@RequestParam HashMap<String, Object> map){
-        boardService.RBOardCheck(map);
+        this.boardService.RBOardCheck(map);
         return map;
 
         }
@@ -584,7 +589,7 @@ public class BoardController {
 
           @RequestMapping("/myWritePage")
          public String myWritePage(@RequestParam String nickname,Model model){
-              List<BoardVo> writePage = boardService.myWritePage(nickname);
+              List<BoardVo> writePage = BoardController.this.boardService.myWritePage(nickname);
               model.addAttribute("writePage", writePage);
               System.out.println(writePage);
 
@@ -593,7 +598,7 @@ public class BoardController {
 
           @RequestMapping("/myReplyPage")
         public String myReplyPage(@RequestParam String nickname,Model model){
-            List<ReplyVo> replyPage = replyService.myReplyPage(nickname);
+            List<ReplyVo> replyPage = BoardController.this.replyService.myReplyPage(nickname);
             model.addAttribute("replylist",replyPage);
 
             return "users/CReplyPage";

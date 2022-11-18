@@ -119,21 +119,6 @@ html, body {
     margin-top: 16px;
 }
 
-
-.btn-primary{
-    background-color: #6C757D;
-    outline: none;
-    border: 0px;
-     box-shadow: none;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
-    background-color: #495056;
-    outline: none !important;
-    border: none !important;
-     box-shadow: none;
-}
-
 .form-content textarea {
     position: static !important;
     width: 100%;
@@ -172,7 +157,7 @@ html, body {
    color: #2acc80;
 }
 
-#idCheck-button{
+.idCheck-button{
   float: right;
   cursor: pointer;
   position: absolute;
@@ -190,7 +175,7 @@ html, body {
   opacity: 0.4;
   box-shadow: 10px 10px 30px #000;}
 
-.idCheck{
+.button{
   font-family: 'Open Sans Condensed', sans-serif;
   text-decoration: none;
   position: relative;
@@ -209,14 +194,14 @@ html, body {
   transition: all 0.2s ease-in-out;
 }
 
-.idCheck{
+.button{
   font-family: 'Open Sans Condensed', sans-serif;
   text-align: center;
   padding: 4px 8px;
   background: rgba(107,255,3,0.3);
 }
 
-.idCheck:hover{
+.button:hover{
   opacity: 0.7;
 }
 </style>
@@ -370,7 +355,7 @@ $(function(){
                             <table>
                                 <tr>
                                     <td>
-                                        <button type="button"  id="idCheck" class="idCheck"
+                                        <button type="button"  id="idCheck" class="button"
                                             style=" margin-top: 10px;padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;width: 86px;
                                             font-size: 15px;">중복확인</button>
                                     </td>
@@ -434,13 +419,13 @@ $(function(){
 
                         <div class="col-md-12 mt-3">
                             <input type="radio" class="btn-check" name="rider" value="normal" autocomplete="off" checked>
-                            <label class="btn btn-sm btn-outline-secondary">퀵을 맡기시나요?</label>
+                            <label style="color:#efe2c9; font-size:15px;">퀵을 맡기시나요?</label>
 
                             <input type="radio" class="btn-check" name="rider" value="rider" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary">퀵을 가시나요?</label>
+                            <label style="color:#efe2c9; font-size:15px;">퀵을 가시나요?</label>
                         </div>
                         <div class="form-button mt-3">
-                            <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                            <button id="submit" type="submit" class="button" style="margin-left: 15px;">Register</button>
                         </div>
                     </form>
                 </div>

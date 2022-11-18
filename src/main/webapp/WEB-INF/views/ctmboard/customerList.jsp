@@ -16,7 +16,7 @@
 
 <%@ include file="/WEB-INF/include/menus.jsp" %>
 <div id="main">
-    <div class="w3-teal1" >
+    <div>
         <table>
             <tr>
                 <td>

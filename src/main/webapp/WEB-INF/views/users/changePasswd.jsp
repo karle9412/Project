@@ -32,7 +32,6 @@ $(function (){
             passwdChange += "Complite</p>";
             passwdChange += "</div>";
             passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
-            passwdChange += '<input type="hidden" name="passwd" value=' + passwd + '></input>';
             passwdChange += '<button type="submit" id="send" class="w3-button w3-section w3-teal w3-ripple w3-right">비밀번호변경</input>';
             passwdChange += '</form>';
             $("#passwdDoubleCheck").html(passwdChange);

@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <title>Banana Quick</title>
     <style>
 html {
    background-color: rgb(30, 38, 78);
@@ -47,9 +48,8 @@ html {
   height: 300px;
   border-radius: 5px;
   background: rgb(65, 80, 145);
-  box-shadow: 1px 1px 50px rgb(53, 145, 35);
+  box-shadow: 1px 1px 50px rgb(131 193 221);
 }
-
 /* Heading */
 h1{
   font-family: 'Open Sans Condensed', sans-serif;

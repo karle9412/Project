@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Banana Quick</title>
+    <title>Insert title here</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,7 +38,6 @@ html, body {
 
 
 .form-holder {
-      background-color: rgb(30, 38, 78);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -63,7 +62,7 @@ html, body {
 }
 
 .form-content .form-items {
-    background-color: rgb(65, 80, 145);
+    border: 3px solid #fff;
     padding: 40px;
     display: inline-block;
     width: 100%;
@@ -74,7 +73,6 @@ html, body {
     text-align: left;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    box-shadow: 1px 1px 50px rgb(131 193 221);
 }
 
 .form-content h3 {
@@ -173,7 +171,6 @@ html, body {
 }
 
 #idCheck-button{
-  float: right;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -236,7 +233,7 @@ Array.from(forms)
       form.classList.add('was-validated')
     }, false)
   })
-})
+})()
 
 function email_check( email ) {
 
@@ -363,23 +360,13 @@ $(function(){
             <div class="form-content">
                 <div class="form-items">
                     <h3 style="text-align: center">회원가입</h3>
-                    <form action="\userInsert" class="requires-validation" novalidate>
+                    <form class="requires-validation" novalidate>
 
                         <div class="col-md-12">
                             <input class="form-control" name="userid" type="text" placeholder="ID"/>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <button type="button"  id="idCheck" class="idCheck"
-                                            style=" margin-top: 10px;padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;width: 86px;
-                                            font-size: 15px;">중복확인</button>
-                                    </td>
-                                    <td>
-                                        <span id="idCheckResult" name="idCheckResult" style="color:#efe2c9; font-size:15px;"></span>
-                                    </td>
-                                </tr>
-                            </table>
-
+                            <div id="idCheckResult" name="idCheckResult"></div>
+                                <button type="button"  id="idCheck" class="idCheck"
+                                    style=" margin-top: 10px; padding-top: 4px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px;">중복확인</button>
                         </div>
 
                         <div class="col-md-12">
@@ -389,7 +376,7 @@ $(function(){
                             <input class="form-control" type="password" name="passwdCheck" placeholder="passwordCheck"/>
                         </div>
                         <div class="col-md-12">
-                            <span id="passwdCheck" style="color:#efe2c9; font-size:15px;"></span>
+                            <span id="passwdCheck"></span>
                         </div>
 
                         <div class="col-md-12">
@@ -400,7 +387,7 @@ $(function(){
                             <input class="form-control" name="email" type="text" placeholder="EMail"/>
                         </div>
                         <div class="col-md-12">
-                            <span id="emailCheck" style="color:#efe2c9; font-size:15px;"></span>
+                            <span id="emailCheck"></span>
                         </div>
 
                         <div class="col-md-12">

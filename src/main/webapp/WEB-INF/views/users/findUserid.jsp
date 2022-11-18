@@ -11,6 +11,8 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
 
+function goChangePasswd(){}
+
 $(function(){
 
     $('#findUserid').on('click', function(e){
@@ -30,12 +32,10 @@ $(function(){
                     $("#userid_check").html(getUserid);
                 } else {
                     let changePasswd = "";
-                    changePasswd += "<form action=\"/changePasswdForm\" class=\"w3-container w3-card-4\" method=\"POST\">";
+                    changePasswd += "<form action=\"/changePasswdForm\" method=\"POST\">";
                     changePasswd += '<input type="hidden" name="userid" value=' + getUserid + '></input>';
-                    changePasswd += "<div class=\"w3-container w3-center\">";
                     changePasswd += "<p> userid : " + getUserid + "</p>";
-                    changePasswd += "</div>";
-                    changePasswd += "<button id=\"changePasswd\" class=\"w3-button w3-section w3-teal w3-ripple w3-right\">비밀번호 변경</button>";
+                    changePasswd += "<button id=\"changePasswd\">비밀번호 변경</button>";
                     changePasswd += "</form>";
                     $("#userid_check").html(changePasswd);
                 }
@@ -49,27 +49,20 @@ $(function(){
 </script>
 </head>
 <body>
-<header class="w3-container w3-teal w3-center">
+<header >
     <h1>Userid 찾기</h1>
 </header>
-    <div class="w3-container w3-half w3-margin-top w3-display-middle" style="height:70%">
-        <form class="w3-container w3-card-4">
-            <p>
-                <input class="w3-input" id="nickname" name="nickname" type="text" style="width:100%">
-                <label>nickname</label>
-            </p>
-            <p>
-                <input class="w3-input" id="email" name="email" type="text" style="width:100%">
-                <label>email</label>
-            </p>
-            <p>
-                <input type="button" id="findUserid" class="w3-button w3-section w3-teal w3-ripple w3-right" value="아이디 찾기"></button>
-            </p>
-        </form>
-            <p>
-                <div id="userid_check"></div>
-            </p>
-    </div>
+    <form>
+        <input id="nickname" name="nickname" type="text">
+        <label>nickname</label>
+        <input id="email" name="email" type="text">
+        <label>email</label>
+        <input type="button" id="findUserid" value="아이디 찾기"></input>
+        <div id="userid_check"></div>
+    </form>
+            <a href="changePasswdForm" type="button" id="changePasswd">비밀번호 변경</a>
+
+
 </body>
 </html>
 

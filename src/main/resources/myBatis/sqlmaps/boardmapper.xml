@@ -28,7 +28,7 @@
             resultType="com.project.board.vo.BoardVo">
         SELECT *
         FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER DESC) RNUM,
         C.BOARD_NUMBER,
         C.TITLE,
         C.MENU_ID,
@@ -38,7 +38,7 @@
         TO_CHAR(C.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
         C.BOARD_CHECK
         FROM CUSTOMER_BOARD C
-        ORDER BY BOARD_NUMBER ASC)
+        ORDER BY BOARD_NUMBER DESC)
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 

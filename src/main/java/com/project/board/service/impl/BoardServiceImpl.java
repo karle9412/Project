@@ -112,16 +112,25 @@ public class BoardServiceImpl implements BoardService {
     public int reviewCount() {
         return boardDao.reviewCount();
     }
-   @Override
+    @Override
     public int riderCount() {
         return boardDao.riderCount();
     }
 
+    // 고객게시글 모두 조회
     @Override
     public List<BoardVo> customerList(HashMap<String, Object> map) {
         List<BoardVo> boardList = boardDao.customerList(map);
         return boardList;
     }
+
+    // 검색 고객게시글 리스트 조회
+    @Override
+    public List<BoardVo> CSList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.CSList(map);
+        return boardList;
+    }
+
     @Override
     public List<BoardVo> reviewList(HashMap<String, Object> map) {
         List<BoardVo> boardList = boardDao.reviewList(map);
@@ -155,8 +164,8 @@ public class BoardServiceImpl implements BoardService {
     public int replyCount(HashMap<String, Object> map) { return boardDao.replyCount(map); }
 
     @Override
-    public void CBOardCheck(HashMap<String, Object> map) {
-        boardDao.CBOardCheck(map);
+    public void CBoardCheck(HashMap<String, Object> map) {
+        boardDao.CBoardCheck(map);
     }
 
     @Override
@@ -170,6 +179,24 @@ public class BoardServiceImpl implements BoardService {
 
         return myWritePage;
     }
+
+    @Override
+    public int CSCount(HashMap<String, Object> map) {
+        return boardDao.CSCount(map);
+    }
+
+    @Override
+    public List<BoardVo> RSList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.RSList(map);
+        return boardList;
+    }
+
+    @Override
+    public int RSCount(HashMap<String, Object> map) {
+        return boardDao.RSCount(map);
+    }
+
+
 }
 
 

@@ -37,8 +37,10 @@ public interface BoardService {
     int customerCount();
     int reviewCount();
     int riderCount();
-
+    // 고객게시글 모두 조회
     List<BoardVo> customerList(HashMap<String, Object> map);
+    // 검색 고객게시글 리스트 조회
+    List<BoardVo> CSList(HashMap<String, Object> map);
     List<BoardVo> reviewList(HashMap<String, Object> map);
     List<BoardVo> riderList(HashMap<String, Object> map);
     int testCount();
@@ -49,10 +51,16 @@ public interface BoardService {
 
     int replyCount(HashMap<String, Object> map);
 
-    void CBOardCheck(HashMap<String, Object> map);
+    void CBoardCheck(HashMap<String, Object> map);
 
 
     void RBOardCheck(HashMap<String, Object> map);
 
     List<BoardVo> myWritePage(String nickname);
+
+    int CSCount(HashMap<String, Object> map);
+
+    List<BoardVo> RSList(HashMap<String, Object> map);
+
+    int RSCount(HashMap<String, Object> map);
 }

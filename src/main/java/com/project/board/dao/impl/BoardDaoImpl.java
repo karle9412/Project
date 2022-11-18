@@ -2,7 +2,6 @@ package com.project.board.dao.impl;
 
 import com.project.board.dao.BoardDao;
 import com.project.board.vo.BoardVo;
-import com.project.board.vo.ReplyPager;
 import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
 import com.project.reply.vo.ReplyVo;
@@ -10,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLPermission;
 import java.util.HashMap;
 import java.util.List;
 
@@ -108,6 +106,13 @@ public class BoardDaoImpl implements BoardDao {
         List<BoardVo> boardList = sqlSession.selectList("Board.CustomerList",map);
         return boardList;
     }
+
+    @Override
+    public List<BoardVo> CSList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.CSList",map);
+        return boardList;
+    }
+
     @Override
     public List<BoardVo> reviewList(HashMap<String, Object> map) {
         List<BoardVo> boardList = sqlSession.selectList("Board.ReviewList",map);
@@ -170,8 +175,19 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public void CBOardCheck(HashMap<String, Object> map) {
-        sqlSession.update("Board.Check",map);
+    public int CSCount(HashMap<String, Object> map) {
+        return sqlSession.selectOne("Board.CSCount", map);
+    }
+
+    @Override
+    public List<BoardVo> RSList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.RSList",map);
+        return boardList;
+    }
+
+    @Override
+    public int RSCount(HashMap<String, Object> map) {
+        return sqlSession.selectOne("Board.RSCount", map);
     }
 
 

@@ -36,8 +36,10 @@ public interface BoardDao {
 
     void RBoardDelete(HashMap<String, Object> map);
     void RVBoardDelete(HashMap<String, Object> map);
-
+    // 고객게시글 모두 조회
     public List<BoardVo> customerList(HashMap<String, Object> map);
+    // 검색 고객게시물 리스트 조회
+    List<BoardVo> CSList(HashMap<String, Object> map);
     public List<BoardVo> reviewList(HashMap<String, Object> map);
     public List<BoardVo> riderList(HashMap<String, Object> map);
 
@@ -59,5 +61,9 @@ public interface BoardDao {
 
     List<BoardVo> myWritePage(String nickname);
 
-    void CBOardCheck(HashMap<String, Object> map);
+    int CSCount(HashMap<String, Object> map);
+
+    List<BoardVo> RSList(HashMap<String, Object> map);
+
+    int RSCount(HashMap<String, Object> map);
 }

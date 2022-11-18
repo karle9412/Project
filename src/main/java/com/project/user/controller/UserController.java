@@ -47,7 +47,6 @@ public class UserController {
     @RequestMapping("/changePasswdForm")
     public String findPasswd(UserVo userVo, Model model){
         model.addAttribute(userVo);
-        System.out.println(model);
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러

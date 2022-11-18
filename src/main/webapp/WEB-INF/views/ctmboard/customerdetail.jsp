@@ -113,6 +113,7 @@ function updateReply(reply_number, writer){
 function deleteReply(reply_number,writer,endPage){
     let deleturl = "/Board/ReplyDelete?reply_number=" + reply_number + "&endPage=" + endPage +"&board_number=${boardVo.board_number}"
     let ans = confirm("삭제하시겠습니까?");
+    console.log(ans);
     if("${nickName}" != writer){
         alert("본인이 작성한 댓글만 삭제 가능합니다");
     }
@@ -128,30 +129,6 @@ function deleteReply(reply_number,writer,endPage){
             });
         }
     }
-  let deleturl = "/Board/ReplyDelete?reply_number=" + reply_number + "&endPage=" + endPage +"&board_number=${boardVo.board_number}"
-  let ans = confirm("삭제하시겠습니까?");
-  if("${nickName}" != writer){
-    alert("본인이 작성한 댓글만 삭제 가능합니다");
-  }
-  else{
-    if(ans === true){
-      $.ajax({
-      type: "POST",
-      url: deleturl,
-      success: function(deleteresult){
-        alert("댓글이 삭제되었습니다");
-        let total   = ${replyPager.totalCount} - 1;
-        let contentnum = ${replyPager.pageNum+1} * 10;
-        if ((contentnum - total) == 10 ){
-          location.href='/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+ ${replyPager.pageNum} +'&contentNum='+ contentnum +'';
-        }
-        else{
-          location.href='/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.pageNum+1}&contentNum=${replyPager.contentNum}';
-        }
-      }
-      });
-    }
-  }
 }
 </script>
 </head>
@@ -186,7 +163,7 @@ function deleteReply(reply_number,writer,endPage){
                                         <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
                                         <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
                                         <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
-                                        <button class="w3-button " onclick="likeFunction(this)"
+                                        <button class="w3-button" id = "update" onClick = "UpdateBoard_()"
                                             style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;
                                             border-radius: 10%"><b> 수정</b></button>
                                     </form>
@@ -221,6 +198,7 @@ function deleteReply(reply_number,writer,endPage){
                                  border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="btnReply w3-button">작성</button>
                             </div>
                         </div>
+                        <div id="ReplyPa"></div>
                     </div>
                 </div>
             </div>
@@ -249,7 +227,6 @@ $("#btnReply").click(function(){
  let menu_id = "${menu_id}";
  let writer = "${nickName}"
  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
-
  $.ajax({
   type: "post",
   url: "/Board/CtmreplyWrite",
@@ -420,18 +397,20 @@ function UpdateBoard_(){
       let c  = "${boardVo.board_check}"
       let a = "${boardVo.writer}"
       let b = "${nickName}"
-      if (ans === false){
-        return false;
+      if(ans === false){
+      return false;
       }
+
       if(c == 1){
         alert("이미 접수 되었습니다.");
         return false;
       }
 
-      if("${boardVo.board_check}" == 2){
-        alert("이미 접수완료된 게시글입니다.")
-        return false;
-      }
+
+          if("${boardVo.board_check}" == 2){
+            alert("이미 접수된 댓글입니다.")
+            return false;
+            }
       if(a != b){
       alert("본인이 작성한 게시글만 접수 가능합니다")
       }
@@ -455,6 +434,16 @@ function checkbuttonbtn(){
          let c  = "${boardVo.board_check}"
          let a = "${boardVo.writer}"
          let b = "${nickName}"
+
+         if(ans === false){
+         return false;
+         }
+
+         if(c == 2 ){
+         alert("이미 접수가 끝난 게시글입니다.")
+         return false;
+         }
+
          if(ans === true){
          if(a != b){
          alert("본인이 작성한 게시글만 접수 가능합니다")
@@ -481,6 +470,10 @@ function  checkdelitebtn(){
          let c  = "${boardVo.board_check}"
          let a = "${boardVo.writer}"
          let b = "${nickName}"
+         if(ans === false){
+         return false;
+         }
+
          if("${boardVo.board_check}" == 0 ){
          alert("접수가 되지 않아 취소할 수 없습니다")
          return false;
@@ -522,4 +515,3 @@ function sendSMS(){
 
 </body>
 </html>
-

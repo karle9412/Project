@@ -10,6 +10,7 @@ import com.project.reply.vo.RiderReplyVo;
 import com.project.user.vo.UserVo;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.apache.ibatis.javassist.compiler.ast.Keyword;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,26 @@ public class BoardController {
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+        String keyword = (String) map.get("keyword");
+        String searchType = (String) map.get("searchType");
+
+        if(searchType == null){
+            keyword = "초기값";
+            searchType = "초기값";
+        }
+
+        if(searchType.equals("board_check")){
+            if (keyword.equals("대기")){
+                keyword="0";
+                map.put("keyword",keyword);
+            }else if (keyword.equals("중")){
+                keyword="1";
+                map.put("keyword",keyword);
+            }else if (keyword.equals("완료")){
+                keyword="2";
+                map.put("keyword",keyword);
+            }
+        }
 
         List<BoardVo> customerList = null;
 
@@ -63,15 +84,41 @@ public class BoardController {
         map.put("contentNum", boardPager.getContentNum());
 
         if (boardPager.getPageNum() == 0) {
-            customerList = boardService.customerList(map);
+            if(!searchType.equals("초기값") && keyword.length() != 0){
+                customerList = boardService.CSList(map);
+                boardPager.setTotalCount(boardService.CSCount(map));
+                boardPager.setPageNum(cPageNum - 1);
+                boardPager.setContentNum(cContentNum);
+                boardPager.setCurrentBlock(cPageNum);
+                boardPager.setLastBlock();
+                boardPager.prevNext(cPageNum);
+                boardPager.setStartPage(boardPager.getCurrentBlock());
+                boardPager.setEndPage();
+            } else{
+                customerList = boardService.customerList(map);
+            }
         } else if (boardPager.getPageNum() != 0) {
-            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
-            customerList = boardService.customerList(map);
+            if(keyword.length() != 0){
+              map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+              customerList = boardService.CSList(map);
+              boardPager.setTotalCount(boardService.CSCount(map));
+              boardPager.setPageNum(cPageNum - 1);
+              boardPager.setContentNum(cContentNum);
+              boardPager.setCurrentBlock(cPageNum);
+              boardPager.setLastBlock();
+              boardPager.prevNext(cPageNum);
+              boardPager.setStartPage(boardPager.getCurrentBlock());
+              boardPager.setEndPage();
+            }else {
+              map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+              customerList = boardService.customerList(map);
+            }
         }
 
         model.addAttribute("customerList", customerList);
         model.addAttribute("boardPager", boardPager);
         model.addAttribute("menuList", menuList);
+        model.addAttribute("map",map);
 
         return "ctmboard/customerList";
 
@@ -85,6 +132,26 @@ public class BoardController {
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+        String keyword = (String) map.get("keyword");
+        String searchType = (String) map.get("searchType");
+
+        if(searchType == null){
+            keyword = "초기값";
+            searchType = "초기값";
+        }
+
+        if(searchType.equals("board_check")){
+            if (keyword.equals("대기")){
+                keyword="0";
+                map.put("keyword",keyword);
+            }else if (keyword.equals("중")){
+                keyword="1";
+                map.put("keyword",keyword);
+            }else if (keyword.equals("완료")){
+                keyword="2";
+                map.put("keyword",keyword);
+            }
+        }
 
         List<BoardVo> riderList = null;
 
@@ -100,17 +167,44 @@ public class BoardController {
         map.put("pageNum", boardPager.getPageNum());
         map.put("contentNum", boardPager.getContentNum());
 
+
         if (boardPager.getPageNum() == 0) {
-            riderList = boardService.riderList(map);
+            if(!searchType.equals("초기값") && keyword.length() != 0){
+                riderList = boardService.RSList(map);
+                boardPager.setTotalCount(boardService.RSCount(map));
+                boardPager.setPageNum(cPageNum - 1);
+                boardPager.setContentNum(cContentNum);
+                boardPager.setCurrentBlock(cPageNum);
+                boardPager.setLastBlock();
+                boardPager.prevNext(cPageNum);
+                boardPager.setStartPage(boardPager.getCurrentBlock());
+                boardPager.setEndPage();
+            }else {
+                riderList = boardService.riderList(map);
+            }
         } else if (boardPager.getPageNum() != 0) {
-            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
-            riderList = boardService.riderList(map);
+            if(keyword.length() != 0){
+                map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+                riderList = boardService.RSList(map);
+                boardPager.setTotalCount(boardService.RSCount(map));
+                boardPager.setPageNum(cPageNum - 1);
+                boardPager.setContentNum(cContentNum);
+                boardPager.setCurrentBlock(cPageNum);
+                boardPager.setLastBlock();
+                boardPager.prevNext(cPageNum);
+                boardPager.setStartPage(boardPager.getCurrentBlock());
+                boardPager.setEndPage();
+            }else{
+              map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+              riderList = boardService.riderList(map);
+            }
         }
 
 
         model.addAttribute("riderList", riderList);
         model.addAttribute("boardPager", boardPager);
         model.addAttribute("menuList", menuList);
+        model.addAttribute("map",map);
 
         return "riderboard/riderList";
     }
@@ -574,7 +668,7 @@ public class BoardController {
     @RequestMapping("/Board/check")
     @ResponseBody
     public HashMap<String, Object> check(@RequestParam HashMap<String, Object> map) {
-        boardService.CBOardCheck(map);
+        boardService.CBoardCheck(map);
         return map;
     }
     //할게요 게시판 접수하기,접수완료
@@ -603,14 +697,10 @@ public class BoardController {
             set.put("type", "sms"); // 문자 타입
             set.put("app_version", "test app 1.2");
 
-            System.out.println(set);
             try {
                 JSONObject result = coolsms.send(set); // 보내기&전송결과받기
 
-                System.out.println(result.toString());
             } catch (CoolsmsException e) {
-                System.out.println(e.getMessage());
-                System.out.println(e.getCode());
             }
 
             return "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
@@ -620,7 +710,6 @@ public class BoardController {
          public String myWritePage(@RequestParam String nickname,Model model){
               List<BoardVo> writePage = boardService.myWritePage(nickname);
               model.addAttribute("writePage", writePage);
-              System.out.println(writePage);
 
               return "ctmboard/CWritePage";
           }

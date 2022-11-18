@@ -557,20 +557,19 @@ public class BoardController {
 
         }
 
-    @Controller
-    public class RefundMessageController {
-        @PostMapping("/Board/SMS")
-        public String sendSms(HttpServletRequest request) throws Exception {
 
-            String api_key = "NCSFK7VPJZONYO8Y";
-            String api_secret = "IA0TMBQVKQYV9O3JOOS1AOFIJSI4A25H";
-            Message coolsms = new Message(api_key, api_secret);
+    @PostMapping("/Board/SMS")
+    public String sendSms(HttpServletRequest request) throws Exception {
 
-            HashMap<String, String> set = new HashMap<String, String>();
-            set.put("to", "01048005799"); // 수신번호
+    String api_key = "NCSFK7VPJZONYO8Y";
+    String api_secret = "IA0TMBQVKQYV9O3JOOS1AOFIJSI4A25H";
+    Message coolsms = new Message(api_key, api_secret);
 
-            set.put("from", (String)request.getParameter("from")); // 발신번호
-            set.put("text", (String)request.getParameter("text")); // 문자내용
+    HashMap<String, String> set = new HashMap<String, String>();
+    set.put("to", "01048005799"); // 수신번호
+
+    set.put("from", (String)request.getParameter("from")); // 발신번호
+    set.put("text", (String)request.getParameter("text")); // 문자내용
             set.put("type", "sms"); // 문자 타입
             set.put("app_version", "test app 1.2");
 
@@ -605,7 +604,7 @@ public class BoardController {
 
           }
 
-    }
+
 
 
 

@@ -47,7 +47,7 @@ html {
   bottom: 0;
   margin: auto;
   width: 400px;
-  height: 280px;
+  height: 300px;
   border-radius: 5px;
   background: rgb(65, 80, 145);
   box-shadow: 1px 1px 50px rgb(131 193 221);
@@ -172,21 +172,20 @@ $(function (){
         console.log(passwd);
 
         let passwdChange = ""
-
-        if (passwd == passwdCheck){
-            passwdChange = '<form action="/changePasswd" id="changePasswd">';
-            passwdChange += "<div>";
-            passwdChange += "<p>Passwd Check<br>";
-            passwdChange += "Complite</p>";
-            passwdChange += "</div>";
-            passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
-            passwdChange += '<button type="submit" id="send">비밀번호변경</input>';
-            passwdChange += '</form>';
-            $("#passwdDoubleCheck").html(passwdChange);
-        } else {
-            $("#passwdDoubleCheck").html("비밀번호가 다릅니다.");
-            alert('비밀번호를 다시 확인하세요.')
-            return false;
+        if(passwdCheck != ""){
+            if (passwd == passwdCheck){
+                passwdChange =  '<form action="/changePasswd" id="changePasswd">';
+                passwdChange += "<div>";
+                passwdChange += "<p>비밀번호 확인 완료</p>";
+                passwdChange += "</div>";
+                passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
+                passwdChange += '<button class="button" type="submit" id="send">비밀번호변경</input>';
+                passwdChange += '</form>';
+                $("#passwdDoubleCheck").html(passwdChange);
+            } else {
+                alert('비밀번호를 다시 확인하세요.')
+                return false;
+            }
         }
     })
 
@@ -200,21 +199,36 @@ $(function (){
         <h1>비밀번호 변경</h1>
     </header>
     <c:if test="${userVo.userid != null}">
-        <input type="hidden" name="userid" value="${userVo.userid}"></input>
+        <input type="hidden" name="userid" value="${userVo.userid}" placeholder="userid"></input>
     </c:if>
     <c:if test="${userVo.userid == null}">
-        <input type="text" name="userid"></input>
+        <input type="text" name="userid" placeholder="userid"></input>
     </c:if>
     <div>
-        <p>
-            <input id="passwd" type="password">
-            <label>passwd</label>
-        </p>
-        <p>
-            <input id="passwdCheck" type="password">
-            <label>passwd Check</label>
-        </p>
-        <div id="passwdDoubleCheck"></div>
+        <table style="margin-left: 40px;">
+            <tbody>
+                <tr style="width: 400px; height: 60px;">
+                    <td style="width: 102px; height: 22px;">
+                        <input id="phonNumber" type="text" placeholder="휴대전화" style="margin-left: 0px; width: 166px; margin-right: 0px;">
+                    </td>
+                    <td style="width: 302px; height: 72px;">
+                        <button class="button" type="submit" id="send"
+                            style="width: 126px; margin-left: 8px; font-size:15px; margin-right: 40px;">비밀번호변경</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="certification" type="text" placeholder="인증번호" style="margin-left: 0px; width: 216px;">
+                    </td>
+                    <td>
+                        <button class="button" type="submit" id="send">비밀번호변경</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input id="passwd" type="password" placeholder="password">
+        <input id="passwdCheck" type="password" placeholder="password check">
+        <div id="passwdDoubleCheck" style="margin-bottom:10px; margin-left:40px; color:#efe2c9; font-size:15px;"></div>
     </div>
 </div>
 </body>

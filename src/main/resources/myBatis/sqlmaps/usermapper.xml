@@ -16,11 +16,7 @@
     <!-- 로그인 할 때 쓰는 sql -->
     <select id="login"
             resultType="com.project.user.vo.UserVo">
-        SELECT USERID,
-        PASSWD,
-        NICKNAME,
-        RIDER,
-        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        SELECT *
         FROM  USERS
         WHERE USERID = #{userid}
         AND   PASSWD = #{passwd}

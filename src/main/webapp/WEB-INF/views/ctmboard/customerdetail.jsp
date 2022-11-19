@@ -165,7 +165,7 @@ function deleteReply(reply_number,writer,endPage){
                                         <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
                                         <a href= "/Board/CBoardUpdateForm?board_number=${boardVo.board_number}&menu_id=${menu_id}"
                                          class="w3-button"  id = "update" onclick="UpdateBoard_()"
-                                         style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%">
+                                         style="background-color: #ffffff; color: #212529; border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%">
                                          <b>수정</b></button>
                                     </form>
                                 </td>
@@ -503,7 +503,7 @@ function  checkdelitebtn(){
 function sendSMS(){
     let ans = confirm("문자 전송 하시겠습니까?");
 
- let ab = "01048195535" // 내번호
+ let ab = "0104819553" // 내번호
  let ac = "테스트 입니다" // 텍스트
  let param = {"from":ab, "text":ac}
  if(ans === true){

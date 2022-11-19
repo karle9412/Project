@@ -23,6 +23,12 @@ window.onload = function(){
 replylist();
 }
 
+function RRFU(reply_number){
+console.log(reply_number)
+window.open('RRF/RRFUF', '사진 올리기', 'width=500, height=500')
+
+}
+
 
 function DeleteBoard(){
 let ans = confirm("삭제하시겠습니까?");
@@ -45,7 +51,6 @@ location.href='/Board/riderList?menu_id=MENU_02&pageNum=1&contentNum=10';
 }
 }
 }
-
 
 function updateReplyForm(reply_number,writer){
 let k = document.getElementById("R"+reply_number);
@@ -275,6 +280,9 @@ function replylist(list){
               html+='<td>';
               html+= resultList[i].indate;
               html+='</td>';
+              html+='<td>';
+              html+='<button type="button" class="btn" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ')">사진 올리기</button>';
+              html+= '</td>';
               html+='<td>';
               html+='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
               html+= '</td>';

@@ -47,7 +47,7 @@ html {
   bottom: 0;
   margin: auto;
   width: 400px;
-  height: 300px;
+  height: 400px;
   border-radius: 5px;
   background: rgb(65, 80, 145);
   box-shadow: 1px 1px 50px rgb(131 193 221);
@@ -69,7 +69,7 @@ input{
   position: relative;
   width: 80%;
   display: block;
-  margin: 9px auto;
+  margin: 9px 40px;
   font-size: 17px;
   color: #fff;
   padding: 8px;
@@ -158,6 +158,37 @@ input:focus{
 
 </style>
 <script>
+let a = 0;
+
+function sendPhoneNumber(){
+    let phoneNumber =$('#phoneNumber').val();
+    let ac = "${numStr}";
+
+   console.log(phoneNumber);
+   let param = {"to":phoneNumber, "text":ac}
+     $.ajax({
+       type:"post",
+       url:"YA",
+       data:param,
+       success:function(result){
+         $('#check').click(function(){
+           let certification =$('#certification').val();
+
+           if(ac == certification){
+            alert("인증 성공함");
+            a=1;
+            }else{
+            alert("인증 실패함")
+            a=2;
+            }
+         })
+       }
+     })
+
+}
+
+
+
 $(function (){
 
     $('#passwd').keyup(function(){
@@ -172,23 +203,28 @@ $(function (){
         console.log(passwd);
 
         let passwdChange = ""
-        if(passwdCheck != ""){
-            if (passwd == passwdCheck){
-                passwdChange =  '<form action="/changePasswd" id="changePasswd">';
-                passwdChange += "<div>";
-                passwdChange += "<p>비밀번호 확인 완료</p>";
-                passwdChange += "</div>";
-                passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
-                passwdChange += '<button class="button" type="submit" id="send">비밀번호변경</input>';
-                passwdChange += '</form>';
-                $("#passwdDoubleCheck").html(passwdChange);
-            } else {
-                alert('비밀번호를 다시 확인하세요.')
-                return false;
+        if( a==0){
+        alert('당신! 인증번호 체크는 하셨나요?')}
+        if( a==2){
+        alert('거 인증번호 체크 다시 하고 오랑께')}
+
+        if( a==1){
+            if(passwdCheck != ""){
+                if (passwd == passwdCheck){
+                    passwdChange += "<div>";
+                    passwdChange += "<p>비밀번호 확인 완료</p>";
+                    passwdChange += "</div>";
+                    passwdChange += '<input type="hidden" name="userid" value=' + userid + '></input>';
+                    passwdChange += '<button class="button" type="submit" id="send">비밀번호변경</input>';
+                    passwdChange += '</form>';
+                    $("#passwdDoubleCheck").html(passwdChange);
+                } else {
+                    alert('비밀번호를 다시 확인하세요.')
+                    return false;
+                }
             }
         }
     })
-
 });
 
 </script>
@@ -205,29 +241,17 @@ $(function (){
         <input type="text" name="userid" placeholder="userid"></input>
     </c:if>
     <div>
-        <table style="margin-left: 40px;">
-            <tbody>
-                <tr style="width: 400px; height: 60px;">
-                    <td style="width: 102px; height: 22px;">
-                        <input id="phonNumber" type="text" placeholder="휴대전화" style="margin-left: 0px; width: 166px; margin-right: 0px;">
-                    </td>
-                    <td style="width: 302px; height: 72px;">
-                        <button class="button" type="submit" id="send"
-                            style="width: 126px; margin-left: 8px; font-size:15px; margin-right: 40px;">비밀번호변경</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="certification" type="text" placeholder="인증번호" style="margin-left: 0px; width: 216px;">
-                    </td>
-                    <td>
-                        <button class="button" type="submit" id="send">비밀번호변경</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <input id="passwd" type="password" placeholder="password">
-        <input id="passwdCheck" type="password" placeholder="password check">
+        <div style="height: 40px;">
+            <input id="phoneNumber" type="text" placeholder="휴대전화" style="width:200px;margin-right: 0px;">
+            <button class="button" type="submit" onclick="sendPhoneNumber()" style="width: 113px;font-size:15px;margin-right: 40px;margin-left: 250px;bottom: 45px;">인증번호 발송</button>
+        </div>
+        <div style="height: 40px;">
+            <input id="certification" type="text" placeholder="인증번호" style="width:200px;margin-right: 0px;"></input>
+            <button class="button" type="submit" id="check" onclick="CheckPhoneNumber()" style="width: 113px;font-size:15px;margin-right: 40px;margin-left: 250px;bottom: 45px;">인증번호 확인</button>
+        </div>
+        <form action="/changePasswd" id="changePasswd">
+        <input id="passwd" name="passwd" type="password" placeholder="password"></input>
+        <input id="passwdCheck" type="password" placeholder="password check"></input>
         <div id="passwdDoubleCheck" style="margin-bottom:10px; margin-left:40px; color:#efe2c9; font-size:15px;"></div>
     </div>
 </div>

@@ -57,8 +57,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if(requestUrl.contains("/useridCheck")) {
             return true;
         }
+
         //비밀번호 변경창에서 비밀번호 변경 예외 처리
         if(requestUrl.contains("/changePasswd")) {
+            return true;
+        }
+
+        //인증번호 예외 처리
+        if(requestUrl.contains("/YA")) {
             return true;
         }
 

@@ -100,9 +100,9 @@ input:focus{
 <body>
     <div id="container">
     <header >
-            <h1>프로필 추가</h1>
+            <h1>수화물 추가</h1>
         </header>
-        <form action="/profileUpdate" method="POST" encType = "multipart/form-data">
+        <form action="/RRF/RRFU" method="POST" encType = "multipart/form-data">
             <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"
                 name="upfile" class="upfile"/>
             <button type="submit" class="button-profile">프로필 업로드</button>

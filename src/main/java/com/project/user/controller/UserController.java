@@ -3,6 +3,9 @@ import com.project.pds.user.controller.UserFileController;
 import com.project.pds.user.service.PdsService;
 import com.project.user.service.UserService;
 import com.project.user.vo.UserVo;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,17 +50,16 @@ public class UserController {
     //비밀번호 변경을 하는 화면으로 보내는 컨트롤러
     @RequestMapping("/changePasswdForm")
     public String findPasswd(UserVo userVo, Model model){
-        System.out.println(model);
-        System.out.println(userVo.getuserid());
+
         Random rand  = new Random();
         String numStr = "";
         for(int i=0; i<4; i++) {   //인증번호 랜덤뽑기
             String ran = Integer.toString(rand.nextInt(10));
             numStr += ran;
         }
+
         model.addAttribute("numStr",numStr);
         model.addAttribute(userVo);
-        System.out.println(model);
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
@@ -178,7 +180,38 @@ public class UserController {
     //비밀번호 변경창에서 비밀번호 변경
     @RequestMapping("/changePasswd")
     public String changePasswd(UserVo userVo){
+
+
         this.userService.changePasswd(userVo);
         return "users/popupOut";
+    }
+
+    @RequestMapping("/YA")
+    public String sendSms(HttpServletRequest request) throws Exception {
+        System.out.println("나와봐라!");
+
+        String api_key = "NCSO8KXP96MLGO23";
+        String api_secret = "GTLDCW79SIYCMPWDQKESIDJTBDY5SPHB";
+        Message coolsms = new Message(api_key, api_secret);
+
+        HashMap<String, String> set = new HashMap<String, String>();
+        set.put("to", (String)request.getParameter("to")); // 수신번호
+
+        set.put("from", "01046925971"); // 발신번호
+        set.put("text", (String)request.getParameter("text")); // 문자내용
+        set.put("type", "sms"); // 문자 타입
+        set.put("app_version", "test app 1.2");
+
+        System.out.println(set);
+        try {
+            JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+            System.out.println(result.toString());
+        } catch (CoolsmsException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+        }
+
+        return "redirect:/changePasswdForm";
     }
 }

@@ -36,7 +36,14 @@ function btnSearch(e){
     location.href = url;
   }
 }
-
+let urlParams = new URL(location.href).searchParams;
+if (urlParams != ''){
+console.log(urlParams);
+console.log(window.location.href);
+}else{
+console.log(urlParams);
+console.log(window.location.href);
+}
 </script>
 <title>Insert title here</title>
 </head>
@@ -89,8 +96,9 @@ function btnSearch(e){
       </c:forEach>
       <tr>
         <td colspan="6">
+          <c:set var="url" value="http://localhost:8080/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10"/>
           <c:choose>
-            <c:when test="${map.keyword eq ''}">
+            <c:when test="${ url eq 'http://localhost:8080/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10'}">
               <div id="paging" class="w3-bar w3-center">
                 <c:if test="${boardPager.prev}">
                   <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}" class="w3-button">< 이전</a>

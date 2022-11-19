@@ -52,8 +52,8 @@ public class BoardController {
         String searchType = (String) map.get("searchType");
 
         if(searchType == null){
-            keyword = "초기값";
-            searchType = "초기값";
+            keyword = "";
+            searchType = "";
         }
 
         if(searchType.equals("board_check")){
@@ -68,7 +68,6 @@ public class BoardController {
                 map.put("keyword",keyword);
             }
         }
-
         List<BoardVo> customerList = null;
 
         boardPager.setTotalCount(boardService.customerCount()); // board 전체 게시글 개수를 지정

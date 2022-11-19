@@ -11,95 +11,92 @@
 </head>
 <style>
 body {
-
   padding-top: 70px;
-
   padding-bottom: 30px;
-
 }
-
 #title{
-  width: 1000px;
-  margin-left: 100px;
+  width: 1200px;
+  margin-top:10px;
+  margin-left: 50px;
 }
-
 #r_start{
-  width: 300px;
-  margin-left:100px;
+  width: 1000px;
+  margin-left: 50px;
+  margin-top:8px;
   display: inline-block
-
 }
 #r_end{
-  width:300px;
-
+  width: 1000px;
+  margin-left: 50px;
+  margin-top:8px;
   display: inline-block
 }
 #delivery_indate{
-  width:300px;
-  display: inline-block
-
+  width: 1000px;
+  margin-left: 50px;
+  margin-top:8px;
 }
 #money{
-  width: 300px;
-  margin-left:100px;
+  width: 1000px;
+  margin-left: 50px;
+  margin-top:8px;
   display: inline-block
-
 }
 #luggage{
-  width: 300px;
-  display: inline-block
+  width: 1000px;
+  margin-left: 50px;
+  margin-top:8px;
 }
 #cont{
-  margin-left:100px;
+  margin-left: 50px;
   width: 1500px;
   height: 500px;
 }
-
-
+.zz{
+border-bottom:1px solid #ccc!important;
+margin-left: 50px;
+}
+h2{
+font-family:"S-Core Dream 6"!important;
+}
+.big{
+border:1px solid #ccc!important;
+margin:150px 100px 100px 150px;
+}
 </style>
-<body>
-
-      <h2 >글쓰기</h2>
+<body class="w3-light-grey" style= "padding-top: 0px;">
+<%@ include file="/WEB-INF/include/menus.jsp" %>
+<header class="w3-container w3-center w3-padding-48 w3-white">
+   <h1 class="w3-xxxlarge"><b>Banana Quick</b></h1>
+   <h6><span class="w3-tag">delivery's world</span></h6>
+</header>
+<div class="big">
+     <div class ="zz">
+        <h2>글쓰기</h2>
+        </div>
                     <form action="/Board/RBoardWrite" method="POST">
                     <input type = "hidden" name = "menu_id" value = "${menu_id}"/>
                     <input type = "hidden" name = "pageNum" value =  "${cPageNum}"/>
                     <input type=  "hidden" name = "contentNum" value = "${cContentNum}"/>
                     <input type = "hidden" name = "writer" value ="${writer}"
                     <div class="mb-3">
-
-           					<label for="title"></label>
-
-           					<input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
-
-           				</div>
-
-                    <br>
+                      <label for="title"></label>
+                   <input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
                    <input type="text" class="form-control" name="r_start" id="r_start" placeholder="출발지:부산 북구" >
                    <input type="text" class="form-control" name="r_end" id="r_end" placeholder="목적지:부산 진구">
                    <input type="text" class="form-control" name="delivery_indate" id="delivery_indate" placeholder="2012-12-12" >
-                   <br>
                    <input type="text" class="form-control" name="money" id="money" placeholder="비용">
                    <input type="text" class="form-control" name="luggage" id="luggage" placeholder="컴퓨터" >
-
-                 </div>
                  <br>
                  <br>
                  <br>
                  <div class="mb-3">
-
                    <label for="cont"></label>
-
                    <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" ></textarea>
-
-                 </div>
-                    </div>
-                    <div>
+                 </div>=
                     </br>
                       <input class = "btn btn-sm btn-primary" type="submit" value="저장" />
-                    </div>
                     </form>
                   </div>
-
-
 </body>
 </html>

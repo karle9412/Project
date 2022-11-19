@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Random;
 
 @Controller
 public class UserController {
@@ -46,11 +47,21 @@ public class UserController {
     //비밀번호 변경을 하는 화면으로 보내는 컨트롤러
     @RequestMapping("/changePasswdForm")
     public String findPasswd(UserVo userVo, Model model){
+        System.out.println(model);
+        System.out.println(userVo.getuserid());
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {   //인증번호 랜덤뽑기
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr += ran;
+        }
+        model.addAttribute("numStr",numStr);
         model.addAttribute(userVo);
+        System.out.println(numStr);
         return "users/changePasswd";}
 
     //회원 가입 시 쓰는 컨트롤러
-    @RequestMapping("/userProfileUploadForm")
+    @RequestMapping("/userInsert")
     public String write(UserVo vo){
         this.userService.userInsert(vo);
         return "users/login";
@@ -59,8 +70,8 @@ public class UserController {
     //로그인 할 때 쓰는 컨트롤러
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
-                             @RequestParam HashMap<String, Object> map,
-                             Model model){
+                               @RequestParam HashMap<String, Object> map,
+                               Model model){
 
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){
@@ -70,12 +81,11 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "ctmboard/customerList";
+            returnURL = "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
         }else{
             model.addAttribute("fail","로그인 실패");
             returnURL = "users/login";
         }
-
         return returnURL;
 
     }

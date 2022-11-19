@@ -79,177 +79,174 @@ function DeleteBoard(e){
 
 //댓글 수정하는 폼 불러오기
 function updateReplyForm(reply_number,writer){
-    const writer_check =confirm("수정하시겠습니까?");
-        if( writer_check ===true){
-            if("${nickName}" != writer){
-                alert("본인이 작성한 댓글만 수정 가능합니다.");
-            }
-            else{
-                let k = document.getElementById("R"+reply_number);
-                let form = "";
-                form += '<div>';
-                form += '<input type= "hidden" name="reply_numbery" id ="reply_number" value= '+reply_number+'>';
-                form += '<input type= "hidden"  name="writer" id= "writer" value='+ writer +'>'
-                form += '<textarea class = "replyclass" id= "replycontent" cols="80" rows="3">';
-                form += k.textContent;
-                form += "</textarea>";
-                form += "<br/>";
-                form +='<button type = "button" class="Updatebtn" onClick="updateReply(' + reply_number +',\'' + writer + '\')"> 완료 </button>';
-                form +='<button type = "button" class="DeleteBtn" onClick="replylist()" >';
-                form += '취소';
-                form += '</button>';
-                form += '</div>';
-                form += '</br>';
-                document.getElementById("R"+reply_number).innerHTML = form;
-                $("[name=replyupdateBtn]").css("display", "none");
-                $("[name=replydeleteBtn]").css("display", "none");
-        }
+  const writer_check =confirm("수정하시겠습니까?");
+  if( writer_check ===true){
+    if("${nickName}" != writer){
+      alert("본인이 작성한 댓글만 수정 가능합니다.");
     }
+    else{
+      let k = document.getElementById("R"+reply_number);
+      let form = "";
+      form += '<div>';
+      form += '<input type= "hidden" name="reply_numbery" id ="reply_number" value= '+reply_number+'>';
+      form += '<input type= "hidden"  name="writer" id= "writer" value='+ writer +'>'
+      form += '<textarea class = "replyclass" id= "replycontent" cols="80" rows="3">';
+      form += k.textContent;
+      form += "</textarea>";
+      form += "<br/>";
+      form +='<button type = "button" class="Updatebtn" onClick="updateReply(' + reply_number +',\'' + writer + '\')"> 완료 </button>';
+      form +='<button type = "button" class="DeleteBtn" onClick="replylist()" >';
+      form += '취소';
+      form += '</button>';
+      form += '</div>';
+      form += '</br>';
+      document.getElementById("R"+reply_number).innerHTML = form;
+      $("[name=replyupdateBtn]").css("display", "none");
+      $("[name=replydeleteBtn]").css("display", "none");
+    }
+  }
 }
 
 //댓글 수정
 function updateReply(reply_number, writer){
-    let reply_content = $("#replycontent").val();
-    let replynumber = reply_number;
-    let reply_writer = writer;
-    let updateurl = "/Board/CtmreplyUpdate?reply_number=";
-    let updateurl1= "&cont="
-    let param = {"cont":reply_content, "reply_number":replynumber, "writer":reply_writer};
-        $.ajax({
-        type: "POST",
-        url: updateurl + replynumber + updateurl1 + reply_content,
-        data: param,
-        success: function(result){
-            alert("댓글이  수정되었습니다");
-            replylist();
-        },
-        error: function(error_){
-            if($('#replycontent').val() == ''){
-                alert('댓글을 입력해주세요.')
-            }
-        }
-    });
+  let reply_content = $("#replycontent").val();
+  let replynumber = reply_number;
+  let reply_writer = writer;
+  let updateurl = "/Board/CtmreplyUpdate?reply_number=";
+  let updateurl1= "&cont="
+  let param = {"cont":reply_content, "reply_number":replynumber, "writer":reply_writer};
+  $.ajax({
+    type: "POST",
+    url: updateurl + replynumber + updateurl1 + reply_content,
+    data: param,
+    success: function(result){
+      alert("댓글이  수정되었습니다");
+      replylist();
+    },
+    error: function(error_){
+      if($('#replycontent').val() == ''){
+        alert('댓글을 입력해주세요.')
+      }
+    }
+  });
 }
 
 //댓글 삭제
 function deleteReply(reply_number,writer,endPage){
-    let deleturl = "/Board/ReplyDelete?reply_number=" + reply_number + "&endPage=" + endPage +"&board_number=${boardVo.board_number}"
-    let ans = confirm("삭제하시겠습니까?");
-    if("${nickName}" != writer){
-        alert("본인이 작성한 댓글만 삭제 가능합니다");
-    }
-    else{
-        if(ans === true){
-            $.ajax({
-                type: "POST",
-                url: deleturl,
-                success: function(deleteresult){
-                    alert("댓글이 삭제되었습니다");
-                    let total   = ${replyPager.totalCount} - 1;
-                    let contentnum = ${replyPager.pageNum+1} * 10;
-                    if ((contentnum - total) == 10 ){
-                        location.href='/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+ ${replyPager.pageNum} +'&contentNum='+ contentnum +'';
-                    }
-                    else{
-                        location.href='/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.pageNum+1}&contentNum=${replyPager.contentNum}';
-                    }
-                }
-            });
+  let deleturl = "/Board/ReplyDelete?reply_number=" + reply_number + "&endPage=" + endPage +"&board_number=${boardVo.board_number}"
+  let ans = confirm("삭제하시겠습니까?");
+  if("${nickName}" != writer){
+    alert("본인이 작성한 댓글만 삭제 가능합니다");
+  }
+  else{
+    if(ans === true){
+      $.ajax({
+        type: "POST",
+        url: deleturl,
+        success: function(deleteresult){
+          alert("댓글이 삭제되었습니다");
+          let total   = ${replyPager.totalCount} - 1;
+          let contentnum = ${replyPager.pageNum+1} * 10;
+          if ((contentnum - total) == 10 ){
+            location.href='/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+ ${replyPager.pageNum} +'&contentNum='+ contentnum +'';
+          }
+          else{
+            location.href='/Board/CustomerDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.pageNum+1}&contentNum=${replyPager.contentNum}';
+          }
         }
+      });
     }
+  }
 }
+
 </script>
 </head>
 
 <!-- html 시작 -->
 <body class="w3-light-grey">
 <header class="w3-container w3-center w3-white" style="padding-top: 80px; padding-bottom: 80px;">
-    <h1 class="headerB" ><b>Banana Quick</b></h1>
-    <h6><span class="headerD">delivery's world</span></h6>
+  <h1 class="headerB" ><b>Banana Quick</b></h1>
+  <h6><span class="headerD">delivery's world</span></h6>
 </header>
-
 <div class="w3-content" style="max-width:1600px; margin:auto;">
-    <div class="w3-row w3-padding w3-border" style="margin: 50px 0px;">
-        <div>
-            <div class="w3-container w3-white w3-margin w3-padding-large">
-                <div class="w3-center">
-                    <h3 style="font-size:40px; border:1px solid #ccc!important"> 제목: ${ boardVo.title }</h3>
-                    <table style="border:1px solid #ccc!important">
-                      <tr style="border:1px solid #ccc!important">
-                        <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>작성자:  </strong> &nbsp; ${ boardVo.writer }</td>
-                        <td width= 300px; style="text-align: left"><strong>비용&nbsp;&nbsp;&nbsp;&nbsp;: </strong> &nbsp; ${boardVo.money}</td>
-                        <td width= 300px; style="text-align: left"><strong>수화물:  </strong> &nbsp; ${boardVo.luggage}</td>
-                        <td width= 300px; style="text-align: left"><strong>접수여부: &nbsp;</strong>
-                        <c:if test="${boardVo.board_check == 0}"> 접수대기 </c:if>
-                        <c:if test="${boardVo.board_check == 1}"> 접수중 </c:if>
-                        <c:if test="${boardVo.board_check == 2}"> 접수완료 </c:if></td>
-                        <td width= 300px; style="text-align: left"><strong>작성일:</strong> &nbsp ${ boardVo.indate }</td>
-                      </tr>
-                      <tr>
-                        <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>출발지:</strong> &nbsp; ${boardVo.c_start}</td>
-                        <td width= 300px; style="text-align: left"><strong>목적지:</strong> &nbsp; ${boardVo.c_end}</td>
-                        <td width= 300px; style="text-align: left"><strong>도착일:</strong> &nbsp; ${boardVo.delivery_indate}</td>
-                      </tr>
-                    <table>
-                </div>
-                <div class="w3-justify" >
-                    <p style="margin-top: 30px; margin-left: 15px; ">${ boardVo.cont }</p>
-                    <div style="height: 45px; padding-bottom: 50px; border-width: 0px 0px 2px 0px; border-style: solid; border-color: rgba(224, 221, 221, 0.8);">
-                        <table class="w3-right">
-                            <tr>
-                                <td>
-                                    <form name = "UpdateBoard" method = "get">
-                                        <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
-                                        <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
-                                        <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
-                                        <button class="w3-button" id = "update" onClick = "UpdateBoard_()"
-                                            style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;
-                                            border-radius: 10%"><b> 수정</b></button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <b><input type = "button" style="background-color: #ffffff; color: #212529;border-style: solid;
-                                     border-color: #c4c9cf; border-width: 1px; border-radius: 10%"
-                                      id = "delete" value= "삭제" onclick = "DeleteBoard()" class="w3-button"/></b>
-                                </td>
-                                <td>
-                                    <b><a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}"
-                                            class="w3-button" style="background-color: #ffffff;
-                                             color: #212529;border-style: solid; border-color: #c4c9cf;
-                                              border-width: 1px;border-radius: 10%">목록으로</a></b>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="margin-top: 3px;">
-                        <p class="w3-right"><button style="background-color: #ffffff; color: #212529;border-style: solid;
-                         border-color: #c4c9cf; border-width: 1px; border-radius: 10%"
-                          class="w3-button" onclick="myFunction('reply')" id="myBtn"><b>댓글</b> </button></p>
-                        <p class="w3-clear"></p>
-                        <div  id="reply" style="display:none">
-
-                        </div>
-                        <div class="bg-light p-2">
-                            <div class="d-flex flex-row align-items-start">
-                                <textarea class="form-control ml-1 shadow-none textarea" type="textarea" id="replytext" placeholder="댓글을 작성하세요"></textarea>
-                            </div>
-                            <div class="mt-2 text-right">
-                                <button type="button" id="btnReply" style="background-color: #ffffff; color: #212529;border-style: solid;
-                                 border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="btnReply w3-button">작성</button>
-                            </div>
-                        </div>
-                        <div id="ReplyPa" class="ReplayPa"></div>
-                    </div>
-                </div>
-            </div>
+  <div class="w3-row w3-padding w3-border" style="margin: 50px 0px;">
+    <div>
+      <div class="w3-container w3-white w3-margin w3-padding-large">
+        <div class="w3-center">
+          <h3 style="font-size:40px; border:1px solid #ccc!important"> 제목: ${ boardVo.title }</h3>
+          <table style="border:1px solid #ccc!important">
+            <tr style="border:1px solid #ccc!important">
+              <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>작성자:  </strong> &nbsp; ${ boardVo.writer }</td>
+              <td width= 300px; style="text-align: left"><strong>비용&nbsp;&nbsp;&nbsp;&nbsp;: </strong> &nbsp; ${boardVo.money}</td>
+              <td width= 300px; style="text-align: left"><strong>수화물:  </strong> &nbsp; ${boardVo.luggage}</td>
+              <td width= 300px; style="text-align: left"><strong>접수여부: &nbsp;</strong>
+                <c:if test="${boardVo.board_check == 0}"> 접수대기 </c:if>
+                <c:if test="${boardVo.board_check == 1}"> 접수중 </c:if>
+                <c:if test="${boardVo.board_check == 2}"> 접수완료 </c:if></td>
+              <td width= 300px; style="text-align: left"><strong>작성일:</strong> &nbsp ${ boardVo.indate }</td>
+            </tr>
+            <tr>
+              <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>출발지:</strong> &nbsp; ${boardVo.c_start}</td>
+              <td width= 300px; style="text-align: left"><strong>목적지:</strong> &nbsp; ${boardVo.c_end}</td>
+              <td width= 300px; style="text-align: left"><strong>도착일:</strong> &nbsp; ${boardVo.delivery_indate}</td>
+            </tr>
+          </table>
         </div>
+        <div class="w3-justify" >
+          <p style="margin-top: 30px; margin-left: 15px; ">${ boardVo.cont }</p>
+          <div style="height: 45px; padding-bottom: 50px; border-width: 0px 0px 2px 0px; border-style: solid; border-color: rgba(224, 221, 221, 0.8);">
+            <table class="w3-right">
+              <tr>
+                <td>
+                  <form name = "UpdateBoard" method = "get">
+                    <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
+                    <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                    <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
+                    <button class="w3-button" id = "update" onClick = "UpdateBoard_()"
+                      style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;
+                      border-radius: 10%"><b> 수정</b></button>
+                  </form>
+                </td>
+                <td>
+                  <b>
+                    <input type = "button" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" id = "delete" value= "삭제" onclick = "DeleteBoard()" class="w3-button"/>
+                  </b>
+                </td>
+                <td>
+                  <b>
+                    <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}" class="w3-button"
+                       style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%">목록으로
+                    </a>
+                  </b>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="margin-top: 3px;">
+            <p class="w3-right">
+              <button style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="w3-button" onclick="myFunction('reply')" id="myBtn"><b>댓글</b></button>
+            </p>
+            <p class="w3-clear"></p>
+            <div id="reply" style="display:none"></div>
+            <div class="bg-light p-2">
+              <div class="d-flex flex-row align-items-start">
+                <textarea class="form-control ml-1 shadow-none textarea" type="textarea" id="replytext" placeholder="댓글을 작성하세요"></textarea>
+              </div>
+              <div class="mt-2 text-right">
+                <button type="button" id="btnReply" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="btnReply w3-button">작성</button>
+              </div>
+            </div>
+            <div id="ReplyPa" class="ReplayPa"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
 // Toggle between hiding and showing blog replies/comments
 document.getElementById("myBtn").click();
-
 
 //댓글 누르면 댓글창이 나오는 함수
 function myFunction(id) {
@@ -261,33 +258,32 @@ function myFunction(id) {
   }
 }
 
+// 댓글작성
 $("#btnReply").click(function(){
- let cont  = $("#replytext").val();
- let board_number = "${boardVo.board_number }";
- let menu_id = "${menu_id}";
- let writer = "${nickName}"
- let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
- $.ajax({
-  type: "post",
-  url: "/Board/CtmreplyWrite",
-  data: param,
-  success: function(result){
-   alert("댓글이 등록되었습니다");
-    $("#replytext").val('');
-    replylist();
-    window.location.reload();
-   },
-   error: function(xhr){
-    if($("#replytext").val() == ''){
+  let cont  = $("#replytext").val();
+  let board_number = "${boardVo.board_number }";
+  let menu_id = "${menu_id}";
+  let writer = "${nickName}"
+  let param = {"cont":cont, "board_number":board_number, "menu_id":menu_id, "writer":writer};
+  $.ajax({
+    type: "post",
+    url: "/Board/CtmreplyWrite",
+    data: param,
+    success: function(result){
+      alert("댓글이 등록되었습니다");
+      $("#replytext").val('');
+      replylist();
+      window.location.reload();
+     },
+    error: function(xhr){
+      if($("#replytext").val() == ''){
       alert('댓글을 입력해주세요.')
-     }
-
-  }
-
+      }
+    }
   });
+});
 
- });
-
+// 댓글출력
 function replylist(){
   $.ajax({
     type:"GET",
@@ -403,140 +399,135 @@ function replylist(){
   });
 }
 
+// 게시글수정
 function UpdateBoard_(){
-      if("${nickName}" != "${boardVo.writer}"){
-        alert("본인이 작성한 게시글만 수정 가능합니다");
+  if("${nickName}" != "${boardVo.writer}"){
+    alert("본인이 작성한 게시글만 수정 가능합니다");
+  }
+  else{
+    $("#update").on("click", function(){
+      let formobj = $("form[name='UpdateBoard']");
+      formobj.attr("action", "/Board/CBoardUpdateForm");
+      formobj.submit();
+    });
+  }
+}
+
+// 접수하기버튼
+function checkbutton(){
+  let checkcheck = 1
+  let ggg = {"board_check": checkcheck}
+  let ans = confirm("접수하시겠습니까?");
+  let c  = "${boardVo.board_check}"
+  let a = "${boardVo.writer}"
+  let b = "${nickName}"
+  if(ans === false){
+    return false;
+  }
+  if(c == 1){
+    alert("이미 접수 되었습니다.");
+    return false;
+  }
+  if("${boardVo.board_check}" == 2){
+    alert("이미 접수된 댓글입니다.")
+    return false;
+  }
+  if(a != b){
+    alert("본인이 작성한 게시글만 접수 가능합니다")
+  }
+  else{
+    $.ajax({
+      type:"get",
+      url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+      data: ggg,
+      success:function(resultcheck){
+        alert("접수완료")
+        location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=1';
       }
-      else{
-        $("#update").on("click", function(){
-          let formobj = $("form[name='UpdateBoard']");
-          formobj.attr("action", "/Board/CBoardUpdateForm");
-          formobj.submit();
-        });
-      }
-    }
+    })
+  }
+}
 
-
-    function checkbutton(){
-      let checkcheck = 1
-      let ggg = {"board_check": checkcheck}
-      let ans = confirm("접수하시겠습니까?");
-      let c  = "${boardVo.board_check}"
-      let a = "${boardVo.writer}"
-      let b = "${nickName}"
-      if(ans === false){
-      return false;
-      }
-
-      if(c == 1){
-        alert("이미 접수 되었습니다.");
-        return false;
-      }
-
-
-          if("${boardVo.board_check}" == 2){
-            alert("이미 접수된 댓글입니다.")
-            return false;
-            }
-      if(a != b){
+// 접수완료버튼
+function checkbuttonbtn(){
+let checkcheck = 2;
+  let ggg = {"board_check": checkcheck}
+  let ans = confirm("접수완료 시 취소가 불가능합니다.");
+  let c  = "${boardVo.board_check}"
+  let a = "${boardVo.writer}"
+  let b = "${nickName}"
+  if(ans === false){
+   return false;
+  }
+  if(c == 2 ){
+   alert("이미 접수가 끝난 게시글입니다.")
+   return false;
+  }
+  if(ans === true){
+    if(a != b){
       alert("본인이 작성한 게시글만 접수 가능합니다")
-      }
-      else{
-        $.ajax({
+    }
+    else{
+      $.ajax({
         type:"get",
         url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
         data: ggg,
         success:function(resultcheck){
-        alert("접수완료")
-        location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=1';
+          alert("접수완료")
+          location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=2';
         }
-        })
-      }
+     })
     }
-
-function checkbuttonbtn(){
-     let checkcheck = 2;
-         let ggg = {"board_check": checkcheck}
-         let ans = confirm("접수완료 시 취소가 불가능합니다.");
-         let c  = "${boardVo.board_check}"
-         let a = "${boardVo.writer}"
-         let b = "${nickName}"
-
-         if(ans === false){
-         return false;
-         }
-
-         if(c == 2 ){
-         alert("이미 접수가 끝난 게시글입니다.")
-         return false;
-         }
-
-         if(ans === true){
-         if(a != b){
-         alert("본인이 작성한 게시글만 접수 가능합니다")
-         }
-         else{
-           $.ajax({
-           type:"get",
-           url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
-           data: ggg,
-           success:function(resultcheck){
-           alert("접수완료")
-           location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=2';
-           }
-           })
-           }
-           }
-
-       }
-
-function  checkdelitebtn(){
- let checkcheck = 0;
-         let ggg = {"board_check": checkcheck}
-         let ans = confirm("접수취소 하시겠습니까?");
-         let c  = "${boardVo.board_check}"
-         let a = "${boardVo.writer}"
-         let b = "${nickName}"
-         if(ans === false){
-         return false;
-         }
-
-         if("${boardVo.board_check}" == 0 ){
-         alert("접수가 되지 않아 취소할 수 없습니다")
-         return false;
-         }
-         if(ans === true){
-         if(a != b){
-         alert("본인이 작성한 게시글만 접수 가능합니다")
-         }
-         else{
-           $.ajax({
-           type:"get",
-           url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
-           data: ggg,
-           success:function(resultcheck){
-           alert("접수취소 되었습니다")
-           location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=1';
-           }
-           })
-           }
-           }
-
-       }
-
-function sendSMS(){
- let ab = "01048195535" // 내번호
- let ac = "테스트 입니다" // 텍스트
- let param = {"from":ab, "text":ac}
- $.ajax({
- type:"post",
- url:"/Board/SMS",
- data:param,
- success:function(result){
- alert("성공!")
- }
- })
   }
+}
+
+// 접수취소버튼
+function  checkdelitebtn(){
+  let checkcheck = 0;
+  let ggg = {"board_check": checkcheck}
+  let ans = confirm("접수취소 하시겠습니까?");
+  let c  = "${boardVo.board_check}"
+  let a = "${boardVo.writer}"
+  let b = "${nickName}"
+  if(ans === false){``
+    return false;
+  }
+  if("${boardVo.board_check}" == 0 ){
+    alert("접수가 되지 않아 취소할 수 없습니다")
+    return false;
+  }
+  if(ans === true){
+    if(a != b){
+      alert("본인이 작성한 게시글만 접수 가능합니다")
+    }
+    else{
+      $.ajax({
+        type:"get",
+        url:"/Board/check?board_number=${boardVo.board_number}&menu_id=${menu_id}",
+        data: ggg,
+        success:function(resultcheck){
+          alert("접수취소 되었습니다")
+          location.href='/Board/CustomerDetail?board_number=${boardVo.board_number}&menu_id=MENU_01&pageNum=1&contentNum=10&board_check=1';
+        }
+      })
+    }
+  }
+}
+
+// 메세지전송버튼
+function sendSMS(){
+  let ab = "01048195535" // 내번호
+  let ac = "테스트 입니다" // 텍스트
+  let param = {"from":ab, "text":ac}
+  $.ajax({
+    type:"post",
+    url:"/Board/SMS",
+    data:param,
+    success:function(result){
+      alert("성공!")
+    }
+  })
+}
 
 </script>
 

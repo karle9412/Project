@@ -21,177 +21,178 @@ public class BoardDaoImpl implements BoardDao {
 
     @Override
     public void C_insertboard(BoardVo boardVo) {
-        sqlSession.insert("Board.C_InsertBoard", boardVo);
+        this.sqlSession.insert("Board.C_InsertBoard", boardVo);
     }
 
+    @Override
     public void R_insertboard(RiderBoardVo riderboardVo) {
-        sqlSession.insert("Board.R_InsertBoard", riderboardVo);
+        this.sqlSession.insert("Board.R_InsertBoard", riderboardVo);
     }
 
     @Override
     public void RV_insertboard(ReviewVo reviewVo) {
-        sqlSession.insert("Board.RV_InsertBoard", reviewVo);
+        this.sqlSession.insert("Board.RV_InsertBoard", reviewVo);
 
     }
 
     @Override
     public BoardVo DetailCustomer(HashMap<String, Object> map) {
-        BoardVo boardVo = sqlSession.selectOne("Board.DetailCustomerBoard", map);
+        BoardVo boardVo = this.sqlSession.selectOne("Board.DetailCustomerBoard", map);
         return boardVo;
     }
 
     @Override
     public RiderBoardVo DetailRider(HashMap<String, Object> map) {
-        RiderBoardVo riderBoardVo = sqlSession.selectOne("Board.DetailRiderBoard",map);
+        RiderBoardVo riderBoardVo = this.sqlSession.selectOne("Board.DetailRiderBoard",map);
         return riderBoardVo;
     }
 
     @Override
     public ReviewVo DetailReview(HashMap<String, Object> map) {
-        ReviewVo reviewVo = sqlSession.selectOne("Board.DetailReviewBoard", map);
+        ReviewVo reviewVo = this.sqlSession.selectOne("Board.DetailReviewBoard", map);
         return reviewVo;
     }
 
     @Override
     public void CBoardUpdate(HashMap<String, Object> map) {
-      sqlSession.update("Board.CBoardUpdate", map);
+        this.sqlSession.update("Board.CBoardUpdate", map);
     }
 
     @Override
     public void RBoardUpdate(HashMap<String, Object> map) {
-        sqlSession.update("Board.RBoardUpdate", map);
+        this.sqlSession.update("Board.RBoardUpdate", map);
     }
 
     @Override
     public void RVBoardUpdate(HashMap<String, Object> map) {
-        sqlSession.update("Board.RVBoardUpdate", map);
+        this.sqlSession.update("Board.RVBoardUpdate", map);
     }
 
     @Override
     public void CBoardDelete(HashMap<String, Object> map) {
-        sqlSession.delete("Board.CBoardDelete", map);
+        this.sqlSession.delete("Board.CBoardDelete", map);
     }
 
     @Override
     public void RBoardDelete(HashMap<String, Object> map) {
-        sqlSession.delete("Board.RBoardDelete", map);
+        this.sqlSession.delete("Board.RBoardDelete", map);
     }
 
     @Override
     public void RVBoardDelete(HashMap<String, Object> map) {
-        sqlSession.delete("Board.RVBoardDelete", map);
+        this.sqlSession.delete("Board.RVBoardDelete", map);
     }
 
     @Override
     public List<BoardVo> customerList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.CustomerList",map);
+        List<BoardVo> boardList = this.sqlSession.selectList("Board.CustomerList",map);
         return boardList;
     }
 
     @Override
     public List<BoardVo> CSList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.CSList",map);
+        List<BoardVo> boardList = this.sqlSession.selectList("Board.CSList",map);
         return boardList;
     }
 
     @Override
-    public List<ReviewVo> reviewList(HashMap<String, Object> map) {
-        List<ReviewVo> boardList = sqlSession.selectList("Board.ReviewList",map);
+    public List<BoardVo> reviewList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = this.sqlSession.selectList("Board.ReviewList",map);
         return boardList;
     }    @Override
     public List<RiderBoardVo> riderList(HashMap<String, Object> map) {
-        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RiderList",map);
+        List<RiderBoardVo> boardList = this.sqlSession.selectList("Board.RiderList",map);
         return boardList;
     }
 
     @Override
     public int customerCount() {
-        return sqlSession.selectOne("Board.CustomerCount");
+        return this.sqlSession.selectOne("Board.CustomerCount");
     }
    @Override
     public int reviewCount() {
-        return sqlSession.selectOne("Board.ReviewCount");
+        return this.sqlSession.selectOne("Board.ReviewCount");
     }
     @Override
     public int riderCount() {
-        return sqlSession.selectOne("Board.RiderCount");
+        return this.sqlSession.selectOne("Board.RiderCount");
     }
 
     @Override
     public int testCount() {
-        return sqlSession.selectOne("Board.BoardCount");
+        return this.sqlSession.selectOne("Board.BoardCount");
     }
 
     @Override
     public List<BoardVo> testList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.BoardPaging",map);
+        List<BoardVo> boardList = this.sqlSession.selectList("Board.BoardPaging",map);
         return boardList;
     }
 
     @Override
     public List<ReplyVo> replyList(HashMap<String, Object> map) {
-        List<ReplyVo> replyList = sqlSession.selectList("Reply.ReplyPaging",map);
+        List<ReplyVo> replyList = this.sqlSession.selectList("Reply.ReplyPaging",map);
         return replyList;
     }
 
     @Override
-    public int replyCount(HashMap<String, Object> map) { return sqlSession.selectOne("Reply.ReplyCount",map) ; }
+    public int replyCount(HashMap<String, Object> map) { return this.sqlSession.selectOne("Reply.ReplyCount",map) ; }
 
     @Override
     public void CBoardCheck(HashMap<String, Object> map) {
-             sqlSession.update("Board.Check", map);
+        this.sqlSession.update("Board.Check", map);
 
     }
 
     @Override
     public void RBoardCheck(HashMap<String, Object> map) {
-            sqlSession.update("Board.RCheck", map);
+        this.sqlSession.update("Board.RCheck", map);
     }
 
     @Override
     public List<BoardVo> myWritePage(String nickname) {
-        List<BoardVo> myWritePage = sqlSession.selectList("Board.myWritePage", nickname);
+        List<BoardVo> myWritePage = this.sqlSession.selectList("Board.myWritePage", nickname);
 
         return myWritePage;
     }
 
     @Override
     public List<RiderBoardVo> myRWritePage(String nickname) {
-        List<RiderBoardVo> myRwritePage = sqlSession.selectList("Board.myRWritePage", nickname);
+        List<RiderBoardVo> myRwritePage = this.sqlSession.selectList("Board.myRWritePage", nickname);
         return myRwritePage;
     }
 
     @Override
     public List<ReviewVo> myRVwritePage(String nickname) {
-        List<ReviewVo> myRVwritePage = sqlSession.selectList("Board.myRVwritePage", nickname);
+        List<ReviewVo> myRVwritePage = this.sqlSession.selectList("Board.myRVwritePage", nickname);
         return myRVwritePage;
     }
 
     @Override
     public int CSCount(HashMap<String, Object> map) {
-        return sqlSession.selectOne("Board.CSCount", map);
+        return this.sqlSession.selectOne("Board.CSCount", map);
     }
 
     @Override
     public List<RiderBoardVo> RSList(HashMap<String, Object> map) {
-        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RSList",map);
+        List<RiderBoardVo> boardList = this.sqlSession.selectList("Board.RSList",map);
         return boardList;
     }
 
     @Override
     public int RSCount(HashMap<String, Object> map) {
-        return sqlSession.selectOne("Board.RSCount", map);
+        return this.sqlSession.selectOne("Board.RSCount", map);
     }
 
     @Override
     public List<BoardVo> RVSList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.RVSList",map);
+        List<BoardVo> boardList = this.sqlSession.selectList("Board.RVSList",map);
         return boardList;
     }
 
     @Override
     public int RVSCount(HashMap<String, Object> map) {
-        return sqlSession.selectOne("Board.RVSCount",map);
+        return this.sqlSession.selectOne("Board.RVSCount",map);
     }
 
 

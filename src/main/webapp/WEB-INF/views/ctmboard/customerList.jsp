@@ -119,7 +119,7 @@ function btnSearch(e){
                 <td width="30%" style="text-align:left;"><a href="/Board/CustomerDetail?board_number=${board.board_number}&menu_id=${board.menu_id}&pageNum=1&contentNum=10">${board.title}</a></td>
                 <td width="10%" style="text-align:center;">${board.writer}</td>
                 <td width="10%" style="text-align:center;">${board.indate}</td>
-                <td width="5%" style="text-align:center;">${user_local}</td>
+                <td width="5%" style="text-align:center;">${board.board_local}</td>
                 <c:set var="check" value="${board.board_check}"/>
                 <c:if test="${check == 0}">
                   <td width="10%" style="text-align:center;">접수대기</td>

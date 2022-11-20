@@ -83,7 +83,7 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
+            returnURL = "index";
         }else{
             model.addAttribute("fail","로그인 실패");
             returnURL = "users/login";

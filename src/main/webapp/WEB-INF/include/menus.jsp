@@ -16,7 +16,7 @@ text-align:right;
 </style>
 
 <div class = "oo" id="mySidebar"  style= "background-color:#FFF">
-  <a class ="o" href="/Board/customerList?menu_id=MENU_01" class="w3-bar-item w3-button">메인</a>
+  <a class ="o" href="/index" class="w3-bar-item w3-button">메인</a>
   <a class ="o" href="/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10" class="w3-bar-item w3-button">해주세요</a>
   <a class ="o" href="/Board/riderList?menu_id=MENU_02&pageNum=1&contentNum=10" class="w3-bar-item w3-button">할게요</a>
   <a class ="o" href="/Board/reviewList?menu_id=MENU_03&pageNum=1&contentNum=10" class="w3-bar-item w3-button">후기</a>

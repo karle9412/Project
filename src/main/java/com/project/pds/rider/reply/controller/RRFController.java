@@ -30,7 +30,7 @@ public class RRFController {
         System.out.println(request);
         System.out.println(map);
         this.rrfPdsService.setWrite(map, request);
-        return "redirect:/Board/riderDetail?board_number=" + map.get("board_number") + "&menu_id=" + map.get("menu_id");
+        return "redirect:/Board/riderDetail?board_number=" + map.get("board_number") + "&menu_id=" + map.get("menu_id") + "&pageNum=1&contentNum=10";
     }
 
 }

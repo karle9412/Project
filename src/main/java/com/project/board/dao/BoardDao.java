@@ -34,7 +34,7 @@ public interface BoardDao {
     public List<BoardVo> customerList(HashMap<String, Object> map);
     // 검색 고객게시물 리스트 조회
     List<BoardVo> CSList(HashMap<String, Object> map);
-    public List<ReviewVo> reviewList(HashMap<String, Object> map);
+    public List<BoardVo> reviewList(HashMap<String, Object> map);
     public List<RiderBoardVo> riderList(HashMap<String, Object> map);
 
     public int customerCount();

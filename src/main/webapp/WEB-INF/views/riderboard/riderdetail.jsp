@@ -21,12 +21,23 @@
 <script>
 window.onload = function(){
 replylist();
+
+
 }
 
-function RRFU(reply_number){
-console.log(reply_number)
-var child;
-child = window.open('RRF/RRFUF', '사진 올리기', 'width=500, height=500')
+
+function RRFU(reply_number, i){
+console.log(i);
+let html="";
+html += '<form action="RRF/RRFU" method="POST" enctype="multipart/form-data">';
+html += '<input type="hidden" name="board_number" value="${riderBoardVo.board_number}"></input>'
+html += '<input type="hidden" name="menu_id" value="${menu_id}"></input>'
+html += '<input type="hidden" name="rider_reply_number" value=' + reply_number + '></input>'
+html += '<input type="file" name="filename" ></input>';
+html += '<button type="submit">파일보내기</input>';
+html += '</form>';
+$('[name=fileUpload'+i+']').html(html);
+
 }
 
 
@@ -281,8 +292,8 @@ function replylist(list){
               html+= resultList[i].indate;
               html+='</td>';
               html+='<td>';
-              html+= '<input type="hidden" name="pInput" value="' + resultList[i].reply_number + '">'
-              html+='<button type="button" class="btn" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ')">사진 올리기</button>';
+              html+='<button type="button" class="btn" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ','+ i +')">사진 올리기</button>';
+              html+='<span name="fileUpload' + [i] + '"></span>'
               html+= '</td>';
               html+='<td>';
               html+='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';

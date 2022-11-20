@@ -7,13 +7,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class RRPdsFile {
-    public static void save(HashMap<String, Object> map, HttpServletRequest request) {
+    public static void save(HashMap<String, Object> map, HttpServletRequest request ) {
         String rrn = (String) map.get("rider_reply_number");
 
         String filePath = "D:\\Project\\src\\main\\webapp\\WEB-INF\\resources\\img\\rider\\reply\\";
@@ -25,10 +26,11 @@ public class RRPdsFile {
         }
 
         CheckFileName checkFile = new CheckFileName();
-
+        System.out.println(request.getParameterNames());
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+
 
         MultipartFile multipartFile =  null;
 

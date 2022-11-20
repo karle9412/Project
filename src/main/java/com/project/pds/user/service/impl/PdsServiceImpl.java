@@ -12,7 +12,7 @@ import java.util.HashMap;
 @Service("PdsService")
 public class PdsServiceImpl implements PdsService {
     @Autowired
-    PdsDao pdsDao;
+    private PdsDao pdsDao;
 
 
     @Override

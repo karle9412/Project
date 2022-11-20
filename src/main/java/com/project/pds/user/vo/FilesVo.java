@@ -13,8 +13,9 @@ public class FilesVo {
         this.fileExit = fileExit;
         this.sFileName = sFileName;
     }
+
     public String getUserid() {
-        return userid;
+        return this.userid;
     }
 
     public void setUserid(String userid) {
@@ -22,7 +23,7 @@ public class FilesVo {
     }
 
     public String getFileName() {
-        return fileName;
+        return this.fileName;
     }
 
     public void setFileName(String fileName) {
@@ -30,7 +31,7 @@ public class FilesVo {
     }
 
     public String getFileExit() {
-        return fileExit;
+        return this.fileExit;
     }
 
     public void setFileExit(String fileExit) {
@@ -38,7 +39,7 @@ public class FilesVo {
     }
 
     public String getsFileName() {
-        return sFileName;
+        return this.sFileName;
     }
 
     public void setsFileName(String sFileName) {
@@ -48,10 +49,10 @@ public class FilesVo {
     @Override
     public String toString() {
         return "FilesVo{" +
-                " userid='" + userid + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", fileExit='" + fileExit + '\'' +
-                ", sFileName='" + sFileName + '\'' +
+                " userid='" + this.userid + '\'' +
+                ", fileName='" + this.fileName + '\'' +
+                ", fileExit='" + this.fileExit + '\'' +
+                ", sFileName='" + this.sFileName + '\'' +
                 '}';
     }
 }

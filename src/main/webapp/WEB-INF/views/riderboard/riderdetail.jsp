@@ -25,8 +25,8 @@ replylist();
 
 function RRFU(reply_number){
 console.log(reply_number)
-window.open('RRF/RRFUF', '사진 올리기', 'width=500, height=500')
-
+var child;
+child = window.open('RRF/RRFUF', '사진 올리기', 'width=500, height=500')
 }
 
 
@@ -281,6 +281,7 @@ function replylist(list){
               html+= resultList[i].indate;
               html+='</td>';
               html+='<td>';
+              html+= '<input type="hidden" name="pInput" value="' + resultList[i].reply_number + '">'
               html+='<button type="button" class="btn" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ')">사진 올리기</button>';
               html+= '</td>';
               html+='<td>';

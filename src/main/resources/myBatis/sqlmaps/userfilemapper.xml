@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="UserFile">
+<mapper namespace="File">
 
     <!-- db에 유저 아이디가 있는 지-->
     <select id="getUserProfile"
@@ -12,6 +12,15 @@
         FROM USER_FILE
         WHERE USERID = #{vo.userid}
     </select>
+
+    <!-- db에 rider_reply_number가 있는지-->
+    <select id="getReplyFile"
+            resultType="String">
+        SELECT RIDER_REPLY_NUMBER
+        FROM RIDER_REPLY_FILE
+        WHERE RIDER_REPLY_NUMBER = #{rider_reply_number}
+    </select>
+
 
     <!-- 유저 상세화면에서 지정된 화면을 불러들이기 위함 -->
     <select id="getProfile"
@@ -29,6 +38,16 @@
         FILEEXIT,
         SFILNAME)
         VALUES (#{vo.userid}, #{vo.fileName}, #{vo.fileExit}, #{vo.sFileName})
+    </insert>
+
+    <insert id="insertReplyFile">
+        INSERT  INTO  RIDER_REPLY_FILE(
+        FILE_NUM,
+        RIDER_REPLY_NUMBER,
+        FILENAME,
+        FILEEXIT,
+        SFILENAME)
+        VALUES (RIDER_REPLY_NUMBER.NEXTVAL, #{rider_reply_number}, #{vo.fileName}, #{vo.fileExit}, #{vo.sFileName})
 
     </insert>
 
@@ -43,4 +62,15 @@
             WHERE USERID=#{vo.userid}
 
         </update>
+
+    <update id="updateReplyFile">
+        UPDATE RIDER_REPLY_FILE
+        SET
+        FILENAME=#{vo.fileName},
+        FILEEXIT=#{vo.fileExit},
+        SFILENAME=#{vo.sFileName}
+
+        WHERE RIDER_REPLY_NUMBER = #{rider_reply_number}
+
+    </update>
 </mapper>

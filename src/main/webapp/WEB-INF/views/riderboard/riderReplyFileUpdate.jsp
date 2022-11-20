@@ -95,6 +95,14 @@ input:focus{
 
 </style>
 
+<script>
+
+$( document ).ready( function() {
+        var id = opener.$('[name=pInput]').val(); //부모창에서 id가 parent인 태그의 val()
+        $('#child').attr("value",id);
+      } );
+</script>
+
 
 </head>
 <body>
@@ -102,10 +110,11 @@ input:focus{
     <header >
             <h1>수화물 추가</h1>
         </header>
-        <form action="/RRF/RRFU" method="POST" encType = "multipart/form-data">
+        <form action="/RRF/RRFU" method="POST" id="go" encType = "multipart/form-data">
+            <input type="hidden" id="child" name="rider_reply_number" value=""/>
             <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"
                 name="upfile" class="upfile"/>
-            <button type="submit" class="button-profile">프로필 업로드</button>
+            <button type="submit" class="button-profile">수화물 사진</button>
         </form>
     </div>
 

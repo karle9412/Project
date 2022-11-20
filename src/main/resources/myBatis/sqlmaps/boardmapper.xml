@@ -80,6 +80,25 @@
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
+    <select id="RVSList"
+            resultType="com.project.board.vo.BoardVo">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        R.BOARD_NUMBER,
+        R.TITLE,
+        R.MENU_ID,
+        R.WRITER,
+        R.BOARD_LOCAL,
+        R.CONT,
+        TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        FROM REVIEW_BOARD R
+        WHERE ${searchType} LIKE '%${keyword}%'
+        ORDER BY BOARD_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+    </select>
+
     <select id="ReviewList"
             resultType="com.project.board.vo.ReviewVo">
         SELECT *
@@ -136,6 +155,24 @@
         C.BOARD_CHECK
 
         FROM CUSTOMER_BOARD C
+        WHERE ${searchType} LIKE '%${keyword}%'
+        ORDER BY BOARD_NUMBER ASC)
+    </select>
+
+    <select id="RVSCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        C.BOARD_NUMBER,
+        C.TITLE,
+        C.MENU_ID,
+        C.WRITER,
+        C.BOARD_LOCAL,
+        C.CONT,
+        TO_CHAR(C.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        FROM REVIEW_BOARD C
         WHERE ${searchType} LIKE '%${keyword}%'
         ORDER BY BOARD_NUMBER ASC)
     </select>

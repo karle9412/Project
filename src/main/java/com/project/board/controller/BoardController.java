@@ -34,8 +34,6 @@ public class BoardController {
     BoardService boardService;
     @Autowired
     MenuService menuService;
-
-
     @Autowired
     ReplyService replyService;
 
@@ -59,6 +57,7 @@ public class BoardController {
         String keyword = (String) map.get("keyword");
         String searchType = (String) map.get("searchType");
         String userLocal = ((UserVo) httpSession.getAttribute("login")).getUser_local();
+
 
 
 
@@ -147,8 +146,8 @@ public class BoardController {
         String searchType = (String) map.get("searchType");
 
         if(searchType == null){
-            keyword = "초기값";
-            searchType = "초기값";
+            keyword = "";
+            searchType = "";
         }
 
         if(searchType.equals("board_check")){
@@ -228,29 +227,73 @@ public class BoardController {
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
+        String keyword = (String) map.get("keyword");
+        String searchType = (String) map.get("searchType");
+        if(searchType == null){
+            keyword = "";
+            searchType = "";
+        }
 
-        boardPager.setTotalCount(boardService.reviewCount()); // board 전체 게시글 개수를 지정
-        boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
-        boardPager.setContentNum(cContentNum); // 한 페이지에 몇개씩 게시글을 보여줄지 정함
-        boardPager.setCurrentBlock(cPageNum); // 현재 페이지 블록이 몇번인지 현재 페이지번호를 통해 지정
-        boardPager.setLastBlock(); // 마지막 블록 번호를 전체 게시글 수를 통해서 정함
-        boardPager.prevNext(cPageNum); // 현재 페이지 번호로 화살표를 나타낼지 정함
-        boardPager.setStartPage(boardPager.getCurrentBlock()); // 시작 페이지를 페이지 블록번호로 지정
-        boardPager.setEndPage(); // 마지막 페이지
+        if(searchType.equals("board_check")){
+            if (keyword.equals("대기")){
+                keyword="0";
+                map.put("keyword",keyword);
+            }else if (keyword.equals("중")){
+                keyword="1";
+                map.put("keyword",keyword);
+            }else if (keyword.equals("완료")){
+                keyword="2";
+                map.put("keyword",keyword);
+            }
+        }
+
+        boardPager.setTotalCount(boardService.reviewCount());
+        boardPager.setPageNum(cPageNum - 1);
+        boardPager.setContentNum(cContentNum);
+        boardPager.setCurrentBlock(cPageNum);
+        boardPager.setLastBlock();
+        boardPager.prevNext(cPageNum);
+        boardPager.setStartPage(boardPager.getCurrentBlock());
+        boardPager.setEndPage();
 
         map.put("pageNum", boardPager.getPageNum());
         map.put("contentNum", boardPager.getContentNum());
-
         if (boardPager.getPageNum() == 0) {
-            reviewList = boardService.reviewList(map);
+            if(!searchType.equals("초기값") && keyword.length() != 0) {
+                reviewList = boardService.RVSList(map);
+                boardPager.setTotalCount(boardService.RVSCount(map));
+                boardPager.setPageNum(cPageNum - 1);
+                boardPager.setContentNum(cContentNum);
+                boardPager.setCurrentBlock(cPageNum);
+                boardPager.setLastBlock();
+                boardPager.prevNext(cPageNum);
+                boardPager.setStartPage(boardPager.getCurrentBlock());
+                boardPager.setEndPage();
+            }else {
+                reviewList = boardService.reviewList(map);
+            }
         } else if (boardPager.getPageNum() != 0) {
-            map.put("pageNum", boardPager.getPageNum() * 10 + 1);
-            reviewList = boardService.reviewList(map);
+            if(keyword.length() != 0){
+                map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+                reviewList = boardService.RVSList(map);
+                boardPager.setTotalCount(boardService.RVSCount(map));
+                boardPager.setPageNum(cPageNum - 1);
+                boardPager.setContentNum(cContentNum);
+                boardPager.setCurrentBlock(cPageNum);
+                boardPager.setLastBlock();
+                boardPager.prevNext(cPageNum);
+                boardPager.setStartPage(boardPager.getCurrentBlock());
+                boardPager.setEndPage();
+            }else {
+                map.put("pageNum", boardPager.getPageNum() * 10 + 1);
+                reviewList = boardService.reviewList(map);
+            }
         }
 
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("menuList", menuList);
         model.addAttribute("boardPager", boardPager);
+        model.addAttribute("map", map);
 
         return "reviewboard/reviewList";
     }
@@ -283,16 +326,12 @@ public class BoardController {
     }
 
     //해주세요 게시판 글 작성
-
     @RequestMapping("/Board/CBoardWrite")
     public String write(BoardVo boardVo, BoardPager boardPager, @RequestParam HashMap<String,Object> map) {
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
-
-
         boardService.C_insertboard(boardVo);
-
 
 
         return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id() + "&pageNum=1&contentNum=10";
@@ -355,7 +394,7 @@ public class BoardController {
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
 
-        return "redirect:/Board/reviewList?menu_id=" + reviewVo.getMenu_id() + "&pageNum=" + cPageNum + "&contentNum=" + cContentNum;
+        return "redirect:/Board/reviewList?menu_id=" + reviewVo.getMenu_id() + "&pageNum=1&contentNum=10";
     }
 
 
@@ -531,7 +570,7 @@ public class BoardController {
     @RequestMapping("/Board/CBoardUpdateForm")
     public String updateform(@RequestParam HashMap<String, Object> map, Model model, HttpSession httpSession) {
 
-        BoardVo boardVo = this.boardService.DetailCustomer(map);
+        BoardVo boardVo = boardService.DetailCustomer(map);
         String menu_id = (String) map.get("menu_id");
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
 

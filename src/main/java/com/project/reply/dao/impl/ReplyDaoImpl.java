@@ -2,6 +2,7 @@ package com.project.reply.dao.impl;
 
 import com.project.board.vo.ReplyPager;
 import com.project.reply.dao.ReplyDao;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 import org.apache.ibatis.session.SqlSession;
@@ -52,6 +53,18 @@ public class ReplyDaoImpl implements ReplyDao {
     public List<ReplyVo> myReplyPage(String nickname) {
         List<ReplyVo>  myReplyPage = sqlSession.selectList("Reply.myReplyPage", nickname);
         return myReplyPage;
+    }
+
+    @Override
+    public List<CReplyVo> Creplypage(String nickname) {
+        List<CReplyVo> Creplypage = sqlSession.selectList("Reply.Creplypage", nickname);
+        return Creplypage;
+    }
+
+    @Override
+    public List<CReplyVo> Rreplypage(String nickname) {
+        List<CReplyVo> Rreplypage = sqlSession.selectList("Reply.RreplyPage", nickname);
+        return Rreplypage;
     }
 
     @Override

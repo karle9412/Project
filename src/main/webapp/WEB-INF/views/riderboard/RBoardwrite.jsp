@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 
 </head>
 <style>
@@ -78,8 +80,8 @@ margin:150px 100px 100px 150px;
                     <input type = "hidden" name = "menu_id" value = "${menu_id}"/>
                     <input type = "hidden" name = "pageNum" value =  "${cPageNum}"/>
                     <input type=  "hidden" name = "contentNum" value = "${cContentNum}"/>
-                    <input type = "hidden" name = "writer" value ="${writer}"
-                    <div class="mb-3">
+                    <input type = "hidden" name = "writer" value ="${writer}"/>
+                    <input type = "hidden" name = "rider_local" value= "${rider_local}"/>
                       <label for="title"></label>
                    <input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
                    <input type="text" class="form-control" name="r_start" id="r_start" placeholder="출발지:부산 북구" >
@@ -93,10 +95,49 @@ margin:150px 100px 100px 150px;
                  <div class="mb-3">
                    <label for="cont"></label>
                    <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" ></textarea>
-                 </div>=
+                 </div>
                     </br>
                       <input class = "btn btn-sm btn-primary" type="submit" value="저장" />
                     </form>
                   </div>
+
+
+       <script>
+       $(function(){
+           $('form').on('submit',function(e){
+
+               if($('[name=title]').val()==''){
+                   alert('제목을 입력하세요');
+                   return false;
+               }
+               if($('[name=r_start]').val()==''){
+                   alert('출발지를 입력하세욧');
+                   return false;
+               }
+               if($('[name=r_end]').val()==''){
+                   alert('목적지를 입력하세요');
+                   return false;
+               }
+               if($('[name=delivery_indate]').val()==''){
+                    alert('일자를 입력하세요');
+                    return false;
+                                       }
+
+              if($('[name=cont]').val()==''){
+                    alert('내용을 입력하세요');
+                    return false;
+                                                      }
+                if($('[name=money]').val()==''){
+                     alert('비용을 입력하세요');
+                     return false;
+                                        }
+
+                if($('[name=luggage]').val()==''){
+                      alert('수화물을 입력하세요');
+                      return false;
+                                  }
+           });
+           });
+       </script>
 </body>
 </html>

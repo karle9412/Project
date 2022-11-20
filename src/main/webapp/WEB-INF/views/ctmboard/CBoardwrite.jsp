@@ -5,6 +5,8 @@
 <html>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 
 <style>
 body {
@@ -61,6 +63,7 @@ border:1px solid #ccc!important;
 margin:150px 100px 100px 150px;
 }
 </style>
+
 <head>
 </head>
 <body class="w3-light-grey" style= "padding-top: 0px;">
@@ -77,9 +80,10 @@ margin:150px 100px 100px 150px;
                 <input type = "hidden" name = "menu_id" value = "${menu_id}"/>
                 <input type = "hidden" name = "pageNum" value =  "${cPageNum}"/>
                 <input type=  "hidden" name = "contentNum" value = "${cContentNum}"/>
-                <input type = "hidden" name = "writer" value ="${writer}"
+                <input type = "hidden" name = "writer" value ="${writer}"/>
+                <input type = "hidden" name = "board_local" value = "${board_local}"/>
               <label for="title"></label>
-              <input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
+                <input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
                 <input type="text" class="form-control" name="c_start" id="c_start" placeholder="출발지:부산 북구"><br>
                 <input type="text" class="form-control" name="c_end" id="c_end" placeholder="목적지:부산 진구"><br>
                 <input type="text" class="form-control" name="delivery_indate" id="delivery_indate" placeholder="2012-12-12" >
@@ -93,8 +97,46 @@ margin:150px 100px 100px 150px;
               <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" ></textarea>
                </div>
                  </br>
-                   <input class = "w3-button w3-right w3-border w3-white" type="submit" value="저장" />
+                   <input class = "w3-button w3-right w3-border w3-white" id = "boardwrite" type="submit" value="저장" />
                  </form>
                </div>
+
+               <script>
+               $(function(){
+                   $('form').on('submit',function(e){
+
+                       if($('[name=title]').val()==''){
+                           alert('제목을 입력하세요');
+                           return false;
+                       }
+                       if($('[name=c_start]').val()==''){
+                           alert('출발지를 입력하세욧');
+                           return false;
+                       }
+                       if($('[name=c_end]').val()==''){
+                           alert('목적지를 입력하세요');
+                           return false;
+                       }
+                       if($('[name=delivery_indate]').val()==''){
+                            alert('일자를 입력하세요');
+                            return false;
+                                               }
+
+                      if($('[name=cont]').val()==''){
+                            alert('내용을 입력하세요');
+                            return false;
+                                                                                              }
+                        if($('[name=money]').val()==''){
+                             alert('비용을 입력하세요');
+                             return false;
+                                                }
+
+                        if($('[name=luggage]').val()==''){
+                              alert('수화물을 입력하세요');
+                              return false;
+                                          }
+                   });
+                   });
+               </script>
 </body>
 </html>

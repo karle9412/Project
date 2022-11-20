@@ -57,7 +57,6 @@ console.log(window.location.href);
                         픽업 해주세요
                     </div>
     </div>
-
     <div class="w3-container">
         <table class="w3 table w3-bordered">
 
@@ -160,6 +159,15 @@ function w3_close() {
 document.getElementById("btnSearch").addEventListener('click',btnSearch);
 
 </script>
+
+ <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; BananaQuick Website 2022</div>
+
+                        </div>
+                    </div>
+                </footer>
 
 
 </body>

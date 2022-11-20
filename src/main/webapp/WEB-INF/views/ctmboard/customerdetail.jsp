@@ -50,6 +50,10 @@ li.pcl1 { text-align:left; }
 
 a:hover { font-weight: bold; text-decoration: none; background: rgba(210,210,210,1); color: #4c72db; border: 1px solid #000; }
 
+#qqq{
+border-top-width: 20px;
+}
+
 </style>
 <!-- css 불러오기 끝 -->
 
@@ -79,13 +83,13 @@ function DeleteBoard(e){
 
 //댓글 수정하는 폼 불러오기
 function updateReplyForm(reply_number,writer){
+let k = document.getElementById("R"+reply_number);
   const writer_check =confirm("수정하시겠습니까?");
-  if( writer_check ===true){
+  if( writer_check === true){
     if("${nickName}" != writer){
       alert("본인이 작성한 댓글만 수정 가능합니다.");
     }
     else{
-      let k = document.getElementById("R"+reply_number);
       let form = "";
       form += '<div>';
       form += '<input type= "hidden" name="reply_numbery" id ="reply_number" value= '+reply_number+'>';
@@ -164,6 +168,7 @@ function deleteReply(reply_number,writer,endPage){
 
 <!-- html 시작 -->
 <body class="w3-light-grey">
+<%@ include file="/WEB-INF/include/menus.jsp" %>
 <header class="w3-container w3-center w3-white" style="padding-top: 80px; padding-bottom: 80px;">
   <h1 class="headerB" ><b>Banana Quick</b></h1>
   <h6><span class="headerD">delivery's world</span></h6>
@@ -215,9 +220,14 @@ function deleteReply(reply_number,writer,endPage){
                 <td>
                   <b>
                     <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}" class="w3-button"
-                       style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%">목록으로
+                       style="background-color: #ffffff; color: #212529; border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%">목록으로
                     </a>
                   </b>
+                </td>
+                <td>
+                <b>
+                <button type="button" class="w3-button" name="checkbtn" onclick="checkbuttonbtn()" style = "background-color: #ffffff; color: #212529; border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%">접수완료</button>
+                </b>
                 </td>
               </tr>
             </table>
@@ -304,7 +314,7 @@ function replylist(){
             replyLen = 10;
             for(var i=0; i<replyLen; i++){
               html += '<tbody style="border-bottom:1px solid #ccc!important; ">';
-              html += '<tr>';
+              html += '<tr id="qqq">';
               html += '<td>';
               html += resultList[i].writer;
               html += '</td>';
@@ -312,27 +322,26 @@ function replylist(){
               html += resultList[i].indate;
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html += '<b>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html += '</b>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="btndelte" name="replydeleteBtn"';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "replyupdateBtn" name="replydeleteBtn"';
               html += 'onclick="deleteReply('+ resultList[i].reply_number+',\''+ resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "replyupdateBtn"name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px; " name = "replyupdateBtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
-              html += '</td>';
-              html += '<td>';
-              html += '<input type="button" onclick="sendSMS()" value="전송하기" />'
+              html += '<input type="button" class="w3-button" style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%;  padding-top: 3px;padding-bottom: 3px;" name = "replyupdateBtn" onclick="sendSMS()" value="문자전송" />'
               html += '</td>';
               html += '</tr>';
               html += '<tr>';
-              html += '<td>';
+              html += '<td id="R'+ resultList[i].reply_number +'">';
               html += resultList[i].cont;
               html += '</td>';
               html += '</tr>';
@@ -342,7 +351,7 @@ function replylist(){
           else{
             for(var i=0; i<replyLen; i++){
               html += '<tbody style="border-bottom:1px solid #ccc!important; ">';
-              html += '<tr>';
+              html += '<tr id="qqq">';
               html += '<td>';
               html += resultList[i].writer;
               html += '</td>';
@@ -350,27 +359,24 @@ function replylist(){
               html += resultList[i].indate;
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius:10%; padding-top: 3px;padding-bottom: 3px;" name = "replyupdateBtn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="btndelte" name="replydeleteBtn"';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius:10%;padding-top: 3px;padding-bottom: 3px; " name = "replyupdateBtn" name="replydeleteBtn"';
               html += 'onclick="deleteReply('+ resultList[i].reply_number+',\''+ resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px; " name = "replyupdateBtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px; " name = "replyupdateBtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
-              html += '</td>';
-              html += '<td>';
-              html += '<input type="button" onclick="sendSMS()" value="전송하기" />'
+              html += '<input type="button" class = "w3-button" style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px; " name = "replyupdateBtn" onclick="sendSMS()" value="문자전송" />'
               html += '</td>';
               html += '</tr>';
               html += '<tr>';
-              html += '<td>';
+              html += '<td id="R'+ resultList[i].reply_number +'">';
               html += resultList[i].cont;
               html += '</td>';
               html += '</tr>';
@@ -516,7 +522,7 @@ function  checkdelitebtn(){
 
 // 메세지전송버튼
 function sendSMS(){
-  let ab = "01048195535" // 내번호
+  let ab = "0104819555" // 내번호
   let ac = "테스트 입니다" // 텍스트
   let param = {"from":ab, "text":ac}
   $.ajax({
@@ -530,6 +536,15 @@ function sendSMS(){
 }
 
 </script>
+
+ <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; BananaQuick Website 2022</div>
+
+                        </div>
+                    </div>
+                </footer>
 
 </body>
 </html>

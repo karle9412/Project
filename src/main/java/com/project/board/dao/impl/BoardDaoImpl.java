@@ -114,12 +114,12 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public List<BoardVo> reviewList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.ReviewList",map);
+    public List<ReviewVo> reviewList(HashMap<String, Object> map) {
+        List<ReviewVo> boardList = sqlSession.selectList("Board.ReviewList",map);
         return boardList;
     }    @Override
-    public List<BoardVo> riderList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.RiderList",map);
+    public List<RiderBoardVo> riderList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RiderList",map);
         return boardList;
     }
 
@@ -175,13 +175,25 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    public List<RiderBoardVo> myRWritePage(String nickname) {
+        List<RiderBoardVo> myRwritePage = sqlSession.selectList("Board.myRWritePage", nickname);
+        return myRwritePage;
+    }
+
+    @Override
+    public List<ReviewVo> myRVwritePage(String nickname) {
+        List<ReviewVo> myRVwritePage = sqlSession.selectList("Board.myRVwritePage", nickname);
+        return myRVwritePage;
+    }
+
+    @Override
     public int CSCount(HashMap<String, Object> map) {
         return sqlSession.selectOne("Board.CSCount", map);
     }
 
     @Override
-    public List<BoardVo> RSList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.RSList",map);
+    public List<RiderBoardVo> RSList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RSList",map);
         return boardList;
     }
 

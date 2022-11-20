@@ -132,13 +132,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardVo> reviewList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.reviewList(map);
+    public List<ReviewVo> reviewList(HashMap<String, Object> map) {
+        List<ReviewVo> boardList = boardDao.reviewList(map);
         return boardList;
     }
     @Override
-    public List<BoardVo> riderList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.riderList(map);
+    public List<RiderBoardVo> riderList(HashMap<String, Object> map) {
+        List <RiderBoardVo> boardList = boardDao.riderList(map);
         return boardList;
     }
 
@@ -181,13 +181,26 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<RiderBoardVo> myRWritePage(String nickname) {
+        List<RiderBoardVo> myRwritePage = boardDao.myRWritePage(nickname);
+
+        return myRwritePage;
+    }
+
+    @Override
+    public List<ReviewVo> myRVwritePage(String nickname) {
+        List<ReviewVo> myRVwritePage = boardDao.myRVwritePage(nickname);
+        return myRVwritePage;
+    }
+
+    @Override
     public int CSCount(HashMap<String, Object> map) {
         return boardDao.CSCount(map);
     }
 
     @Override
-    public List<BoardVo> RSList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.RSList(map);
+    public List<RiderBoardVo> RSList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = boardDao.RSList(map);
         return boardList;
     }
 

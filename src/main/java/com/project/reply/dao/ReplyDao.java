@@ -1,6 +1,7 @@
 package com.project.reply.dao;
 
 import com.project.board.vo.ReplyPager;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 
@@ -43,4 +44,8 @@ public interface ReplyDao {
     void updateREndPage(HashMap<String, Object> map);
 
     List<ReplyVo> myReplyPage(String nickname);
+
+    List<CReplyVo> Creplypage(String nickname);
+
+    List<CReplyVo> Rreplypage(String nickname);
 }

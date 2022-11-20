@@ -5,6 +5,7 @@ import com.project.board.vo.*;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
 import com.project.reply.service.ReplyService;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 import com.project.user.vo.UserVo;
@@ -14,6 +15,7 @@ import org.apache.ibatis.javassist.compiler.ast.Keyword;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,14 +44,23 @@ public class BoardController {
     ReplyPager replyPager = new ReplyPager();
     // 해주세요 게시판 글 전체 조회
 
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
+
     @RequestMapping("/Board/customerList")
-    public String CustomerBoardList(Model model, @RequestParam HashMap<String,Object> map) {
+    public String CustomerBoardList(Model model, @RequestParam HashMap<String,Object> map, HttpSession httpSession) {
         List<MenuVo> menuList = menuService.getMenuList();
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
         String keyword = (String) map.get("keyword");
         String searchType = (String) map.get("searchType");
+        String userLocal = ((UserVo) httpSession.getAttribute("login")).getUser_local();
+
+
 
         if(searchType == null){
             keyword = "";
@@ -118,6 +129,7 @@ public class BoardController {
         model.addAttribute("boardPager", boardPager);
         model.addAttribute("menuList", menuList);
         model.addAttribute("map",map);
+        model.addAttribute("userLocal",userLocal);
 
         return "ctmboard/customerList";
 
@@ -152,7 +164,7 @@ public class BoardController {
             }
         }
 
-        List<BoardVo> riderList = null;
+        List<RiderBoardVo> riderList = null;
 
         boardPager.setTotalCount(boardService.riderCount()); // board 전체 게시글 개수를 지정
         boardPager.setPageNum(cPageNum - 1); // 현제 페이지를 페이지 객체에 지정한다 -1을 해야 쿼리에서 사용가능
@@ -199,7 +211,6 @@ public class BoardController {
             }
         }
 
-
         model.addAttribute("riderList", riderList);
         model.addAttribute("boardPager", boardPager);
         model.addAttribute("menuList", menuList);
@@ -213,7 +224,7 @@ public class BoardController {
     public String reviewList(Model model, @RequestParam HashMap<String,Object> map){
 
         List<MenuVo>  menuList  = menuService.getMenuList();
-        List<BoardVo> reviewList = null;
+        List<ReviewVo> reviewList = null;
 
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
@@ -253,6 +264,8 @@ public class BoardController {
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
+        String board_local =  ((UserVo) httpSession.getAttribute("login")).getUser_local();
+        System.out.println(board_local);
 
 
 
@@ -264,6 +277,7 @@ public class BoardController {
         model.addAttribute("cPageNum", cPageNum);
         model.addAttribute("cContentNum",cContentNum);
         model.addAttribute("writer", nickName);
+        model.addAttribute("board_local",board_local);
 
         return "ctmboard/CBoardwrite";
     }
@@ -281,7 +295,7 @@ public class BoardController {
 
 
 
-        return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id() + "&pageNum=" + (cPageNum)+ "&contentNum=" + cContentNum;
+        return "redirect:/Board/customerList?menu_id=" + boardVo.getMenu_id() + "&pageNum=1&contentNum=10";
     }
 
 
@@ -292,11 +306,14 @@ public class BoardController {
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
+        String rider_local =  ((UserVo) httpSession.getAttribute("login")).getUser_local();
+        System.out.println(rider_local);
 
         model.addAttribute("cPageNum", cPageNum);
         model.addAttribute("cContentNum",cContentNum);
         model.addAttribute("menu_id", menu_id);
         model.addAttribute("writer",nickName);
+        model.addAttribute("rider_local",rider_local);
         return "riderboard/RBoardwrite";
     }
 
@@ -308,7 +325,7 @@ public class BoardController {
         int cPageNum = Integer.parseInt((String) map.get("pageNum"));
         int cContentNum = Integer.parseInt((String) map.get("contentNum"));
 
-        return "redirect:/Board/riderList?menu_id=" + riderboardVo.getMenu_id() + "&pageNum=" + cPageNum + "&contentNum=" + cContentNum;
+        return "redirect:/Board/riderList?menu_id=" + riderboardVo.getMenu_id() + "&pageNum=1&contentNum=10";
     }
 
 
@@ -679,8 +696,7 @@ public class BoardController {
 
         }
 
-    @Controller
-    public class RefundMessageController {
+
         @PostMapping("/Board/SMS")
         public String sendSms(HttpServletRequest request) throws Exception {
 
@@ -708,7 +724,11 @@ public class BoardController {
           @RequestMapping("/myWritePage")
          public String myWritePage(@RequestParam String nickname,Model model){
               List<BoardVo> writePage = boardService.myWritePage(nickname);
+              List<RiderBoardVo>  RwritePqage = boardService.myRWritePage(nickname);
+              List<ReviewVo> RVwritePage = boardService.myRVwritePage(nickname);
               model.addAttribute("writePage", writePage);
+              model.addAttribute("RwritePqage",RwritePqage);
+              model.addAttribute("RVwritePage",RVwritePage);
 
               return "ctmboard/CWritePage";
           }
@@ -716,7 +736,13 @@ public class BoardController {
           @RequestMapping("/myReplyPage")
         public String myReplyPage(@RequestParam String nickname,Model model){
             List<ReplyVo> replyPage = replyService.myReplyPage(nickname);
-            model.addAttribute("replylist",replyPage);
+            List<CReplyVo> Creplypage = replyService.CreplyPage(nickname);
+            List<CReplyVo> Rreplypage = replyService.Rreplypage(nickname);
+            List<BoardVo> boardPage = boardService.myWritePage(nickname);
+              model.addAttribute("replylist",replyPage);
+              model.addAttribute("Creplypage",Creplypage);
+              model.addAttribute("RreplyPage", Rreplypage);
+
 
             return "users/CReplyPage";
 
@@ -730,7 +756,7 @@ public class BoardController {
 
 
 
-    }
+
 
 
 

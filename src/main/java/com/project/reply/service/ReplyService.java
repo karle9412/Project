@@ -1,6 +1,7 @@
 package com.project.reply.service;
 
 import com.project.board.vo.ReplyPager;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 
@@ -42,4 +43,8 @@ public interface ReplyService {
     void updateREndPage(HashMap<String, Object> map);
 
     List<ReplyVo> myReplyPage(String nickname);
+
+    List<CReplyVo> CreplyPage(String nickname);
+
+    List<CReplyVo> Rreplypage(String nickname);
 }

@@ -26,7 +26,7 @@
             resultType="com.project.board.vo.BoardVo">
         SELECT *
         FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER DESC) RNUM,
         C.BOARD_NUMBER,
         C.TITLE,
         C.MENU_ID,
@@ -36,7 +36,7 @@
         TO_CHAR(C.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
         C.BOARD_CHECK
         FROM CUSTOMER_BOARD C
-        ORDER BY BOARD_NUMBER ASC)
+        ORDER BY BOARD_NUMBER DESC)
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
@@ -44,7 +44,7 @@
             resultType="com.project.board.vo.BoardVo">
         SELECT *
         FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER DESC) RNUM,
         C.BOARD_NUMBER,
         C.TITLE,
         C.MENU_ID,
@@ -56,15 +56,15 @@
 
         FROM CUSTOMER_BOARD C
         WHERE ${searchType} LIKE '%${keyword}%'
-        ORDER BY BOARD_NUMBER ASC)
+        ORDER BY BOARD_NUMBER DESC)
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
     <select id="RSList"
-            resultType="com.project.board.vo.BoardVo">
+            resultType="com.project.board.vo.RiderBoardVo">
         SELECT *
         FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER DESC) RNUM,
         R.BOARD_NUMBER,
         R.TITLE,
         R.MENU_ID,
@@ -76,15 +76,15 @@
 
         FROM RIDER_BOARD R
         WHERE ${searchType} LIKE '%${keyword}%'
-        ORDER BY BOARD_NUMBER ASC)
+        ORDER BY BOARD_NUMBER DESC)
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
     <select id="ReviewList"
-            resultType="com.project.board.vo.BoardVo">
+            resultType="com.project.board.vo.ReviewVo">
         SELECT *
         FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER DESC) RNUM,
         R.BOARD_NUMBER,
         R.TITLE,
         R.MENU_ID,
@@ -93,15 +93,15 @@
         R.CONT,
         TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
         FROM REVIEW_BOARD R
-        ORDER BY R.BOARD_NUMBER ASC)
+        ORDER BY R.BOARD_NUMBER DESC)
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
     <select id="RiderList"
-            resultType="com.project.board.vo.BoardVo">
+            resultType="com.project.board.vo.RiderBoardVo">
         SELECT *
         FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER DESC) RNUM,
         R.BOARD_NUMBER,
         R.TITLE,
         R.MENU_ID,
@@ -111,7 +111,7 @@
         TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
         BOARD_CHECK
         FROM RIDER_BOARD R
-        ORDER BY R.BOARD_NUMBER ASC)
+        ORDER BY R.BOARD_NUMBER DESC)
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
@@ -173,15 +173,15 @@
 
 
     <insert id="C_InsertBoard" parameterType="com.project.board.vo.BoardVo">
-        INSERT INTO CUSTOMER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT,C_START,C_END,MONEY,LUGGAGE,DELIVERY_INDATE)
-        VALUES(BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{cont},#{c_start},#{c_end},#{money},#{luggage},#{delivery_indate})
+        INSERT INTO CUSTOMER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,BOARD_LOCAL,CONT,C_START,C_END,MONEY,LUGGAGE,DELIVERY_INDATE)
+        VALUES(BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{board_local},#{cont},#{c_start},#{c_end},#{money},#{luggage},#{delivery_indate})
 
 
     </insert>
 
     <insert id="R_InsertBoard" parameterType="com.project.board.vo.RiderBoardVo">
-        INSERT INTO RIDER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT,R_START,R_END,MONEY,LUGGAGE,DELIVERY_INDATE)
-        VALUES(RIDER_BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{cont},#{r_start},#{r_end},#{money},#{luggage},#{delivery_indate})
+        INSERT INTO RIDER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,RIDER_LOCAL,CONT,R_START,R_END,MONEY,LUGGAGE,DELIVERY_INDATE)
+        VALUES(RIDER_BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{rider_local},#{cont},#{r_start},#{r_end},#{money},#{luggage},#{delivery_indate})
 
     </insert>
 
@@ -328,6 +328,21 @@
         FROM CUSTOMER_BOARD
         WHERE WRITER = #{nickname}
 
+    </select>
+
+    <select id="myRWritePage"
+            resultType="com.project.board.vo.RiderBoardVo">
+        SELECT *
+        FROM RIDER_BOARD
+        WHERE WRITER = #{nickname}
+
+    </select>
+
+    <select id="myRVwritePage"
+            resultType="com.project.board.vo.ReviewVo">
+       SELECT *
+       FROM REVIEW_BOARD
+       WHERE WRITER = #{nickname}
     </select>
 
 </mapper>

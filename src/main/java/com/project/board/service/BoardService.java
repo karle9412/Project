@@ -41,8 +41,8 @@ public interface BoardService {
     List<BoardVo> customerList(HashMap<String, Object> map);
     // 검색 고객게시글 리스트 조회
     List<BoardVo> CSList(HashMap<String, Object> map);
-    List<BoardVo> reviewList(HashMap<String, Object> map);
-    List<BoardVo> riderList(HashMap<String, Object> map);
+    List<ReviewVo> reviewList(HashMap<String, Object> map);
+    List<RiderBoardVo> riderList(HashMap<String, Object> map);
     int testCount();
 
     List<BoardVo> testList(HashMap<String, Object> map);
@@ -56,11 +56,15 @@ public interface BoardService {
 
     void RBOardCheck(HashMap<String, Object> map);
 
-    List<BoardVo> myWritePage(String nickname);
-
     int CSCount(HashMap<String, Object> map);
 
-    List<BoardVo> RSList(HashMap<String, Object> map);
+    List<RiderBoardVo> RSList(HashMap<String, Object> map);
 
     int RSCount(HashMap<String, Object> map);
+
+    List<BoardVo> myWritePage(String nickname);
+
+    List<RiderBoardVo> myRWritePage(String nickname);
+
+    List<ReviewVo> myRVwritePage(String nickname);
 }

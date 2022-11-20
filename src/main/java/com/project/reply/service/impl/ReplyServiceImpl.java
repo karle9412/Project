@@ -3,6 +3,7 @@ package com.project.reply.service.impl;
 import com.project.board.vo.ReplyPager;
 import com.project.reply.dao.ReplyDao;
 import com.project.reply.service.ReplyService;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,18 @@ public class ReplyServiceImpl implements ReplyService {
     public List<ReplyVo> myReplyPage(String nickname) {
         List<ReplyVo>  myReplyPage = replyDao.myReplyPage(nickname);
         return myReplyPage;
+    }
+
+    @Override
+    public List<CReplyVo> CreplyPage(String nickname) {
+        List<CReplyVo> Creplypage = replyDao.Creplypage(nickname);
+        return Creplypage;
+    }
+
+    @Override
+    public List<CReplyVo> Rreplypage(String nickname) {
+        List<CReplyVo> Rreplypage = replyDao.Rreplypage(nickname);
+        return Rreplypage;
     }
 
 

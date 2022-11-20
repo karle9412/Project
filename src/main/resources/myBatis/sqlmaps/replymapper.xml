@@ -142,6 +142,27 @@
         FROM REPLY
         WHERE WRITER = #{nickname}
     </select>
+    <select id="Creplypage"
+        resultType="com.project.reply.vo.CReplyVo">
+        SELECT C.TITLE,
+        C.BOARD_NUMBER,
+        C.MENU_ID,
+        RE.CONT,
+        RE.WRITER
+        FROM CUSTOMER_BOARD C JOIN REPLY RE  ON C.BOARD_NUMBER = RE.BOARD_NUMBER
+        WHERE RE.WRITER = #{nickname}
+    </select>
+
+<select id="RreplyPage"
+           resultType="com.project.reply.vo.CReplyVo">
+    SELECT R.TITLE,
+    R.BOARD_NUMBER,
+    R.MENU_ID,
+    LE.CONT,
+    LE.WRITER
+    FROM RIDER_BOARD R JOIN RIDER_REPLY LE ON R.BOARD_NUMBER = LE.BOARD_NUMBER
+    WHERE LE.WRITER = #{nickname}
+</select>
 
 
 </mapper>

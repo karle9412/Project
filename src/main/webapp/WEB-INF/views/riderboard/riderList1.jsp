@@ -53,7 +53,7 @@ margin:40px 40px 40px 40px;
        <td><a href="/Board/riderDetail?board_number=${board.board_number}&menu_id=${board.menu_id}&pageNum=1&contentNum=10">${board.title}</a></td>
        <td>${board.writer}</td>
        <td>${board.indate}</td>
-        <td>${board.rider_local}</td>
+       <td>${board.board_local}</td>
        <c:set var="check" value="${board.board_check}"/>
        <c:if test="${check == 0}">
          <td>접수대기<td>

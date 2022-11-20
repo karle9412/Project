@@ -3,6 +3,7 @@ package com.project.reply.service.impl;
 import com.project.board.vo.ReplyPager;
 import com.project.reply.dao.ReplyDao;
 import com.project.reply.service.ReplyService;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,15 @@ public class ReplyServiceImpl implements ReplyService {
     @Autowired
     ReplyDao replyDao;
 
-    public List<ReplyPager> getReplylist(HashMap<String, Object> board_number) {
-        List<ReplyPager> readReply = replyDao.getReplylist(board_number);
+    public List<ReplyPager> getReplylist(HashMap<String, Object> map) {
+        List<ReplyPager> readReply = replyDao.getReplylist(map);
         return readReply;
+    }
+
+    @Override
+    public List<ReplyPager> getRReplyList(HashMap<String, Object> map) {
+        List<ReplyPager> replyList = replyDao.getRReplyList(map);
+        return replyList;
     }
 
     @Override
@@ -63,6 +70,12 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
+    public int RReplyCount(int board_number) { return replyDao.RReplyCount(board_number); }
+
+    @Override
+    public void updateREndPage(HashMap<String, Object> map) { replyDao.updateREndPage(map); }
+
+    @Override
     public void updateEndPage(HashMap<String, Object> map) {
         replyDao.updateEndpage(map);
     }
@@ -73,10 +86,27 @@ public class ReplyServiceImpl implements ReplyService {
         return myReplyPage;
     }
 
+    @Override
+    public List<CReplyVo> CreplyPage(String nickname) {
+        List<CReplyVo> Creplypage = replyDao.Creplypage(nickname);
+        return Creplypage;
+    }
 
     @Override
-    public void DeleteReply(int reply_number) {
-        replyDao.DeleteReply(reply_number);
+    public List<CReplyVo> Rreplypage(String nickname) {
+        List<CReplyVo> Rreplypage = replyDao.Rreplypage(nickname);
+        return Rreplypage;
+    }
+
+
+    @Override
+    public void DUpdateEndPage(HashMap<String, Object> map) {
+        replyDao.DUpdateEndPage(map);
+    }
+
+    @Override
+    public void DeleteReply(HashMap<String, Object> map) {
+        replyDao.DeleteReply(map);
     }
 
     @Override

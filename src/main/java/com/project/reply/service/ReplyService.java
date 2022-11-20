@@ -1,6 +1,7 @@
 package com.project.reply.service;
 
 import com.project.board.vo.ReplyPager;
+import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
 import com.project.reply.vo.RiderReplyVo;
 
@@ -19,7 +20,7 @@ public interface ReplyService {
 
     void UpdateReply(HashMap<String, Object> map);
 
-    void DeleteReply(int reply_number);
+    void DeleteReply(HashMap<String, Object> map);
 
     void DeleteR_Reply(int reply_number);
 
@@ -33,5 +34,17 @@ public interface ReplyService {
 
     void updateEndPage(HashMap<String, Object> map);
 
+    void DUpdateEndPage(HashMap<String, Object> map);
+
+    int RReplyCount(int board_number);
+
+    List<ReplyPager> getRReplyList(HashMap<String, Object> map);
+
+    void updateREndPage(HashMap<String, Object> map);
+
     List<ReplyVo> myReplyPage(String nickname);
+
+    List<CReplyVo> CreplyPage(String nickname);
+
+    List<CReplyVo> Rreplypage(String nickname);
 }

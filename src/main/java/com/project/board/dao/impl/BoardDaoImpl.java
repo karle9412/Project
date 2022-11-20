@@ -2,7 +2,6 @@ package com.project.board.dao.impl;
 
 import com.project.board.dao.BoardDao;
 import com.project.board.vo.BoardVo;
-import com.project.board.vo.ReplyPager;
 import com.project.board.vo.ReviewVo;
 import com.project.board.vo.RiderBoardVo;
 import com.project.reply.vo.ReplyVo;
@@ -10,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLPermission;
 import java.util.HashMap;
 import java.util.List;
 
@@ -108,13 +106,20 @@ public class BoardDaoImpl implements BoardDao {
         List<BoardVo> boardList = sqlSession.selectList("Board.CustomerList",map);
         return boardList;
     }
+
     @Override
-    public List<BoardVo> reviewList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.ReviewList",map);
+    public List<BoardVo> CSList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = sqlSession.selectList("Board.CSList",map);
+        return boardList;
+    }
+
+    @Override
+    public List<ReviewVo> reviewList(HashMap<String, Object> map) {
+        List<ReviewVo> boardList = sqlSession.selectList("Board.ReviewList",map);
         return boardList;
     }    @Override
-    public List<BoardVo> riderList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = sqlSession.selectList("Board.RiderList",map);
+    public List<RiderBoardVo> riderList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RiderList",map);
         return boardList;
     }
 
@@ -167,6 +172,34 @@ public class BoardDaoImpl implements BoardDao {
         List<BoardVo> myWritePage = sqlSession.selectList("Board.myWritePage", nickname);
 
         return myWritePage;
+    }
+
+    @Override
+    public List<RiderBoardVo> myRWritePage(String nickname) {
+        List<RiderBoardVo> myRwritePage = sqlSession.selectList("Board.myRWritePage", nickname);
+        return myRwritePage;
+    }
+
+    @Override
+    public List<ReviewVo> myRVwritePage(String nickname) {
+        List<ReviewVo> myRVwritePage = sqlSession.selectList("Board.myRVwritePage", nickname);
+        return myRVwritePage;
+    }
+
+    @Override
+    public int CSCount(HashMap<String, Object> map) {
+        return sqlSession.selectOne("Board.CSCount", map);
+    }
+
+    @Override
+    public List<RiderBoardVo> RSList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = sqlSession.selectList("Board.RSList",map);
+        return boardList;
+    }
+
+    @Override
+    public int RSCount(HashMap<String, Object> map) {
+        return sqlSession.selectOne("Board.RSCount", map);
     }
 
 

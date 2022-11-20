@@ -6,17 +6,16 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 .o{
-margin-left:5px; !important
-margin-right:5px; !important
-font-size: 19px; !important
-color : #000
+margin-left:5px;
+margin-right:5px;
+font-size: 19px;
 }
 .oo {
-text-align:right; !important
+text-align:right;
 }
 </style>
 
-<div class = "oo" id="mySidebar"  style= "background-color:#FFF;">
+<div class = "oo" id="mySidebar"  style= "background-color:#FFF">
   <a class ="o" href="/Board/customerList?menu_id=MENU_01" class="w3-bar-item w3-button">메인</a>
   <a class ="o" href="/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10" class="w3-bar-item w3-button">해주세요</a>
   <a class ="o" href="/Board/riderList?menu_id=MENU_02&pageNum=1&contentNum=10" class="w3-bar-item w3-button">할게요</a>

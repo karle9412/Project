@@ -78,19 +78,18 @@ public class ReplyPager {
     private int endPage=5;    // 현재 페이지 블록 종료 번호
     private boolean prev;     // 이전 페이지로 가는 화살표
     private boolean next;     // 다음 페이지로 가는 화살표
-    private int currentBlock; // 다음 페이지로 가는 화살표
-    private double lastBlock; // 다음 페이지로 가는 화살표
+    private int currentBlock; // 현재 페이지 블럭
+    private double lastBlock; // 마지막 페이지 블럭
 
 
-    public void prevNext(int pageNum){ // 이전, 다음 페이지 블록
-
-        if(calcPage(totalCount)<5){
+    public void prevNext(int pageNum1){ // 이전, 다음 페이지 블록
+        if(totalCount<=50){
             setPrev(false);
             setNext(false);
-        }else if (pageNum<=5){
+        }else if ( lastBlock >= 2.0 && currentBlock < lastBlock ){
             setPrev(false);
             setNext(true);
-        }else if (currentBlock == lastBlock){
+        }else if ( lastBlock > 1.0 && currentBlock > 1.0){
             setPrev(true);
             setNext(false);
         }else {
@@ -110,9 +109,6 @@ public class ReplyPager {
     }
 
     public void setRend_page() {
-        if (endPage < (totalCount / 10)){
-            endPage++;
-        }
         this.rend_page = rend_page;
     }
 

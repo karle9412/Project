@@ -36,10 +36,12 @@ public interface BoardDao {
 
     void RBoardDelete(HashMap<String, Object> map);
     void RVBoardDelete(HashMap<String, Object> map);
-
+    // 고객게시글 모두 조회
     public List<BoardVo> customerList(HashMap<String, Object> map);
-    public List<BoardVo> reviewList(HashMap<String, Object> map);
-    public List<BoardVo> riderList(HashMap<String, Object> map);
+    // 검색 고객게시물 리스트 조회
+    List<BoardVo> CSList(HashMap<String, Object> map);
+    public List<ReviewVo> reviewList(HashMap<String, Object> map);
+    public List<RiderBoardVo> riderList(HashMap<String, Object> map);
 
     public int customerCount();
     public int reviewCount();
@@ -57,5 +59,15 @@ public interface BoardDao {
 
     void RBoardCheck(HashMap<String, Object> map);
 
+    int CSCount(HashMap<String, Object> map);
+
+    List<RiderBoardVo> RSList(HashMap<String, Object> map);
+
+    int RSCount(HashMap<String, Object> map);
+
     List<BoardVo> myWritePage(String nickname);
+
+    List<RiderBoardVo> myRWritePage(String nickname);
+
+    List<ReviewVo> myRVwritePage(String nickname);
 }

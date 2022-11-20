@@ -11,26 +11,52 @@
 <link rel="stylesheet" href="/css/common.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <title>Insert title here</title>
+<style>
+.pickup{
+text-align:left;
+font-family:"S-Core Dream 6";
+font-size:38px;
+}
+.oooo{
+border:1px solid #ccc!important;
+margin:40px 40px 40px 40px;
+}
+</style>
+<script>
+function btnSearch(e){
+  e.preventDefault();
+  var url = "/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
+  url += "&searchType=" + $("#searchType").val();
+  url += "&keyword=" + $("#keyword").val();
+  if ($("#keyword").val() === ""){
+    alert("검색 할 키워드를 입력해주세요.");
+  }else{
+    location.href = url;
+  }
+}
+let urlParams = new URL(location.href).searchParams;
+if (urlParams != ''){
+console.log(urlParams);
+console.log(window.location.href);
+}else{
+console.log(urlParams);
+console.log(window.location.href);
+}
+</script>
 </head>
-<body>
-
+<body class="w3-light-grey">
 <%@ include file="/WEB-INF/include/menus.jsp" %>
+<header class="w3-container w3-center w3-padding-48 w3-white">
+    <h1 class="w3-xxxlarge"><b>Banana Quick</b></h1>
+    <h6><span class="w3-tag">delivery's world</span></h6>
+</header>
+<div class="oooo">
 <div id="main">
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <button id="openNav" class="w3-button w3-teal1 w3-xlarge" onclick="w3_open()">&#9776;</button>
-                </td>
-                <td>
-                    <div class="w3-container w3-center">
-                        <h1>픽업 해주세요</h1>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
 
+                    <div class="pickup">
+                        픽업 해주세요
+                    </div>
+    </div>
     <div class="w3-container">
         <table class="w3 table w3-bordered">
 
@@ -62,29 +88,60 @@
                     </c:if>
                 </tr>
             </c:forEach>
-                <tr>
-                    <td colspan="6">
-                        <div id="paging" class="w3-bar w3-center">
-                            <c:if test="${boardPager.prev}">
-                                <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}" class="w3-button">< 이전</a>
-                            </c:if>
-                            <c:forEach begin="${boardPager.getStartPage()}" end="${boardPager.getEndPage()}" var="idx">
-                                <a href="/Board/customerList?menu_id=MENU_01&pageNum=${idx}&contentNum=${idx*10}" class="w3-button">${idx}</a>
-                            </c:forEach>
-                            <c:if test="${boardPager.next}">
-                                <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}" class="w3-button">다음 ></a>
-                            </c:if>
-                        </div>
-                    </td>
-                </tr>
             <tr>
-                <td colspan="6">
-                    <a href="/Board/CBoardWriteForm?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}"
-                        class="w3-button w3-right w3-border">해주세요 새글쓰기</a>
-                </td>
-            </tr>
+            <td colspan="6">
+              <c:set var="url" value="http://localhost:8080/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10"/>
+              <c:choose>
+                <c:when test="${ url eq 'http://localhost:8080/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10'}">
+                  <div id="paging" class="w3-bar w3-center">
+                    <c:if test="${boardPager.prev}">
+                      <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}" class="w3-button">< 이전</a>
+                    </c:if>
+                    <c:forEach begin="${boardPager.getStartPage()}" end="${boardPager.getEndPage()}" var="idx">
+                      <a href="/Board/customerList?menu_id=MENU_01&pageNum=${idx}&contentNum=${idx*10}" class="w3-button">${idx}</a>
+                    </c:forEach>
+                    <c:if test="${boardPager.next}">
+                      <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}" class="w3-button">다음 ></a>
+                    </c:if>
+                  </div>
+                </c:when>
+                <c:otherwise>
+                  <div id="paging" class="w3-bar w3-center">
+                    <c:if test="${boardPager.prev}">
+                      <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getStartPage()-1}&contentNum=${(boardPager.getStartPage()-1)*10}&searchType=${map.searchType}&keyword=${map.keyword}" class="w3-button">< 이전</a>
+                    </c:if>
+                    <c:forEach begin="${boardPager.getStartPage()}" end="${boardPager.getEndPage()}" var="idx">
+                      <a href="/Board/customerList?menu_id=MENU_01&pageNum=${idx}&contentNum=${idx*10}&searchType=${map.searchType}&keyword=${map.keyword}" class="w3-button">${idx}</a>
+                    </c:forEach>
+                    <c:if test="${boardPager.next}">
+                      <a href="/Board/customerList?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}&searchType=${map.searchType}&keyword=${map.keyword}" class="w3-button">다음 ></a>
+                    </c:if>
+                  </div>
+                </c:otherwise>
+              </c:choose>
+            </td>
+          </tr>
         </table>
+        <table class="w3 table w3-bordered">
+              <tr>
+                <td>
+                  <select id="searchType">
+                    <option value="title">제목</option>
+                    <option value="board_local">지역</option>
+                    <option value="writer">작성자</option>
+                    <option value="board_check">접수상태</option>
+                  </select>
+                  <input id="keyword" type="text">
+                  <button id="btnSearch">검색</button>
+                </td>
+                <td>
+                  <a href="/Board/CBoardWriteForm?menu_id=MENU_01&pageNum=${boardPager.getEndPage()+1}&contentNum=${(boardPager.getEndPage()+1)*10}"
+                    class="w3-button w3-right w3-border">해주세요 새글쓰기</a>
+                </td>
+              </tr>
+            </table>
     </div>
+</div>
 </div>
 <script>
 function w3_open() {
@@ -98,7 +155,20 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("openNav").style.display = "inline-block";
 }
+
+document.getElementById("btnSearch").addEventListener('click',btnSearch);
+
 </script>
+
+ <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; BananaQuick Website 2022</div>
+
+                        </div>
+                    </div>
+                </footer>
+
 
 </body>
 </html>

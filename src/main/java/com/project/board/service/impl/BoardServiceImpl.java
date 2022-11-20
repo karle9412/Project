@@ -112,24 +112,33 @@ public class BoardServiceImpl implements BoardService {
     public int reviewCount() {
         return boardDao.reviewCount();
     }
-   @Override
+    @Override
     public int riderCount() {
         return boardDao.riderCount();
     }
 
+    // 고객게시글 모두 조회
     @Override
     public List<BoardVo> customerList(HashMap<String, Object> map) {
         List<BoardVo> boardList = boardDao.customerList(map);
         return boardList;
     }
+
+    // 검색 고객게시글 리스트 조회
     @Override
-    public List<BoardVo> reviewList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.reviewList(map);
+    public List<BoardVo> CSList(HashMap<String, Object> map) {
+        List<BoardVo> boardList = boardDao.CSList(map);
+        return boardList;
+    }
+
+    @Override
+    public List<ReviewVo> reviewList(HashMap<String, Object> map) {
+        List<ReviewVo> boardList = boardDao.reviewList(map);
         return boardList;
     }
     @Override
-    public List<BoardVo> riderList(HashMap<String, Object> map) {
-        List<BoardVo> boardList = boardDao.riderList(map);
+    public List<RiderBoardVo> riderList(HashMap<String, Object> map) {
+        List <RiderBoardVo> boardList = boardDao.riderList(map);
         return boardList;
     }
 
@@ -155,7 +164,7 @@ public class BoardServiceImpl implements BoardService {
     public int replyCount(HashMap<String, Object> map) { return boardDao.replyCount(map); }
 
     @Override
-    public void CBOardCheck(HashMap<String, Object> map) {
+    public void CBoardCheck(HashMap<String, Object> map) {
         boardDao.CBoardCheck(map);
     }
 
@@ -170,6 +179,37 @@ public class BoardServiceImpl implements BoardService {
 
         return myWritePage;
     }
+
+    @Override
+    public List<RiderBoardVo> myRWritePage(String nickname) {
+        List<RiderBoardVo> myRwritePage = boardDao.myRWritePage(nickname);
+
+        return myRwritePage;
+    }
+
+    @Override
+    public List<ReviewVo> myRVwritePage(String nickname) {
+        List<ReviewVo> myRVwritePage = boardDao.myRVwritePage(nickname);
+        return myRVwritePage;
+    }
+
+    @Override
+    public int CSCount(HashMap<String, Object> map) {
+        return boardDao.CSCount(map);
+    }
+
+    @Override
+    public List<RiderBoardVo> RSList(HashMap<String, Object> map) {
+        List<RiderBoardVo> boardList = boardDao.RSList(map);
+        return boardList;
+    }
+
+    @Override
+    public int RSCount(HashMap<String, Object> map) {
+        return boardDao.RSCount(map);
+    }
+
+
 }
 
 

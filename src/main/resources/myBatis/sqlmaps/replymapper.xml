@@ -5,16 +5,6 @@
 
 <mapper namespace="Reply">
 
-    <select id="ReplyPaging"
-            resultType="com.project.reply.vo.ReplyVo">
-        SELECT *
-        FROM (SELECT   ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM, R.*
-              FROM     REPLY R
-              WHERE    BOARD_NUMBER = #{board_number}
-              ORDER BY REPLY_NUMBER ASC)
-        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
-    </select>
-
     <select id="Replylist"
             resultType="com.project.board.vo.ReplyPager">
         SELECT *
@@ -34,10 +24,36 @@
 
     </select>
 
+    <select id="RReplyList"
+            resultType="com.project.board.vo.ReplyPager">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY REPLY_NUMBER ASC) RNUM,
+        R.WRITER,
+        R.CONT,
+        R.REPLY_NUMBER,
+        R.BOARD_NUMBER,
+        TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE,
+        R.REND_PAGE
+
+        FROM RIDER_REPLY R
+        WHERE BOARD_NUMBER = #{board_number}
+        ORDER BY REPLY_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+
+    </select>
+
     <select id="CReplyCount"
             resultType="int">
         SELECT COUNT(*)
         FROM REPLY
+        WHERE BOARD_NUMBER = #{board_number}
+    </select>
+
+    <select id="RReplyCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM RIDER_REPLY
         WHERE BOARD_NUMBER = #{board_number}
     </select>
 
@@ -78,6 +94,20 @@
 
     </update>
 
+    <update id="UpdateREndPage">
+        UPDATE RIDER_REPLY
+        SET REND_PAGE = #{endPage}
+        WHERE BOARD_NUMBER = #{board_number}
+
+    </update>
+
+    <update id="DUpdateEndPage">
+        UPDATE REPLY
+        SET REND_PAGE = #{endPage}
+        WHERE BOARD_NUMBER = #{board_number}
+
+    </update>
+
     <update id="UpdateReply">
         UPDATE REPLY
         SET CONT = #{cont}
@@ -112,6 +142,27 @@
         FROM REPLY
         WHERE WRITER = #{nickname}
     </select>
+    <select id="Creplypage"
+        resultType="com.project.reply.vo.CReplyVo">
+        SELECT C.TITLE,
+        C.BOARD_NUMBER,
+        C.MENU_ID,
+        RE.CONT,
+        RE.WRITER
+        FROM CUSTOMER_BOARD C JOIN REPLY RE  ON C.BOARD_NUMBER = RE.BOARD_NUMBER
+        WHERE RE.WRITER = #{nickname}
+    </select>
+
+<select id="RreplyPage"
+           resultType="com.project.reply.vo.CReplyVo">
+    SELECT R.TITLE,
+    R.BOARD_NUMBER,
+    R.MENU_ID,
+    LE.CONT,
+    LE.WRITER
+    FROM RIDER_BOARD R JOIN RIDER_REPLY LE ON R.BOARD_NUMBER = LE.BOARD_NUMBER
+    WHERE LE.WRITER = #{nickname}
+</select>
 
 
 </mapper>

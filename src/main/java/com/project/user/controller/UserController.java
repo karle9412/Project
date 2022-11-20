@@ -72,8 +72,8 @@ public class UserController {
     //로그인 할 때 쓰는 컨트롤러
     @RequestMapping("/loginProcess")
     public String loginProcess(HttpSession httpSession,
-                             @RequestParam HashMap<String, Object> map,
-                             Model model){
+                               @RequestParam HashMap<String, Object> map,
+                               Model model){
 
         String returnURL = "";
         if(httpSession.getAttribute("login") != null){
@@ -83,7 +83,7 @@ public class UserController {
 
         if(vo != null) {
             httpSession.setAttribute("login", vo);
-            returnURL = "ctmboard/customerList";
+            returnURL = "redirect:/Board/customerList?menu_id=MENU_01&pageNum=1&contentNum=10";
         }else{
             model.addAttribute("fail","로그인 실패");
             returnURL = "users/login";

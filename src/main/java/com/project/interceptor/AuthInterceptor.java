@@ -68,6 +68,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
+        //회원가입 예외 처리
+        if(requestUrl.contains("/userInsert")) {
+            return true;
+        }
+
 
 
         Object obj = httpSession.getAttribute("login");

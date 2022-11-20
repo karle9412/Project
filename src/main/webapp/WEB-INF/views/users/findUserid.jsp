@@ -175,6 +175,7 @@ $(function(){
                 nickname : nickname,
                 email : email},
             success : function(getUserid){
+            console.log(getUserid)
                 if (getUserid =="닉네임과 이메일을 다시 확인해주세요"){
                     $("#userid_check").html(getUserid);
                 } else {

@@ -33,4 +33,11 @@ public class RRFController {
         return "redirect:/Board/riderDetail?board_number=" + map.get("board_number") + "&menu_id=" + map.get("menu_id") + "&pageNum=1&contentNum=10";
     }
 
+    @RequestMapping("/RiderWatch")
+    @ResponseBody
+    public String RiderWatch(@RequestParam HashMap<String, Object> map){
+        String sFileName = this.rrfPdsService.getSFileName(map);
+        return sFileName;
+    }
+
 }

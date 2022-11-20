@@ -348,7 +348,7 @@ $(function(){
             <div class="form-content">
                 <div class="form-items">
                     <h3 style="text-align: center">회원가입</h3>
-                    <form action="\userInsert" class="requires-validation" novalidate>
+                    <form action="/userInsert" class="requires-validation">
 
                         <div class="col-md-12">
                             <input class="form-control" name="userid" type="text" placeholder="ID"/>
@@ -413,8 +413,6 @@ $(function(){
                                 <option value="사하구">사하구</option>
                                 <option value="강서구">강서구</option>
                             </select>
-                            <div class="valid-feedback">You selected a position!</div>
-                            <div class="invalid-feedback">Please select a position!</div>
                         </div>
 
                         <div class="col-md-12 mt-3">

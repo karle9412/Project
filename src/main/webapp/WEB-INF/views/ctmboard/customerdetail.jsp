@@ -195,9 +195,16 @@ function deleteReply(reply_number,writer,endPage){
         </div>
         <div class="w3-justify" >
           <p style="margin: 30px 0px; border: 1px solid #ccc; padding: 20px 20px;">${ boardVo.cont }</p>
+          <img src="/img/CtmBoard/${boardVo.board_number}/${sFileName}" style="width:300px; height:300px;"></span>
           <div style="height: 45px; padding-bottom: 50px; border-width: 0px 0px 2px 0px; border-style: solid; border-color: rgba(224, 221, 221, 0.8);">
             <table class="w3-right">
               <tr>
+              <td>
+              <button type = "button" class="w3-button" id = "update" onClick = "addPicture()"
+                                    style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;
+                                    border-radius: 10%"><b> 사진 올리기</b></button>
+              <span id="addFile"></span>
+              </td>
                 <td>
                   <form name = "UpdateBoard" method = "get">
                     <input type = "hidden" name = "board_number" value= "${boardVo.board_number}"/>
@@ -491,7 +498,11 @@ function  checkdelitebtn(){
   let c  = "${boardVo.board_check}"
   let a = "${boardVo.writer}"
   let b = "${nickName}"
-  if(ans === false){``
+  if("${boardVo.board_check}" == 2 ){
+  alert("접수완료가 되어 취소가 되지 않습니다.");
+  return false;
+  }
+  if(ans === false){
     return false;
   }
   if("${boardVo.board_check}" == 0 ){
@@ -518,8 +529,8 @@ function  checkdelitebtn(){
 
 // 메세지전송버튼
 function sendSMS(){
-  let ab = "0104819555" // 내번호
-  let ac = "테스트 입니다" // 텍스트
+  let ab = "01046925971" // 내번호
+  let ac = "책 배달 부탁합니다 게시글의 접수가 완료 되었습니다" // 텍스트
   let param = {"from":ab, "text":ac}
   $.ajax({
     type:"post",
@@ -529,6 +540,19 @@ function sendSMS(){
       alert("성공!")
     }
   })
+}
+
+function addPicture(){
+html = "";
+html += '<form action="writePicture" method="post" encType = "multipart/form-data"/>'
+html += '<input type="file"name="upfile"/>'
+html += '<input type="hidden" name="customer_board_number" value="${boardVo.board_number}"/>'
+html += '<input type="hidden" name="menu_id" value="${menu_id}"/>'
+html += '<button type="submit">사진 보내기</button>'
+html += '</form>'
+
+$('#addFile').html(html);
+
 }
 
 </script>

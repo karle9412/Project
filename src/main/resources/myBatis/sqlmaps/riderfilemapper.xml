@@ -11,6 +11,21 @@
         FROM RIDER_REPLY_FILE
         WHERE RIDER_REPLY_NUMBER = #{rider_reply_number}
     </select>
+    <select id="getSFileName"
+            resultType="String">
+        SELECT SFILENAME
+        FROM RIDER_REPLY_FILE
+        WHERE RIDER_REPLY_NUMBER = #{rider_reply_number}
+
+    </select>
+
+    <select id="getSFileNameC"
+            resultType="String">
+        SELECT SFILENAME
+        FROM CUSTOMER_BOARD_FILE
+        WHERE CUSTOMER_BOARD_NUMBER = #{board_number}
+
+    </select>
 
     <insert id="insertReplyFile">
         INSERT  INTO  RIDER_REPLY_FILE(
@@ -20,6 +35,17 @@
         FILEEXIT,
         SFILENAME)
         VALUES (RIDER_PDFILE_NUMBER.NEXTVAL, #{rider_reply_number}, #{vo.fileName}, #{vo.fileExit}, #{vo.sFileName})
+
+    </insert>
+
+    <insert id="writePicture">
+        INSERT  INTO  CUSTOMER_BOARD_FILE(
+        FILE_NUM,
+        CUSTOMER_BOARD_NUMBER,
+        FILENAME,
+        FILEEXIT,
+        SFILENAME)
+        VALUES (CUSTOMER_PDFILE_NUMBER.NEXTVAL, #{customer_board_number}, #{vo.fileName}, #{vo.fileExit}, #{vo.sFileName})
 
     </insert>
 

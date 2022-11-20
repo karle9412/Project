@@ -29,7 +29,7 @@
         USERID,
         FILENAME,
         FILEEXIT,
-        SFILNAME)
+        SFILENAME)
         VALUES (#{vo.userid}, #{vo.fileName}, #{vo.fileExit}, #{vo.sFileName})
     </insert>
 

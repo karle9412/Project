@@ -22,4 +22,10 @@ public class RRFPdsServiceImpl implements RRFPdsService {
         this.rrfPdsDao.setWrite(map);
 
     }
+
+    @Override
+    public String getSFileName(HashMap<String, Object> map) {
+        String sFileName = this.rrfPdsDao.getSFileName(map);
+        return sFileName;
+    }
 }

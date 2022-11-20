@@ -66,13 +66,13 @@
     <table  id="boardUpdate">
     <label for="title"></label>
 
-         <input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
+         <input type="text" class="form-control wid1" name="title" id="title" value="${ reviewVo.title}" placeholder="제목을 입력해 주세요">
           </div>
           <div class="mb-3">
 
         <label for="cont"></label>
 
-        <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" ></textarea>
+        <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" >${ reviewVo.cont}</textarea>
 
         </div>
          <div>

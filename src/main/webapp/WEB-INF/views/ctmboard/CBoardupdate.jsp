@@ -78,17 +78,17 @@
 
             					<label for="title"></label>
 
-            					<input type="text" class="form-control wid1" name="title" id="title" placeholder="제목을 입력해 주세요">
+            					<input type="text" class="form-control wid1" name="title" id="title" value="${boardVo.title}" placeholder="제목을 입력해 주세요">
 
             				</div>
 
                      <br>
-                    <input type="text" class="form-control" name="c_start" id="c_start" placeholder="출발지:부산 북구" >
-                    <input type="text" class="form-control" name="c_end" id="c_end" placeholder="목적지:부산 진구">
-                    <input type="text" class="form-control" name="delivery_indate" id="delivery_indate" placeholder="2012-12-12" >
+                    <input type="text" class="form-control" name="c_start" id="c_start" value="${boardVo.c_start}" placeholder="출발지:부산 북구" >
+                    <input type="text" class="form-control" name="c_end" id="c_end" value="${boardVo.c_end}" placeholder="목적지:부산 진구">
+                    <input type="text" class="form-control" name="delivery_indate" id="delivery_indate" value="${boardVo.delivery_indate}" placeholder="2012-12-12" >
                     <br>
-                    <input type="text" class="form-control" name="money" id="money" placeholder="비용">
-                    <input type="text" class="form-control" name="luggage" id="luggage" placeholder="컴퓨터" >
+                    <input type="text" class="form-control" name="money" id="money" value="${boardVo.money}" placeholder="비용">
+                    <input type="text" class="form-control" name="luggage" id="luggage" value="${boardVo.luggage}" placeholder="컴퓨터" >
 
                   </div>
                   <br>
@@ -98,7 +98,7 @@
 
                     <label for="cont"></label>
 
-                    <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" ></textarea>
+                    <textarea class="form-control" rows="5" name="cont" id="cont" placeholder="내용을 입력해 주세요" >${boardVo.cont}</textarea>
 
                   </div>
                      </div>

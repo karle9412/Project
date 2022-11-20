@@ -8,4 +8,6 @@ import java.util.HashMap;
 
 public interface RRFPdsService {
     void setWrite(HashMap<String, Object> map, HttpServletRequest request);
+
+    String getSFileName(HashMap<String, Object> map);
 }

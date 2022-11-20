@@ -4,6 +4,7 @@ import com.project.board.service.BoardService;
 import com.project.board.vo.*;
 import com.project.menus.service.MenuService;
 import com.project.menus.vo.MenuVo;
+import com.project.pds.customer.board.controller.CtmController;
 import com.project.reply.service.ReplyService;
 import com.project.reply.vo.CReplyVo;
 import com.project.reply.vo.ReplyVo;
@@ -36,6 +37,8 @@ public class BoardController {
     MenuService menuService;
     @Autowired
     ReplyService replyService;
+    @Autowired
+    CtmController ctmController;
 
 
     BoardPager boardPager = new BoardPager();
@@ -404,6 +407,8 @@ public class BoardController {
         String nickName = ((UserVo) httpSession.getAttribute("login")).getNickname();
         String menu_id  = (String)  map.get("menu_id");
         BoardVo boardVo = this.boardService.DetailCustomer(map);
+        String sFileName = this.ctmController.getSFileName(boardVo.getBoard_number());
+
 
         model.addAttribute("boardVo", boardVo);
         model.addAttribute("menu_id", menu_id);
@@ -428,7 +433,7 @@ public class BoardController {
         // 마지막 페이지
         map.put("pageNum", replyPager.getPageNum());
         map.put("contentNum", replyPager.getContentNum());
-
+        model.addAttribute("sFileName", sFileName);
         model.addAttribute("map",map);
         model.addAttribute("replyPager",replyPager);
 
@@ -745,8 +750,8 @@ public class BoardController {
         @PostMapping("/Board/SMS")
         public String sendSms(HttpServletRequest request) throws Exception {
 
-    String api_key = "NCSFK7VPJZONYO8Y";
-    String api_secret = "IA0TMBQVKQYV9O3JOOS1AOFIJSI4A25H";
+    String api_key = "NCSO8KXP96MLGO23";
+    String api_secret = "GTLDCW79SIYCMPWDQKESIDJTBDY5SPHB";
     Message coolsms = new Message(api_key, api_secret);
 
             HashMap<String, String> set = new HashMap<String, String>();

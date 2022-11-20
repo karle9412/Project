@@ -22,4 +22,10 @@ public class RRFPdsDaoImpl implements RRFPdsDao {
         }
 
     }
+
+    @Override
+    public String getSFileName(HashMap<String, Object> map) {
+        String sFileName = this.sqlSession.selectOne("File.getSFileName", map);
+        return sFileName;
+    }
 }

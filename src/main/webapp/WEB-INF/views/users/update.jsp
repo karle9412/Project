@@ -63,41 +63,35 @@ $(function(){
             <p>
                 <select class="w3-select" id="LOACTION" name="user_local">
                     <option value="">LOCATION</option>
-                    <option value="seoul">Seoul</option>
-                    <option value="incheon">Incheon</option>
-                    <option value="pusan">Pusan</option>
-                    <option value="daejeon">Daejeon</option>
-                    <option value="daegu">Daegu</option>
-                    <option value="ulsan">Ulsan</option>
-                    <option value="jeju">Jeju</option>
-                    <option value="kyeonggi">Kyeonggi</option>
-                    <option value="kangwon">Kangwon</option>
-                    <option value="kyeonsang">Kyeonsang</option>
-                    <option value="jeonra">Jeonra</option>
-                    <option value="choongchung">Choongchung</option>
+                        <option value="기장군">기장군</option>
+                        <option value="금정구">금정구</option>
+                        <option value="동래구">동래구</option>
+                        <option value="연제구">연제구</option>
+                        <option value="해운대구">해운대구</option>
+                        <option value="수영구">수영구</option>
+                        <option value="사상구">사상구</option>
+                        <option value="부산진구">부산진구</option>
+                        <option value="동구">동구</option>
+                        <option value="서구">서구</option>
+                        <option value="남구">남구</option>
+                        <option value="북구">북구</option>
+                        <option value="중구">중구</option>
+                        <option value="영도구">영도구</option>
+                        <option value="사하구">사하구</option>
+                        <option value="강서구">강서구</option>
                 </select>
             </p>
-    <input class="w3-radio w3-text-black" type="radio" name="rider" value="normal" checked>
-                <label>Normal User</label>
-                <input class="w3-radio" type="radio" name="rider" value="rider">
-                <label>Service User</label></br>
+            <input type="radio" class="btn-check" name="rider" value="normal" autocomplete="off" checked>
+            <label style="color:#efe2c9; font-size:15px;">퀵을 맡기시나요?</label>
+
+            <input type="radio" class="btn-check" name="rider" value="rider" autocomplete="off" required>
+            <label style="color:#efe2c9; font-size:15px;">퀵을 가시나요?</label>
     <button class="w3-button w3-section w3-light-green w3-ripple w3-text-white w3-right">수정 완료</a>
     </form>
 </div>
 </div>
 
 <script>
-function w3_open() {
-  document.getElementById("main").style.marginLeft = "15%";
-  document.getElementById("mySidebar").style.width = "15%";
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("openNav").style.display = 'none';
-}
-function w3_close() {
-  document.getElementById("main").style.marginLeft = "0%";
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("openNav").style.display = "inline-block";
-}
 </script>
 </body>
 </html>

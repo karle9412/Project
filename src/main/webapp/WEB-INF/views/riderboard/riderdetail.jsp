@@ -59,8 +59,8 @@ a.page-linkA:hover  { font-weight: bold; text-decoration: none; background: rgba
 window.onload = function(){
 replylist();
 
-
 }
+
 
 
 function RRFU(reply_number, i){
@@ -235,6 +235,11 @@ function deleteReply(reply_number,writer){
                     </a>
                   </b>
                 </td>
+                 <td>
+                <b>
+                <button type="button" class="w3-button" name="checkbtn" onclick="checkbuttonbtn()" style = "background-color: #ffffff; color: #212529; border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%">접수완료</button>
+                </b>
+                </td>
               </tr>
             </table>
           </div>
@@ -319,26 +324,27 @@ function replylist(list){
               html += resultList[i].indate;
               html +='</td>';
               html +='<td>';
-              html +='<button type="button" class="btn" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ','+ i +')">사진 올리기</button>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "FW" onclick="fileWatch('+ resultList[i].reply_number + ','+ i +')">사진 보기</button>';
+              html +='<span name="picture' + [i] + '"></span>'
+              html += '</td>';
+              html +='<td>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ','+ i +')">사진 올리기</button>';
               html +='<span name="fileUpload' + [i] + '"></span>'
               html += '</td>';
               html +='<td>';
-              html +='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
               html += '</td>';
               html += '<td>';
-              html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
               html +='</td>'
               html += '<td>';
-              html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
-              html += '</td>';
-              html += '<td>';
-              html +=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+              html +=  '<input type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" onclick="sendSMS()" value="전송하기" />'
               html += '</td>';
               html += '</tr>';
               html += '<tr>';
@@ -354,32 +360,34 @@ function replylist(list){
               html += '<tbody style="border-bottom:1px solid #ccc!important; ">';
               html += '<tr>';
               html += '<td>';
+              html += '<input type="hidden" name="aa" value='+ resultList[i].reply_number + '></input>'
               html += resultList[i].writer;
               html += '</td>';
               html +='<td>';
               html += resultList[i].indate;
               html +='</td>';
               html +='<td>';
-              html +='<button type="button" class="btn" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ','+ i +')">사진 올리기</button>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "FW" onclick="fileWatch('+ resultList[i].reply_number + ','+ i +')">사진 보기</button>';
+              html +='<span name="picture' + [i] + '"></span>'
+              html += '</td>';
+              html +='<td>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "RRFU" onclick="RRFU('+ resultList[i].reply_number + ','+ i +')">사진 올리기</button>';
               html +='<span name="fileUpload' + [i] + '"></span>'
               html += '</td>';
               html +='<td>';
-              html +='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" ame = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
               html += '</td>';
               html += '<td>';
-              html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
+              html +='<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
               html +='</td>'
               html += '<td>';
-              html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html += '<button type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
-              html += '</td>';
-              html += '<td>';
-              html +=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+              html +=  '<input type="button" class="w3-button"  style= "background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%; padding-top: 3px;padding-bottom: 3px;" onclick="sendSMS()" value="전송하기" />'
               html += '</td>';
               html += '</tr>';
               html += '<tr>';
@@ -478,6 +486,72 @@ function checkbuttonbtn(){
       })
     }
   }
+}
+
+
+// 접수취소버튼
+function  checkdelitebtn(){
+  let checkcheck = 0;
+  let ggg = {"board_check": checkcheck}
+  let ans = confirm("접수취소 하시겠습니까?");
+  let c  = "${riderBoardVo.board_check}"
+  let a = "${riderBoardVo.writer}"
+  let b = "${nickName}"
+  if("${riderBoardVo.board_check}" == 2 ){
+  alert("접수완료가 되어 취소가 되지 않습니다.");
+  return false;
+  }
+  if(ans === false){
+    return false;
+  }
+  if("${riderBoardVo.board_check}" == 0 ){
+    alert("접수가 되지 않아 취소할 수 없습니다")
+    return false;
+  }
+  if(ans === true){
+    if(a != b){
+      alert("본인이 작성한 게시글만 접수 가능합니다")
+    }
+    else{
+      $.ajax({
+        type:"get",
+        url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+        data: ggg,
+        success:function(resultcheck){
+          alert("접수취소 되었습니다")
+          location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=1';
+        }
+      })
+    }
+  }
+}
+
+function fileWatch(reply_number, i){
+console.log(reply_number);
+console.log(i);
+
+let ggg={"rider_reply_number" : reply_number};
+
+$.ajax({
+    type:"get",
+    url:"/RiderWatch",
+    data: ggg,
+    success:function(resultcheck){
+    console.log(resultcheck);
+
+    if(resultcheck == null){
+        return false;
+    } else{
+        html = "";
+        html += '<img src="/img/rider/reply/'+reply_number +'/' + resultcheck+'" style="width:100px; height:100px;"></img>'
+
+        $('[name=picture'+i+']').html(html)
+
+
+    }
+
+    }
+                  })
 }
 </script>
 </body>

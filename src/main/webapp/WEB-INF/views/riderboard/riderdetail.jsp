@@ -5,11 +5,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Insert title here</title>
 
 <style>
-  #board  input     { width:100%; }
-  #board  textarea  { width:100%; height: 400px;  }
+
+
+h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
+body {font-family: "Open Sans"}
+.date{font-size: 11px}
+.comment-text{font-size: 12px}
+.fs-12{font-size: 12px}
+.shadow-none{box-shadow: none}
+.name{color: #007bff}
+.cursor:hover{color: blue}
+.cursor{cursor: pointer}
+.textarea{resize: none}
+.textarea.form-control { height: auto; }
+.headerB{ font-size: 80px!important }
+.headerD{ font-size: 25px!important; background-color: #000; color: #fff; padding: 0px 8px 4px 8px; text-align: center; }
+.page-linkA {
+    position: relative;
+    padding: 10px 15px;
+    margin-left: 5px;
+    line-height: 1.25;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #a0a0a0;
+    text-decoration: none;
+    text-align:center;
+    font-size: 15px!important;
+    border-radius: 10%;
+}
+.ReplyPa { text-align: center; padding-bottom: 10px; margin: 30px 0px;}
+.PageNum { color: #4c72db; text-decoration: underline; font-weight: bold;}
+
+a { text-decoration:none; }
+a:hover { text-decoration:underline; color:#007bff; }
+a.page-linkA:hover  { font-weight: bold; text-decoration: none; background: rgba(210,210,210,1); color: #4c72db; border: 1px solid #000; }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -119,78 +161,101 @@ function deleteReply(reply_number,writer){
 }
 </script>
 </head>
-<body>
-<table id="board">
-  <caption><h2>내용 보기</h2></caption>
-  <tr>
-    <td>번호</td>
-    <td>${ riderBoardVo.board_number }</td>
-  <tr>
-    <td>작성일</td>
-    <td>${ riderBoardVo.indate }</td>
-    <td>작성자</td>
-    <td>${ riderBoardVo.writer }</td>
-  </tr>
-  <tr>
-    <td>제목</td>
-    <td colspan="3">${ riderBoardVo.title }</td>
-  </tr>
-  <tr>
-    <div id = "startline">
-    <td>출발지</td>
-    <td >${riderBoardVo.r_start}</td>
-    <td>목적지</td>
-    <td>${riderBoardVo.r_end}</td>
-    <td>일자</td>
-    <td>${riderBoardVo.delivery_indate}</td>
+<%@ include file="/WEB-INF/include/menus.jsp" %>
+<body class="w3-light-grey">
+<header class="w3-container w3-center w3-white" style="padding-top: 80px; padding-bottom: 80px;">
+  <h1 class="headerB"><b>Banana Quick</b></h1>
+  <h6><span class="headerD">delivery's world</span></h6>
+</header>
+<div class="w3-content" style="max-width:1600px; margin:auto;">
+  <div class="w3-row w3-padding w3-border" style="margin: 50px 0px;">
+    <div>
+      <div class="w3-container w3-white w3-margin w3-padding-large"  style="border: 1px solid #ccc;">
+        <div class="w3-center">
+          <h3 style="font-size:40px; border:1px solid #ccc!important"> 제목: ${ riderBoardVo.title }</h3>
+          <table id="board" style="border:1px solid #ccc!important">
+            <tr style="border:1px solid #ccc!important">
+              <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>작성자&nbsp;:</strong> &nbsp; ${ riderBoardVo.writer }</td>
+              <td width= 300px; style="text-align: left"><strong>비용&nbsp:</strong> &nbsp; ${riderBoardVo.money}</td>
+              <td width= 300px; style="text-align: left"><strong>수화물&nbsp;:</strong> &nbsp; ${riderBoardVo.luggage}</td>
+              <td width= 300px; style="text-align: left"><strong>접수여부&nbsp;:</strong> &nbsp;
+                <c:if test="${riderBoardVo.board_check == 0}"> 접수대기 </c:if>
+                <c:if test="${riderBoardVo.board_check == 1}"> 접수중 </c:if>
+                <c:if test="${riderBoardVo.board_check == 2}"> 접수완료 </c:if></td>
+              <td width= 300px; style="text-align: left"><strong>작성일&nbsp;:</strong> &nbsp ${ riderBoardVo.indate }</td>
+            </tr>
+            <tr>
+              <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>출발지&nbsp;: &nbsp; ${riderBoardVo.r_start}</td>
+              <td width= 300px; style="text-align: left"><strong>목적지:</strong> &nbsp; ${riderBoardVo.r_end}</td>
+              <td width= 300px; style="text-align: left"><strong>도착일:</strong> &nbsp; ${riderBoardVo.delivery_indate}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="w3-justify" >
+          <p style="margin: 30px 0px; border: 1px solid #ccc; padding: 20px 20px;">${ riderBoardVo.cont }</p>
+          <div style="height: 45px; padding-bottom: 50px; border-width: 0px 0px 2px 0px; border-style: solid; border-color: rgba(224, 221, 221, 0.8);">
+            <table class="w3-right">
+              <tr>
+                <td>
+                  <form name = "RUpdateBoard" method = "get">
+                    <input type = "hidden" name ="board_number" value= "${riderBoardVo.board_number}"/>
+                    <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                    <input type = "hidden" name=  "writer"  value = "${riderBoardVo.writer}"/>
+                    <button type = "button" id = "update" onClick = "UpdateBoard_()" class="w3-button"
+                      style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;
+                        border-radius: 10%"><b>수정</b></button>
+                  </form>
+                </td>
+                <td>
+                  <b>
+                    <input type = "button" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" id = "delete" value= "삭제" onclick = "DeleteBoard()" class="w3-button"/>
+                  </b>
+                </td>
+                <td>
+                  <b>
+                    <a href="/Board/riderList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}" class="w3-button"
+                       style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%">목록으로
+                    </a>
+                  </b>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="margin-top: 3px;">
+            <p class="w3-right">
+              <button style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="w3-button" onclick="myFunction('reply')" id="myBtn"><b>댓글</b></button>
+            </p>
+            <p class="w3-clear"></p>
+            <div id="reply" style="display:none"></div>
+            <div class="bg-light p-2">
+              <div class="d-flex flex-row align-items-start">
+                <textarea class="form-control ml-1 shadow-none textarea" type="textarea" id="replytext" placeholder="댓글을 작성하세요"></textarea>
+              </div>
+              <div class="mt-2 text-right">
+                <button type="button" id="btnReply" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="btnReply w3-button">작성</button>
+              </div>
+            </div>
+            <div id="ReplyPa" class="ReplyPa"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </tr>
-  <tr>
-    <td>비용</td>
-    <td>${riderBoardVo.money}</td>
-    <td>수화물</td>
-    <td>${riderBoardVo.luggage}</td>
-  </tr>
-  <tr>
-    <td>내용</td>
-    <td colspan="3">${ riderBoardVo.cont }</td>
-  </tr>
-  <tr>
-    <td colspan="4"></td>
-    <form name = "RUpdateBoard" method = "get">
-      <input type = "hidden" name ="board_number" value= "${riderBoardVo.board_number}"/>
-      <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
-      <input type = "hidden" name=  "writer"  value = "${riderBoardVo.writer}"/>
-      <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
-    </form>
-    <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
-    [<a href="/Board/riderList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
-    [<a href="javascript:history.back()">이전으로</a>]
-    [<a href="/">Home</a>]
-  </tr>
-</table>
-<table id="reply1">
-<div id="reply">
-  <ol class="replyList">
-    <c:forEach items="${replylist}" var="replylist">
-      <p>
-      작성자 : ${replylist.writer}<br />
-      작성 날짜 :${replylist.indate}
-      </p>
-      <p>${replylist.cont}</p>
-    </c:forEach>
-  </ol>
+  </div>
 </div>
-</table>
-<div id = Replyli></div>
-<div style="width:700px; text-align:center;">
-  <br>
-    <textarea rows ="5" cols="80" id="replytext" placeholder="댓글을 작성하세요"></textarea>
-    <button type="button" id="btnReply" class="btnReply">작성</button>
-  </br>
-</div>
-<div id =ReplyPa></div>
+
 <script>
+document.getElementById("myBtn").click();
+
+//댓글 누르면 댓글창이 나오는 함수
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
 $("#btnReply").click(function(){
   let cont  = $("#replytext").val();
   let board_number = "${riderBoardVo.board_number }";
@@ -215,141 +280,108 @@ function replylist(list){
     type:"get",
     url: "/Board/RReplyList?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}&pageNum=${map.pageNum}&contentNum=${map.contentNum}",
     success: function(resultList){
-      console.log(resultList);
       let html = "";
       let RPager = "";
-
-      if (resultList.length >0){
-        html += '<table>';
+      let replyLen = resultList.length;
+      let urlParams = new URL(location.href).searchParams;
+      let nowPN = urlParams.get('pageNum');
+      if (replyLen != 0){
         let end = parseInt(resultList[0].rend_page)
         let startP = parseInt("${replyPager.getStartPage()}");
-        console.log(startP);
-        console.log(end);
-        for(var i =0; i<resultList.length; i++){
-          html += '<tr>';
-          html += '<td>';
-          html += resultList[i].writer;
-          html += '</td>';
-          html += '</tr>';
-          html += '<tr>';
-          html += '<td id="R'+ resultList[i].reply_number +'">';
-          html += resultList[i].cont;
-          html += '</td>';
-          html += '</tr>';
-          html += '<tr>';
-          html +='<td>';
-          html += resultList[i].indate;
-          html +='</td>';
-          html +='<td>';
-          html +='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
-          html += '</td>';
-          html += '<td>';
-          html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
-          html +='</td>'
-          html+= '<td>';
-                                  html+= '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
-                                  html+= '</td>';
-                                  html+= '<td>';
-                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
-                                  html+= '</td>';
-                                  html+= '<td>';
-                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
-                                  html+= '</td>';
-                                  html+= '<td>';
-                                  html+=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
-                                  html+= '</td>';
-                                  html+= '</tr>';
-          html += '</tr>';
+        if (resultList.length >0){
+          html += '<table>';
+          if (replyLen >=10){
+            replyLen = 10;
+            for(var i = 0; i<resultList.length; i++){
+              html += '<tbody style="border-bottom:1px solid #ccc!important; ">';
+              html += '<tr>';
+              html += '<td>';
+              html += resultList[i].writer;
+              html += '</td>';
+              html +='<td>';
+              html += resultList[i].indate;
+              html +='</td>';
+              html +='<td>';
+              html +='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html += '</td>';
+              html += '<td>';
+              html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
+              html +='</td>'
+              html += '<td>';
+              html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html += '</td>';
+              html += '<td>';
+              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html += '</td>';
+              html += '<td>';
+              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
+              html += '</td>';
+              html += '<td>';
+              html +=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+              html += '</td>';
+              html += '</tr>';
+              html += '<tr>';
+              html += '<td id="R'+ resultList[i].reply_number +'">';
+              html += resultList[i].cont;
+              html += '</td>';
+              html += '</tr>';
+              html += '</tbody>';
+            }
+          }
+          else{
+            for(var i=0; i<replyLen; i++){
+              html += '<tbody style="border-bottom:1px solid #ccc!important; ">';
+              html += '<tr>';
+              html += '<td>';
+              html += resultList[i].writer;
+              html += '</td>';
+              html +='<td>';
+              html += resultList[i].indate;
+              html +='</td>';
+              html +='<td>';
+              html +='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
+              html += '</td>';
+              html += '<td>';
+              html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
+              html +='</td>'
+              html += '<td>';
+              html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
+              html += '</td>';
+              html += '<td>';
+              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
+              html += '</td>';
+              html += '<td>';
+              html += '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
+              html += '</td>';
+              html += '<td>';
+              html +=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
+              html += '</td>';
+              html += '</tr>';
+              html += '<tr>';
+              html += '<td id="R'+ resultList[i].reply_number +'">';
+              html += resultList[i].cont;
+              html += '</td>';
+              html += '</tr>';
+              html += '</tbody>';
+            }
+          }
+          html += '</table>';
         }
-        html+='</table>';
-        $('#Replyli').html(html);
-
-        RPager += '</table>';
-        RPager += '<table id="pager">';
-        RPager += '<tr>';
-        RPager += '<td>';
+        $('#reply').html(html);
         RPager += '<c:if test="${replyPager.prev}">';
-        RPager += '<a href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>';
+        RPager += '<a class="page-linkA" href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>';
         RPager += '</c:if>';
-        RPager += '</td>';
-        RPager += '<td>';
         for (var j=startP; j<=end; j++){
-          RPager += '<a href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+j+'&contentNum='+j*10+'">'+j+'</a>';
+          RPager += '<a class="page-linkA" href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+j+'&contentNum='+j*10+'">';
+          if(nowPN == j){
+            RPager += '<span class="PageNum">'+j+'</span></a>';
+          }else{
+            RPager += j+'</a>';
+          }
         }
-        RPager += '</td>';
-        RPager += '<td>';
         if("${replyPager.next}"=="true"){
-           RPager += '<a href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>';
+           RPager += '<a class="page-linkA" href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>';
         }
-        RPager += '</td>';
-        RPager += '</tr>';
-        RPager += '</table>';
-        $('#ReplyPa').html(RPager);
-      }
-      else{
-        html += '<table>';
-        let end = ""
-        let startP = parseInt("${replyPager.getStartPage()}");
-
-        for(var i =0; i<resultList.length; i++){
-          html += '<tr>';
-          html += '<td>';
-          html += resultList[i].writer;
-          html += '</td>';
-          html += '</tr>';
-          html += '<tr>';
-          html += '<td id="R'+ resultList[i].reply_number +'">';
-          html += resultList[i].cont;
-          html += '</td>';
-          html += '</tr>';
-          html += '<tr>';
-          html +='<td>';
-          html += resultList[i].indate;
-          html +='</td>';
-          html +='<td>';
-          html +='<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
-          html += '</td>';
-          html += '<td>';
-          html +='<button type="button" class="btndelte" name = "replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">삭제</button>';
-          html +='</td>'
-                                  html+= '<td>';
-                                  html+= '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
-                                  html+= '</td>';
-                                  html+= '<td>';
-                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkbuttonbtn()">접수완료</button>';
-                                  html+= '</td>';
-                                  html+= '<td>';
-                                  html+= '<button type="button" class="checkbtnbtn" name="checkbtn" onclick="checkdelitebtn()">접수취소</button>';
-                                  html+= '</td>';
-                                  html+= '<td>';
-                                  html+=  '<input type="button" onclick="sendSMS()" value="전송하기" />'
-                                  html+= '</td>';
-                                  html+= '</tr>';
-          html += '</tr>';
-        }
-        html+='</table>';
-        $('#Replyli').html(html);
-
-        RPager += '</table>';
-        RPager += '<table id="pager">';
-        RPager += '<tr>';
-        RPager += '<td>';
-        RPager += '<c:if test="${replyPager.prev}">';
-        RPager += '<a href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getStartPage()-1}&contentNum=${(replyPager.getStartPage()-1)*10}">< 이전</a>';
-        RPager += '</c:if>';
-        RPager += '</td>';
-        RPager += '<td>';
-        for (var j=startP; j<=end; j++){
-          RPager += '<a href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum='+j+'&contentNum='+j*10+'">'+j+'</a>';
-        }
-        RPager += '</td>';
-        RPager += '<td>';
-        if("${replyPager.next}"=="true"){
-           RPager += '<a href="/Board/riderDetail?board_number=${replyPager.board_number}&menu_id=${menu_id}&pageNum=${replyPager.getEndPage()+1}&contentNum=${(replyPager.getEndPage()+1)*10}">다음 ></a>';
-        }
-        RPager += '</td>';
-        RPager += '</tr>';
-        RPager += '</table>';
         $('#ReplyPa').html(RPager);
       }
     }
@@ -369,62 +401,59 @@ function UpdateBoard_(){
   }
 }
 
+function checkbutton(){
+ let checkcheck = 1
+ let ggg = {"board_check": checkcheck}
+ let ans = confirm("접수하시겠습니까?");
+ let a = "${riderBoardVo.writer}"
+ let b = "${nickName}"
 
+ if (ans === false){
+   return false;
+ }
+ if("${riderBoardVo.board_check}" == 2){
+   alert("이미 접수완료된 게시글입니다.")
+   return false;
+ }
+ if(a != b){
+   alert("본인이 작성한 게시글만 접수 가능합니다")
+ }
+ else{
+   $.ajax({
+     type:"get",
+     url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+     data: ggg,
+     success:function(resultcheck){
+       alert("접수완료")
+       location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=1';
+     }
+   })
+ }
+}
 
-
-           function checkbutton(){
-                 let checkcheck = 1
-                 let ggg = {"board_check": checkcheck}
-                 let ans = confirm("접수하시겠습니까?");
-                 let a = "${riderBoardVo.writer}"
-                 let b = "${nickName}"
-                   if (ans === false){
-                   return false;}
-                     if("${riderBoardVo.board_check}" == 2){
-                       alert("이미 접수완료된 게시글입니다.")
-                       return false;
-                       }
-                 if(a != b){
-                 alert("본인이 작성한 게시글만 접수 가능합니다")
-                 }
-                 else{
-                   $.ajax({
-                   type:"get",
-                   url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
-                   data: ggg,
-                   success:function(resultcheck){
-                   alert("접수완료")
-                   location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=1';
-                   }
-                   })
-                 }
-               }
-
-              function checkbuttonbtn(){
-                let checkcheck = 2;
-                    let ggg = {"board_check": checkcheck}
-                    let ans = confirm("접수완료 시 취소가 불가능합니다.");
-                    let a = "${riderBoardVo.writer}"
-                    let b = "${nickName}"
-                    if(ans === true){
-                    if(a != b){
-                    alert("본인이 작성한 게시글만 접수 가능합니다")
-                    }
-                    else{
-                      $.ajax({
-                      type:"get",
-                      url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
-                      data: ggg,
-                      success:function(resultcheck){
-                      alert("접수완료")
-                      location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=2';
-                      }
-                      })
-                      }
-                      }
-
-                  }
-
+function checkbuttonbtn(){
+  let checkcheck = 2;
+  let ggg = {"board_check": checkcheck}
+  let ans = confirm("접수완료 시 취소가 불가능합니다.");
+  let a = "${riderBoardVo.writer}"
+  let b = "${nickName}"
+  if(ans === true){
+    if(a != b){
+      alert("본인이 작성한 게시글만 접수 가능합니다")
+    }
+    else{
+      $.ajax({
+        type:"get",
+        url:"/Board/Rcheck?board_number=${riderBoardVo.board_number}&menu_id=${menu_id}",
+        data: ggg,
+        success:function(resultcheck){
+          alert("접수완료")
+          location.href='/Board/riderDetail?board_number=${riderBoardVo.board_number}&menu_id=MENU_02&pageNum=1&contentNum=10&board_check=2';
+        }
+      })
+    }
+  }
+}
 </script>
 </body>
 </html>

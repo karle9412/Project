@@ -8,13 +8,23 @@
 <title>Insert title here</title>
 
 <style>
-  #board  td:nth-of-type(1) { width:150px; text-align:center;}
-  #board  td:nth-of-type(2) { width:400px; text-align:left;}
-  #board  td:nth-of-type(3) { width:150px; text-align:center;}
-  #board  td:nth-of-type(4) { width:400px; text-align:left;}
-  #board  tr:nth-of-type(4) { height : 400px; vertical-align: top; }
-  #board  input     { width:100%; }
-  #board  textarea  { width:100%; height: 400px;  }
+
+.headerB{ font-size: 80px!important }
+.headerD{ font-size: 25px!important; background-color: #000; color: #fff; padding: 0px 8px 4px 8px; text-align: center; }
+.page-linkA {
+    position: relative;
+    padding: 10px 15px;
+    margin-left: 5px;
+    line-height: 1.25;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #a0a0a0;
+    text-decoration: none;
+    text-align:center;
+    font-size: 15px!important;
+    border-radius: 10%;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -35,56 +45,59 @@ alert("삭제되었습니다");
 location.href='/Board/reviewList?menu_id=MENU_03&pageNum=1&contentNum=10';
 }
 
-
 });
 }
 }
 }
 </script>
-
-
-
-
 </head>
-<body>
- <table id="board">
- <table>
-
-             <caption><h2>내용 보기</h2></caption>
-             <tr>
-              <td>번호</td>
-              <td>${ reviewBoardVo.board_number } </td>
-             <tr>
-              <td>작성일</td>
-              <td>${ reviewBoardVo.indate } </td>
-              <td>작성자</td>
-              <td>${ reviewBoardVo.writer } </td>
+<%@ include file="/WEB-INF/include/menus.jsp" %>
+<body class="w3-light-grey">
+<header class="w3-container w3-center w3-white" style="padding-top: 80px; padding-bottom: 80px;">
+  <h1 class="headerB" ><b>Banana Quick</b></h1>
+  <h6><span class="headerD">delivery's world</span></h6>
+</header>
+<div class="w3-content" style="max-width:1600px; margin:auto;">
+  <div class="w3-row w3-padding w3-border" style="margin: 50px 0px;">
+    <div>
+      <div class="w3-container w3-white w3-margin w3-padding-large" style="border: 1px solid #ccc;">
+        <div class="w3-center">
+          <h3 style="font-size:40px; border:1px solid #ccc!important"> 제목: ${ reviewBoardVo.title }</h3>
+          <table style="border:1px solid #ccc!important">
+            <tr style="border:1px solid #ccc!important">
+              <td width= 300px; style="text-align: left; padding: 10px 15px;"><strong>작성자:</strong> &nbsp; ${ reviewBoardVo.writer }</td>
+              <td width= 300px; style="text-align: left"><strong>지역:</strong></td>
+              <td style="text-align: left; padding-right: 644px;"><strong>작성일:</strong> &nbsp; ${ reviewBoardVo.indate } </td>
              </tr>
-             <tr>
-              <td>제목</td>
-              <td colspan="3">${ reviewBoardVo.title } </td>
-             </tr>
-             <tr>
-              <td>내용</td>
-              <td colspan="3">${ reviewBoardVo.cont }</td>
-             </tr>
-             <tr>
-
-              <td colspan="4">
-              </td>
-                     <form name = "RVUpdateBoard" method = "get">
-                                         <input type = "hidden" name ="board_number" value= "${reviewBoardVo.board_number}"/>
-                                         <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
-                                         <input type = "hidden" name=  "writer"  value = "${reviewBoardVo.writer}"/>
-                                          <button type = "button" id = "update" onClick = "UpdateBoard_()">수정</button>
-                                         </form>
-                     <input type = "button" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
-                     [<a href="/Board/reviewList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>]
-                     [<a href="javascript:history.back()">이전으로</a>]
-                     [<a href="/">Home</a>]
-                     </td>
-                     </tr>
-                     </table>
+          </table>
+        </div>
+        <div class="w3-justify" >
+          <p style="padding: 20px 20px; border: 1px solid #ccc; ">${ reviewBoardVo.cont }</p>
+          <div style="height: 45px; padding-bottom: 50px; border-width: 0px 0px 2px 0px; border-style: solid; border-color: rgba(224, 221, 221, 0.8);">
+            <table class="w3-right">
+              <tr>
+                <td>
+                  <form name = "RVUpdateBoard" method = "get">
+                    <input type = "hidden" name ="board_number" value= "${reviewBoardVo.board_number}"/>
+                    <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
+                    <input type = "hidden" name=  "writer"  value = "${reviewBoardVo.writer}"/>
+                    <button type = "button" id = "update" onClick = "UpdateBoard_()" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;border-radius: 10%"><b>수정</b></button>
+                  </form>
+                </td>
+                <td>
+                  <input type = "button" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" id = "delete" value= "삭제" onclick = "DeleteBoard()"</button>
+                  <a href="/Board/reviewList?menu_id=MENU_02&pageNum=${boardPager.getPageNum()+1}&contentNum=${(boardPager.getPageNum()+1)*10}">목록으로</a>
+                  <a href="javascript:history.back()">이전으로</a>
+                  <a href="/">Home</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 function UpdateBoard_(){

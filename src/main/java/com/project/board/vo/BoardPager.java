@@ -117,7 +117,7 @@ public class BoardPager {
 
     public void setLastBlock() {
         lastBlock = totalCount / 50;
-        if (totalCount % (5 * contentNum) > 0){
+        if ((totalCount % 50) > 0){
             lastBlock++;
         }
     }

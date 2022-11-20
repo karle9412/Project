@@ -20,7 +20,9 @@
         PASSWD,
         NICKNAME,
         RIDER,
-        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE
+        TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE,
+        USER_LOCAL
+
         FROM  USERS
         WHERE USERID = #{userid}
         AND   PASSWD = #{passwd}

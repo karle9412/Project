@@ -43,12 +43,12 @@ body {font-family: "Open Sans"}
     text-decoration: none;
     text-align:center;
     font-size: 15px!important;
+    border-radius: 10%;
 }
-.ReplayPa { text-align: center; padding-bottom: 10px; margin: 30px 0px;}
+.ReplyPa { text-align: center; padding-bottom: 10px; margin: 30px 0px;}
 .PageNum { color: #4c72db; text-decoration: underline; font-weight: bold;}
-li.pcl1 { text-align:left; }
 
-a:hover { font-weight: bold; text-decoration: none; background: rgba(210,210,210,1); color: #4c72db; border: 1px solid #000; }
+a.page-linkA:hover  { font-weight: bold; text-decoration: none; background: rgba(210,210,210,1); color: #4c72db; border: 1px solid #000; }
 
 </style>
 <!-- css 불러오기 끝 -->
@@ -79,8 +79,8 @@ function DeleteBoard(e){
 
 //댓글 수정하는 폼 불러오기
 function updateReplyForm(reply_number,writer){
-  const writer_check =confirm("수정하시겠습니까?");
-  if( writer_check ===true){
+  const writer_check = confirm("수정하시겠습니까?");
+  if( writer_check === true){
     if("${nickName}" != writer){
       alert("본인이 작성한 댓글만 수정 가능합니다.");
     }
@@ -92,10 +92,10 @@ function updateReplyForm(reply_number,writer){
       form += '<input type= "hidden"  name="writer" id= "writer" value='+ writer +'>'
       form += '<textarea class = "replyclass" id= "replycontent" cols="80" rows="3">';
       form += k.textContent;
-      form += "</textarea>";
-      form += "<br/>";
-      form +='<button type = "button" class="Updatebtn" onClick="updateReply(' + reply_number +',\'' + writer + '\')"> 완료 </button>';
-      form +='<button type = "button" class="DeleteBtn" onClick="replylist()" >';
+      form += '</textarea>';
+      form += '<br/>';
+      form += '<button type = "button" class="Updatebtn" onClick="updateReply(' + reply_number +',\'' + writer + '\')"> 완료 </button>';
+      form += '<button type = "button" class="DeleteBtn" onClick="replylist()" >';
       form += '취소';
       form += '</button>';
       form += '</div>';
@@ -161,17 +161,16 @@ function deleteReply(reply_number,writer,endPage){
 
 </script>
 </head>
-
+<%@ include file="/WEB-INF/include/menus.jsp" %>
 <!-- html 시작 -->
 <body class="w3-light-grey">
 <header class="w3-container w3-center w3-white" style="padding-top: 80px; padding-bottom: 80px;">
-  <h1 class="headerB" ><b>Banana Quick</b></h1>
+  <h1 class="headerB"><b>Banana Quick</b></h1>
   <h6><span class="headerD">delivery's world</span></h6>
 </header>
 <div class="w3-content" style="max-width:1600px; margin:auto;">
   <div class="w3-row w3-padding w3-border" style="margin: 50px 0px;">
-    <div>
-      <div class="w3-container w3-white w3-margin w3-padding-large">
+      <div class="w3-container w3-white w3-margin w3-padding-large" style="border: 1px solid #ccc;">
         <div class="w3-center">
           <h3 style="font-size:40px; border:1px solid #ccc!important"> 제목: ${ boardVo.title }</h3>
           <table style="border:1px solid #ccc!important">
@@ -193,16 +192,16 @@ function deleteReply(reply_number,writer,endPage){
           </table>
         </div>
         <div class="w3-justify" >
-          <p style="margin-top: 30px; margin-left: 15px; ">${ boardVo.cont }</p>
+          <p style="margin: 30px 0px; border: 1px solid #ccc; padding: 20px 20px;">${ boardVo.cont }</p>
           <div style="height: 45px; padding-bottom: 50px; border-width: 0px 0px 2px 0px; border-style: solid; border-color: rgba(224, 221, 221, 0.8);">
             <table class="w3-right">
               <tr>
                 <td>
                   <form name = "UpdateBoard" method = "get">
-                    <input type = "hidden" name ="board_number" value= "${boardVo.board_number}"/>
+                    <input type = "hidden" name = "board_number" value= "${boardVo.board_number}"/>
                     <input type = "hidden" name = "menu_id" value= "${menu_id}"/>
-                    <input type = "hidden" name=  "writer"  value = "${boardVo.writer}"/>
-                    <button class="w3-button" id = "update" onClick = "UpdateBoard_()"
+                    <input type = "hidden" name = "writer"  value = "${boardVo.writer}"/>
+                    <button type = "button" class="w3-button" id = "update" onClick = "UpdateBoard_()"
                       style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px;
                       border-radius: 10%"><b> 수정</b></button>
                   </form>
@@ -236,11 +235,10 @@ function deleteReply(reply_number,writer,endPage){
                 <button type="button" id="btnReply" style="background-color: #ffffff; color: #212529;border-style: solid; border-color: #c4c9cf; border-width: 1px; border-radius: 10%" class="btnReply w3-button">작성</button>
               </div>
             </div>
-            <div id="ReplyPa" class="ReplayPa"></div>
+            <div id="ReplyPa" class="ReplyPa"></div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 
@@ -295,11 +293,12 @@ function replylist(){
       let replyLen = resultList.length;
       let urlParams = new URL(location.href).searchParams;
       let nowPN = urlParams.get('pageNum');
+
       if (replyLen != 0){
         let end = parseInt(resultList[0].rend_page)
         let startP = parseInt("${replyPager.getStartPage()}");
         if (replyLen >0){
-          html+= '<table>';
+          html+= '<table >';
           if ( replyLen >= 10) {
             replyLen = 10;
             for(var i=0; i<replyLen; i++){
@@ -315,8 +314,7 @@ function replylist(){
               html += '<button type="button" class="btn" name = "replyupdateBtn" onclick="updateReplyForm('+ resultList[i].reply_number + ',\'' + resultList[i].writer +'\')">수정</button>';
               html += '</td>';
               html += '<td>';
-              html += '<button type="button" class="btndelte" name="replydeleteBtn"';
-              html += 'onclick="deleteReply('+ resultList[i].reply_number+',\''+ resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
+              html += '<button type="button" class="btndelte" name="replydeleteBtn" onclick="deleteReply('+ resultList[i].reply_number+',\''+ resultList[i].writer +'\',${replyPager.getEndPage()})">삭제</button>';
               html += '</td>';
               html += '<td>';
               html += '<button type="button" class="checkbtn" name="checkbtnbtn" onclick="checkbutton()">접수하기</button>';
@@ -332,7 +330,7 @@ function replylist(){
               html += '</td>';
               html += '</tr>';
               html += '<tr>';
-              html += '<td>';
+              html += '<td id="R'+ resultList[i].reply_number +'">';
               html += resultList[i].cont;
               html += '</td>';
               html += '</tr>';
@@ -370,13 +368,14 @@ function replylist(){
               html += '</td>';
               html += '</tr>';
               html += '<tr>';
-              html += '<td>';
+              html += '<td id="R'+ resultList[i].reply_number +'">';
               html += resultList[i].cont;
               html += '</td>';
               html += '</tr>';
               html += '</tbody>';
             }
           }
+          html += '</table>';
         }
         $('#reply').html(html);
         RPager += '<c:if test="${replyPager.prev}">';
@@ -516,7 +515,7 @@ function  checkdelitebtn(){
 
 // 메세지전송버튼
 function sendSMS(){
-  let ab = "01048195535" // 내번호
+  let ab = "0104819535" // 내번호
   let ac = "테스트 입니다" // 텍스트
   let param = {"from":ab, "text":ac}
   $.ajax({

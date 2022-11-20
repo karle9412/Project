@@ -80,6 +80,25 @@
         WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
     </select>
 
+    <select id="RVSList"
+            resultType="com.project.board.vo.BoardVo">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        R.BOARD_NUMBER,
+        R.TITLE,
+        R.MENU_ID,
+        R.WRITER,
+        R.BOARD_LOCAL,
+        R.CONT,
+        TO_CHAR(R.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        FROM REVIEW_BOARD R
+        WHERE ${searchType} LIKE '%${keyword}%'
+        ORDER BY BOARD_NUMBER ASC)
+        WHERE RNUM BETWEEN #{pageNum} AND #{contentNum}
+    </select>
+
     <select id="ReviewList"
             resultType="com.project.board.vo.BoardVo">
         SELECT *
@@ -140,6 +159,24 @@
         ORDER BY BOARD_NUMBER ASC)
     </select>
 
+    <select id="RVSCount"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY BOARD_NUMBER ASC) RNUM,
+        C.BOARD_NUMBER,
+        C.TITLE,
+        C.MENU_ID,
+        C.WRITER,
+        C.BOARD_LOCAL,
+        C.CONT,
+        TO_CHAR(C.INDATE + 9/24, 'yyyy-mm-dd hh24:mi:ss') AS INDATE
+
+        FROM REVIEW_BOARD C
+        WHERE ${searchType} LIKE '%${keyword}%'
+        ORDER BY BOARD_NUMBER ASC)
+    </select>
+
     <select id="RSCount"
             resultType="int">
         SELECT COUNT(*)
@@ -173,8 +210,8 @@
 
 
     <insert id="C_InsertBoard" parameterType="com.project.board.vo.BoardVo">
-        INSERT INTO CUSTOMER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT,C_START,C_END,MONEY,LUGGAGE,DELIVERY_INDATE)
-        VALUES(BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{cont},#{c_start},#{c_end},#{money},#{luggage},#{delivery_indate})
+        INSERT INTO CUSTOMER_BOARD (BOARD_NUMBER,MENU_ID,TITLE,WRITER,CONT,C_START,C_END,MONEY,LUGGAGE,DELIVERY_INDATE,BOARD_LOCAL)
+        VALUES(BOARD_NUMBER.NEXTVAL,#{menu_id},#{title},#{writer},#{cont},#{c_start},#{c_end},#{money},#{luggage},#{delivery_indate},${board_local})
 
 
     </insert>
